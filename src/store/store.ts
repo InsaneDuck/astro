@@ -13,6 +13,10 @@ export const store = configureStore({
     settings: settingsReducers,
     theme: themeReducers,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,11 +1,6 @@
 import { Press } from "@/components/theming/Themed";
 import React, { FC, useEffect, useState } from "react";
-import {
-  Dimensions,
-  Image as DefaultImage,
-  Pressable,
-  StyleSheet,
-} from "react-native";
+import { Dimensions, Image as DefaultImage, Pressable } from "react-native";
 
 type ImageProps = {
   onPress?: Press;
@@ -17,15 +12,21 @@ const Image: FC<ImageProps> = (props) => {
   const [height, setHeight] = useState(0);
   let isMounted = true;
   useEffect(() => {
-    if ((source as any).uri) {
-      DefaultImage.getSize((source as any).uri, (newWidth, newHeight) => {
-        if (!isMounted) {
-          return;
-        }
-        const height = (screenWidth * newHeight) / newWidth;
-        setHeight(height);
-      });
-    }
+    const fetchImageDimensions = async () => {
+      if ((source as any).uri) {
+        await DefaultImage.getSize(
+          (source as any).uri,
+          (newWidth, newHeight) => {
+            if (!isMounted) {
+              return;
+            }
+            const height = (screenWidth * newHeight) / newWidth;
+            setHeight(height);
+          },
+        );
+      }
+    };
+    fetchImageDimensions();
     return () => {
       isMounted = false;
     };
@@ -46,10 +47,3 @@ const Image: FC<ImageProps> = (props) => {
 };
 
 export default Image;
-
-const styles = StyleSheet.create({
-  image: {
-    width: "100%",
-    height: 100,
-  },
-});

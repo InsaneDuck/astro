@@ -56,10 +56,11 @@ const Feed: FC<FeedProps> = (props) => {
         }
         renderItem={(item) => <FeedCard post={item.item} />}
         ItemSeparatorComponent={() => <FeedSeparator />}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={0.01}
         onEndReached={endOfLine}
         refreshing={loading}
         ListFooterComponent={renderFooter}
+        bounces={false}
       />
     </View>
   );
@@ -83,14 +84,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
   },
 });

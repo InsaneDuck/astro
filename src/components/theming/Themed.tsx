@@ -9,4 +9,4 @@ export type ClickProps = {
   onPress?: Press;
 };
 
-export type Press = ((event: GestureResponderEvent) => void) | null | undefined;
+export type Press = ((event: GestureResponderEvent) => void) | undefined;

@@ -46,12 +46,8 @@ export const feedSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
-      state.loading = false;
-
       action.payload.map((post) => state.allPosts?.set(post.post.id, post));
-      //state.allPosts = state.allPosts
-      //   ? [...state.allPosts, ...action.payload]
-      //   : [];
+      state.loading = false;
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
       state.loading = false;
