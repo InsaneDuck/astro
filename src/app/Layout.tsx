@@ -1,4 +1,6 @@
 import Error from "@/app/screens/Error";
+import ImageViewer from "@/app/screens/ImageViewer";
+import Modal from "@/app/screens/Modal";
 import Post from "@/app/screens/Post";
 import Tabs from "@/app/Tabs";
 import { NavigationRoutes, RootStackParamList } from "@/constants/Navigation";
@@ -39,9 +41,19 @@ const Layout: FC<LayoutProps> = (props) => {
               options={{ title: "Post" }}
             />
             <Stack.Screen
+              name={NavigationRoutes.Modal}
+              children={Modal}
+              options={{ title: "Modal", presentation: "modal" }}
+            />
+            <Stack.Screen
               name={NavigationRoutes.Error}
               children={Error}
               options={{ title: "Oops!" }}
+            />
+            <Stack.Screen
+              name={NavigationRoutes.ImageViewer}
+              children={ImageViewer}
+              options={{ title: "ImageViewer" }}
             />
           </Stack.Navigator>
         </NavigationContainer>

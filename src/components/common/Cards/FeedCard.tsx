@@ -1,17 +1,15 @@
 import Card from "@/components/common/Cards/Card";
 import Image from "@/components/theming/ThemedComponents/Image";
+
 import Text from "@/components/theming/ThemedComponents/Text";
+import View from "@/components/theming/ThemedComponents/View";
 import { NavigationRoutes, StackNavigation } from "@/constants/Navigation";
 import { feedActions } from "@/store/feed-slice";
 import { Optional } from "@/types/Optional";
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC, ReactNode, useState } from "react";
-import {
-  GestureResponderEvent,
-  LayoutChangeEvent,
-  StyleSheet,
-} from "react-native";
+import { GestureResponderEvent, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 
 type FeedCardProps = {
@@ -21,13 +19,8 @@ type FeedCardProps = {
 
 const FeedCard: FC<FeedCardProps> = (props) => {
   const [postView, setPostView] = useState<Optional<PostView>>(props.post);
-  const [imageHeight, setImageHeight] = useState<number>(100);
   const navigation = useNavigation<StackNavigation>();
   const dispatch = useDispatch();
-  const handleImageLayout = (event: LayoutChangeEvent) => {
-    const height = event.nativeEvent.layout.y;
-    setImageHeight(height);
-  };
 
   const pressHandler = (event: GestureResponderEvent) => {
     dispatch(feedActions.setCurrentPost(postView));
@@ -36,37 +29,35 @@ const FeedCard: FC<FeedCardProps> = (props) => {
 
   return (
     <Card>
-      {postView.post?.embed_title && (
+      {postView.post?.name && (
         <Text
           onPress={pressHandler}
           style={{ fontWeight: "bold", fontSize: 18 }}
         >
-          {postView.post.embed_title}
+          {postView.post.name}
         </Text>
       )}
 
       {postView.post?.thumbnail_url && (
-        <Image
-          source={{ uri: postView.post?.thumbnail_url }}
-          style={[styles.image, { height: undefined }]}
-          resizeMode="contain"
-          resizeMethod={"auto"}
-          onLayout={handleImageLayout}
-        />
+        <Image source={{ uri: postView.post?.thumbnail_url }} />
       )}
-
-      {postView.post?.embed_description && (
-        <Text>{postView.post.embed_description}</Text>
-      )}
+      <View style={styles.footer}>
+        {postView.creator?.name && (
+          <Text style={{ fontSize: 14 }}>by {postView.creator.name}</Text>
+        )}
+        {postView.community?.name && (
+          <Text style={{ fontSize: 14 }}>in {postView.community.name}</Text>
+        )}
+      </View>
     </Card>
   );
 };
 
 export default FeedCard;
 const styles = StyleSheet.create({
-  image: {
-    aspectRatio: 1,
-    width: "100%",
-    marginVertical: 10,
+  footer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

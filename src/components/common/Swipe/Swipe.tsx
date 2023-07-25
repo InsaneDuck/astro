@@ -16,36 +16,65 @@ type SwipeProps = {
 
 const Swipe: FC<SwipeProps> = (props) => {
   const { save, upVote, downVote, reply, ...otherProps } = props;
+  const rightSideButtons = React.useMemo(
+    () => (
+      <SwipeSide
+        buttons={[
+          {
+            key: "reply",
+            press: reply,
+            color: Colors.reply,
+            icon: "reply",
+          },
+          {
+            key: "bookmark",
+            press: save,
+            color: Colors.save,
+            icon: "bookmark",
+          },
+        ]}
+      />
+    ),
+    [],
+  );
+  const leftSideButtons = React.useMemo(
+    () => (
+      <SwipeSide
+        buttons={[
+          {
+            key: "arrow-up",
+            press: upVote,
+            color: Colors.upVote,
+            icon: "arrow-up",
+          },
+          {
+            key: "arrow-down",
+            press: downVote,
+            color: Colors.downVote,
+            icon: "arrow-down",
+          },
+        ]}
+      />
+    ),
+    [],
+  );
   //todo try useNativeAnimations
   return (
     <GestureHandlerRootView>
       <Swipeable
+        useNativeAnimations={true}
         overshootRight={false}
         overshootLeft={false}
-        renderLeftActions={() => (
-          <SwipeSide
-            button1={{ press: upVote, color: Colors.upVote, icon: "arrow-up" }}
-            button2={{
-              press: downVote,
-              color: Colors.downVote,
-              icon: "arrow-down",
-            }}
-          />
-        )}
-        renderRightActions={() => (
-          <SwipeSide
-            button1={{ press: reply, color: Colors.reply, icon: "reply" }}
-            button2={{
-              press: save,
-              color: Colors.save,
-              icon: "bookmark",
-            }}
-          />
-        )}
+        renderLeftActions={() => leftSideButtons}
+        renderRightActions={() => rightSideButtons}
         {...otherProps}
       />
     </GestureHandlerRootView>
   );
 };
 
-export default React.memo(Swipe);
+//todo remove this
+const areEqual = (prevProps: SwipeProps, nextProps: SwipeProps) => {
+  return true;
+};
+export default React.memo(Swipe, areEqual);

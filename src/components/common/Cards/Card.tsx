@@ -24,7 +24,7 @@ export default React.memo(Card);
 const styles = StyleSheet.create({
   card: {
     borderRadius: 0,
-    padding: 10,
+    padding: 0,
     paddingTop: 16,
     elevation: 4,
     borderStyle: "solid",

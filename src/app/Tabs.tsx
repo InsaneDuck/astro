@@ -1,8 +1,8 @@
-import Feed from "@/app/screens/Feed";
-import Inbox from "@/app/screens/Inbox";
-import Profile from "@/app/screens/Profile";
-import Search from "@/app/screens/Search";
-import Settings from "@/app/screens/Settings";
+import Feed from "@/app/screens/Tabs/Feed";
+import Inbox from "@/app/screens/Tabs/Inbox";
+import Profile from "@/app/screens/Tabs/Profile";
+import Search from "@/app/screens/Tabs/Search";
+import Settings from "@/app/screens/Tabs/Settings";
 import Icon from "@/components/common/Icon";
 import Colors from "@/components/theming/Colors";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";

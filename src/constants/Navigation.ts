@@ -4,6 +4,8 @@ export const NavigationRoutes = {
   Home: "Home",
   Post: "Post",
   Error: "Error",
+  Modal: "Modal",
+  ImageViewer: "ImageViewer",
 };
 
 export const NavigationRoutesList = Object.values(NavigationRoutes);

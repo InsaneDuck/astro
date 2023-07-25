@@ -1,6 +1,7 @@
 import Card from "@/components/common/Cards/Card";
 import Image from "@/components/theming/ThemedComponents/Image";
 import Text from "@/components/theming/ThemedComponents/Text";
+import View from "@/components/theming/ThemedComponents/View";
 import { RootState } from "@/store/store";
 import React, { FC, useState } from "react";
 import { LayoutChangeEvent, StyleSheet } from "react-native";
@@ -17,25 +18,23 @@ const PostCard: FC<PostCardProps> = (props) => {
   };
   return (
     <Card>
-      {post?.post?.embed_title && (
+      {post?.post?.name && (
         <Text style={{ fontWeight: "bold", fontSize: 18 }}>
-          {post.post.embed_title}
+          {post.post.name}
         </Text>
       )}
 
       {post?.post?.thumbnail_url && (
-        <Image
-          source={{ uri: post.post?.thumbnail_url }}
-          style={[styles.image, { height: undefined }]}
-          resizeMode="contain"
-          resizeMethod={"auto"}
-          onLayout={handleImageLayout}
-        />
+        <Image source={{ uri: post.post?.thumbnail_url }} />
       )}
-
-      {post?.post?.embed_description && (
-        <Text>{post.post.embed_description}</Text>
-      )}
+      <View style={styles.footer}>
+        {post?.creator?.name && (
+          <Text style={{ fontSize: 14 }}>by {post.creator.name}</Text>
+        )}
+        {post?.community?.name && (
+          <Text style={{ fontSize: 14 }}>in {post.community.name}</Text>
+        )}
+      </View>
     </Card>
   );
 };
@@ -43,9 +42,9 @@ const PostCard: FC<PostCardProps> = (props) => {
 export default PostCard;
 
 const styles = StyleSheet.create({
-  image: {
-    aspectRatio: 1,
-    width: "100%",
-    marginVertical: 10,
+  footer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
