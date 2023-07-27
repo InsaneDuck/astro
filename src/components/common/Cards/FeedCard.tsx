@@ -2,32 +2,36 @@ import PostContent from "@/components/common/Cards/PostContent";
 import Card from "@/components/common/Cards/SwipeableCard";
 import { NavigationRoutes, StackNavigation } from "@/constants/Navigation";
 import { feedActions } from "@/store/feed-slice";
-import { Optional } from "@/types/Optional";
+import { AppDispatch, RootState } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
-import { PostView } from "lemmy-js-client";
-import React, { FC, useState } from "react";
+import { EntityId } from "@reduxjs/toolkit";
+import React, { FC, memo } from "react";
 import { GestureResponderEvent } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 type FeedCardProps = {
-  post: Optional<PostView>;
+  postId: EntityId;
 };
 
 const FeedCard: FC<FeedCardProps> = (props) => {
-  const [postView, setPostView] = useState<Optional<PostView>>(props.post);
+  const post = useSelector(
+    (state: RootState) =>
+      state.feed.allPosts?.entities[props.postId.toString()],
+  );
+  //const post = posts?.entities[props.postId.toString()];
   const navigation = useNavigation<StackNavigation>();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const pressHandler = (event: GestureResponderEvent) => {
-    dispatch(feedActions.setCurrentPost(postView));
+    post && dispatch(feedActions.setCurrentPost(post));
     navigation.navigate(NavigationRoutes.Post);
   };
 
   return (
     <Card>
-      <PostContent post={postView} onTitlePress={pressHandler} />
+      {post && <PostContent post={post} onTitlePress={pressHandler} />}
     </Card>
   );
 };
 
-export default FeedCard;
+export default memo(FeedCard);

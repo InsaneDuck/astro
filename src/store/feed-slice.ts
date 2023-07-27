@@ -1,32 +1,29 @@
-import {Optional} from '@/types/Optional';
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {enableMapSet} from 'immer';
-import {LemmyHttp, PostView} from 'lemmy-js-client';
-//todo use map
-enableMapSet();
+import {
+  ActionReducerMapBuilder,
+  createAsyncThunk,
+  createEntityAdapter,
+  createSlice,
+  EntityState,
+  PayloadAction,
+} from "@reduxjs/toolkit";
+import { LemmyHttp, PostView } from "lemmy-js-client";
 
-export type FeedState1 = {
-  allPosts?: {
-    key: Optional<PostView>;
-  };
-  currentPost?: Optional<PostView>;
-  page: number;
-  loading: boolean;
-  error: string;
-};
+const allPostsAdapter = createEntityAdapter<PostView>({
+  selectId: (postView) => postView.post.id,
+});
 
 export type FeedState = {
-  allPosts?: Map<number, Optional<PostView>>;
-  currentPost?: Optional<PostView>;
+  allPosts?: EntityState<PostView>;
+  currentPost?: PostView;
   page: number;
   loading: boolean;
   error: string;
 };
 
 const initialState: FeedState = {
-  allPosts: new Map(),
+  allPosts: allPostsAdapter.getInitialState(),
   page: 1,
-  loading: false,
+  loading: true,
   error: "",
 };
 
@@ -34,19 +31,25 @@ export const feedSlice = createSlice({
   name: "feed",
   initialState,
   reducers: {
-    setCurrentPost(state, action: PayloadAction<Optional<PostView>>) {
+    setCurrentPost(state, action: PayloadAction<PostView>) {
       state.currentPost = action.payload;
     },
     nextPage(state) {
       state.page = state.page + 1;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: (builder: ActionReducerMapBuilder<FeedState>) => {
     builder.addCase(fetchPosts.pending, (state, action) => {
       state.loading = true;
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
-      action.payload.map((post) => state.allPosts?.set(post.post.id, post));
+      state.allPosts &&
+        allPostsAdapter.upsertMany(state.allPosts, action.payload);
+      // action.payload.map(
+      //   (post) =>
+      //     state.allPosts?.has(post.post.id) &&
+      //     state.allPosts?.set(post.post.id, post),
+      // );
       state.loading = false;
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
@@ -68,11 +71,11 @@ export const fetchPosts = createAsyncThunk(
   },
 );
 
-const equals = (post1: Optional<PostView>, post2: Optional<PostView>) => {
+const equals = (post1: PostView, post2: PostView) => {
   return post1.post?.id === post2.post?.id;
 };
 
-const includes = (post: Optional<PostView>, array: Optional<PostView>[]) => {
+const includes = (post: PostView, array: PostView[]) => {
   return array.some((item) => equals(item, post));
 };
 

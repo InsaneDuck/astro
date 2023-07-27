@@ -4,9 +4,15 @@ import View from "@/components/theming/ThemedComponents/View";
 import { feedActions, fetchPosts } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { EntityId } from "@reduxjs/toolkit";
 import { LemmyHttp, PostView } from "lemmy-js-client";
-import React, { FC, useEffect } from "react";
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import React, { FC, useCallback, useEffect } from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  ListRenderItemInfo,
+  StyleSheet,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 type FeedProps = {
@@ -14,15 +20,6 @@ type FeedProps = {
 };
 
 const Feed: FC<FeedProps> = (props) => {
-  // const [feed, setFeed] = useState<Optional<PostView>[]>([]);
-  // const [loading, setLoading] = useState(false);
-  // const [page, setPage] = useState(1);
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getPosts(page)
-  //     .then((data) => setFeed((prevState) => [...prevState, ...data]))
-  //     .then(() => setLoading(false));
-  // }, [page]);
   const {
     allPosts: feed,
     loading,
@@ -30,38 +27,41 @@ const Feed: FC<FeedProps> = (props) => {
     error,
   } = useSelector((state: RootState) => state.feed);
   const dispatch = useDispatch<AppDispatch>();
-
   useEffect(() => {
     dispatch(fetchPosts(page));
   }, [dispatch, page]);
 
   const endOfLine = () => {
+    //todo fix this
     dispatch(feedActions.nextPage());
-    //setPage((prevState) => prevState + 1);
   };
-  const renderFooter = () => {
+  const renderItem = useCallback(
+    (item: ListRenderItemInfo<EntityId>) => <FeedCard postId={item.item} />,
+    [],
+  );
+  const renderFooter = useCallback(() => {
     return loading ? <ActivityIndicator size="large" color="#000" /> : null;
-  };
-
-  //todo fix key here
-
+  }, []);
+  const keyExtractor = useCallback(
+    (item: EntityId, index: number) => item.toString(),
+    [],
+  );
   return (
     <View style={styles.container}>
-      <FlatList
-        data={feed && Array.from(feed.values())}
-        keyExtractor={(item, index) =>
-          item.post?.id?.toString()
-            ? item.post?.id?.toString()
-            : index.toString()
-        }
-        renderItem={(item) => <FeedCard post={item.item} />}
-        ItemSeparatorComponent={() => <FeedSeparator />}
-        onEndReachedThreshold={0.01}
-        onEndReached={endOfLine}
-        refreshing={loading}
-        ListFooterComponent={renderFooter}
-        bounces={false}
-      />
+      {feed ? (
+        <FlatList
+          data={feed?.ids}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          ItemSeparatorComponent={FeedSeparator}
+          onEndReachedThreshold={0.01}
+          onEndReached={endOfLine}
+          refreshing={loading}
+          ListFooterComponent={renderFooter}
+        />
+      ) : loading ? (
+        <ActivityIndicator size="large" color="#000" />
+      ) : null}
     </View>
   );
 };
