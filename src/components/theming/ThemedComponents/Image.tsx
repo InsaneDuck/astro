@@ -8,6 +8,9 @@ type ImageProps = {
 
 const Image: FC<ImageProps> = (props) => {
   const { onPress, source, ...otherProps } = props;
+  if ((source as any).uri.endsWith("mp4")) {
+    return <></>;
+  }
   const screenWidth = Dimensions.get("window").width;
   const [height, setHeight] = useState(0);
   let isMounted = true;

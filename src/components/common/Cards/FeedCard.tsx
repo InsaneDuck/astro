@@ -1,5 +1,6 @@
-import PostContent from "@/components/common/Cards/PostContent";
+import MinimalPostContent from "@/components/common/Cards/MinimalPostContent";
 import Card from "@/components/common/Cards/SwipeableCard";
+import Text from "@/components/theming/ThemedComponents/Text";
 import { NavigationRoutes, StackNavigation } from "@/constants/Navigation";
 import { feedActions } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
@@ -11,8 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 type FeedCardProps = {
   postId: EntityId;
+  index: number;
 };
-
+let count = 0;
 const FeedCard: FC<FeedCardProps> = (props) => {
   const post = useSelector(
     (state: RootState) =>
@@ -26,12 +28,23 @@ const FeedCard: FC<FeedCardProps> = (props) => {
     post && dispatch(feedActions.setCurrentPost(post));
     navigation.navigate(NavigationRoutes.Post);
   };
-
+  console.log("Rendering Feed Card, count = ", ++count);
   return (
     <Card>
-      {post && <PostContent post={post} onTitlePress={pressHandler} />}
+      {post ? (
+        <MinimalPostContent postView={post} onTitlePress={pressHandler} />
+      ) : (
+        <Text>Loading</Text>
+      )}
     </Card>
   );
 };
 
-export default memo(FeedCard);
+const propsAreEqual = (
+  previousProps: FeedCardProps,
+  currentProps: FeedCardProps,
+) => {
+  return previousProps.postId === currentProps.postId;
+};
+
+export default memo(FeedCard, propsAreEqual);

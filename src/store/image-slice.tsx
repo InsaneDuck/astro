@@ -12,7 +12,7 @@ export const imageSlice = createSlice({
   name: "images",
   initialState,
   reducers: {
-    setImage(state: ImageState, action: PayloadAction<ImageState>) {
+    addImage(state: ImageState, action: PayloadAction<ImageState>) {
       state.image = action.payload.image;
     },
   },

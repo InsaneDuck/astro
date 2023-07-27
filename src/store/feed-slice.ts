@@ -1,3 +1,4 @@
+import { getLemmyHttp } from "@/api/get";
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
@@ -6,7 +7,7 @@ import {
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { LemmyHttp, PostView } from "lemmy-js-client";
+import { PostView } from "lemmy-js-client";
 
 const allPostsAdapter = createEntityAdapter<PostView>({
   selectId: (postView) => postView.post.id,
@@ -63,8 +64,7 @@ export const fetchPosts = createAsyncThunk(
   "feed/fetchPosts",
   async (page: number) => {
     console.log("fetching");
-    let baseUrl = "https://lemmy.world/";
-    let client: LemmyHttp = new LemmyHttp(baseUrl, {});
+    const client = getLemmyHttp();
     return client
       .getPosts({ limit: 50, page })
       .then((response) => response.posts);

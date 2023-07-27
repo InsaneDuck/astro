@@ -1,5 +1,14 @@
+import { getLemmyHttp } from "@/api/get";
 import { User } from "@/types/User";
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createEntityAdapter,
+  createSlice,
+} from "@reduxjs/toolkit";
+
+const userAdapter = createEntityAdapter<User>({
+  selectId: (user) => user.userName,
+});
 
 export type AuthState = {
   currentUser?: User;
@@ -22,7 +31,19 @@ export const authSlice = createSlice({
     getAuthStatus() {},
     setAuthStatus() {},
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(login.pending, (state, action) => {});
+    builder.addCase(login.fulfilled, (state, action) => {});
+    builder.addCase(login.rejected, (state, action) => {});
+  },
+});
+
+const login = createAsyncThunk("login", async () => {
+  const client = getLemmyHttp();
+  return client.login({
+    username_or_email: "",
+    password: "",
+  });
 });
 
 export const authActions = authSlice.actions;

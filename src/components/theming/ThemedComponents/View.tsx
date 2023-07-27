@@ -6,13 +6,7 @@ import { useThemeColor } from "../UseThemeColor";
 export type ViewProps = ClickProps & ThemeProps & DefaultView["props"];
 const View: FC<ViewProps> = (props) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
-    {
-      light: lightColor,
-      dark: darkColor,
-    },
-    "background",
-  );
+  const backgroundColor = useThemeColor("background");
 
   return (
     <>

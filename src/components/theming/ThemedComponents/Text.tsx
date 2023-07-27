@@ -7,13 +7,7 @@ export type TextProps = ClickProps & ThemeProps & DefaultText["props"];
 
 const Text: FC<TextProps> = (props) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor(
-    {
-      light: lightColor,
-      dark: darkColor,
-    },
-    "text",
-  );
+  const color = useThemeColor("text");
 
   return (
     <>

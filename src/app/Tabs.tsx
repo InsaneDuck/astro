@@ -4,19 +4,18 @@ import Profile from "@/app/screens/Tabs/Profile";
 import Search from "@/app/screens/Tabs/Search";
 import Settings from "@/app/screens/Tabs/Settings";
 import Icon from "@/components/common/Icon";
-import Colors from "@/components/theming/Colors";
+import { useThemeColor } from "@/components/theming/UseThemeColor";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { FC } from "react";
-import { useColorScheme } from "react-native";
 
 type TabsProps = {};
 const Tab = createBottomTabNavigator();
 const Tabs: FC<TabsProps> = (props) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = useThemeColor("tint");
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: colorScheme,
       }}
     >
       <Tab.Screen
