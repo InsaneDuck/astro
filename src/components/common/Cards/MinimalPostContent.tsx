@@ -41,6 +41,21 @@ const MinimalPostContent: FC<MinimalPostContentProps> = (props) => {
           />
         </Pressable>
       )}
+      {postView.post.embed_description && (
+        <Text
+          style={{
+            fontSize: 16,
+            paddingRight: 10,
+            paddingLeft: 10,
+            paddingTop: 10,
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {postView.post.embed_description}
+        </Text>
+      )}
       <View style={styles.footer}>
         <Text style={styles.details}>in {postView.community.name}</Text>
         <Text style={styles.details}>by {postView.creator.name}</Text>

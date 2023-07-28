@@ -1,15 +1,16 @@
 import View from "@/components/theming/ThemedComponents/View";
-import Colors from "@/constants/Colors";
+import { useThemeColor } from "@/components/theming/UseThemeColor";
 import React, { FC } from "react";
 import { StyleSheet, TextInput } from "react-native";
 
 type SearchProps = {};
 
 const Search: FC<SearchProps> = (props) => {
+  const color = useThemeColor("borderColor");
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.searchInput}
+        style={[styles.searchInput, { backgroundColor: color }]}
         placeholder={"Search for a User, Post or Community"}
         clearButtonMode={"always"}
       />
@@ -27,11 +28,10 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   searchInput: {
+    fontSize: 18,
     margin: 15,
     paddingEnd: 10,
     paddingStart: 10,
-    borderColor: Colors.borderColor,
-    borderWidth: 1,
     borderRadius: 5,
     height: 45,
     width: "95%",

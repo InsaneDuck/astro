@@ -1,4 +1,5 @@
 import MinimalPostContent from "@/components/common/Cards/MinimalPostContent";
+import Text from "@/components/theming/ThemedComponents/Text";
 import { PostView } from "lemmy-js-client";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
@@ -12,6 +13,16 @@ const FullPostContent: FC<FullPostContentProps> = (props) => {
   return postView ? (
     <>
       <MinimalPostContent postView={postView} />
+      {postView.post.body && (
+        <Text
+          style={{
+            padding: 10,
+            fontSize: 16,
+          }}
+        >
+          {postView.post.body}
+        </Text>
+      )}
     </>
   ) : null;
 };
