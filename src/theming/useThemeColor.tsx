@@ -1,4 +1,4 @@
-import Colors from '@/components/theming/Colors';
+import Colors from '@/theming/Colors';
 import {useColorScheme} from 'react-native';
 
 /**

@@ -1,10 +1,10 @@
-import View from "@/components/theming/ThemedComponents/View";
+import { View } from "@/components/themed-components/View";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
 type SeparatorProps = {};
 
-const Separator: FC<SeparatorProps> = (props) => {
+export const Separator: FC<SeparatorProps> = () => {
   return (
     <View
       style={styles.separator}
@@ -13,8 +13,6 @@ const Separator: FC<SeparatorProps> = (props) => {
     />
   );
 };
-
-export default Separator;
 
 const styles = StyleSheet.create({
   separator: {

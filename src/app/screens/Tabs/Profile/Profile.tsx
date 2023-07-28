@@ -1,14 +1,12 @@
-import View from "@/components/theming/ThemedComponents/View";
+import { View } from "@/components/themed-components/View";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-type InboxProps = {};
+type ProfileProps = {};
 
-const Inbox: FC<InboxProps> = (props) => {
+export const Profile: FC<ProfileProps> = () => {
   return <View style={styles.container}></View>;
 };
-
-export default Inbox;
 
 const styles = StyleSheet.create({
   container: {

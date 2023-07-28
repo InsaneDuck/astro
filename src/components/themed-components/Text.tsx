@@ -1,11 +1,11 @@
-import { ClickProps, ThemeProps } from "@/components/theming/Themed";
-import React, { FC } from "react";
+import { ClickProps, ThemeProps } from "@/theming/Themed";
+import { useThemeColor } from "@/theming/useThemeColor";
+import React, { FC, memo } from "react";
 import { Pressable, Text as DefaultText } from "react-native";
-import { useThemeColor } from "../UseThemeColor";
 
 export type TextProps = ClickProps & ThemeProps & DefaultText["props"];
 
-const Text: FC<TextProps> = (props) => {
+export const Text: FC<TextProps> = memo((props) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor("text");
 
@@ -16,6 +16,4 @@ const Text: FC<TextProps> = (props) => {
       </Pressable>
     </>
   );
-};
-
-export default React.memo(Text);
+});

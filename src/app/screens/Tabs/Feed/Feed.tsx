@@ -1,9 +1,8 @@
-import FeedCard from "@/components/common/Cards/FeedCard";
-import FeedSeparator from "@/components/common/FeedSeparator";
-import View from "@/components/theming/ThemedComponents/View";
+import { FeedCard } from "@/app/screens/Tabs/Feed/FeedCard";
+import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
+import { View } from "@/components/themed-components/View";
 import { fetchPosts } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { EntityId } from "@reduxjs/toolkit";
 
 import React, { FC, useCallback, useEffect, useMemo } from "react";
@@ -15,11 +14,9 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-type FeedProps = {
-  navigation: NativeStackNavigationProp<any>;
-};
+type FeedProps = {};
 
-const Feed: FC<FeedProps> = (props) => {
+export const Feed: FC<FeedProps> = () => {
   const {
     allPosts: feed,
     loading,
@@ -72,8 +69,6 @@ const Feed: FC<FeedProps> = (props) => {
     </View>
   );
 };
-
-export default Feed;
 
 const styles = StyleSheet.create({
   container: {

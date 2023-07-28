@@ -1,16 +1,17 @@
-import Feed from "@/app/screens/Tabs/Feed";
-import Inbox from "@/app/screens/Tabs/Inbox";
-import Profile from "@/app/screens/Tabs/Profile";
-import Search from "@/app/screens/Tabs/Search";
-import Settings from "@/app/screens/Tabs/Settings";
-import Icon from "@/components/common/Icon";
-import { useThemeColor } from "@/components/theming/UseThemeColor";
+import { Feed } from "@/app/screens/Tabs/Feed/Feed";
+import { Inbox } from "@/app/screens/Tabs/Inbox/Inbox";
+import { Profile } from "@/app/screens/Tabs/Profile/Profile";
+import { Search } from "@/app/screens/Tabs/Search/Search";
+import { Settings } from "@/app/screens/Tabs/Settings/Settings";
+import { Icon } from "@/components/common/Icon";
+
+import { useThemeColor } from "@/theming/useThemeColor";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { FC } from "react";
 
 type TabsProps = {};
 const Tab = createBottomTabNavigator();
-const Tabs: FC<TabsProps> = (props) => {
+export const Tabs: FC<TabsProps> = () => {
   const colorScheme = useThemeColor("tint");
   return (
     <Tab.Navigator
@@ -61,5 +62,3 @@ const Tabs: FC<TabsProps> = (props) => {
     </Tab.Navigator>
   );
 };
-
-export default Tabs;

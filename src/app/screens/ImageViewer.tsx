@@ -1,4 +1,4 @@
-import View from "@/components/theming/ThemedComponents/View";
+import { View } from "@/components/themed-components/View";
 import { RootState } from "@/store/store";
 import React, { FC } from "react";
 import { Dimensions, Image } from "react-native";
@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 type ImageViewerProps = {};
 
-const ImageViewer: FC<ImageViewerProps> = (props) => {
+export const ImageViewer: FC<ImageViewerProps> = () => {
   const imageUrls = useSelector((state: RootState) => state.image.image);
   const deviceHeight = Dimensions.get("window").height;
   // const [height, setHeight] = useState(0);
@@ -34,5 +34,3 @@ const ImageViewer: FC<ImageViewerProps> = (props) => {
     )
   );
 };
-
-export default ImageViewer;

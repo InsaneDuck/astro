@@ -1,6 +1,6 @@
-import SwipeSide from "@/components/common/Swipe/SwipeSide";
-import { Press } from "@/components/theming/Themed";
+import { SwipeSide } from "@/components/common/Swipe/SwipeSide";
 import Colors from "@/constants/Colors";
+import { Press } from "@/theming/Themed";
 import React, { FC } from "react";
 import {
   GestureHandlerRootView,
@@ -14,7 +14,7 @@ type SwipeProps = {
   save?: Press;
 } & Swipeable["props"];
 
-const Swipe: FC<SwipeProps> = (props) => {
+export const Swipe: FC<SwipeProps> = (props) => {
   const { save, upVote, downVote, reply, ...otherProps } = props;
   const rightSideButtons = React.useMemo(
     () => (
@@ -56,7 +56,7 @@ const Swipe: FC<SwipeProps> = (props) => {
         ]}
       />
     ),
-    [],
+    [upVote, downVote],
   );
   //todo try useNativeAnimations
   return (
@@ -72,9 +72,3 @@ const Swipe: FC<SwipeProps> = (props) => {
     </GestureHandlerRootView>
   );
 };
-
-//todo remove this
-const areEqual = (prevProps: SwipeProps, nextProps: SwipeProps) => {
-  return true;
-};
-export default React.memo(Swipe, areEqual);

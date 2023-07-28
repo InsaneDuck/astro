@@ -1,11 +1,11 @@
-import Colors from "@/components/theming/Colors";
+import Colors from "@/theming/Colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import React, { FC } from "react";
 import { Pressable, useColorScheme } from "react-native";
 
-type FeedTopButtonsProps = {};
+type IconButtonsProps = {};
 
-const FeedTopButtons: FC<FeedTopButtonsProps> = (props) => {
+export const IconButtons: FC<IconButtonsProps> = () => {
   const colorScheme = useColorScheme();
   return (
     <Pressable>
@@ -20,5 +20,3 @@ const FeedTopButtons: FC<FeedTopButtonsProps> = (props) => {
     </Pressable>
   );
 };
-
-export default FeedTopButtons;

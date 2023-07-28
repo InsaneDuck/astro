@@ -1,6 +1,6 @@
-import SwipeButton from "@/components/common/Swipe/SwipeButton";
-import { Press } from "@/components/theming/Themed";
-import View from "@/components/theming/ThemedComponents/View";
+import { SwipeButton } from "@/components/common/Swipe/SwipeButton";
+import { View } from "@/components/themed-components/View";
+import { Press } from "@/theming/Themed";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
@@ -15,7 +15,7 @@ type SwipeSideProps = {
   buttons?: demo[];
 };
 
-const SwipeSide: FC<SwipeSideProps> = (props) => {
+export const SwipeSide: FC<SwipeSideProps> = (props) => {
   const alt = props.buttons && (
     <View style={styles.swipe}>
       <SwipeButton
@@ -51,7 +51,6 @@ const SwipeSide: FC<SwipeSideProps> = (props) => {
   );
 };
 
-export default SwipeSide;
 const styles = StyleSheet.create({
   swipe: {
     alignItems: "center",

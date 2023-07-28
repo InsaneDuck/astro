@@ -1,14 +1,12 @@
-import View from "@/components/theming/ThemedComponents/View";
+import { View } from "@/components/themed-components/View";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
 type SettingsProps = {};
 
-const Settings: FC<SettingsProps> = (props) => {
+export const Settings: FC<SettingsProps> = () => {
   return <View style={styles.container}></View>;
 };
-
-export default Settings;
 
 const styles = StyleSheet.create({
   container: {

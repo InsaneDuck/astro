@@ -1,11 +1,11 @@
-import View from "@/components/theming/ThemedComponents/View";
-import { useThemeColor } from "@/components/theming/UseThemeColor";
+import { View } from "@/components/themed-components/View";
+import { useThemeColor } from "@/theming/useThemeColor";
 import React, { FC } from "react";
 import { StyleSheet, TextInput } from "react-native";
 
 type SearchProps = {};
 
-const Search: FC<SearchProps> = (props) => {
+export const Search: FC<SearchProps> = () => {
   const color = useThemeColor("borderColor");
   return (
     <View style={styles.container}>
@@ -17,8 +17,6 @@ const Search: FC<SearchProps> = (props) => {
     </View>
   );
 };
-
-export default Search;
 
 const styles = StyleSheet.create({
   container: {

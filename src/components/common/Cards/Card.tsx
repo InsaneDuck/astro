@@ -1,15 +1,14 @@
-import View, { ViewProps } from "@/components/theming/ThemedComponents/View";
+import { View, ViewProps } from "@/components/themed-components/View";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
 export type CardProps = {} & ViewProps;
 
-const Card: FC<CardProps> = (props) => {
+export const Card: FC<CardProps> = (props) => {
   const { style, ...otherProps } = props;
   return <View style={[styles.card, style]} {...otherProps} />;
 };
 
-export default Card;
 const styles = StyleSheet.create({
   card: {
     // borderRadius: 5,

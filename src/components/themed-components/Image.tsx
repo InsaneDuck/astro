@@ -1,4 +1,4 @@
-import { Press } from "@/components/theming/Themed";
+import { Press } from "@/theming/Themed";
 import React, { FC, useEffect, useState } from "react";
 import { Dimensions, Image as DefaultImage, Pressable } from "react-native";
 
@@ -6,7 +6,7 @@ type ImageProps = {
   onPress?: Press;
 } & DefaultImage["props"];
 
-const Image: FC<ImageProps> = (props) => {
+export const Image: FC<ImageProps> = (props) => {
   const { onPress, source, ...otherProps } = props;
   if ((source as any).uri.endsWith("mp4")) {
     return <></>;
@@ -48,5 +48,3 @@ const Image: FC<ImageProps> = (props) => {
     </Pressable>
   );
 };
-
-export default Image;

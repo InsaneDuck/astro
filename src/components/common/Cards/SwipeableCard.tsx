@@ -1,19 +1,13 @@
-import Card, { CardProps } from "@/components/common/Cards/Card";
-import Swipe from "@/components/common/Swipe/Swipe";
-import React, { FC, ReactNode } from "react";
+import { Card, CardProps } from "@/components/common/Cards/Card";
+import { Swipe } from "@/components/common/Swipe/Swipe";
+import React, { FC } from "react";
 
-type SwipeableCardProps = {
-  children?: ReactNode;
-} & CardProps;
+type SwipeableCardProps = {} & CardProps;
 
-const SwipeableCard: FC<SwipeableCardProps> = (props) => {
-  const { children, ...otherProps } = props;
+export const SwipeableCard: FC<SwipeableCardProps> = React.memo((props) => {
   return (
     <Swipe>
-      <Card {...otherProps}>{children}</Card>
+      <Card {...props} />
     </Swipe>
   );
-};
-
-export default React.memo(SwipeableCard);
-//backgroundColor: "#181a1c",
+});

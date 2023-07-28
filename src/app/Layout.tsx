@@ -1,8 +1,8 @@
-import Error from "@/app/screens/Error";
-import ImageViewer from "@/app/screens/ImageViewer";
-import Modal from "@/app/screens/Modal";
-import Post from "@/app/screens/Post";
-import Tabs from "@/app/Tabs";
+import { Error } from "@/app/screens/Error";
+import { ImageViewer } from "@/app/screens/ImageViewer";
+import { Modal } from "@/app/screens/Modal";
+import { Post } from "@/app/screens/Post/Post";
+import { Tabs } from "@/app/Tabs";
 import { NavigationRoutes, RootStackParamList } from "@/constants/Navigation";
 import { store } from "@/store/store";
 import {
@@ -19,7 +19,7 @@ import { Provider } from "react-redux";
 type LayoutProps = {};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-const Layout: FC<LayoutProps> = (props) => {
+const Layout: FC<LayoutProps> = () => {
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>

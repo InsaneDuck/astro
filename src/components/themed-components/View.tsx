@@ -1,10 +1,10 @@
-import { ClickProps, ThemeProps } from "@/components/theming/Themed";
+import { ClickProps, ThemeProps } from "@/theming/Themed";
+import { useThemeColor } from "@/theming/useThemeColor";
 import React, { FC } from "react";
 import { Pressable, View as DefaultView } from "react-native";
-import { useThemeColor } from "../UseThemeColor";
 
 export type ViewProps = ClickProps & ThemeProps & DefaultView["props"];
-const View: FC<ViewProps> = (props) => {
+export const View: FC<ViewProps> = (props) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor("background");
 
@@ -15,5 +15,3 @@ const View: FC<ViewProps> = (props) => {
     </>
   );
 };
-
-export default React.memo(View);

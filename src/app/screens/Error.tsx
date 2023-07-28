@@ -1,5 +1,5 @@
-import Text from "@/components/theming/ThemedComponents/Text";
-import View from "@/components/theming/ThemedComponents/View";
+import { Text } from "@/components/themed-components/Text";
+import { View } from "@/components/themed-components/View";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { FC } from "react";
@@ -7,7 +7,7 @@ import { StyleSheet } from "react-native";
 
 type ErrorProps = {};
 const ErrorStack = createNativeStackNavigator;
-const Error: FC<ErrorProps> = (props) => {
+export const Error: FC<ErrorProps> = (props) => {
   return (
     <>
       <View style={styles.container}>
@@ -16,8 +16,6 @@ const Error: FC<ErrorProps> = (props) => {
     </>
   );
 };
-
-export default Error;
 
 const styles = StyleSheet.create({
   container: {

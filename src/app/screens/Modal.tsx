@@ -1,11 +1,11 @@
-import Text from "@/components/theming/ThemedComponents/Text";
-import View from "@/components/theming/ThemedComponents/View";
+import { Text } from "@/components/themed-components/Text";
+import { View } from "@/components/themed-components/View";
 import { FC } from "react";
 import { StyleSheet } from "react-native";
 
 type ModalProps = {};
 
-const Modal: FC<ModalProps> = (props) => {
+export const Modal: FC<ModalProps> = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Modal</Text>
@@ -19,7 +19,6 @@ const Modal: FC<ModalProps> = (props) => {
     </View>
   );
 };
-export default Modal;
 
 const styles = StyleSheet.create({
   container: {
