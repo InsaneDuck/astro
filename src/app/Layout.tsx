@@ -1,9 +1,9 @@
-import { Tabs } from "@/app/routing/Tabs";
 import { Error } from "@/app/screens/Error";
 import { ImageViewer } from "@/app/screens/ImageViewer";
 import { Modal } from "@/app/screens/Modal";
 import { Post } from "@/app/screens/Post/Post";
-import { NavigationRoutes, RootStackParamList } from "@/constants/Navigation";
+import { Tabs } from "@/app/Tabs";
+import { MainRoutes, MainRouteType } from "@/constants/Navigation";
 import { store } from "@/store/store";
 import {
   DarkTheme,
@@ -18,7 +18,7 @@ import { Provider } from "react-redux";
 
 type LayoutProps = {};
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const MainStack = createNativeStackNavigator<MainRouteType>();
 const Layout: FC<LayoutProps> = () => {
   const colorScheme = useColorScheme();
   return (
@@ -27,35 +27,38 @@ const Layout: FC<LayoutProps> = () => {
         <NavigationContainer
           theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack.Navigator initialRouteName={NavigationRoutes.Home}>
-            <Stack.Screen
-              name={"Home"}
+          <MainStack.Navigator initialRouteName={MainRoutes.Home}>
+            <MainStack.Screen
+              name={MainRoutes.Home}
               children={Tabs}
               options={{
                 headerShown: false,
               }}
             />
-            <Stack.Screen
-              name={NavigationRoutes.Post}
+            <MainStack.Screen
+              name={MainRoutes.Post}
               children={Post}
               options={{ title: "Post" }}
             />
-            <Stack.Screen
-              name={NavigationRoutes.Modal}
+            <MainStack.Screen
+              name={MainRoutes.Modal}
               children={Modal}
               options={{ title: "Modal", presentation: "modal" }}
             />
-            <Stack.Screen
-              name={NavigationRoutes.Error}
+            <MainStack.Screen
+              name={MainRoutes.Error}
               children={Error}
               options={{ title: "Oops!" }}
             />
-            <Stack.Screen
-              name={NavigationRoutes.ImageViewer}
+            <MainStack.Screen
+              name={MainRoutes.ImageViewer}
               children={ImageViewer}
-              options={{ title: "ImageViewer" }}
+              options={{
+                title: "ImageViewer",
+                presentation: "card",
+              }}
             />
-          </Stack.Navigator>
+          </MainStack.Navigator>
         </NavigationContainer>
       </Provider>
     </ThemeProvider>

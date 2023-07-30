@@ -35,7 +35,7 @@ export const Swipe: FC<SwipeProps> = (props) => {
         ]}
       />
     ),
-    [],
+    [reply, save],
   );
   const leftSideButtons = React.useMemo(
     () => (

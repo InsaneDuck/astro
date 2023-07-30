@@ -3,10 +3,11 @@ import { Inbox } from "@/app/screens/Tabs/Inbox/Inbox";
 import { Profile } from "@/app/screens/Tabs/Profile/Profile";
 import { Search } from "@/app/screens/Tabs/Search/Search";
 import { Settings } from "@/app/screens/Tabs/Settings/Settings";
+import { SettingsLayout } from "@/app/screens/Tabs/Settings/SettingsLayout";
 import { FeedSorter } from "@/components/common/FeedSorter";
 import { Icon } from "@/components/common/Icon";
 import { IconButton } from "@/components/common/IconButton";
-import { NavigationRoutes, StackNavigation } from "@/constants/Navigation";
+import { MainNavigation, MainRoutes } from "@/constants/Navigation";
 
 import { useThemeColor } from "@/theming/useThemeColor";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -19,9 +20,9 @@ export const Tabs: FC<TabsProps> = () => {
   const colorScheme = useThemeColor("tint");
   //todo remove this boi
   const feedHeaderRight = () => {
-    const navigation = useNavigation<StackNavigation>();
+    const navigation = useNavigation<MainNavigation>();
     const pressed = () => {
-      navigation.navigate(NavigationRoutes.Modal);
+      navigation.navigate(MainRoutes.Modal);
     };
 
     return <IconButton onPress={pressed} name={"info-circle"} />;
@@ -35,7 +36,7 @@ export const Tabs: FC<TabsProps> = () => {
     >
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsLayout}
         options={{
           title: "Settings",
           tabBarIcon: ({ color }) => <Icon icon={"gear"} color={color} />,

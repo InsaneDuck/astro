@@ -1,7 +1,7 @@
 import { MinimalPostContent } from "@/app/screens/Tabs/Feed/MinimalPostContent";
 import { SwipeableCard } from "@/components/common/Cards/SwipeableCard";
 import { Text } from "@/components/themed-components/Text";
-import { NavigationRoutes, StackNavigation } from "@/constants/Navigation";
+import { MainNavigation, MainRoutes } from "@/constants/Navigation";
 import { feedActions } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
@@ -26,12 +26,12 @@ export const FeedCard: FC<FeedCardProps> = React.memo((props) => {
       state.feed.allPosts?.entities[props.postId.toString()],
   );
   //const post = posts?.entities[props.postId.toString()];
-  const navigation = useNavigation<StackNavigation>();
+  const navigation = useNavigation<MainNavigation>();
   const dispatch = useDispatch<AppDispatch>();
 
   const pressHandler = () => {
     post && dispatch(feedActions.setCurrentPost(post));
-    navigation.navigate(NavigationRoutes.Post);
+    navigation.navigate(MainRoutes.Post);
   };
   console.log("Rendering Feed Card, count = ", ++count);
   return (

@@ -1,6 +1,6 @@
 import { NavigationProp } from "@react-navigation/core";
 
-export const NavigationRoutes = {
+export const MainRoutes = {
   Home: "Home",
   Post: "Post",
   Error: "Error",
@@ -8,9 +8,22 @@ export const NavigationRoutes = {
   ImageViewer: "ImageViewer",
 };
 
-export const NavigationRoutesList = Object.values(NavigationRoutes);
-export type RootStackParamList = Record<
-  (typeof NavigationRoutesList)[number],
+export const MainRoutesList = Object.values(MainRoutes);
+export type MainRouteType = Record<(typeof MainRoutesList)[number], undefined>;
+export type MainNavigation = NavigationProp<MainRouteType>;
+
+export const SettingsRoutes = {
+  Home: "Home",
+  General: "General",
+  Appearance: "Appearance",
+  Filters: "Filters",
+  Export: "Export",
+  About: "About",
+};
+
+export const SettingsRoutesList = Object.values(SettingsRoutes);
+export type SettingsRouteType = Record<
+  (typeof SettingsRoutesList)[number],
   undefined
 >;
-export type StackNavigation = NavigationProp<RootStackParamList>;
+export type SettingsNavigation = NavigationProp<SettingsRouteType>;

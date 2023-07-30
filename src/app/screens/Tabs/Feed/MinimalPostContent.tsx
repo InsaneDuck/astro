@@ -1,6 +1,6 @@
 import { Text } from "@/components/themed-components/Text";
 import { View } from "@/components/themed-components/View";
-import { NavigationRoutes, StackNavigation } from "@/constants/Navigation";
+import { MainNavigation, MainRoutes } from "@/constants/Navigation";
 import { imageActions } from "@/store/image-slice";
 import { AppDispatch } from "@/store/store";
 import { Press } from "@/theming/Themed";
@@ -25,14 +25,14 @@ let count = 0;
 export const MinimalPostContent: FC<MinimalPostContentProps> = React.memo(
   (props) => {
     const { postView } = props;
-    const navigation = useNavigation<StackNavigation>();
+    const navigation = useNavigation<MainNavigation>();
     const dispatch = useDispatch<AppDispatch>();
     const onImagePress = (): any => {
       if (postView.post?.thumbnail_url) {
         dispatch(
           imageActions.addImage({ image: [postView.post.thumbnail_url] }),
         );
-        navigation.navigate(NavigationRoutes.ImageViewer);
+        navigation.navigate(MainRoutes.ImageViewer);
       }
     };
     //console.log("Rendering Post Content, count = ", ++count);

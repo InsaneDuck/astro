@@ -1,6 +1,7 @@
 import { FeedCard } from "@/app/screens/Tabs/Feed/FeedCard";
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { View } from "@/components/themed-components/View";
+import { fetchPosts } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
 
@@ -24,7 +25,7 @@ export const Feed: FC<FeedProps> = () => {
   } = useSelector((state: RootState) => state.feed);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    //dispatch(fetchPosts(page));
+    dispatch(fetchPosts(page));
   }, [dispatch, page]);
 
   const keyExtractor = useCallback(

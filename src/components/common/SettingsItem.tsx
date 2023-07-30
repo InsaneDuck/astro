@@ -1,15 +1,23 @@
+import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/themed-components/Text";
-import { View } from "@/components/themed-components/View";
+import { ClickProps } from "@/theming/Themed";
 import { useThemeColor } from "@/theming/useThemeColor";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import React, { FC } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
-type SettingsItemProps = {};
+type SettingsItemProps = {
+  title: string;
+  icon: IconProp;
+} & ClickProps;
 
 export const SettingsItem: FC<SettingsItemProps> = (props) => {
   const colorScheme = useThemeColor("borderColor");
+  const textColor = useThemeColor("text");
+
   return (
-    <View
+    <TouchableOpacity
+      onPress={props.onPress}
       style={{
         display: "flex",
         flexDirection: "row",
@@ -22,9 +30,17 @@ export const SettingsItem: FC<SettingsItemProps> = (props) => {
         borderBottomWidth: 1,
       }}
     >
-      <Text style={styles.text}>Hello</Text>
-      <Text style={styles.text}>World</Text>
-    </View>
+      <Text style={styles.text}>
+        <Icon
+          icon={props.icon}
+          style={{ marginLeft: 15, marginBottom: 3 }}
+          color={textColor}
+          size={11}
+        />
+        {props.title}
+      </Text>
+      <Icon icon={"chevron-right"} color={textColor} size={15} />
+    </TouchableOpacity>
   );
 };
 
