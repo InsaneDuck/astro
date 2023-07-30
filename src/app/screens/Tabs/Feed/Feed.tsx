@@ -33,7 +33,7 @@ export const Feed: FC<FeedProps> = () => {
     [],
   );
 
-  const renderItem = useCallback(
+  const feedItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => (
       <FeedCard postId={item} index={index} />
     ),
@@ -56,7 +56,7 @@ export const Feed: FC<FeedProps> = () => {
         <FlatList
           data={feed?.ids}
           keyExtractor={keyExtractor}
-          renderItem={renderItem}
+          renderItem={feedItem}
           ItemSeparatorComponent={FeedSeparator}
           onEndReachedThreshold={0.01}
           onEndReached={endOfLine}

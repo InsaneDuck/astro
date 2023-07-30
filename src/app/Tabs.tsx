@@ -33,15 +33,8 @@ export const Tabs: FC<TabsProps> = () => {
       screenOptions={{
         tabBarActiveTintColor: colorScheme,
       }}
+      initialRouteName={"Search"}
     >
-      <Tab.Screen
-        name="Settings"
-        component={SettingsStackLayout}
-        options={{
-          title: "Settings",
-          tabBarIcon: ({ color }) => <Icon icon={"gear"} color={color} />,
-        }}
-      />
       <Tab.Screen
         name="Feed"
         component={Feed}
@@ -73,6 +66,14 @@ export const Tabs: FC<TabsProps> = () => {
         options={{
           title: "Search",
           tabBarIcon: ({ color }) => <Icon icon="search" color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsStackLayout}
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color }) => <Icon icon={"gear"} color={color} />,
         }}
       />
     </Tab.Navigator>

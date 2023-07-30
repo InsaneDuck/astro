@@ -1,3 +1,4 @@
+import { commentsReducers } from "@/store/comments-slice";
 import { feedReducers } from "@/store/feed-slice";
 import { imageReducers } from "@/store/image-slice";
 import { settingsReducers } from "@/store/settings-slice";
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducers,
     feed: feedReducers,
+    comments: commentsReducers,
     image: imageReducers,
     settings: settingsReducers,
     theme: themeReducers,

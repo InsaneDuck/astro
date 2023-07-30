@@ -1,13 +1,24 @@
+import { Comment } from "@/app/screens/Post/Comment";
+import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { View } from "@/components/themed-components/View";
+import { fetchComments } from "@/store/comments-slice";
+import { AppDispatch, RootState } from "@/store/store";
 import { useThemeColor } from "@/theming/useThemeColor";
-import React, { FC } from "react";
-import { StyleSheet, TextInput } from "react-native";
+import { EntityId } from "@reduxjs/toolkit";
+import React, { FC, useCallback, useEffect } from "react";
+import {
+  FlatList,
+  ListRenderItemInfo,
+  StyleSheet,
+  TextInput,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 type SearchProps = {};
-
-export const Search: FC<SearchProps> = () => {
+const Temp = () => {
   const color = useThemeColor("borderColor");
-  return (
+
+  const search = (
     <View style={styles.container}>
       <TextInput
         style={[styles.searchInput, { backgroundColor: color }]}
@@ -15,6 +26,43 @@ export const Search: FC<SearchProps> = () => {
         clearButtonMode={"always"}
       />
     </View>
+  );
+  return <></>;
+};
+export const Search: FC<SearchProps> = () => {
+  const postId = useSelector((state: RootState) => state.feed.currentPost);
+  const { allComments, loading, page, error } = useSelector(
+    (state: RootState) => state.comments,
+  );
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(fetchComments(Number(postId)));
+  }, []);
+
+  const commentItem = useCallback(
+    ({ item, index }: ListRenderItemInfo<EntityId>) => {
+      console.log("item", item);
+      return <Comment commendId={item} index={index} />;
+    },
+    [],
+  );
+  const keyExtractor = useCallback(
+    (item: EntityId, index: number) => item.toString(),
+    [],
+  );
+  return (
+    <>
+      {allComments && (
+        <FlatList
+          data={allComments?.ids}
+          keyExtractor={keyExtractor}
+          renderItem={commentItem}
+          ItemSeparatorComponent={FeedSeparator}
+          onEndReachedThreshold={0.01}
+          refreshing={loading}
+        />
+      )}
+    </>
   );
 };
 

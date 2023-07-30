@@ -4,6 +4,7 @@ import {
   createAsyncThunk,
   createEntityAdapter,
   createSlice,
+  EntityId,
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
@@ -15,7 +16,7 @@ const allPostsAdapter = createEntityAdapter<PostView>({
 
 export type FeedState = {
   allPosts?: EntityState<PostView>;
-  currentPost?: PostView;
+  currentPost: EntityId;
   page: number;
   loading: boolean;
   error: string;
@@ -26,6 +27,7 @@ export type FeedState = {
 
 const initialState: FeedState = {
   allPosts: allPostsAdapter.getInitialState(),
+  currentPost: 2580559,
   page: 1,
   loading: true,
   error: "",
@@ -35,7 +37,7 @@ export const feedSlice = createSlice({
   name: "feed",
   initialState,
   reducers: {
-    setCurrentPost(state, action: PayloadAction<PostView>) {
+    setCurrentPost(state, action: PayloadAction<EntityId>) {
       state.currentPost = action.payload;
     },
     nextPage(state) {
@@ -49,11 +51,6 @@ export const feedSlice = createSlice({
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.allPosts &&
         allPostsAdapter.upsertMany(state.allPosts, action.payload);
-      // action.payload.map(
-      //   (post) =>
-      //     state.allPosts?.has(post.post.id) &&
-      //     state.allPosts?.set(post.post.id, post),
-      // );
       state.loading = false;
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
@@ -66,21 +63,13 @@ export const feedSlice = createSlice({
 export const fetchPosts = createAsyncThunk(
   "feed/fetchPosts",
   async (page: number) => {
-    console.log("fetching");
+    console.log("fetching feed");
     const client = getLemmyHttp();
     return client
       .getPosts({ limit: 50, page })
       .then((response) => response.posts);
   },
 );
-
-const equals = (post1: PostView, post2: PostView) => {
-  return post1.post?.id === post2.post?.id;
-};
-
-const includes = (post: PostView, array: PostView[]) => {
-  return array.some((item) => equals(item, post));
-};
 
 export const feedActions = feedSlice.actions;
 
