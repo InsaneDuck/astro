@@ -31,7 +31,7 @@ export const Post: FC<PostProps> = () => {
   };
   const commentItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => {
-      console.log("item", item);
+      //console.log("item", item);
       return <Comment commendId={item} index={index} />;
     },
     [],

@@ -1,4 +1,5 @@
 import { getLemmyHttp } from "@/api/get";
+import { RootState } from "@/store/store";
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
@@ -40,9 +41,6 @@ export const feedSlice = createSlice({
     setCurrentPost(state, action: PayloadAction<EntityId>) {
       state.currentPost = action.payload;
     },
-    nextPage(state) {
-      state.page = state.page + 1;
-    },
   },
   extraReducers: (builder: ActionReducerMapBuilder<FeedState>) => {
     builder.addCase(fetchPosts.pending, (state, action) => {
@@ -52,6 +50,7 @@ export const feedSlice = createSlice({
       state.allPosts &&
         allPostsAdapter.upsertMany(state.allPosts, action.payload);
       state.loading = "succeeded";
+      state.page++;
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
       state.loading = "failed";
@@ -60,17 +59,20 @@ export const feedSlice = createSlice({
   },
 });
 
-export const fetchPosts = createAsyncThunk(
-  "feed/fetchPosts",
-  async (payload, thunkAPI) => {
-    const state = thunkAPI.getState();
-    console.log("fetching feed");
-    const client = getLemmyHttp();
-    return await client
-      .getPosts({ limit: 50 })
-      .then((response) => response.posts);
-  },
-);
+export const fetchPosts = createAsyncThunk<
+  PostView[],
+  void,
+  { state: RootState }
+>("feed/fetchPosts", async (payload, thunkAPI) => {
+  const page = thunkAPI.getState().feed.page;
+  const dispatch = thunkAPI.dispatch;
+
+  console.log("fetching feed, page = ", page);
+  const client = getLemmyHttp();
+  return await client
+    .getPosts({ page, limit: 50 })
+    .then((response) => response.posts);
+});
 
 export const feedActions = feedSlice.actions;
 

@@ -1,7 +1,7 @@
 import { FeedCard } from "@/app/screens/Tabs/Feed/FeedCard";
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { Loading } from "@/components/common/Loading";
-import { feedActions } from "@/store/feed-slice";
+import { fetchPosts } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC, useCallback, useMemo } from "react";
@@ -38,7 +38,9 @@ export const FeedList: FC<FeedListProps> = (props) => {
 
   const endOfLine = () => {
     //todo fix this
-    dispatch(feedActions.nextPage());
+    if (loading !== "pending") {
+      dispatch(fetchPosts());
+    }
   };
 
   return (

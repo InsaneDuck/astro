@@ -23,7 +23,7 @@ export const FeedCard: FC<FeedCardProps> = React.memo((props) => {
       state.feed.allPosts?.entities[props.postId.toString()],
   );
 
-  console.log("Rendering Feed Card, count = ", ++count);
+  //console.log("Rendering Feed Card, count = ", ++count);
   return (
     <SwipeableCard>
       {post ? (

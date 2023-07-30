@@ -1,29 +1,23 @@
 import { FeedList } from "@/app/screens/Tabs/Feed/FeedList";
-import { Loading } from "@/components/common/Loading";
 import { View } from "@/components/themed-components/View";
 import { fetchPosts } from "@/store/feed-slice";
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch } from "@/store/store";
 
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 type FeedProps = {};
 
 export const Feed: FC<FeedProps> = () => {
-  const { loading, page, error } = useSelector(
-    (state: RootState) => state.feed,
-  );
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchPosts());
+    setLoading(false);
   }, [dispatch]);
 
-  return (
-    <View style={styles.container}>
-      {loading === "pending" ? <Loading /> : <FeedList />}
-    </View>
-  );
+  return <View style={styles.container}>{!loading && <FeedList />}</View>;
 };
 
 const styles = StyleSheet.create({

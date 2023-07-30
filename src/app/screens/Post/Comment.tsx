@@ -15,7 +15,7 @@ export const Comment: FC<CommentProps> = (props) => {
     (state: RootState) =>
       state.comments.allComments.entities[props.commendId.toString()],
   );
-  console.log("Rendering comments, count = ", count++);
+  //console.log("Rendering comments, count = ", count++);
   return (
     comment && (
       <Card style={{ margin: 10 }}>
