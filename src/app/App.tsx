@@ -1,4 +1,4 @@
-import Layout from "@/app/Layout";
+import Layout from "@/app/routing/Layout";
 import { registerRootComponent } from "expo";
 import React from "react";
 

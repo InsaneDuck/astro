@@ -10,8 +10,12 @@ export const View: FC<ViewProps> = (props) => {
 
   return (
     <>
-      <Pressable onPress={props.onPress}></Pressable>
-      <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />
+      <Pressable
+        onPress={props.onPress}
+        style={{ backgroundColor: "transparent" }}
+      >
+        <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />
+      </Pressable>
     </>
   );
 };

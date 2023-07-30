@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SortType } from "lemmy-js-client";
 
 export type Settings = {
+  blurNSFW: boolean;
+  defaultFeedCardSize: "compact" | "expanded";
+  defaultFeedSort: SortType;
+  postCardStyle: {};
   serverUrl: string;
   showNSFW: boolean;
-  blurNSFW: boolean;
-  postCardStyle: {};
+  showUserNameInTabBar: boolean;
   theme: string;
 };
 

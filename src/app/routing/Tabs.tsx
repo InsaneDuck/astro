@@ -3,16 +3,30 @@ import { Inbox } from "@/app/screens/Tabs/Inbox/Inbox";
 import { Profile } from "@/app/screens/Tabs/Profile/Profile";
 import { Search } from "@/app/screens/Tabs/Search/Search";
 import { Settings } from "@/app/screens/Tabs/Settings/Settings";
+import { FeedSorter } from "@/components/common/FeedSorter";
 import { Icon } from "@/components/common/Icon";
+import { IconButton } from "@/components/common/IconButton";
+import { NavigationRoutes, StackNavigation } from "@/constants/Navigation";
 
 import { useThemeColor } from "@/theming/useThemeColor";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
 
 type TabsProps = {};
 const Tab = createBottomTabNavigator();
 export const Tabs: FC<TabsProps> = () => {
   const colorScheme = useThemeColor("tint");
+  //todo remove this boi
+  const feedHeaderRight = () => {
+    const navigation = useNavigation<StackNavigation>();
+    const pressed = () => {
+      navigation.navigate(NavigationRoutes.Modal);
+    };
+
+    return <IconButton onPress={pressed} name={"info-circle"} />;
+  };
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -20,11 +34,20 @@ export const Tabs: FC<TabsProps> = () => {
       }}
     >
       <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color }) => <Icon icon={"gear"} color={color} />,
+        }}
+      />
+      <Tab.Screen
         name="Feed"
         component={Feed}
         options={{
           title: "Feed",
-          tabBarIcon: ({ color }) => <Icon name="feed" color={color} />,
+          tabBarIcon: ({ color }) => <Icon icon="house" color={color} />,
+          headerRight: FeedSorter,
         }}
       />
       <Tab.Screen
@@ -32,7 +55,7 @@ export const Tabs: FC<TabsProps> = () => {
         component={Inbox}
         options={{
           title: "Inbox",
-          tabBarIcon: ({ color }) => <Icon name="inbox" color={color} />,
+          tabBarIcon: ({ color }) => <Icon icon="inbox" color={color} />,
         }}
       />
       <Tab.Screen
@@ -40,7 +63,7 @@ export const Tabs: FC<TabsProps> = () => {
         component={Profile}
         options={{
           title: "Profile",
-          tabBarIcon: ({ color }) => <Icon name="user" color={color} />,
+          tabBarIcon: ({ color }) => <Icon icon="user" color={color} />,
         }}
       />
       <Tab.Screen
@@ -48,15 +71,7 @@ export const Tabs: FC<TabsProps> = () => {
         component={Search}
         options={{
           title: "Search",
-          tabBarIcon: ({ color }) => <Icon name="search" color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          title: "Settings",
-          tabBarIcon: ({ color }) => <Icon name="gear" color={color} />,
+          tabBarIcon: ({ color }) => <Icon icon="search" color={color} />,
         }}
       />
     </Tab.Navigator>

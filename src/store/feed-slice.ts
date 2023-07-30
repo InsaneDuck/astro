@@ -7,7 +7,7 @@ import {
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { PostView } from "lemmy-js-client";
+import { PostView, SortType } from "lemmy-js-client";
 
 const allPostsAdapter = createEntityAdapter<PostView>({
   selectId: (postView) => postView.post.id,
@@ -19,6 +19,9 @@ export type FeedState = {
   page: number;
   loading: boolean;
   error: string;
+  sort?: SortType;
+  server?: string;
+  cardType?: "compact" | "expanded";
 };
 
 const initialState: FeedState = {

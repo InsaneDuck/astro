@@ -1,8 +1,8 @@
+import { Tabs } from "@/app/routing/Tabs";
 import { Error } from "@/app/screens/Error";
 import { ImageViewer } from "@/app/screens/ImageViewer";
 import { Modal } from "@/app/screens/Modal";
 import { Post } from "@/app/screens/Post/Post";
-import { Tabs } from "@/app/Tabs";
 import { NavigationRoutes, RootStackParamList } from "@/constants/Navigation";
 import { store } from "@/store/store";
 import {

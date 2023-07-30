@@ -1,6 +1,6 @@
 import { LemmyHttp } from "lemmy-js-client";
 
 export const getLemmyHttp = () => {
-  let baseUrl = "https://enterprise.lemmy.ml/";
+  let baseUrl = "https://lemmy.ml/";
   return new LemmyHttp(baseUrl, {});
 };
