@@ -1,7 +1,7 @@
 import { Comment } from "@/app/screens/Post/Comment";
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { View } from "@/components/themed-components/View";
-import { fetchComments } from "@/store/comments-slice";
+import { commentsActions, fetchComments } from "@/store/comments-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { useThemeColor } from "@/theming/useThemeColor";
 import { EntityId } from "@reduxjs/toolkit";
@@ -36,7 +36,8 @@ export const Search: FC<SearchProps> = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(fetchComments(Number(postId)));
+    dispatch(commentsActions.setPostId(postId));
+    dispatch(fetchComments());
   }, []);
 
   const commentItem = useCallback(
@@ -59,7 +60,7 @@ export const Search: FC<SearchProps> = () => {
           renderItem={commentItem}
           ItemSeparatorComponent={FeedSeparator}
           onEndReachedThreshold={0.01}
-          refreshing={loading}
+          refreshing={loading === "pending"}
         />
       )}
     </>

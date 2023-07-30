@@ -3,6 +3,6 @@ import React, { FC } from "react";
 
 type AppearanceProps = {};
 
-export const Appearance: FC<AppearanceProps> = (props) => {
+export const Appearance: FC<AppearanceProps> = () => {
   return <Text>Hello</Text>;
 };

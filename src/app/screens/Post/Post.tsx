@@ -1,8 +1,8 @@
 import { Comment } from "@/app/screens/Post/Comment";
-import { PostCardContent } from "@/app/screens/Post/PostCardContent";
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { Card } from "@/components/common/Cards/Card";
-import { fetchComments } from "@/store/comments-slice";
+import { PostViewComponent } from "@/components/common/PostViewComponent";
+import { commentsActions, fetchComments } from "@/store/comments-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC, useCallback, useEffect } from "react";
@@ -21,10 +21,13 @@ export const Post: FC<PostProps> = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    post?.post.id && dispatch(fetchComments(post.post.id));
+    dispatch(commentsActions.setPostId(postId));
+    post?.post.id && dispatch(fetchComments());
   }, []);
   const postHeader = () => {
-    return <Card>{post && <PostCardContent postView={post} />}</Card>;
+    return (
+      <Card>{post && <PostViewComponent postView={post} type={"post"} />}</Card>
+    );
   };
   const commentItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => {
@@ -48,7 +51,7 @@ export const Post: FC<PostProps> = () => {
           onEndReachedThreshold={0.01}
           ListHeaderComponent={postHeader}
           ListFooterComponent={null}
-          refreshing={loading}
+          refreshing={loading === "pending"}
         />
       )}
     </>

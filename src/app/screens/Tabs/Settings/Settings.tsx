@@ -1,4 +1,4 @@
-import { SettingsItem } from "@/components/common/SettingsItem";
+import { SettingsItem } from "@/app/screens/Tabs/Settings/SettingsItem";
 import { View } from "@/components/themed-components/View";
 import { SettingsNavigation, SettingsRoutes } from "@/constants/Navigation";
 import { useNavigation } from "@react-navigation/core";
