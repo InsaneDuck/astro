@@ -3,7 +3,7 @@ import { Inbox } from "@/app/screens/Tabs/Inbox/Inbox";
 import { Profile } from "@/app/screens/Tabs/Profile/Profile";
 import { Search } from "@/app/screens/Tabs/Search/Search";
 import { Settings } from "@/app/screens/Tabs/Settings/Settings";
-import { SettingsLayout } from "@/app/screens/Tabs/Settings/SettingsLayout";
+import { SettingsStackLayout } from "@/app/screens/Tabs/Settings/SettingsStackLayout";
 import { FeedSorter } from "@/components/common/FeedSorter";
 import { Icon } from "@/components/common/Icon";
 import { IconButton } from "@/components/common/IconButton";
@@ -36,7 +36,7 @@ export const Tabs: FC<TabsProps> = () => {
     >
       <Tab.Screen
         name="Settings"
-        component={SettingsLayout}
+        component={SettingsStackLayout}
         options={{
           title: "Settings",
           tabBarIcon: ({ color }) => <Icon icon={"gear"} color={color} />,

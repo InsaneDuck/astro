@@ -19,7 +19,7 @@ import { Provider } from "react-redux";
 type LayoutProps = {};
 
 const MainStack = createNativeStackNavigator<MainRouteType>();
-const Layout: FC<LayoutProps> = () => {
+export const MainStackLayout: FC<LayoutProps> = () => {
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -64,5 +64,3 @@ const Layout: FC<LayoutProps> = () => {
     </ThemeProvider>
   );
 };
-
-export default Layout;

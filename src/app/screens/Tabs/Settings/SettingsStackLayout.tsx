@@ -7,7 +7,7 @@ import { useColorScheme } from "react-native";
 
 type LayoutProps = {};
 const SettingsStack = createNativeStackNavigator<SettingsRouteType>();
-export const SettingsLayout: FC<LayoutProps> = (props) => {
+export const SettingsStackLayout: FC<LayoutProps> = (props) => {
   const colorScheme = useColorScheme();
   return (
     <SettingsStack.Navigator
