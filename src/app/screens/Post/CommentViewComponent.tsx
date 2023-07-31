@@ -16,7 +16,15 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
 
   const CommentHeaderLeft = () => {
-    return <Text style={{ fontSize: 18 }}>{comment?.creator.name}</Text>;
+    return (
+      <Text
+        style={{
+          fontSize: 18,
+        }}
+      >
+        {comment?.creator.name}
+      </Text>
+    );
   };
 
   const CommentHeaderRight = () => {
@@ -27,6 +35,9 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
           flexDirection: "row",
           alignItems: "center",
           backgroundColor: borderColor,
+          paddingRight: 3,
+          paddingLeft: 3,
+          borderRadius: 5,
         }}
       >
         <Icon
@@ -55,7 +66,7 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#e10303",
+          overflow: "hidden",
         }}
       >
         <CommentHeaderLeft />
@@ -65,14 +76,14 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   };
   const CommentContent = () => {
     return (
-      <Text style={{ fontSize: 15, backgroundColor: "#ccc", marginTop: 5 }}>
+      <Text style={{ fontSize: 15, marginTop: 5 }}>
         {comment?.comment.content}
       </Text>
     );
   };
   return (
     <>
-      <SwipeableCard style={{ padding: 10, backgroundColor: "#7fef05" }}>
+      <SwipeableCard style={{ padding: 10 }}>
         <CommentHeader />
         <CommentContent />
       </SwipeableCard>

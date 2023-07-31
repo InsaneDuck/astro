@@ -10,19 +10,16 @@ type CommentThreadProps = {
 };
 let count = 0;
 export const CommentThread: FC<CommentThreadProps> = (props) => {
-  const allComments = useSelector(
-    (state: RootState) => state.comments.allComments,
+  const comment = useSelector(
+    (state: RootState) =>
+      state.comments.allComments.entities[props.commendId.toString()],
   );
 
-  const comment = allComments.entities[props.commendId.toString()];
-
-  const pathProcessor = () => {
-    const path = comment?.comment ? comment.comment.path.split(".") : [];
-    if (path.length < 3) {
-      //todo
-    } else {
-    }
-  };
+  // const path = comment?.comment ? comment.comment.path.split(".") : [];
+  // if (path.length > 2) {
+  //   return null;
+  // }
+  //const pathProcessor = () => {};
   //todo
   //take path and if it has more than one item in path return null or else return comment
 

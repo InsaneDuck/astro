@@ -1,7 +1,7 @@
 import { CommentThread } from "@/app/screens/Post/CommentThread";
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { View } from "@/components/themed-components/View";
-import { commentsActions, fetchComments } from "@/store/comments-slice";
+import { fetchComments } from "@/store/comments-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { useThemeColor } from "@/theming/useThemeColor";
 import { EntityId } from "@reduxjs/toolkit";
@@ -36,7 +36,6 @@ export const Search: FC<SearchProps> = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(commentsActions.setPostId(postId));
     dispatch(fetchComments());
   }, []);
 

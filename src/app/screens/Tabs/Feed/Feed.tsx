@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 type FeedProps = {};
 
 export const Feed: FC<FeedProps> = () => {
+  //todo replace with redux loading
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {

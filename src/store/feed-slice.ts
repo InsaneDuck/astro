@@ -28,7 +28,7 @@ export type FeedState = {
 
 const initialState: FeedState = {
   allPosts: allPostsAdapter.getInitialState(),
-  currentPost: 2580559,
+  currentPost: 2607271,
   page: 1,
   loading: "idle",
   error: "",
@@ -65,12 +65,11 @@ export const fetchPosts = createAsyncThunk<
   { state: RootState }
 >("feed/fetchPosts", async (payload, thunkAPI) => {
   const page = thunkAPI.getState().feed.page;
-  const dispatch = thunkAPI.dispatch;
 
   console.log("fetching feed, page = ", page);
   const client = getLemmyHttp();
   return await client
-    .getPosts({ page, limit: 50 })
+    .getPosts({ page, limit: 50, sort: "MostComments" })
     .then((response) => response.posts);
 });
 

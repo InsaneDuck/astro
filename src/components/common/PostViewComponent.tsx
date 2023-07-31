@@ -6,7 +6,7 @@ import { imageActions } from "@/store/image-slice";
 import { AppDispatch } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { Image, Pressable } from "react-native";
 import { useDispatch } from "react-redux";
 
@@ -18,7 +18,7 @@ const propsAreEqual = (
   previousProps: PostViewComponentProps,
   currentProps: PostViewComponentProps,
 ) => {
-  return previousProps.postView.post.id == currentProps.postView.post.id;
+  return previousProps.postView.post.id === currentProps.postView.post.id;
 };
 /**
  *
@@ -37,12 +37,12 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       }
     };
 
-    const onTitlePress = (): any => {
+    const onTitlePress = useCallback((): any => {
       if (type === "feed") {
         postView && dispatch(feedActions.setCurrentPost(postView.post.id));
         navigation.navigate(MainRoutes.Post);
       }
-    };
+    }, [type, postView, dispatch, navigation]);
 
     //todo change shade of title after post is marked as read
     const PostTitle = () => {

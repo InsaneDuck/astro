@@ -4,7 +4,6 @@ import {
   createAsyncThunk,
   createEntityAdapter,
   createSlice,
-  EntityId,
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
@@ -16,7 +15,7 @@ const allCommentsAdapter = createEntityAdapter<CommentView>({
 
 export type CommentsState = {
   allComments: EntityState<CommentView>;
-  currentPost: EntityId;
+
   page: number;
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string;
@@ -25,7 +24,7 @@ export type CommentsState = {
 
 const initialState: CommentsState = {
   allComments: allCommentsAdapter.getInitialState(),
-  currentPost: 0,
+
   page: 1,
   error: "",
   loading: "idle",
@@ -34,29 +33,26 @@ const initialState: CommentsState = {
 export const commentsSlice = createSlice({
   name: "comments",
   initialState,
-  reducers: {
-    setPostId(state, action: PayloadAction<EntityId>) {
-      state.currentPost = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchComments.pending, (state, action) => {
       state.loading = "pending";
-      //todo only keep comments that have same postId
+      allCommentsAdapter.setAll(state.allComments, []);
     });
     builder.addCase(
       fetchComments.fulfilled,
       (state, action: PayloadAction<CommentView[]>) => {
-        //state.allComments = allCommentsAdapter.getInitialState();
-        if (state.allComments) {
-          allCommentsAdapter.upsertMany(state.allComments, action.payload);
-        }
+        //todo only keep comments that have same postId
+
+        allCommentsAdapter.addMany(state.allComments, action.payload);
+        console.log(action.payload.length);
         state.loading = "succeeded";
+        state.page++;
       },
     );
     builder.addCase(fetchComments.rejected, (state, action) => {
-      state.error = action.error.message ? action.error.message : "";
       state.loading = "failed";
+      state.error = action.error.message ? action.error.message : "";
     });
   },
 });
@@ -68,19 +64,21 @@ export const fetchComments = createAsyncThunk<
     state: RootState;
   }
 >("comments/fetchComments", async (_, thunkAPI) => {
-  const postId = thunkAPI.getState().comments.currentPost;
-  console.log("fetching comments");
+  const postId = thunkAPI.getState().feed.currentPost;
+  const page = thunkAPI.getState().comments.page;
+  console.log("fetching comments for, ", postId);
   const client = getLemmyHttp();
-  return await client
+  const comments = await client
     .getComments({
-      limit: 50,
-      page: 1,
+      limit: 5,
+      page,
       post_id: Number(postId),
       sort: "Top",
-      max_depth: 6,
-      type_: "All",
+      max_depth: 1,
     })
     .then((response) => response.comments);
+  comments.map((item) => console.log("comment id = ", item.comment.id));
+  return comments;
 });
 
 export const commentsActions = commentsSlice.actions;
