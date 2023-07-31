@@ -1,9 +1,8 @@
 import { CommentsSection } from "@/app/screens/Post/CommentsSection";
-import { Card } from "@/components/common/Cards/Card";
-import { PostViewComponent } from "@/components/common/PostViewComponent";
+import { Loading } from "@/components/common/Loading";
+import { View } from "@/components/themed-components/View";
 import { RootState } from "@/store/store";
-import React, { FC, useMemo } from "react";
-import { ScrollView } from "react-native";
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
 type PostProps = {};
@@ -14,16 +13,10 @@ export const Post: FC<PostProps> = () => {
     (state: RootState) => state.feed.allPosts?.entities[postId.toString()],
   );
 
-  const PostHeader = useMemo(() => {
-    return (
-      <Card>{post && <PostViewComponent postView={post} type={"post"} />}</Card>
-    );
-  }, [post]);
-
+  //<ScrollView>{PostHeader}</ScrollView>
   return (
-    <>
-      <ScrollView>{PostHeader}</ScrollView>
-      <CommentsSection posId={postId} />
-    </>
+    <View>
+      {post ? <CommentsSection postId={postId} postView={post} /> : <Loading />}
+    </View>
   );
 };

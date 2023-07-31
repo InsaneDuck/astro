@@ -1,17 +1,28 @@
 import { CommentThread } from "@/app/screens/Post/CommentThread";
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
+import { Card } from "@/components/common/Cards/Card";
+import { PostViewComponent } from "@/components/common/PostViewComponent";
 import { fetchComments } from "@/store/comments-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
-import React, { FC, useCallback, useEffect } from "react";
+import { PostView } from "lemmy-js-client";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 type CommentsSectionProps = {
-  posId: EntityId;
+  postId: EntityId;
+  postView: PostView;
 };
 
-export const CommentsSection: FC<CommentsSectionProps> = (props) => {
+const propsAreEqual = (
+  previousProps: CommentsSectionProps,
+  currentProps: CommentsSectionProps,
+) => {
+  return previousProps.postId === currentProps.postId;
+};
+
+export const CommentsSection: FC<CommentsSectionProps> = React.memo((props) => {
   const allCommentIds = useSelector(
     (state: RootState) => state.comments.allComments.ids,
   );
@@ -21,6 +32,13 @@ export const CommentsSection: FC<CommentsSectionProps> = (props) => {
   useEffect(() => {
     dispatch(fetchComments());
   }, []);
+  const PostHeader = useMemo(() => {
+    return (
+      <Card>
+        {<PostViewComponent postView={props.postView} type={"post"} />}
+      </Card>
+    );
+  }, [props.postView]);
 
   const commentItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => {
@@ -44,9 +62,10 @@ export const CommentsSection: FC<CommentsSectionProps> = (props) => {
         data={allCommentIds}
         keyExtractor={keyExtractor}
         renderItem={commentItem}
+        ListHeaderComponent={PostHeader}
         ItemSeparatorComponent={FeedSeparator}
         onEndReached={endOfLine}
       />
     )
   );
-};
+}, propsAreEqual);

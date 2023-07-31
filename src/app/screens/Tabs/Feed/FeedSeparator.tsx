@@ -3,7 +3,7 @@ import { useThemeColor } from "@/theming/useThemeColor";
 import React, { FC, memo } from "react";
 
 type FeedSeparatorProps = {};
-const arePropsEqual = () => {
+const propsAreEqual = () => {
   return true;
 };
 let count = 0;
@@ -18,4 +18,4 @@ export const FeedSeparator: FC<FeedSeparatorProps> = memo(() => {
       }}
     />
   );
-}, arePropsEqual);
+}, propsAreEqual);
