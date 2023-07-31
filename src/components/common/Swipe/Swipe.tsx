@@ -1,7 +1,9 @@
-import { SwipeSide } from "@/components/common/Swipe/SwipeSide";
+import { SwipeButton } from "@/components/common/Swipe/SwipeButton";
+import { View } from "@/components/themed-components/View";
 import Colors from "@/constants/Colors";
 import { Press } from "@/theming/Themed";
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 import {
   GestureHandlerRootView,
   Swipeable,
@@ -16,48 +18,44 @@ type SwipeProps = {
 
 export const Swipe: FC<SwipeProps> = (props) => {
   const { save, upVote, downVote, reply, ...otherProps } = props;
-  const rightSideButtons = React.useMemo(
-    () => (
-      <SwipeSide
-        buttons={[
-          {
-            key: "reply",
-            press: reply,
-            color: Colors.reply,
-            icon: "reply",
-          },
-          {
-            key: "bookmark",
-            press: save,
-            color: Colors.save,
-            icon: "bookmark",
-          },
-        ]}
-      />
-    ),
-    [reply, save],
-  );
-  const leftSideButtons = React.useMemo(
-    () => (
-      <SwipeSide
-        buttons={[
-          {
-            key: "arrow-up",
-            press: upVote,
-            color: Colors.upVote,
-            icon: "arrow-up",
-          },
-          {
-            key: "arrow-down",
-            press: downVote,
-            color: Colors.downVote,
-            icon: "arrow-down",
-          },
-        ]}
-      />
-    ),
-    [upVote, downVote],
-  );
+
+  const right = () => {
+    return (
+      <View style={styles.swipe}>
+        <SwipeButton
+          key={"reply"}
+          onPress={reply}
+          color={Colors.reply}
+          fontAwesomeIcon={"reply"}
+        />
+        <SwipeButton
+          key={"bookmark"}
+          onPress={save}
+          color={Colors.save}
+          fontAwesomeIcon={"bookmark"}
+        />
+      </View>
+    );
+  };
+  const left = () => {
+    return (
+      <View style={styles.swipe}>
+        <SwipeButton
+          key={"arrow-up"}
+          onPress={upVote}
+          color={Colors.upVote}
+          fontAwesomeIcon={"arrow-up"}
+        />
+        <SwipeButton
+          key={"arrow-down"}
+          onPress={downVote}
+          color={Colors.downVote}
+          fontAwesomeIcon={"arrow-down"}
+        />
+      </View>
+    );
+  };
+
   //todo try useNativeAnimations
   return (
     <GestureHandlerRootView>
@@ -65,10 +63,19 @@ export const Swipe: FC<SwipeProps> = (props) => {
         useNativeAnimations={true}
         overshootRight={false}
         overshootLeft={false}
-        renderLeftActions={() => leftSideButtons}
-        renderRightActions={() => rightSideButtons}
+        renderLeftActions={left}
+        renderRightActions={right}
         {...otherProps}
       />
     </GestureHandlerRootView>
   );
 };
+const styles = StyleSheet.create({
+  swipe: {
+    alignItems: "center",
+    width: "50%",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "nowrap",
+  },
+});

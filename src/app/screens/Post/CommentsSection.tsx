@@ -29,6 +29,12 @@ export const CommentsSection: FC<CommentsSectionProps> = React.memo((props) => {
   const loading = useSelector((state: RootState) => state.comments.loading);
   const dispatch = useDispatch<AppDispatch>();
 
+  const commentItem = useCallback(
+    ({ item, index }: ListRenderItemInfo<EntityId>) => {
+      return <CommentThread commendId={item} index={index} />;
+    },
+    [],
+  );
   useEffect(() => {
     dispatch(fetchComments());
   }, []);
@@ -40,12 +46,6 @@ export const CommentsSection: FC<CommentsSectionProps> = React.memo((props) => {
     );
   }, [props.postView]);
 
-  const commentItem = useCallback(
-    ({ item, index }: ListRenderItemInfo<EntityId>) => {
-      return <CommentThread commendId={item} index={index} />;
-    },
-    [],
-  );
   const keyExtractor = useCallback(
     (item: EntityId, index: number) => item.toString(),
     [],
@@ -57,15 +57,14 @@ export const CommentsSection: FC<CommentsSectionProps> = React.memo((props) => {
     }
   };
   return (
-    allCommentIds && (
-      <FlatList
-        data={allCommentIds}
-        keyExtractor={keyExtractor}
-        renderItem={commentItem}
-        ListHeaderComponent={PostHeader}
-        ItemSeparatorComponent={FeedSeparator}
-        onEndReached={endOfLine}
-      />
-    )
+    <FlatList
+      data={allCommentIds}
+      keyExtractor={keyExtractor}
+      renderItem={commentItem}
+      ListHeaderComponent={PostHeader}
+      ItemSeparatorComponent={FeedSeparator}
+      onEndReached={endOfLine}
+      refreshing={loading === "pending"}
+    />
   );
 }, propsAreEqual);
