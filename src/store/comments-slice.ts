@@ -72,7 +72,14 @@ export const fetchComments = createAsyncThunk<
   console.log("fetching comments");
   const client = getLemmyHttp();
   return await client
-    .getComments({ limit: 50, page: 1, post_id: Number(postId) })
+    .getComments({
+      limit: 50,
+      page: 1,
+      post_id: Number(postId),
+      sort: "Top",
+      max_depth: 6,
+      type_: "All",
+    })
     .then((response) => response.comments);
 });
 

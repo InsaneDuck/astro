@@ -1,4 +1,4 @@
-import { Comment } from "@/app/screens/Post/Comment";
+import { CommentThread } from "@/app/screens/Post/CommentThread";
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { Card } from "@/components/common/Cards/Card";
 import { PostViewComponent } from "@/components/common/PostViewComponent";
@@ -32,7 +32,7 @@ export const Post: FC<PostProps> = () => {
   const commentItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => {
       //console.log("item", item);
-      return <Comment commendId={item} index={index} />;
+      return <CommentThread commendId={item} index={index} />;
     },
     [],
   );

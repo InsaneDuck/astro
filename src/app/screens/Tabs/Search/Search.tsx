@@ -1,4 +1,4 @@
-import { Comment } from "@/app/screens/Post/Comment";
+import { CommentThread } from "@/app/screens/Post/CommentThread";
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { View } from "@/components/themed-components/View";
 import { commentsActions, fetchComments } from "@/store/comments-slice";
@@ -43,7 +43,7 @@ export const Search: FC<SearchProps> = () => {
   const commentItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => {
       //console.log("item", item);
-      return <Comment commendId={item} index={index} />;
+      return <CommentThread commendId={item} index={index} />;
     },
     [],
   );
