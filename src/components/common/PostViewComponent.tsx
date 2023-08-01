@@ -93,85 +93,94 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
         )
       );
     };
-
+    const PostFooterLeft = () => {
+      return (
+        <TouchableOpacity
+          style={{
+            backgroundColor: borderColor,
+            borderRadius: 5,
+            padding: 3,
+            paddingLeft: 6,
+            paddingRight: 6,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          {postView.creator.avatar ? (
+            <Image
+              source={{ uri: postView.community.icon }}
+              style={{ borderRadius: 5, width: 20, height: 20 }}
+            />
+          ) : (
+            <Icon
+              icon={"user"}
+              color={textColor}
+              size={18}
+              style={{ marginBottom: 1.5 }}
+            />
+          )}
+          <Text
+            style={{
+              fontSize: 18,
+              marginLeft: 5,
+            }}
+          >
+            {postView?.community.name}
+          </Text>
+        </TouchableOpacity>
+      );
+    };
+    const PostFooterRight = () => {
+      return (
+        <TouchableOpacity
+          style={{
+            backgroundColor: borderColor,
+            borderRadius: 5,
+            padding: 3,
+            paddingLeft: 6,
+            paddingRight: 6,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          {postView.creator.avatar ? (
+            <Image
+              source={{ uri: postView.creator.avatar }}
+              width={20}
+              height={20}
+              style={{ borderRadius: 5 }}
+            />
+          ) : (
+            <Icon
+              icon={"user"}
+              color={textColor}
+              size={18}
+              style={{ marginBottom: 1.5 }}
+            />
+          )}
+          <Text
+            style={{
+              fontSize: 18,
+              marginLeft: 5,
+            }}
+          >
+            {postView?.creator.name}
+          </Text>
+        </TouchableOpacity>
+      );
+    };
     const PostFooter = () => {
       return (
         <View style={styles.postFooter}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: borderColor,
-              borderRadius: 5,
-              padding: 3,
-              paddingLeft: 6,
-              paddingRight: 6,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            {postView.creator.avatar ? (
-              <Image
-                source={{ uri: postView.community.icon }}
-                style={{ borderRadius: 5, width: 20, height: 20 }}
-              />
-            ) : (
-              <Icon
-                icon={"user"}
-                color={textColor}
-                size={18}
-                style={{ marginBottom: 1.5 }}
-              />
-            )}
-            <Text
-              style={{
-                fontSize: 18,
-                marginLeft: 5,
-              }}
-            >
-              {postView?.community.name}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              backgroundColor: borderColor,
-              borderRadius: 5,
-              padding: 3,
-              paddingLeft: 6,
-              paddingRight: 6,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            {postView.creator.avatar ? (
-              <Image
-                source={{ uri: postView.creator.avatar }}
-                width={20}
-                height={20}
-                style={{ borderRadius: 5 }}
-              />
-            ) : (
-              <Icon
-                icon={"user"}
-                color={textColor}
-                size={18}
-                style={{ marginBottom: 1.5 }}
-              />
-            )}
-            <Text
-              style={{
-                fontSize: 18,
-                marginLeft: 5,
-              }}
-            >
-              {postView?.creator.name}
-            </Text>
-          </TouchableOpacity>
+          <PostFooterLeft />
+          <PostFooterRight />
         </View>
       );
     };
 
-    const PostButtons = () => {
+    const PostActions = () => {
       return type !== "post" ? (
         <></>
       ) : (
@@ -191,6 +200,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                backgroundColor: borderColor,
               }}
             >
               <Icon
@@ -210,6 +220,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                backgroundColor: borderColor,
               }}
             >
               <Icon
@@ -271,7 +282,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
         <PostEmbedDescription />
         <PostBody />
         <PostFooter />
-        <PostButtons />
+        <PostActions />
       </>
     ) : null;
   },
