@@ -1,10 +1,10 @@
 import { Feed } from "@/app/screens/Tabs/Feed/Feed";
+import { FeedSorter } from "@/app/screens/Tabs/Feed/FeedSorter";
 import { Inbox } from "@/app/screens/Tabs/Inbox/Inbox";
 import { Profile } from "@/app/screens/Tabs/Profile/Profile";
 import { Search } from "@/app/screens/Tabs/Search/Search";
 import { Settings } from "@/app/screens/Tabs/Settings/Settings";
 import { SettingsStackLayout } from "@/app/screens/Tabs/Settings/SettingsStackLayout";
-import { FeedSorter } from "@/components/common/FeedSorter";
 import { Icon } from "@/components/common/Icon";
 import { IconButton } from "@/components/common/IconButton";
 import { MainNavigation, MainRoutes } from "@/constants/Navigation";
