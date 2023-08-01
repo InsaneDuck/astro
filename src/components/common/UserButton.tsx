@@ -9,6 +9,7 @@ type UserButtonProps = {
   creator: Person;
 };
 
+//todo show tags like mod?, op?
 export const UserButton: FC<UserButtonProps> = (props) => {
   const { creator } = props;
   const textColor = useThemeColor("text");

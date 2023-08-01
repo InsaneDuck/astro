@@ -1,6 +1,7 @@
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { CommunityButton } from "@/components/common/CommunityButton";
 import { Icon } from "@/components/common/Icon";
+import { PostActions } from "@/components/common/PostActions";
 import { UserButton } from "@/components/common/UserButton";
 import { Text } from "@/components/themed-components/Text";
 import { View } from "@/components/themed-components/View";
@@ -28,6 +29,7 @@ const propsAreEqual = (
 /**
  *
  */
+//todo add post time,
 export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
   (props) => {
     const { postView, type } = props;
@@ -111,76 +113,12 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       );
     };
 
-    const PostActions = () => {
+    const PostActions1 = () => {
       return type !== "post" ? (
         <></>
       ) : (
         <>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-around",
-              backgroundColor: borderColor,
-              height: 50,
-            }}
-          >
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: borderColor,
-              }}
-            >
-              <Icon
-                icon={"arrow-up"}
-                color={textColor}
-                size={20}
-                style={{ marginBottom: 1.5 }}
-              />
-              <Text style={{ fontSize: 23 }}>
-                {postView.counts.upvotes < 1000
-                  ? postView.counts.upvotes
-                  : (postView.counts.upvotes / 1000).toFixed(1) + "K"}
-              </Text>
-            </View>
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: borderColor,
-              }}
-            >
-              <Icon
-                icon={"arrow-down"}
-                color={textColor}
-                size={20}
-                style={{ marginBottom: 1.5 }}
-              />
-              <Text style={{ fontSize: 23 }}>{postView.counts.downvotes}</Text>
-            </View>
-            <Icon
-              icon={"bookmark"}
-              color={textColor}
-              size={20}
-              style={{ marginBottom: 1.5 }}
-            />
-            <Icon
-              icon={"reply"}
-              color={textColor}
-              size={20}
-              style={{ marginBottom: 1.5 }}
-            />
-            <Icon
-              icon={"ellipsis"}
-              color={textColor}
-              size={20}
-              style={{ marginBottom: 1.5 }}
-            />
-          </View>
+          <PostActions postAggregates={postView.counts} />
           <View
             style={{
               display: "flex",
@@ -213,7 +151,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
         <PostEmbedDescription />
         <PostBody />
         <PostFooter />
-        <PostActions />
+        <PostActions1 />
       </>
     ) : null;
   },
