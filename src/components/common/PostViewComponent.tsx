@@ -1,5 +1,7 @@
 import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
+import { CommunityButton } from "@/components/common/CommunityButton";
 import { Icon } from "@/components/common/Icon";
+import { UserButton } from "@/components/common/UserButton";
 import { Text } from "@/components/themed-components/Text";
 import { View } from "@/components/themed-components/View";
 import { MainNavigation, MainRoutes } from "@/constants/Navigation";
@@ -10,7 +12,7 @@ import { useThemeColor } from "@/theming/useThemeColor";
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC, useCallback } from "react";
-import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, Pressable, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 
 type PostViewComponentProps = {
@@ -31,6 +33,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const { postView, type } = props;
     const borderColor = useThemeColor("borderColor");
     const textColor = useThemeColor("text");
+    const tabIconDefault = useThemeColor("tabIconDefault");
     const navigation = useNavigation<MainNavigation>();
     const dispatch = useDispatch<AppDispatch>();
     const onImagePress = (): any => {
@@ -94,82 +97,10 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       );
     };
     const PostFooterLeft = () => {
-      return (
-        <TouchableOpacity
-          style={{
-            backgroundColor: borderColor,
-            borderRadius: 5,
-            padding: 3,
-            paddingLeft: 6,
-            paddingRight: 6,
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          {postView.creator.avatar ? (
-            <Image
-              source={{ uri: postView.community.icon }}
-              style={{ borderRadius: 5, width: 20, height: 20 }}
-            />
-          ) : (
-            <Icon
-              icon={"user"}
-              color={textColor}
-              size={18}
-              style={{ marginBottom: 1.5 }}
-            />
-          )}
-          <Text
-            style={{
-              fontSize: 18,
-              marginLeft: 5,
-            }}
-          >
-            {postView?.community.name}
-          </Text>
-        </TouchableOpacity>
-      );
+      return <CommunityButton community={postView.community} />;
     };
     const PostFooterRight = () => {
-      return (
-        <TouchableOpacity
-          style={{
-            backgroundColor: borderColor,
-            borderRadius: 5,
-            padding: 3,
-            paddingLeft: 6,
-            paddingRight: 6,
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          {postView.creator.avatar ? (
-            <Image
-              source={{ uri: postView.creator.avatar }}
-              width={20}
-              height={20}
-              style={{ borderRadius: 5 }}
-            />
-          ) : (
-            <Icon
-              icon={"user"}
-              color={textColor}
-              size={18}
-              style={{ marginBottom: 1.5 }}
-            />
-          )}
-          <Text
-            style={{
-              fontSize: 18,
-              marginLeft: 5,
-            }}
-          >
-            {postView?.creator.name}
-          </Text>
-        </TouchableOpacity>
-      );
+      return <UserButton creator={postView.creator} />;
     };
     const PostFooter = () => {
       return (
