@@ -1,13 +1,16 @@
+import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
+import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/themed-components/Text";
 import { View } from "@/components/themed-components/View";
 import { MainNavigation, MainRoutes } from "@/constants/Navigation";
 import { feedActions } from "@/store/feed-slice";
 import { imageActions } from "@/store/image-slice";
 import { AppDispatch } from "@/store/store";
+import { useThemeColor } from "@/theming/useThemeColor";
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC, useCallback } from "react";
-import { Image, Pressable } from "react-native";
+import { Image, Pressable, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 
 type PostViewComponentProps = {
@@ -26,6 +29,8 @@ const propsAreEqual = (
 export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
   (props) => {
     const { postView, type } = props;
+    const borderColor = useThemeColor("borderColor");
+    const textColor = useThemeColor("text");
     const navigation = useNavigation<MainNavigation>();
     const dispatch = useDispatch<AppDispatch>();
     const onImagePress = (): any => {
@@ -47,14 +52,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     //todo change shade of title after post is marked as read
     const PostTitle = () => {
       return (
-        <Text
-          onPress={onTitlePress}
-          style={{
-            fontWeight: "bold",
-            fontSize: 18,
-            padding: 10,
-          }}
-        >
+        <Text onPress={onTitlePress} style={styles.postTitle}>
           {postView.post.name}
         </Text>
       );
@@ -77,17 +75,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const PostEmbedDescription = () => {
       return (
         postView.post.embed_description && (
-          <Text
-            style={{
-              fontSize: 16,
-              paddingRight: 10,
-              paddingLeft: 10,
-              paddingTop: 10,
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
-            }}
-          >
+          <Text style={styles.postEmbedDescription}>
             {postView.post.embed_description}
           </Text>
         )
@@ -96,57 +84,157 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     //todo add markdown rendering
     //todo add function to detect image links to show in ImageViewer
     const PostBody = () => {
-      return (
+      return type !== "post" ? (
+        <></>
+      ) : (
         postView.post.body && (
-          <Text
-            style={{
-              padding: 10,
-              fontSize: 16,
-            }}
-          >
-            {postView.post.body}
-          </Text>
+          <Text style={styles.postBody}>{postView.post.body}</Text>
         )
       );
     };
 
     const PostFooter = () => {
       return (
-        <View
-          style={{
-            padding: 10,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 18,
-            }}
-          >
-            in {postView.community.name}
-          </Text>
-          <Text
-            style={{
-              fontSize: 18,
-            }}
-          >
-            by {postView.creator.name}
-          </Text>
+        <View style={styles.postFooter}>
+          <Text style={styles.footerText}>in {postView.community.name}</Text>
+          <Text style={styles.footerText}>by {postView.creator.name}</Text>
         </View>
       );
     };
+
+    const PostButtons = () => {
+      return type !== "post" ? (
+        <></>
+      ) : (
+        <>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-around",
+              backgroundColor: borderColor,
+              height: 50,
+            }}
+          >
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Icon
+                icon={"arrow-up"}
+                color={textColor}
+                size={20}
+                style={{ marginBottom: 1.5 }}
+              />
+              <Text style={{ fontSize: 23 }}>
+                {postView.counts.upvotes < 1000
+                  ? postView.counts.upvotes
+                  : (postView.counts.upvotes / 1000).toFixed(1) + "K"}
+              </Text>
+            </View>
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Icon
+                icon={"arrow-down"}
+                color={textColor}
+                size={20}
+                style={{ marginBottom: 1.5 }}
+              />
+              <Text style={{ fontSize: 23 }}>{postView.counts.downvotes}</Text>
+            </View>
+            <Icon
+              icon={"bookmark"}
+              color={textColor}
+              size={20}
+              style={{ marginBottom: 1.5 }}
+            />
+            <Icon
+              icon={"reply"}
+              color={textColor}
+              size={20}
+              style={{ marginBottom: 1.5 }}
+            />
+            <Icon
+              icon={"ellipsis"}
+              color={textColor}
+              size={20}
+              style={{ marginBottom: 1.5 }}
+            />
+          </View>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: 10,
+              paddingLeft: 20,
+              paddingRight: 20,
+            }}
+          >
+            <Text style={{ fontSize: 18 }}>Sort By</Text>
+            <Icon
+              icon={"sort"}
+              color={textColor}
+              size={18}
+              style={{ marginBottom: 1.5 }}
+            />
+          </View>
+          <FeedSeparator />
+        </>
+      );
+    };
+
     //todo show skeleton instead of null
     return postView ? (
       <>
         <PostTitle />
         <PostImage />
         <PostEmbedDescription />
-        {type === "post" && <PostBody />}
+        <PostBody />
         <PostFooter />
+        <PostButtons />
       </>
     ) : null;
   },
   propsAreEqual,
 );
+
+const styles = StyleSheet.create({
+  postTitle: {
+    fontWeight: "bold",
+    fontSize: 18,
+    padding: 10,
+  },
+  postEmbedDescription: {
+    fontSize: 16,
+    paddingRight: 10,
+    paddingLeft: 10,
+    paddingTop: 10,
+    display: "flex",
+    alignItems: "center",
+    flexWrap: "wrap",
+  },
+  postBody: {
+    padding: 10,
+    fontSize: 16,
+  },
+  postFooter: {
+    padding: 10,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  footerText: {
+    fontSize: 18,
+  },
+});

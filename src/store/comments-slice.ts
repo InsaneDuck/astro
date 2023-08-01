@@ -7,7 +7,7 @@ import {
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { CommentSortType, CommentView } from "lemmy-js-client";
+import { CommentSortType, CommentView, GetComments } from "lemmy-js-client";
 
 const allCommentsAdapter = createEntityAdapter<CommentView>({
   selectId: (commentView) => commentView.comment.id,
@@ -15,7 +15,6 @@ const allCommentsAdapter = createEntityAdapter<CommentView>({
 
 export type CommentsState = {
   allComments: EntityState<CommentView>;
-
   page: number;
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string;
@@ -42,8 +41,6 @@ export const commentsSlice = createSlice({
     builder.addCase(
       fetchComments.fulfilled,
       (state, action: PayloadAction<CommentView[]>) => {
-        //todo only keep comments that have same postId
-
         allCommentsAdapter.addMany(state.allComments, action.payload);
         console.log(action.payload.length);
         state.loading = "succeeded";
@@ -66,19 +63,18 @@ export const fetchComments = createAsyncThunk<
 >("comments/fetchComments", async (_, thunkAPI) => {
   const postId = thunkAPI.getState().feed.currentPost;
   const page = thunkAPI.getState().comments.page;
+  const form: GetComments = {
+    limit: 5,
+    page,
+    post_id: Number(postId),
+    sort: "Top",
+    max_depth: 1,
+  };
   console.log("fetching comments for, ", postId);
   const client = getLemmyHttp();
-  const comments = await client
-    .getComments({
-      limit: 5,
-      page,
-      post_id: Number(postId),
-      sort: "Top",
-      max_depth: 1,
-    })
-    .then((response) => response.comments);
-  comments.map((item) => console.log("comment id = ", item.comment.id));
-  return comments;
+  const comments = await client.getComments(form);
+  //comments.map((item) => console.log("comment id = ", item.comment.id));
+  return comments.comments;
 });
 
 export const commentsActions = commentsSlice.actions;

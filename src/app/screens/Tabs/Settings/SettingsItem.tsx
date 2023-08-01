@@ -18,22 +18,12 @@ export const SettingsItem: FC<SettingsItemProps> = (props) => {
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: 50,
-        paddingLeft: 20,
-        paddingRight: 20,
-        backgroundColor: colorScheme,
-        borderBottomWidth: 1,
-      }}
+      style={[styles.touchable, { backgroundColor: colorScheme }]}
     >
       <Text style={styles.text}>
         <Icon
           icon={props.icon}
-          style={{ marginLeft: 15, marginBottom: 3 }}
+          style={styles.iconStyle}
           color={textColor}
           size={11}
         />
@@ -47,5 +37,16 @@ export const SettingsItem: FC<SettingsItemProps> = (props) => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 18,
+  },
+  iconStyle: { marginLeft: 15, marginBottom: 3 },
+  touchable: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 50,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderBottomWidth: 1,
   },
 });

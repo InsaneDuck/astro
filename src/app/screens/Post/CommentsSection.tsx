@@ -5,9 +5,10 @@ import { PostViewComponent } from "@/components/common/PostViewComponent";
 import { fetchComments } from "@/store/comments-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { PostView } from "lemmy-js-client";
 import React, { FC, useCallback, useEffect, useMemo } from "react";
-import { FlatList, ListRenderItemInfo } from "react-native";
+
 import { useDispatch, useSelector } from "react-redux";
 
 type CommentsSectionProps = {
@@ -57,10 +58,11 @@ export const CommentsSection: FC<CommentsSectionProps> = React.memo((props) => {
     }
   };
   return (
-    <FlatList
+    <FlashList
       data={allCommentIds}
       keyExtractor={keyExtractor}
       renderItem={commentItem}
+      estimatedItemSize={99}
       ListHeaderComponent={PostHeader}
       ItemSeparatorComponent={FeedSeparator}
       onEndReached={endOfLine}

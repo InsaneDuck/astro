@@ -13,9 +13,8 @@ export const Post: FC<PostProps> = () => {
     (state: RootState) => state.feed.allPosts?.entities[postId.toString()],
   );
 
-  //<ScrollView>{PostHeader}</ScrollView>
   return (
-    <View>
+    <View style={{ width: "100%", height: "100%" }}>
       {post ? <CommentsSection postId={postId} postView={post} /> : <Loading />}
     </View>
   );

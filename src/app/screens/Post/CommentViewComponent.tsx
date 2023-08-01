@@ -5,6 +5,7 @@ import { View } from "@/components/themed-components/View";
 import { useThemeColor } from "@/theming/useThemeColor";
 import { CommentView } from "lemmy-js-client";
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 
 type CommentViewComponentProps = {
   comment: CommentView;
@@ -30,15 +31,7 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   const CommentHeaderRight = () => {
     return (
       <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          backgroundColor: borderColor,
-          paddingRight: 3,
-          paddingLeft: 3,
-          borderRadius: 5,
-        }}
+        style={[{ backgroundColor: borderColor }, styles.commentHeaderRight]}
       >
         <Icon
           icon={"arrow-up"}
@@ -46,29 +39,21 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
           size={18}
           style={{ marginBottom: 1.5 }}
         />
-        <Text style={{ fontSize: 18 }}>{comment.counts.upvotes}</Text>
+        <Text style={styles.headerText}>{comment.counts.upvotes}</Text>
         <Icon
           icon={"arrow-down"}
           color={textColor}
           size={18}
           style={{ marginBottom: 1.5 }}
         />
-        <Text style={{ fontSize: 18 }}>{comment.counts.downvotes}</Text>
+        <Text style={styles.headerText}>{comment.counts.downvotes}</Text>
       </View>
     );
   };
 
   const CommentHeader = () => {
     return (
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          overflow: "hidden",
-        }}
-      >
+      <View style={styles.commentHeader}>
         <CommentHeaderLeft />
         <CommentHeaderRight />
       </View>
@@ -76,17 +61,37 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   };
   const CommentContent = () => {
     return (
-      <Text style={{ fontSize: 15, marginTop: 5 }}>
-        {comment?.comment.content}
-      </Text>
+      <Text style={styles.commentContent}>{comment?.comment.content}</Text>
     );
   };
   return (
     <>
-      <Card style={{ padding: 10 }}>
+      <Card style={styles.comment}>
         <CommentHeader />
         <CommentContent />
       </Card>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  comment: { padding: 10 },
+  commentHeaderRight: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+
+    paddingRight: 3,
+    paddingLeft: 3,
+    borderRadius: 5,
+  },
+  headerText: { fontSize: 18 },
+  commentHeader: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    overflow: "hidden",
+  },
+  commentContent: { fontSize: 15, marginTop: 5 },
+});
