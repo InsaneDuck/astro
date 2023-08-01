@@ -13,10 +13,7 @@ type SwipeButtonProps = {
 
 export const SwipeButton: FC<SwipeButtonProps> = (props) => {
   return (
-    <View
-      onPress={props.onPress}
-      style={[styles.actionStyle, { backgroundColor: props.color }]}
-    >
+    <View style={[styles.actionStyle, { backgroundColor: props.color }]}>
       <Icon icon={props.fontAwesomeIcon} color={"#fff"} />
     </View>
   );

@@ -1,4 +1,4 @@
-import { SwipeableCard } from "@/components/common/Cards/SwipeableCard";
+import { Card } from "@/components/common/Cards/Card";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/themed-components/Text";
 import { View } from "@/components/themed-components/View";
@@ -83,10 +83,10 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   };
   return (
     <>
-      <SwipeableCard style={{ padding: 10 }}>
+      <Card style={{ padding: 10 }}>
         <CommentHeader />
         <CommentContent />
-      </SwipeableCard>
+      </Card>
     </>
   );
 };
