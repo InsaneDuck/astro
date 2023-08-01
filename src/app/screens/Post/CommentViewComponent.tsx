@@ -5,7 +5,7 @@ import { View } from "@/components/themed-components/View";
 import { useThemeColor } from "@/theming/useThemeColor";
 import { CommentView } from "lemmy-js-client";
 import React, { FC } from "react";
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 type CommentViewComponentProps = {
   comment: CommentView;
@@ -18,13 +18,42 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
 
   const CommentHeaderLeft = () => {
     return (
-      <Text
+      <TouchableOpacity
         style={{
-          fontSize: 18,
+          backgroundColor: borderColor,
+          borderRadius: 5,
+          padding: 3,
+          paddingLeft: 6,
+          paddingRight: 6,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
         }}
       >
-        {comment?.creator.name}
-      </Text>
+        {comment.creator.avatar ? (
+          <Image
+            source={{ uri: comment.creator.avatar }}
+            width={20}
+            height={20}
+            style={{ borderRadius: 5 }}
+          />
+        ) : (
+          <Icon
+            icon={"user"}
+            color={textColor}
+            size={18}
+            style={{ marginBottom: 1.5 }}
+          />
+        )}
+        <Text
+          style={{
+            fontSize: 18,
+            marginLeft: 5,
+          }}
+        >
+          {comment?.creator.name}
+        </Text>
+      </TouchableOpacity>
     );
   };
 
@@ -80,9 +109,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-
-    paddingRight: 3,
-    paddingLeft: 3,
+    padding: 3,
     borderRadius: 5,
   },
   headerText: { fontSize: 18 },

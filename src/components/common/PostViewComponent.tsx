@@ -10,7 +10,7 @@ import { useThemeColor } from "@/theming/useThemeColor";
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC, useCallback } from "react";
-import { Image, Pressable, StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
 type PostViewComponentProps = {
@@ -63,7 +63,8 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
         postView.post?.thumbnail_url && (
           <Pressable onPress={onImagePress}>
             <Image
-              style={{ width: "100%", height: 200 }}
+              style={{ width: "100%" }}
+              height={300}
               source={{ uri: postView.post.thumbnail_url }}
             />
           </Pressable>
@@ -96,8 +97,76 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const PostFooter = () => {
       return (
         <View style={styles.postFooter}>
-          <Text style={styles.footerText}>in {postView.community.name}</Text>
-          <Text style={styles.footerText}>by {postView.creator.name}</Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: borderColor,
+              borderRadius: 5,
+              padding: 3,
+              paddingLeft: 6,
+              paddingRight: 6,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            {postView.creator.avatar ? (
+              <Image
+                source={{ uri: postView.community.icon }}
+                style={{ borderRadius: 5, width: 20, height: 20 }}
+              />
+            ) : (
+              <Icon
+                icon={"user"}
+                color={textColor}
+                size={18}
+                style={{ marginBottom: 1.5 }}
+              />
+            )}
+            <Text
+              style={{
+                fontSize: 18,
+                marginLeft: 5,
+              }}
+            >
+              {postView?.community.name}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: borderColor,
+              borderRadius: 5,
+              padding: 3,
+              paddingLeft: 6,
+              paddingRight: 6,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            {postView.creator.avatar ? (
+              <Image
+                source={{ uri: postView.creator.avatar }}
+                width={20}
+                height={20}
+                style={{ borderRadius: 5 }}
+              />
+            ) : (
+              <Icon
+                icon={"user"}
+                color={textColor}
+                size={18}
+                style={{ marginBottom: 1.5 }}
+              />
+            )}
+            <Text
+              style={{
+                fontSize: 18,
+                marginLeft: 5,
+              }}
+            >
+              {postView?.creator.name}
+            </Text>
+          </TouchableOpacity>
         </View>
       );
     };
