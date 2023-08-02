@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+
     width: "100%",
   },
   userActions: {
