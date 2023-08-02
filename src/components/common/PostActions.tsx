@@ -4,6 +4,7 @@ import { View } from "@/components/themed-components/View";
 import { useThemeColor } from "@/theming/useThemeColor";
 import { PostAggregates } from "lemmy-js-client";
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 
 type PostActionsProps = {
   postAggregates: PostAggregates;
@@ -18,19 +19,17 @@ export const PostActions: FC<PostActionsProps> = (props) => {
       style={{
         display: "flex",
         flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-around",
-        backgroundColor: borderColor,
+        width: "100%",
         height: 42,
       }}
     >
       <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          backgroundColor: borderColor,
-        }}
+        style={[
+          {
+            backgroundColor: borderColor,
+          },
+          styles.perView,
+        ]}
       >
         <Icon
           icon={"arrow-up"}
@@ -38,46 +37,69 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           size={20}
           style={{ marginBottom: 1.5 }}
         />
-        <Text style={{ fontSize: 23 }}>
+        <Text style={{ fontSize: 18 }}>
           {postAggregates.upvotes < 1000
             ? postAggregates.upvotes
             : (postAggregates.upvotes / 1000).toFixed(1) + "K"}
         </Text>
       </View>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          backgroundColor: borderColor,
-        }}
-      >
+      <View style={[styles.perView]}>
         <Icon
           icon={"arrow-down"}
           color={textColor}
           size={20}
           style={{ marginBottom: 1.5 }}
         />
-        <Text style={{ fontSize: 23 }}>{postAggregates.downvotes}</Text>
+        <Text style={{ fontSize: 18 }}>{postAggregates.downvotes}</Text>
       </View>
-      <Icon
-        icon={"bookmark"}
-        color={textColor}
-        size={20}
-        style={{ marginBottom: 1.5 }}
-      />
-      <Icon
-        icon={"reply"}
-        color={textColor}
-        size={20}
-        style={{ marginBottom: 1.5 }}
-      />
-      <Icon
-        icon={"ellipsis"}
-        color={textColor}
-        size={20}
-        style={{ marginBottom: 1.5 }}
-      />
+      <View
+        style={[
+          {
+            backgroundColor: borderColor,
+          },
+          styles.perView,
+        ]}
+      >
+        <Icon
+          icon={"bookmark"}
+          color={textColor}
+          size={20}
+          style={{ marginBottom: 1.5 }}
+        />
+      </View>
+      <View style={[styles.perView]}>
+        <Icon
+          icon={"reply"}
+          color={textColor}
+          size={20}
+          style={{ marginBottom: 1.5 }}
+        />
+      </View>
+      <View
+        style={[
+          {
+            backgroundColor: borderColor,
+          },
+          styles.perView,
+        ]}
+      >
+        <Icon
+          icon={"ellipsis"}
+          color={textColor}
+          size={20}
+          style={{ marginBottom: 1.5 }}
+        />
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  perView: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "20%",
+  },
+});
