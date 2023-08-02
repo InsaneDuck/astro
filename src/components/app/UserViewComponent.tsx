@@ -45,7 +45,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   };
   const UserAvatar = () => {
     return (
-      <View style={styles.userAvatar}>
+      <View style={[styles.userAvatar, { borderColor: borderColor }]}>
         {user?.avatar ? (
           <Image
             source={{ uri: user.avatar }}
