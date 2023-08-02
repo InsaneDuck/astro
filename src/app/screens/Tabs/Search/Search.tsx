@@ -22,7 +22,7 @@ const Temp = () => {
     <View style={styles.container}>
       <TextInput
         style={[styles.searchInput, { backgroundColor: color }]}
-        placeholder={"Search for a User, Post or Community"}
+        placeholder={"Search for a UserViewComponent, Post or Community"}
         clearButtonMode={"always"}
       />
     </View>

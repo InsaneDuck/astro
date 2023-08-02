@@ -25,4 +25,6 @@ export const ConstantColors = {
   downVote: "#fd7e14",
   reply: "#6610f2",
   save: "#198754",
+  iosBlue: "#007AFF",
+  iosRed: "#FF3B30",
 };

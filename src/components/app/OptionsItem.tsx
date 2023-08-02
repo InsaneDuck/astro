@@ -8,7 +8,7 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 
 type OptionsItemProps = {
   title: string;
-  icon: IconProp;
+  icon?: IconProp;
 } & ClickProps;
 
 export const OptionsItem: FC<OptionsItemProps> = (props) => {
@@ -21,12 +21,14 @@ export const OptionsItem: FC<OptionsItemProps> = (props) => {
       style={[styles.touchable, { backgroundColor: colorScheme }]}
     >
       <Text style={styles.text}>
-        <Icon
-          icon={props.icon}
-          style={styles.iconStyle}
-          color={textColor}
-          size={11}
-        />
+        {props.icon && (
+          <Icon
+            icon={props.icon}
+            style={styles.iconStyle}
+            color={textColor}
+            size={11}
+          />
+        )}
         {props.title}
       </Text>
       <Icon icon={"chevron-right"} color={textColor} size={15} />
