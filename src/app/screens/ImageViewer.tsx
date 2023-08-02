@@ -1,4 +1,4 @@
-import { View } from "@/components/themed-components/View";
+import { View } from "@/components/common/View";
 import { RootState } from "@/store/store";
 import React, { FC } from "react";
 import { Dimensions, Image } from "react-native";

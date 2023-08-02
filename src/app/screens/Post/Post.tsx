@@ -1,6 +1,6 @@
 import { CommentsSection } from "@/app/screens/Post/CommentsSection";
 import { Loading } from "@/components/common/Loading";
-import { View } from "@/components/themed-components/View";
+import { View } from "@/components/common/View";
 import { RootState } from "@/store/store";
 import React, { FC } from "react";
 import { useSelector } from "react-redux";

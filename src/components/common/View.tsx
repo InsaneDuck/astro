@@ -1,4 +1,4 @@
-import { useThemeColor } from "@/theming/useThemeColor";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import React, { FC } from "react";
 import { View as DefaultView } from "react-native";
 

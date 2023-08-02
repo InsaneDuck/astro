@@ -1,6 +1,6 @@
+import { PostViewComponent } from "@/components/app/PostViewComponent";
 import { SwipeableCard } from "@/components/common/Cards/SwipeableCard";
-import { PostViewComponent } from "@/components/common/PostViewComponent";
-import { Text } from "@/components/themed-components/Text";
+import { Text } from "@/components/common/Text";
 import { RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";

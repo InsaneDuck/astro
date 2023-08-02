@@ -1,9 +1,9 @@
 import { Icon } from "@/components/common/Icon";
-import { Text } from "@/components/themed-components/Text";
+import { Text } from "@/components/common/Text";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import { MainNavigation, MainRoutes } from "@/constants/Navigation";
 import { AppDispatch } from "@/store/store";
 import { userActions } from "@/store/user-slice";
-import { useThemeColor } from "@/theming/useThemeColor";
 import { useNavigation } from "@react-navigation/core";
 import { Person } from "lemmy-js-client";
 import React, { FC } from "react";

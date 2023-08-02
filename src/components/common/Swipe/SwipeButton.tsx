@@ -1,6 +1,6 @@
 import { Icon } from "@/components/common/Icon";
-import { View } from "@/components/themed-components/View";
-import { Press } from "@/theming/Themed";
+import { View } from "@/components/common/View";
+import { Press } from "@/components/theming/Themed";
 
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";

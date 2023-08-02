@@ -1,5 +1,5 @@
-import { SettingsItem } from "@/app/screens/Tabs/Settings/SettingsItem";
-import { View } from "@/components/themed-components/View";
+import { OptionsItem } from "@/components/app/OptionsItem";
+import { View } from "@/components/common/View";
 import { SettingsNavigation, SettingsRoutes } from "@/constants/Navigation";
 import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
@@ -12,22 +12,22 @@ export const Settings: FC<SettingsProps> = () => {
   return (
     <>
       <View style={styles.container}>
-        <SettingsItem icon={"info-circle"} title={"General"} />
-        <SettingsItem
+        <OptionsItem icon={"info-circle"} title={"General"} />
+        <OptionsItem
           icon={"palette"}
           title={"Appearance"}
           onPress={() => navigation.navigate(SettingsRoutes.Appearance)}
         />
-        <SettingsItem icon={"filter"} title={"Filters"} />
-        <SettingsItem title={"Face ID & Passcode"} icon={"lock"} />
-        <SettingsItem title={"Accounts"} icon={"user"} />
-        <SettingsItem icon={"file-export"} title={"Export/Import"} />
+        <OptionsItem icon={"filter"} title={"Filters"} />
+        <OptionsItem title={"Face ID & Passcode"} icon={"lock"} />
+        <OptionsItem title={"Accounts"} icon={"user"} />
+        <OptionsItem icon={"file-export"} title={"Export/Import"} />
       </View>
 
       <View style={styles.container}>
-        <SettingsItem icon={"info-circle"} title={"About"} />
-        <SettingsItem icon={"star"} title={"Rate"} />
-        <SettingsItem icon={"dollar"} title={"Tip"} />
+        <OptionsItem icon={"info-circle"} title={"About"} />
+        <OptionsItem icon={"star"} title={"Rate"} />
+        <OptionsItem icon={"dollar"} title={"Tip"} />
       </View>
     </>
   );

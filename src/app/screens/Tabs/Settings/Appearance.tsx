@@ -1,4 +1,4 @@
-import { Text } from "@/components/themed-components/Text";
+import { Text } from "@/components/common/Text";
 import React, { FC } from "react";
 
 type AppearanceProps = {};

@@ -1,9 +1,9 @@
 import { CommentThread } from "@/app/screens/Post/CommentThread";
-import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
-import { View } from "@/components/themed-components/View";
+import { Separator } from "@/components/app/Separator";
+import { View } from "@/components/common/View";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import { fetchComments } from "@/store/comments-slice";
 import { AppDispatch, RootState } from "@/store/store";
-import { useThemeColor } from "@/theming/useThemeColor";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC, useCallback, useEffect } from "react";
 import {
@@ -57,7 +57,7 @@ export const Search: FC<SearchProps> = () => {
           data={allComments?.ids}
           keyExtractor={keyExtractor}
           renderItem={commentItem}
-          ItemSeparatorComponent={FeedSeparator}
+          ItemSeparatorComponent={Separator}
           onEndReachedThreshold={0.01}
           refreshing={loading === "pending"}
         />

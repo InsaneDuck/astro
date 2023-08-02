@@ -1,4 +1,4 @@
-import { Press } from "@/theming/Themed";
+import { Press } from "@/components/theming/Themed";
 import React, { FC, useEffect, useState } from "react";
 import { Dimensions, Image as DefaultImage, Pressable } from "react-native";
 

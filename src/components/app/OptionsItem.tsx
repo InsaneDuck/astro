@@ -1,17 +1,17 @@
 import { Icon } from "@/components/common/Icon";
-import { Text } from "@/components/themed-components/Text";
-import { ClickProps } from "@/theming/Themed";
-import { useThemeColor } from "@/theming/useThemeColor";
+import { Text } from "@/components/common/Text";
+import { ClickProps } from "@/components/theming/Themed";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import React, { FC } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-type SettingsItemProps = {
+type OptionsItemProps = {
   title: string;
   icon: IconProp;
 } & ClickProps;
 
-export const SettingsItem: FC<SettingsItemProps> = (props) => {
+export const OptionsItem: FC<OptionsItemProps> = (props) => {
   const colorScheme = useThemeColor("borderColor");
   const textColor = useThemeColor("text");
 

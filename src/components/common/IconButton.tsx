@@ -1,5 +1,5 @@
-import { Press } from "@/theming/Themed";
-import { useThemeColor } from "@/theming/useThemeColor";
+import { Press } from "@/components/theming/Themed";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import React, { FC } from "react";

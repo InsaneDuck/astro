@@ -1,5 +1,6 @@
 import { FeedList } from "@/app/screens/Tabs/Feed/FeedList";
-import { View } from "@/components/themed-components/View";
+import { Loading } from "@/components/common/Loading";
+import { View } from "@/components/common/View";
 import { fetchPosts } from "@/store/feed-slice";
 import { AppDispatch } from "@/store/store";
 
@@ -18,12 +19,20 @@ export const Feed: FC<FeedProps> = () => {
     setLoading(false);
   }, [dispatch]);
 
-  return <View style={styles.container}>{!loading && <FeedList />}</View>;
+  return (
+    <View style={loading ? styles.loading : styles.container}>
+      {loading ? <Loading /> : <FeedList />}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
+  },
+  loading: {
+    flex: 1,
+    justifyContent: "center",
   },
 });

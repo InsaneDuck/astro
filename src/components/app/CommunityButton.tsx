@@ -1,6 +1,6 @@
 import { Icon } from "@/components/common/Icon";
-import { Text } from "@/components/themed-components/Text";
-import { useThemeColor } from "@/theming/useThemeColor";
+import { Text } from "@/components/common/Text";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import { Community } from "lemmy-js-client";
 import React, { FC } from "react";
 import { Image, TouchableOpacity } from "react-native";

@@ -2,8 +2,9 @@ import { Error } from "@/app/screens/Error";
 import { ImageViewer } from "@/app/screens/ImageViewer";
 import { Modal } from "@/app/screens/Modal";
 import { Post } from "@/app/screens/Post/Post";
+import { TabLayout } from "@/app/screens/Tabs/TabLayout";
 import { UserScreen } from "@/app/screens/UserScreen";
-import { Tabs } from "@/app/Tabs";
+import { ImageViewerButtons } from "@/components/common/ImageViewerButtons";
 import { MainRoutes, MainRouteType } from "@/constants/Navigation";
 import { store } from "@/store/store";
 import {
@@ -31,7 +32,7 @@ export const MainStackLayout: FC<LayoutProps> = () => {
           <MainStack.Navigator initialRouteName={MainRoutes.Home}>
             <MainStack.Screen
               name={MainRoutes.Home}
-              children={Tabs}
+              children={TabLayout}
               options={{
                 headerShown: false,
               }}
@@ -55,8 +56,9 @@ export const MainStackLayout: FC<LayoutProps> = () => {
               name={MainRoutes.ImageViewer}
               children={ImageViewer}
               options={{
-                title: "ImageViewer",
                 presentation: "card",
+                title: "",
+                headerRight: (props) => <ImageViewerButtons />,
               }}
             />
             <MainStack.Screen

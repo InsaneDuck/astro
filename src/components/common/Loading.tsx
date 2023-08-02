@@ -1,8 +1,10 @@
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import React, { FC } from "react";
 import { ActivityIndicator } from "react-native";
 
-type LoadingProps = {};
+type LoadingProps = {} & ActivityIndicator["props"];
 
 export const Loading: FC<LoadingProps> = (props) => {
-  return <ActivityIndicator size="large" color="#000" />;
+  const color = useThemeColor("tabIconDefault");
+  return <ActivityIndicator size="large" color={color} {...props} />;
 };

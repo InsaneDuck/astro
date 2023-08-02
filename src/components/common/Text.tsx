@@ -1,4 +1,4 @@
-import { useThemeColor } from "@/theming/useThemeColor";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import React, { FC, memo } from "react";
 import { Text as DefaultText } from "react-native";
 

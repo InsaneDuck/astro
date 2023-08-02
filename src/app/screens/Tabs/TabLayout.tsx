@@ -6,27 +6,15 @@ import { Search } from "@/app/screens/Tabs/Search/Search";
 import { Settings } from "@/app/screens/Tabs/Settings/Settings";
 import { SettingsStackLayout } from "@/app/screens/Tabs/Settings/SettingsStackLayout";
 import { Icon } from "@/components/common/Icon";
-import { IconButton } from "@/components/common/IconButton";
-import { MainNavigation, MainRoutes } from "@/constants/Navigation";
 
-import { useThemeColor } from "@/theming/useThemeColor";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
 
-type TabsProps = {};
+type TabsLayoutProps = {};
 const Tab = createBottomTabNavigator();
-export const Tabs: FC<TabsProps> = () => {
+export const TabLayout: FC<TabsLayoutProps> = () => {
   const colorScheme = useThemeColor("tint");
-  //todo remove this boi
-  const feedHeaderRight = () => {
-    const navigation = useNavigation<MainNavigation>();
-    const pressed = () => {
-      navigation.navigate(MainRoutes.Modal);
-    };
-
-    return <IconButton onPress={pressed} name={"info-circle"} />;
-  };
 
   return (
     <Tab.Navigator

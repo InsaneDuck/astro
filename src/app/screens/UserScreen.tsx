@@ -1,4 +1,4 @@
-import { User } from "@/components/common/User";
+import { User } from "@/components/app/User";
 import React, { FC } from "react";
 
 type UserScreenProps = {};

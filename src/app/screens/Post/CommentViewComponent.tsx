@@ -1,9 +1,9 @@
+import { UserButton } from "@/components/app/UserButton";
 import { Card } from "@/components/common/Cards/Card";
 import { Icon } from "@/components/common/Icon";
-import { UserButton } from "@/components/common/UserButton";
-import { Text } from "@/components/themed-components/Text";
-import { View } from "@/components/themed-components/View";
-import { useThemeColor } from "@/theming/useThemeColor";
+import { Text } from "@/components/common/Text";
+import { View } from "@/components/common/View";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import { CommentView } from "lemmy-js-client";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";

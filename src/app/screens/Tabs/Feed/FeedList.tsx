@@ -1,5 +1,5 @@
 import { FeedCard } from "@/app/screens/Tabs/Feed/FeedCard";
-import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
+import { Separator } from "@/components/app/Separator";
 import { Loading } from "@/components/common/Loading";
 import { fetchPosts } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
@@ -50,7 +50,7 @@ export const FeedList: FC<FeedListProps> = (props) => {
           data={feed?.ids}
           keyExtractor={keyExtractor}
           renderItem={feedItem}
-          ItemSeparatorComponent={FeedSeparator}
+          ItemSeparatorComponent={Separator}
           onEndReachedThreshold={0.01}
           onEndReached={endOfLine}
           refreshing={loading === "pending"}

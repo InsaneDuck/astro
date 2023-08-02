@@ -2,10 +2,24 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Person } from "lemmy-js-client";
 
 export type UserState = {
-  currentUser?: Person;
+  currentUser: Person;
 };
 
-const initialState: UserState = {};
+const initialState: UserState = {
+  currentUser: {
+    id: 0,
+    name: "",
+    banned: false,
+    published: "",
+    actor_id: "",
+    local: false,
+    deleted: false,
+    inbox_url: "",
+    admin: false,
+    bot_account: false,
+    instance_id: 0,
+  },
+};
 
 export const userSlice = createSlice({
   name: "user",

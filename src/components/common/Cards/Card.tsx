@@ -1,4 +1,4 @@
-import { View, ViewProps } from "@/components/themed-components/View";
+import { View, ViewProps } from "@/components/common/View";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 

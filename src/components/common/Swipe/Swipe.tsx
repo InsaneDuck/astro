@@ -1,7 +1,8 @@
 import { SwipeButton } from "@/components/common/Swipe/SwipeButton";
-import { View } from "@/components/themed-components/View";
-import Colors from "@/constants/Colors";
-import { Press } from "@/theming/Themed";
+import { View } from "@/components/common/View";
+import { ConstantColors } from "@/components/theming/Colors";
+
+import { Press } from "@/components/theming/Themed";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 import {
@@ -25,13 +26,13 @@ export const Swipe: FC<SwipeProps> = (props) => {
         <SwipeButton
           key={"reply"}
           onPress={reply}
-          color={Colors.reply}
+          color={ConstantColors.reply}
           fontAwesomeIcon={"reply"}
         />
         <SwipeButton
           key={"bookmark"}
           onPress={save}
-          color={Colors.save}
+          color={ConstantColors.save}
           fontAwesomeIcon={"bookmark"}
         />
       </View>
@@ -43,13 +44,13 @@ export const Swipe: FC<SwipeProps> = (props) => {
         <SwipeButton
           key={"arrow-up"}
           onPress={upVote}
-          color={Colors.upVote}
+          color={ConstantColors.upVote}
           fontAwesomeIcon={"arrow-up"}
         />
         <SwipeButton
           key={"arrow-down"}
           onPress={downVote}
-          color={Colors.downVote}
+          color={ConstantColors.downVote}
           fontAwesomeIcon={"arrow-down"}
         />
       </View>

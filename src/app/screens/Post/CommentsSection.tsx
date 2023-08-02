@@ -1,7 +1,7 @@
 import { CommentThread } from "@/app/screens/Post/CommentThread";
-import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
+import { PostViewComponent } from "@/components/app/PostViewComponent";
+import { Separator } from "@/components/app/Separator";
 import { Card } from "@/components/common/Cards/Card";
-import { PostViewComponent } from "@/components/common/PostViewComponent";
 import { fetchComments } from "@/store/comments-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
@@ -64,7 +64,7 @@ export const CommentsSection: FC<CommentsSectionProps> = React.memo((props) => {
       renderItem={commentItem}
       estimatedItemSize={99}
       ListHeaderComponent={PostHeader}
-      ItemSeparatorComponent={FeedSeparator}
+      ItemSeparatorComponent={Separator}
       onEndReached={endOfLine}
       refreshing={loading === "pending"}
     />

@@ -1,5 +1,5 @@
-import { Text } from "@/components/themed-components/Text";
-import { View } from "@/components/themed-components/View";
+import { Text } from "@/components/common/Text";
+import { View } from "@/components/common/View";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { FC } from "react";

@@ -1,17 +1,22 @@
-import { View } from "@/components/themed-components/View";
+import { Loading } from "@/components/common/Loading";
+import { View } from "@/components/common/View";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
 type InboxProps = {};
 
 export const Inbox: FC<InboxProps> = () => {
-  return <View style={styles.container}></View>;
+  return (
+    <View style={[styles.container]}>
+      <Loading />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    justifyContent: "center",
     width: "100%",
     height: "100%",
   },

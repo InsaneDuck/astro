@@ -1,15 +1,15 @@
-import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
-import { CommunityButton } from "@/components/common/CommunityButton";
+import { CommunityButton } from "@/components/app/CommunityButton";
+import { PostActions } from "@/components/app/PostActions";
+import { Separator } from "@/components/app/Separator";
+import { UserButton } from "@/components/app/UserButton";
 import { Icon } from "@/components/common/Icon";
-import { PostActions } from "@/components/common/PostActions";
-import { UserButton } from "@/components/common/UserButton";
-import { Text } from "@/components/themed-components/Text";
-import { View } from "@/components/themed-components/View";
+import { Text } from "@/components/common/Text";
+import { View } from "@/components/common/View";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 import { MainNavigation, MainRoutes } from "@/constants/Navigation";
 import { feedActions } from "@/store/feed-slice";
 import { imageActions } from "@/store/image-slice";
 import { AppDispatch } from "@/store/store";
-import { useThemeColor } from "@/theming/useThemeColor";
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC, useCallback } from "react";
@@ -47,7 +47,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       }
     };
 
-    const onTitlePress = useCallback((): any => {
+    const goToPost = useCallback((): any => {
       if (type === "feed") {
         postView && dispatch(feedActions.setCurrentPost(postView.post.id));
         navigation.navigate(MainRoutes.Post);
@@ -57,7 +57,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     //todo change shade of title after post is marked as read
     const PostTitle = () => {
       return (
-        <Text onPress={onTitlePress} style={styles.postTitle}>
+        <Text onPress={goToPost} style={styles.postTitle}>
           {postView.post.name}
         </Text>
       );
@@ -81,7 +81,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const PostEmbedDescription = () => {
       return (
         postView.post.embed_description && (
-          <Text style={styles.postEmbedDescription}>
+          <Text onPress={goToPost} style={styles.postEmbedDescription}>
             {postView.post.embed_description}
           </Text>
         )
@@ -138,7 +138,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
               style={{ marginBottom: 1.5 }}
             />
           </View>
-          <FeedSeparator />
+          <Separator />
         </>
       );
     };
