@@ -8,7 +8,7 @@ import { useThemeColor } from "@/components/theming/useThemeColor";
 import { RootState } from "@/store/store";
 import moment from "moment";
 import React, { FC } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
 type UserViewComponentProps = {};
@@ -32,7 +32,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
       <View
         style={{
           width: "100%",
-          height: "30%",
+          height: 200,
           overflow: "hidden",
         }}
       >
@@ -130,16 +130,18 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
       </View>
     );
   };
-
+  //todo fix scrollview
   return (
     user && (
-      <View style={styles.container}>
-        {user.banner && <UserBanner />}
-        <DisplayName />
-        <UserHeader />
-        <Description />
-        <UserFooter />
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          {user.banner && <UserBanner />}
+          <DisplayName />
+          <UserHeader />
+          <Description />
+          <UserFooter />
+        </View>
+      </ScrollView>
     )
   );
 };
@@ -172,8 +174,8 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     alignItems: "center",
-
     width: "100%",
+    marginBottom: 50,
   },
   userActions: {
     display: "flex",
