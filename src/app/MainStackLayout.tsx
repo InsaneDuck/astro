@@ -2,6 +2,7 @@ import { Error } from "@/app/screens/Error";
 import { ImageViewer } from "@/app/screens/ImageViewer";
 import { Modal } from "@/app/screens/Modal";
 import { Post } from "@/app/screens/Post/Post";
+import { UserScreen } from "@/app/screens/UserScreen";
 import { Tabs } from "@/app/Tabs";
 import { MainRoutes, MainRouteType } from "@/constants/Navigation";
 import { store } from "@/store/store";
@@ -57,6 +58,11 @@ export const MainStackLayout: FC<LayoutProps> = () => {
                 title: "ImageViewer",
                 presentation: "card",
               }}
+            />
+            <MainStack.Screen
+              name={MainRoutes.User}
+              children={UserScreen}
+              options={{ title: "User" }}
             />
           </MainStack.Navigator>
         </NavigationContainer>

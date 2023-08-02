@@ -6,6 +6,7 @@ export const MainRoutes = {
   Error: "Error",
   Modal: "Modal",
   ImageViewer: "ImageViewer",
+  User: "User",
 };
 
 export const MainRoutesList = Object.values(MainRoutes);

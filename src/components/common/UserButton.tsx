@@ -1,9 +1,14 @@
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/themed-components/Text";
+import { MainNavigation, MainRoutes } from "@/constants/Navigation";
+import { AppDispatch } from "@/store/store";
+import { userActions } from "@/store/user-slice";
 import { useThemeColor } from "@/theming/useThemeColor";
+import { useNavigation } from "@react-navigation/core";
 import { Person } from "lemmy-js-client";
 import React, { FC } from "react";
 import { Image, TouchableOpacity } from "react-native";
+import { useDispatch } from "react-redux";
 
 type UserButtonProps = {
   creator: Person;
@@ -14,8 +19,15 @@ export const UserButton: FC<UserButtonProps> = (props) => {
   const { creator } = props;
   const textColor = useThemeColor("text");
   const borderColor = useThemeColor("borderColor");
+  const navigation = useNavigation<MainNavigation>();
+  const dispatch = useDispatch<AppDispatch>();
+  const goToUser = (): any => {
+    dispatch(userActions.setUser(creator));
+    navigation.navigate(MainRoutes.User);
+  };
   return (
     <TouchableOpacity
+      onPress={goToUser}
       style={{
         backgroundColor: borderColor,
         borderRadius: 5,

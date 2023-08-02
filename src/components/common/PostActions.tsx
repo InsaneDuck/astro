@@ -1,3 +1,4 @@
+import { FeedSeparator } from "@/app/screens/Tabs/Feed/FeedSeparator";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/themed-components/Text";
 import { View } from "@/components/themed-components/View";
@@ -15,82 +16,86 @@ export const PostActions: FC<PostActionsProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
   const textColor = useThemeColor("text");
   return (
-    <View
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100%",
-        height: 42,
-      }}
-    >
+    <>
+      <FeedSeparator />
       <View
-        style={[
-          {
-            backgroundColor: borderColor,
-          },
-          styles.perView,
-        ]}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
+          height: 42,
+        }}
       >
-        <Icon
-          icon={"arrow-up"}
-          color={textColor}
-          size={20}
-          style={{ marginBottom: 1.5 }}
-        />
-        <Text style={{ fontSize: 18 }}>
-          {postAggregates.upvotes < 1000
-            ? postAggregates.upvotes
-            : (postAggregates.upvotes / 1000).toFixed(1) + "K"}
-        </Text>
+        <View
+          style={[
+            {
+              backgroundColor: borderColor,
+            },
+            styles.perView,
+          ]}
+        >
+          <Icon
+            icon={"arrow-up"}
+            color={textColor}
+            size={20}
+            style={{ marginBottom: 1.5 }}
+          />
+          <Text style={{ fontSize: 18 }}>
+            {postAggregates.upvotes < 1000
+              ? postAggregates.upvotes
+              : (postAggregates.upvotes / 1000).toFixed(1) + "K"}
+          </Text>
+        </View>
+        <View style={[styles.perView]}>
+          <Icon
+            icon={"arrow-down"}
+            color={textColor}
+            size={20}
+            style={{ marginBottom: 1.5 }}
+          />
+          <Text style={{ fontSize: 18 }}>{postAggregates.downvotes}</Text>
+        </View>
+        <View
+          style={[
+            {
+              backgroundColor: borderColor,
+            },
+            styles.perView,
+          ]}
+        >
+          <Icon
+            icon={"bookmark"}
+            color={textColor}
+            size={20}
+            style={{ marginBottom: 1.5 }}
+          />
+        </View>
+        <View style={[styles.perView]}>
+          <Icon
+            icon={"reply"}
+            color={textColor}
+            size={20}
+            style={{ marginBottom: 1.5 }}
+          />
+        </View>
+        <View
+          style={[
+            {
+              backgroundColor: borderColor,
+            },
+            styles.perView,
+          ]}
+        >
+          <Icon
+            icon={"ellipsis"}
+            color={textColor}
+            size={20}
+            style={{ marginBottom: 1.5 }}
+          />
+        </View>
       </View>
-      <View style={[styles.perView]}>
-        <Icon
-          icon={"arrow-down"}
-          color={textColor}
-          size={20}
-          style={{ marginBottom: 1.5 }}
-        />
-        <Text style={{ fontSize: 18 }}>{postAggregates.downvotes}</Text>
-      </View>
-      <View
-        style={[
-          {
-            backgroundColor: borderColor,
-          },
-          styles.perView,
-        ]}
-      >
-        <Icon
-          icon={"bookmark"}
-          color={textColor}
-          size={20}
-          style={{ marginBottom: 1.5 }}
-        />
-      </View>
-      <View style={[styles.perView]}>
-        <Icon
-          icon={"reply"}
-          color={textColor}
-          size={20}
-          style={{ marginBottom: 1.5 }}
-        />
-      </View>
-      <View
-        style={[
-          {
-            backgroundColor: borderColor,
-          },
-          styles.perView,
-        ]}
-      >
-        <Icon
-          icon={"ellipsis"}
-          color={textColor}
-          size={20}
-          style={{ marginBottom: 1.5 }}
-        />
-      </View>
-    </View>
+      <FeedSeparator />
+    </>
   );
 };
 
