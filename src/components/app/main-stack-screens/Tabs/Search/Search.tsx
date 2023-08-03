@@ -1,4 +1,4 @@
-import { CommentThread } from "@/app/screens/Post/CommentThread";
+import { CommentThread } from "@/components/app/main-stack-screens/Post/CommentThread";
 import { Separator } from "@/components/app/Separator";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";

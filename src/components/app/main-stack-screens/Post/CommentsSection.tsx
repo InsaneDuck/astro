@@ -1,4 +1,4 @@
-import { CommentThread } from "@/app/screens/Post/CommentThread";
+import { CommentThread } from "@/components/app/main-stack-screens/Post/CommentThread";
 import { PostViewComponent } from "@/components/app/PostViewComponent";
 import { Separator } from "@/components/app/Separator";
 import { Card } from "@/components/common/Cards/Card";

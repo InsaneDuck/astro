@@ -1,4 +1,4 @@
-import { MainStackLayout } from "@/app/screens/MainStackLayout";
+import { MainStackLayout } from "@/router/MainStackLayout";
 import { registerRootComponent } from "expo";
 import React from "react";
 

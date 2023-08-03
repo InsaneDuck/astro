@@ -4,7 +4,7 @@
   "private": true,
   "description": "Mobile app for lemmy",
   "author": "InsaneDuck",
-  "main": "src/app/App.tsx",
+  "main": "src/router/App.tsx",
   "scripts": {
     "android": "npx expo run:android",
     "ios": "npx expo run:ios",

@@ -1,4 +1,4 @@
-import { FeedCard } from "@/app/screens/Tabs/Feed/FeedCard";
+import { FeedCard } from "@/components/app/main-stack-screens/Tabs/Feed/FeedCard";
 import { Separator } from "@/components/app/Separator";
 import { Loading } from "@/components/common/Loading";
 import { fetchPosts } from "@/store/feed-slice";

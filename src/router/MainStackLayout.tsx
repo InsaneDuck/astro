@@ -1,11 +1,11 @@
-import { Error } from "@/app/screens/Error";
-import { ImageViewer } from "@/app/screens/ImageViewer";
-import { Modal } from "@/app/screens/Modal";
-import { Post } from "@/app/screens/Post/Post";
-import { TabLayout } from "@/app/screens/Tabs/TabLayout";
-import { UserScreen } from "@/app/screens/UserScreen";
+import { Error } from "@/components/app/main-stack-screens/Error";
+import { ImageViewer } from "@/components/app/main-stack-screens/ImageViewer";
+import { Modal } from "@/components/app/main-stack-screens/Modal";
+import { Post } from "@/components/app/main-stack-screens/Post/Post";
+import { UserScreen } from "@/components/app/main-stack-screens/UserScreen";
 import { ImageViewerButtons } from "@/components/common/ImageViewerButtons";
 import { MainRoutes, MainRouteType } from "@/constants/Navigation";
+import { MainTabLayout } from "@/router/tab-layout/MainTabLayout";
 import { store } from "@/store/store";
 import {
   DarkTheme,
@@ -32,7 +32,7 @@ export const MainStackLayout: FC<LayoutProps> = () => {
           <MainStack.Navigator initialRouteName={MainRoutes.Home}>
             <MainStack.Screen
               name={MainRoutes.Home}
-              children={TabLayout}
+              children={MainTabLayout}
               options={{
                 headerShown: false,
               }}

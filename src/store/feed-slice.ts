@@ -69,7 +69,7 @@ export const fetchPosts = createAsyncThunk<
   console.log("fetching feed, page = ", page);
   const client = getLemmyHttp();
   return await client
-    .getPosts({ page, limit: 50, sort: "MostComments" })
+    .getPosts({ page, limit: 50, sort: "Active" })
     .then((response) => response.posts);
 });
 

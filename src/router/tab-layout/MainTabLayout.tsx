@@ -1,19 +1,19 @@
-import { Feed } from "@/app/screens/Tabs/Feed/Feed";
-import { FeedSorter } from "@/app/screens/Tabs/Feed/FeedSorter";
-import { Inbox } from "@/app/screens/Tabs/Inbox/Inbox";
-import { Profile } from "@/app/screens/Tabs/Profile/Profile";
-import { Search } from "@/app/screens/Tabs/Search/Search";
-import { Settings } from "@/app/screens/Tabs/Settings/Settings";
-import { SettingsStackLayout } from "@/app/screens/Tabs/Settings/SettingsStackLayout";
+import { Feed } from "@/components/app/main-stack-screens/Tabs/Feed/Feed";
+import { FeedSorter } from "@/components/app/main-stack-screens/Tabs/Feed/FeedSorter";
+import { Inbox } from "@/components/app/main-stack-screens/Tabs/Inbox/Inbox";
+import { Profile } from "@/components/app/main-stack-screens/Tabs/Profile/Profile";
+import { Search } from "@/components/app/main-stack-screens/Tabs/Search/Search";
+import { Settings } from "@/components/app/main-stack-screens/Tabs/Settings/Settings";
 import { Icon } from "@/components/common/Icon";
 
 import { useThemeColor } from "@/components/theming/useThemeColor";
+import { SettingsStackLayout } from "@/router/tab-layout/tabs/SettingsStackLayout";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { FC } from "react";
 
 type TabsLayoutProps = {};
 const Tab = createBottomTabNavigator();
-export const TabLayout: FC<TabsLayoutProps> = () => {
+export const MainTabLayout: FC<TabsLayoutProps> = () => {
   const colorScheme = useThemeColor("tint");
 
   return (

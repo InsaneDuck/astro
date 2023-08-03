@@ -1,4 +1,4 @@
-import { FeedList } from "@/app/screens/Tabs/Feed/FeedList";
+import { FeedList } from "@/components/app/main-stack-screens/Tabs/Feed/FeedList";
 import { Loading } from "@/components/common/Loading";
 import { View } from "@/components/common/View";
 import { fetchPosts } from "@/store/feed-slice";

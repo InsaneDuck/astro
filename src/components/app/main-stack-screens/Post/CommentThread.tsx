@@ -1,4 +1,4 @@
-import { CommentViewComponent } from "@/app/screens/Post/CommentViewComponent";
+import { CommentViewComponent } from "@/components/app/main-stack-screens/Post/CommentViewComponent";
 import { RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
