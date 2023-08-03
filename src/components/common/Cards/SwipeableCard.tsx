@@ -1,5 +1,5 @@
 import { Card, CardProps } from "@/components/common/Cards/Card";
-import { Swipe } from "@/components/common/Swipe/Swipe";
+import { Swipe } from "@/components/common/Gestures/Swipe";
 import React, { FC } from "react";
 
 type SwipeableCardProps = {} & CardProps;

@@ -134,7 +134,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   return (
     user && (
       <ScrollView>
-        <View style={styles.container}>
+        <View style={styles.containerSections}>
           {user.banner && <UserBanner />}
           <DisplayName />
           <UserHeader />
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     overflow: "hidden",
   },
-  container: {
+  containerSections: {
     display: "flex",
     alignItems: "center",
     width: "100%",

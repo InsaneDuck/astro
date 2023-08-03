@@ -12,13 +12,16 @@ type OptionsItemProps = {
 } & ClickProps;
 
 export const OptionsItem: FC<OptionsItemProps> = (props) => {
-  const colorScheme = useThemeColor("borderColor");
+  const borderColor = useThemeColor("borderColor");
   const textColor = useThemeColor("text");
-
+  const view = useThemeColor("background");
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      style={[styles.touchable, { backgroundColor: colorScheme }]}
+      style={[
+        styles.touchable,
+        { backgroundColor: borderColor, borderColor: view },
+      ]}
     >
       <Text style={styles.text}>
         {props.icon && (
@@ -50,5 +53,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     borderBottomWidth: 1,
+    borderColor: "transparent",
   },
 });

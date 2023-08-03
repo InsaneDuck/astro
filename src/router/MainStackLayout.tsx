@@ -1,74 +1,70 @@
-import { Error } from "@/components/app/main-stack-screens/Error";
-import { ImageViewer } from "@/components/app/main-stack-screens/ImageViewer";
-import { Modal } from "@/components/app/main-stack-screens/Modal";
-import { Post } from "@/components/app/main-stack-screens/Post/Post";
-import { UserScreen } from "@/components/app/main-stack-screens/UserScreen";
+import { Error } from "@/components/app/screens/Error";
+import { ImageViewer } from "@/components/app/screens/ImageViewer";
+import { Modal } from "@/components/app/screens/Modal";
 import { ImageViewerButtons } from "@/components/common/ImageViewerButtons";
-import { MainRoutes, MainRouteType } from "@/constants/Navigation";
-import { MainTabLayout } from "@/router/tab-layout/MainTabLayout";
-import { store } from "@/store/store";
+import { MainTabLayout } from "@/router/MainTabLayout";
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
   ThemeProvider,
 } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 import React, { FC } from "react";
 import { useColorScheme } from "react-native";
-import { Provider } from "react-redux";
 
 type LayoutProps = {};
 
-const MainStack = createNativeStackNavigator<MainRouteType>();
+export type MainStackParamList = {
+  Home: undefined;
+  Error: undefined;
+  Modal: undefined;
+  ImageViewer: undefined;
+};
+
+export type MainStackNavigation = NativeStackNavigationProp<MainStackParamList>;
+const MainStack = createNativeStackNavigator<MainStackParamList>();
 export const MainStackLayout: FC<LayoutProps> = () => {
+  //todo get from system or from user preferences
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Provider store={store}>
-        <NavigationContainer
-          theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <MainStack.Navigator initialRouteName={MainRoutes.Home}>
-            <MainStack.Screen
-              name={MainRoutes.Home}
-              children={MainTabLayout}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <MainStack.Screen
-              name={MainRoutes.Post}
-              children={Post}
-              options={{ title: "Post" }}
-            />
-            <MainStack.Screen
-              name={MainRoutes.Modal}
-              children={Modal}
-              options={{ title: "Modal", presentation: "modal" }}
-            />
-            <MainStack.Screen
-              name={MainRoutes.Error}
-              children={Error}
-              options={{ title: "Oops!" }}
-            />
-            <MainStack.Screen
-              name={MainRoutes.ImageViewer}
-              children={ImageViewer}
-              options={{
-                presentation: "card",
-                title: "",
-                headerRight: (props) => <ImageViewerButtons />,
-              }}
-            />
-            <MainStack.Screen
-              name={MainRoutes.User}
-              children={UserScreen}
-              options={{ title: "User" }}
-            />
-          </MainStack.Navigator>
-        </NavigationContainer>
-      </Provider>
+      <NavigationContainer
+        theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      >
+        <MainStack.Navigator initialRouteName={"Home"}>
+          <MainStack.Screen
+            name={"Home"}
+            children={MainTabLayout}
+            options={{
+              headerShown: false,
+            }}
+          />
+
+          <MainStack.Screen
+            name={"Modal"}
+            children={Modal}
+            options={{ title: "Modal", presentation: "modal" }}
+          />
+          <MainStack.Screen
+            name={"Error"}
+            children={Error}
+            options={{ title: "Oops!" }}
+          />
+          <MainStack.Screen
+            name={"ImageViewer"}
+            children={ImageViewer}
+            options={{
+              presentation: "card",
+              title: "",
+              headerRight: (props) => <ImageViewerButtons />,
+            }}
+          />
+        </MainStack.Navigator>
+      </NavigationContainer>
     </ThemeProvider>
   );
 };

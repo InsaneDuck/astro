@@ -6,10 +6,12 @@ import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
-import { MainNavigation, MainRoutes } from "@/constants/Navigation";
+import { MainStackNavigation } from "@/router/MainStackLayout";
+import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
 import { feedActions } from "@/store/feed-slice";
 import { imageActions } from "@/store/image-slice";
 import { AppDispatch } from "@/store/store";
+
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC, useCallback } from "react";
@@ -36,21 +38,22 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const borderColor = useThemeColor("borderColor");
     const textColor = useThemeColor("text");
     const tabIconDefault = useThemeColor("tabIconDefault");
-    const navigation = useNavigation<MainNavigation>();
+    const navigation = useNavigation<MainStackNavigation>();
+    const navigationCurrent = useNavigation<FeedStackNavigation>();
     const dispatch = useDispatch<AppDispatch>();
     const onImagePress = (): any => {
       if (postView.post?.thumbnail_url) {
         dispatch(
           imageActions.addImage({ image: [postView.post.thumbnail_url] }),
         );
-        navigation.navigate(MainRoutes.ImageViewer);
+        navigation.navigate("ImageViewer");
       }
     };
 
     const goToPost = useCallback((): any => {
       if (type === "feed") {
         postView && dispatch(feedActions.setCurrentPost(postView.post.id));
-        navigation.navigate(MainRoutes.Post);
+        navigationCurrent.navigate("Post");
       }
     }, [type, postView, dispatch, navigation]);
 

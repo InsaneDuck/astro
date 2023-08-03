@@ -1,9 +1,10 @@
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { useThemeColor } from "@/components/theming/useThemeColor";
-import { MainNavigation, MainRoutes } from "@/constants/Navigation";
+import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
 import { AppDispatch } from "@/store/store";
 import { userActions } from "@/store/user-slice";
+
 import { useNavigation } from "@react-navigation/core";
 import { Person } from "lemmy-js-client";
 import React, { FC } from "react";
@@ -19,11 +20,11 @@ export const UserButton: FC<UserButtonProps> = (props) => {
   const { creator } = props;
   const textColor = useThemeColor("text");
   const borderColor = useThemeColor("borderColor");
-  const navigation = useNavigation<MainNavigation>();
+  const navigation = useNavigation<FeedStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
   const goToUser = (): any => {
     dispatch(userActions.setUser(creator));
-    navigation.navigate(MainRoutes.User);
+    navigation.navigate("User");
   };
   return (
     <TouchableOpacity
