@@ -1,7 +1,7 @@
 import { Error } from "@/components/app/screens/Error";
-import { ImageViewer } from "@/components/app/screens/ImageViewer";
+import { ImageViewer } from "@/components/app/screens/ImageViewer/ImageViewer";
+import { ImageViewerButtons } from "@/components/app/screens/ImageViewer/ImageViewerButtons";
 import { Modal } from "@/components/app/screens/Modal";
-import { ImageViewerButtons } from "@/components/common/ImageViewerButtons";
 import { MainTabLayout } from "@/router/MainTabLayout";
 import {
   DarkTheme,
@@ -38,7 +38,7 @@ export const MainStackLayout: FC<LayoutProps> = () => {
         <MainStack.Navigator initialRouteName={"Home"}>
           <MainStack.Screen
             name={"Home"}
-            children={MainTabLayout}
+            component={MainTabLayout}
             options={{
               headerShown: false,
             }}
@@ -46,17 +46,17 @@ export const MainStackLayout: FC<LayoutProps> = () => {
 
           <MainStack.Screen
             name={"Modal"}
-            children={Modal}
-            options={{ title: "Modal", presentation: "modal" }}
+            component={Modal}
+            options={{ presentation: "modal" }}
           />
           <MainStack.Screen
             name={"Error"}
-            children={Error}
+            component={Error}
             options={{ title: "Oops!" }}
           />
           <MainStack.Screen
             name={"ImageViewer"}
-            children={ImageViewer}
+            component={ImageViewer}
             options={{
               presentation: "card",
               title: "",

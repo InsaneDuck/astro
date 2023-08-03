@@ -1,10 +1,10 @@
-import { Inbox } from "@/components/app/screens/Inbox/Inbox";
-import { Profile } from "@/components/app/screens/Profile/Profile";
-import { Search } from "@/components/app/screens/Search/Search";
 import { Icon } from "@/components/common/Icon";
 
 import { useThemeColor } from "@/components/theming/useThemeColor";
 import { FeedStackLayout } from "@/router/tabs/FeedStackLayout";
+import { InboxStackLayout } from "@/router/tabs/InboxStackLayout";
+import { ProfileStackLayout } from "@/router/tabs/ProfileStackLayout";
+import { SearchStackLayout } from "@/router/tabs/SearchStackLayout";
 import { SettingsStackLayout } from "@/router/tabs/SettingsStackLayout";
 
 import {
@@ -23,62 +23,58 @@ export type MainTabsParamsList = {
 
 export type MainTabsNavigation = BottomTabNavigationProp<MainTabsParamsList>;
 
-const Tab = createBottomTabNavigator<MainTabsParamsList>();
+const Tabs = createBottomTabNavigator<MainTabsParamsList>();
 export const MainTabLayout = () => {
   const colorScheme = useThemeColor("tint");
 
   return (
-    <Tab.Navigator
+    <Tabs.Navigator
       screenOptions={{
         tabBarActiveTintColor: colorScheme,
+        headerShown: false,
       }}
       initialRouteName={"SettingsStack"}
     >
-      <Tab.Screen
+      <Tabs.Screen
         name="FeedStack"
         component={FeedStackLayout}
         options={{
           tabBarLabel: "Feed",
-          headerShown: false,
           tabBarIcon: ({ color }) => <Icon icon="house" color={color} />,
         }}
       />
-      <Tab.Screen
+      <Tabs.Screen
         name="InboxStack"
-        component={Inbox}
+        component={InboxStackLayout}
         options={{
           tabBarLabel: "Inbox",
-          headerShown: false,
           tabBarIcon: ({ color }) => <Icon icon="inbox" color={color} />,
         }}
       />
-      <Tab.Screen
+      <Tabs.Screen
         name="ProfileStack"
-        component={Profile}
+        component={ProfileStackLayout}
         options={{
           tabBarLabel: "Profile",
-          headerShown: false,
           tabBarIcon: ({ color }) => <Icon icon="user" color={color} />,
         }}
       />
-      <Tab.Screen
+      <Tabs.Screen
         name="SearchStack"
-        component={Search}
+        component={SearchStackLayout}
         options={{
           tabBarLabel: "Search",
-          headerShown: false,
           tabBarIcon: ({ color }) => <Icon icon="search" color={color} />,
         }}
       />
-      <Tab.Screen
+      <Tabs.Screen
         name="SettingsStack"
         component={SettingsStackLayout}
         options={{
           tabBarLabel: "Settings",
-          headerShown: false,
           tabBarIcon: ({ color }) => <Icon icon={"gear"} color={color} />,
         }}
       />
-    </Tab.Navigator>
+    </Tabs.Navigator>
   );
 };

@@ -1,7 +1,7 @@
-import { CommunityButton } from "@/components/app/CommunityButton";
+import { CommunityButton } from "@/components/app/Buttons/CommunityButton";
+import { UserButton } from "@/components/app/Buttons/UserButton";
 import { PostActions } from "@/components/app/PostActions";
 import { Separator } from "@/components/app/Separator";
-import { UserButton } from "@/components/app/UserButton";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
@@ -134,12 +134,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
             }}
           >
             <Text style={{ fontSize: 18 }}>Sort By</Text>
-            <Icon
-              icon={"sort"}
-              color={textColor}
-              size={18}
-              style={{ marginBottom: 1.5 }}
-            />
+            <Icon icon={"sort"} color={textColor} size={18} />
           </View>
           <Separator />
         </>

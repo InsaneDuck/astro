@@ -10,7 +10,7 @@ const ErrorStack = createNativeStackNavigator;
 export const Error: FC<ErrorProps> = (props) => {
   return (
     <>
-      <View style={styles.containerSections}>
+      <View style={styles.container}>
         <Text style={styles.title}>This screen doesn't exist.</Text>
       </View>
     </>
@@ -18,7 +18,7 @@ export const Error: FC<ErrorProps> = (props) => {
 };
 
 const styles = StyleSheet.create({
-  containerSections: {
+  container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

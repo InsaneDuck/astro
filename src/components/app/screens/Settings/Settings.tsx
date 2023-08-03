@@ -14,7 +14,7 @@ export const Settings: FC<SettingsProps> = () => {
   const tabIconDefault = useThemeColor("tabIconDefault");
   return (
     <View style={styles.container}>
-      <View style={styles.containerSections}>
+      <View style={styles.innerContainer}>
         <OptionsItem title={"General"} />
         <OptionsItem
           title={"Appearance"}
@@ -26,7 +26,7 @@ export const Settings: FC<SettingsProps> = () => {
         <OptionsItem title={"Export/Import"} />
       </View>
 
-      <View style={styles.containerSections}>
+      <View style={styles.innerContainer}>
         <OptionsItem title={"About"} />
         <OptionsItem title={"Rate"} />
         <OptionsItem title={"Tip"} />
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 
     flex: 1,
   },
-  containerSections: {
+  innerContainer: {
     width: "90%",
     borderRadius: 13,
     marginTop: 20,

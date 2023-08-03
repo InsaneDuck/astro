@@ -12,14 +12,14 @@ export const ImageViewerButtons: FC<ImageViewerButtonsProps> = (props) => {
         icon={"save"}
         color={iconColor}
         size={25}
-        style={{ marginBottom: 1.5, marginLeft: 20 }}
+        style={{ marginLeft: 20 }}
       />
 
       <Icon
         icon={"arrow-up-from-bracket"}
         color={iconColor}
         size={25}
-        style={{ marginBottom: 1.5, marginLeft: 20 }}
+        style={{ marginLeft: 20 }}
       />
     </>
   );

@@ -1,4 +1,4 @@
-import { UserButton } from "@/components/app/UserButton";
+import { UserButton } from "@/components/app/Buttons/UserButton";
 import { Card } from "@/components/common/Cards/Card";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
@@ -26,19 +26,9 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
       <View
         style={[{ backgroundColor: borderColor }, styles.commentHeaderRight]}
       >
-        <Icon
-          icon={"arrow-up"}
-          color={textColor}
-          size={18}
-          style={{ marginBottom: 1.5 }}
-        />
+        <Icon icon={"arrow-up"} color={textColor} size={16} />
         <Text style={styles.headerText}>{comment.counts.upvotes}</Text>
-        <Icon
-          icon={"arrow-down"}
-          color={textColor}
-          size={18}
-          style={{ marginBottom: 1.5 }}
-        />
+        <Icon icon={"arrow-down"} color={textColor} size={16} />
         <Text style={styles.headerText}>{comment.counts.downvotes}</Text>
       </View>
     );
@@ -73,10 +63,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    padding: 2,
+    padding: 3,
     borderRadius: 5,
   },
-  headerText: { fontSize: 20 },
+  headerText: { fontSize: 18 },
   commentHeader: {
     display: "flex",
     flexDirection: "row",

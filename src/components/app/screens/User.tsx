@@ -3,6 +3,6 @@ import React, { FC } from "react";
 
 type UserScreenProps = {};
 
-export const UserScreen: FC<UserScreenProps> = (props) => {
+export const User: FC<UserScreenProps> = (props) => {
   return <UserViewComponent />;
 };

@@ -1,7 +1,7 @@
 import { Feed } from "@/components/app/screens/FeedScreen/Feed";
 import { FeedSorter } from "@/components/app/screens/FeedScreen/FeedSorter";
 import { Post } from "@/components/app/screens/Post/Post";
-import { UserScreen } from "@/components/app/screens/UserScreen";
+import { User } from "@/components/app/screens/User";
 
 import {
   createNativeStackNavigator,
@@ -38,7 +38,7 @@ export const FeedStackLayout = () => {
       />
       <FeedStack.Screen
         name={"User"}
-        children={UserScreen}
+        children={User}
         options={{
           title: "User",
         }}

@@ -24,14 +24,7 @@ export const OptionsItem: FC<OptionsItemProps> = (props) => {
       ]}
     >
       <Text style={styles.text}>
-        {props.icon && (
-          <Icon
-            icon={props.icon}
-            style={styles.iconStyle}
-            color={textColor}
-            size={11}
-          />
-        )}
+        {props.icon && <Icon icon={props.icon} color={textColor} size={11} />}
         {props.title}
       </Text>
       <Icon icon={"chevron-right"} color={textColor} size={15} />
@@ -43,7 +36,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
   },
-  iconStyle: { marginLeft: 15, marginBottom: 3 },
   touchable: {
     display: "flex",
     flexDirection: "row",

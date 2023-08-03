@@ -23,7 +23,6 @@ export type CommentsState = {
 
 const initialState: CommentsState = {
   allComments: allCommentsAdapter.getInitialState(),
-
   page: 1,
   error: "",
   loading: "idle",

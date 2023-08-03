@@ -34,12 +34,7 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
           style={{ borderRadius: 5, width: 20, height: 20 }}
         />
       ) : (
-        <Icon
-          icon={"user"}
-          color={tabIconDefault}
-          size={18}
-          style={{ marginBottom: 1.5 }}
-        />
+        <Icon icon={"user"} color={tabIconDefault} size={18} />
       )}
       <Text
         style={{

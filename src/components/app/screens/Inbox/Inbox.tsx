@@ -7,14 +7,14 @@ type InboxProps = {};
 
 export const Inbox: FC<InboxProps> = () => {
   return (
-    <View style={[styles.containerSections]}>
+    <View style={[styles.container]}>
       <Loading />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  containerSections: {
+  container: {
     flex: 1,
     justifyContent: "center",
     width: "100%",

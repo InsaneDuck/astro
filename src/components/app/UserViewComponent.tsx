@@ -71,7 +71,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
             icon={"cake"}
             color={"#ccc"}
             size={14}
-            style={{ marginRight: 10, marginBottom: 1 }}
+            style={{ marginRight: 10 }}
           />
           {moment(user.published).format("MMMM Do, YYYY")}
         </Text>
@@ -134,7 +134,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   return (
     user && (
       <ScrollView>
-        <View style={styles.containerSections}>
+        <View style={styles.container}>
           {user.banner && <UserBanner />}
           <DisplayName />
           <UserHeader />
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     overflow: "hidden",
   },
-  containerSections: {
+  container: {
     display: "flex",
     alignItems: "center",
     width: "100%",

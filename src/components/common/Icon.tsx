@@ -25,7 +25,7 @@ export const Icon: FC<IconProps> = (props) => {
       icon={icon}
       size={size ? size : 25}
       color={color}
-      style={[{ marginBottom: -3 }, style]}
+      style={[style]}
       {...otherProps}
     />
   );

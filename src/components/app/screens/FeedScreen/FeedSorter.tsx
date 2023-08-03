@@ -1,13 +1,18 @@
-import { IconButton } from "@/components/common/IconButton";
-import React, { FC, useState } from "react";
-import { ActionSheetIOS, useColorScheme } from "react-native";
+import { Icon } from "@/components/common/Icon";
+import { Text } from "@/components/common/Text";
+import { feedActions } from "@/store/feed-slice";
+import { AppDispatch, RootState } from "@/store/store";
+import React, { FC } from "react";
+import { ActionSheetIOS, TouchableOpacity, useColorScheme } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 type FeedSorterProps = {};
 
 export const FeedSorter: FC<FeedSorterProps> = (props) => {
   //todo maybe replace it with one in expo https://github.com/expo/react-native-action-sheet
-  const [sort, setSort] = useState<string>();
+  const sort = useSelector((state: RootState) => state.feed.sort);
   const theme = useColorScheme() || "dark";
+  const dispatch = useDispatch<AppDispatch>();
   const onPress = (): any => {
     all();
   };
@@ -35,22 +40,22 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
           case 0:
             break;
           case 1:
-            setSort("Active");
+            dispatch(feedActions.setSort("Active"));
             break;
           case 2:
-            setSort("Hot");
+            dispatch(feedActions.setSort("Hot"));
             break;
           case 3:
-            setSort("New");
+            dispatch(feedActions.setSort("New"));
             break;
           case 4:
-            setSort("Old");
+            dispatch(feedActions.setSort("Old"));
             break;
           case 5:
-            setSort("Most Comments");
+            dispatch(feedActions.setSort("MostComments"));
             break;
           case 6:
-            setSort("New Comments");
+            dispatch(feedActions.setSort("NewComments"));
             break;
           case 7:
             top();
@@ -87,42 +92,57 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
           case 0:
             break;
           case 1:
-            setSort("TopAll");
+            dispatch(feedActions.setSort("TopAll"));
             break;
           case 2:
-            setSort("TopHour");
+            dispatch(feedActions.setSort("TopHour"));
             break;
           case 3:
-            setSort("TopDay");
+            dispatch(feedActions.setSort("TopDay"));
             break;
           case 4:
-            setSort("TopWeek");
+            dispatch(feedActions.setSort("TopWeek"));
             break;
           case 5:
-            setSort("TopMonth");
+            dispatch(feedActions.setSort("TopMonth"));
             break;
           case 6:
-            setSort("TopYear");
+            dispatch(feedActions.setSort("TopYear"));
             break;
           case 7:
-            setSort("TopSixHour");
+            dispatch(feedActions.setSort("TopSixHour"));
             break;
           case 8:
-            setSort("TopTwelveHour");
+            dispatch(feedActions.setSort("TopTwelveHour"));
             break;
           case 9:
-            setSort("TopThreeMonths");
+            dispatch(feedActions.setSort("TopThreeMonths"));
             break;
           case 10:
-            setSort("TopSixMonths");
+            dispatch(feedActions.setSort("TopSixMonths"));
             break;
           case 11:
-            setSort("TopNineMonths");
+            dispatch(feedActions.setSort("TopNineMonths"));
             break;
         }
       },
     );
   };
 
-  return <IconButton name={"filter"} onPress={onPress} />;
+  return (
+    <TouchableOpacity
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignContent: "center",
+        overflow: "hidden",
+        height: "auto",
+      }}
+      onPress={onPress}
+    >
+      <Text style={{ fontSize: 18 }}>{sort}</Text>
+      <Icon icon={"sort"} color={"#ccc"} size={20} />
+    </TouchableOpacity>
+  );
 };

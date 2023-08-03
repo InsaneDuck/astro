@@ -16,12 +16,12 @@ const allPostsAdapter = createEntityAdapter<PostView>({
 });
 
 export type FeedState = {
-  allPosts?: EntityState<PostView>;
+  allPosts: EntityState<PostView>;
   currentPost: EntityId;
   page: number;
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string;
-  sort?: SortType;
+  sort: SortType;
   server?: string;
   cardType?: "compact" | "expanded";
 };
@@ -32,6 +32,7 @@ const initialState: FeedState = {
   page: 1,
   loading: "idle",
   error: "",
+  sort: "Active",
 };
 
 export const feedSlice = createSlice({
@@ -40,6 +41,13 @@ export const feedSlice = createSlice({
   reducers: {
     setCurrentPost(state, action: PayloadAction<EntityId>) {
       state.currentPost = action.payload;
+    },
+    setSort(state, action: PayloadAction<SortType>) {
+      state.sort = action.payload;
+    },
+    updateFeedBySort(state) {
+      state.page = 1;
+      allPostsAdapter.setAll(state.allPosts, []);
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<FeedState>) => {
@@ -65,11 +73,11 @@ export const fetchPosts = createAsyncThunk<
   { state: RootState }
 >("feed/fetchPosts", async (payload, thunkAPI) => {
   const page = thunkAPI.getState().feed.page;
-
-  console.log("fetching feed, page = ", page);
+  const sort = thunkAPI.getState().feed.sort;
+  console.log("fetching feed, page = " + page + " sort = " + sort);
   const client = getLemmyHttp();
   return await client
-    .getPosts({ page, limit: 50, sort: "Active" })
+    .getPosts({ page, sort, limit: 50 })
     .then((response) => response.posts);
 });
 

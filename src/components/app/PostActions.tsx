@@ -28,12 +28,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           styles.perView,
         ]}
       >
-        <Icon
-          icon={"arrow-up"}
-          color={textColor}
-          size={iconSize}
-          style={styles.icon}
-        />
+        <Icon icon={"arrow-up"} color={textColor} size={iconSize} />
         <Text style={styles.text}>
           {postAggregates.upvotes < 1000
             ? postAggregates.upvotes
@@ -53,12 +48,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           styles.perView,
         ]}
       >
-        <Icon
-          icon={"arrow-down"}
-          color={textColor}
-          size={iconSize}
-          style={styles.icon}
-        />
+        <Icon icon={"arrow-down"} color={textColor} size={iconSize} />
         <Text style={styles.text}>{postAggregates.downvotes}</Text>
       </TouchableOpacity>
     );
@@ -74,12 +64,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           styles.perView,
         ]}
       >
-        <Icon
-          icon={"bookmark"}
-          color={textColor}
-          size={iconSize}
-          style={styles.icon}
-        />
+        <Icon icon={"bookmark"} color={textColor} size={iconSize} />
       </TouchableOpacity>
     );
   };
@@ -94,12 +79,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           styles.perView,
         ]}
       >
-        <Icon
-          icon={"reply"}
-          color={textColor}
-          size={iconSize}
-          style={styles.icon}
-        />
+        <Icon icon={"reply"} color={textColor} size={iconSize} />
       </TouchableOpacity>
     );
   };
@@ -107,12 +87,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
   const MoreOptions = () => {
     return (
       <TouchableOpacity style={[styles.perView]}>
-        <Icon
-          icon={"ellipsis"}
-          color={textColor}
-          size={iconSize}
-          style={styles.icon}
-        />
+        <Icon icon={"ellipsis"} color={textColor} size={iconSize} />
       </TouchableOpacity>
     );
   };
@@ -149,9 +124,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
   },
-  icon: {
-    marginBottom: 1.5,
-  },
+
   text: {
     fontSize: 18,
   },

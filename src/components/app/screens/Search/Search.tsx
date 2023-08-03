@@ -19,7 +19,7 @@ const Temp = () => {
   const color = useThemeColor("borderColor");
 
   const search = (
-    <View style={styles.containerSections}>
+    <View style={styles.container}>
       <TextInput
         style={[styles.searchInput, { backgroundColor: color }]}
         placeholder={"Search for a UserViewComponent, Post or Community"}
@@ -67,7 +67,7 @@ export const Search: FC<SearchProps> = () => {
 };
 
 const styles = StyleSheet.create({
-  containerSections: {
+  container: {
     display: "flex",
     alignItems: "center",
     width: "100%",

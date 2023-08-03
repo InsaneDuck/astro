@@ -1,25 +1,28 @@
 import { FeedList } from "@/components/app/screens/FeedScreen/FeedList";
 import { View } from "@/components/common/View";
-import { fetchPosts } from "@/store/feed-slice";
-import { AppDispatch } from "@/store/store";
+import { feedActions, fetchPosts } from "@/store/feed-slice";
+import { AppDispatch, RootState } from "@/store/store";
 
 import React, { FC, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 type FeedProps = {};
 
 export const Feed: FC<FeedProps> = () => {
+  //todo refactor this to something proper
+  const sort = useSelector((state: RootState) => state.feed.sort);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
+    dispatch(feedActions.updateFeedBySort());
     dispatch(fetchPosts());
-  }, [dispatch]);
+  }, [sort, dispatch]);
 
-  return <View style={styles.containerSections}>{<FeedList />}</View>;
+  return <View style={styles.container}>{<FeedList />}</View>;
 };
 
 const styles = StyleSheet.create({
-  containerSections: {
+  container: {
     width: "100%",
     height: "100%",
   },

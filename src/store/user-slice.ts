@@ -1,5 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Person } from "lemmy-js-client";
+import { getLemmyHttp } from "@/api/get";
+import { RootState } from "@/store/store";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GetPersonDetailsResponse, Person } from "lemmy-js-client";
 
 export type UserState = {
   currentUser: Person;
@@ -30,6 +32,20 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {},
+});
+
+const fetchUser = createAsyncThunk<
+  GetPersonDetailsResponse,
+  void,
+  { state: RootState }
+>("user/fetchUser", async (arg, thunkAPI) => {
+  const page = thunkAPI.getState().feed.page;
+
+  console.log("fetching user, page = ", page);
+  const client = getLemmyHttp();
+  return await client
+    .getPersonDetails({ person_id: 0 })
+    .then((response) => response);
 });
 
 export const userActions = userSlice.actions;

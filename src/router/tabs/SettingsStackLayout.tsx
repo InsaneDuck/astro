@@ -1,3 +1,4 @@
+import { FeedSorter } from "@/components/app/screens/FeedScreen/FeedSorter";
 import { Appearance } from "@/components/app/screens/Settings/Appearance";
 import { Settings } from "@/components/app/screens/Settings/Settings";
 
@@ -27,7 +28,11 @@ const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
 export const SettingsStackLayout: FC<SettingsStackLayoutProps> = (props) => {
   return (
     <SettingsStack.Navigator initialRouteName={"Settings"}>
-      <SettingsStack.Screen name={"Settings"} children={Settings} />
+      <SettingsStack.Screen
+        name={"Settings"}
+        children={Settings}
+        options={{ headerRight: FeedSorter }}
+      />
       <SettingsStack.Screen name={"Appearance"} children={Appearance} />
       <SettingsStack.Screen name={"Filters"} children={Appearance} />
       <SettingsStack.Screen name={"FaceIdAndPasscode"} children={Appearance} />

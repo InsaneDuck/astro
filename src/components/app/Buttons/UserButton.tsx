@@ -48,12 +48,7 @@ export const UserButton: FC<UserButtonProps> = (props) => {
           style={{ borderRadius: 5 }}
         />
       ) : (
-        <Icon
-          icon={"user"}
-          color={textColor}
-          size={18}
-          style={{ marginBottom: 1.5 }}
-        />
+        <Icon icon={"user"} color={textColor} size={18} />
       )}
       <Text
         style={{
