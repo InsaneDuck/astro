@@ -22,8 +22,6 @@ export type FeedState = {
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string;
   sort: SortType;
-  server?: string;
-  cardType?: "compact" | "expanded";
 };
 
 const initialState: FeedState = {

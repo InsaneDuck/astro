@@ -3,11 +3,16 @@ import { CommentSortType, SortType } from "lemmy-js-client";
 
 export type Settings = {
   blurNSFW: boolean;
-  defaultFeedCardSize: "compact" | "expanded";
+  defaultPostSize: "compact" | "expanded" | "text-only";
   defaultFeedSort: SortType;
+  defaultCommunitySort: SortType;
   defaultCommentSort: CommentSortType;
-  postCardStyle: "compact" | "expanded" | "text-only";
-  serverUrl: string;
+  defaultServerUrl: string;
+  selectedPostSize: "compact" | "expanded" | "text-only";
+  selectedFeedSort: SortType;
+  selectedCommunitySort: SortType;
+  selectedCommentSort: CommentSortType;
+  selectedServerUrl: string;
   showNSFW: boolean;
   showUserNameInTabBar: boolean;
   theme: string;

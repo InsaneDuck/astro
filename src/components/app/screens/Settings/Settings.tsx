@@ -15,21 +15,42 @@ export const Settings: FC<SettingsProps> = () => {
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <OptionsItem title={"General"} />
+        <OptionsItem
+          title={"General"}
+          onPress={() => navigation.navigate("General")}
+        />
         <OptionsItem
           title={"Appearance"}
           onPress={() => navigation.navigate("Appearance")}
         />
-        <OptionsItem title={"Filters"} />
-        <OptionsItem title={"Face ID & Passcode"} />
-        <OptionsItem title={"Accounts"} />
-        <OptionsItem title={"Export/Import"} />
+        <OptionsItem
+          title={"Filters"}
+          onPress={() => navigation.navigate("Filters")}
+        />
+        <OptionsItem
+          title={"Face ID & Passcode"}
+          onPress={() => navigation.navigate("FaceIdAndPasscode")}
+        />
+        <OptionsItem
+          title={"Accounts"}
+          onPress={() => navigation.navigate("Accounts")}
+        />
+        <OptionsItem
+          title={"Export/Import"}
+          onPress={() => navigation.navigate("ExportImport")}
+        />
       </View>
 
       <View style={styles.innerContainer}>
-        <OptionsItem title={"About"} />
-        <OptionsItem title={"Rate"} />
-        <OptionsItem title={"Tip"} />
+        <OptionsItem
+          title={"About"}
+          onPress={() => navigation.navigate("About")}
+        />
+        <OptionsItem
+          title={"Rate"}
+          onPress={() => navigation.navigate("Rate")}
+        />
+        <OptionsItem title={"Tip"} onPress={() => navigation.navigate("Tip")} />
       </View>
     </View>
   );

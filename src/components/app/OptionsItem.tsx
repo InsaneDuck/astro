@@ -3,12 +3,13 @@ import { Text } from "@/components/common/Text";
 import { ClickProps } from "@/components/theming/Themed";
 import { useThemeColor } from "@/components/theming/useThemeColor";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
 type OptionsItemProps = {
   title: string;
   icon?: IconProp;
+  children?: ReactNode;
 } & ClickProps;
 
 export const OptionsItem: FC<OptionsItemProps> = (props) => {
@@ -27,7 +28,11 @@ export const OptionsItem: FC<OptionsItemProps> = (props) => {
         {props.icon && <Icon icon={props.icon} color={textColor} size={11} />}
         {props.title}
       </Text>
-      <Icon icon={"chevron-right"} color={textColor} size={15} />
+      {props.children ? (
+        props.children
+      ) : (
+        <Icon icon={"chevron-right"} color={textColor} size={15} />
+      )}
     </TouchableOpacity>
   );
 };

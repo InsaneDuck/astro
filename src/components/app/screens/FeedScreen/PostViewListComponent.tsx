@@ -8,9 +8,13 @@ import React, { FC, useCallback, useMemo } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-type FeedListProps = {};
+type PostViewListComponentProps = {
+  listType: "feed" | "community";
+};
 
-export const FeedList: FC<FeedListProps> = (props) => {
+export const PostViewListComponent: FC<PostViewListComponentProps> = (
+  props,
+) => {
   //todo show error
   const {
     allPosts: feed,

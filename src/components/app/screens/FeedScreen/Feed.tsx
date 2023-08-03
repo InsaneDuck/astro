@@ -1,4 +1,4 @@
-import { FeedList } from "@/components/app/screens/FeedScreen/FeedList";
+import { PostViewListComponent } from "@/components/app/screens/FeedScreen/PostViewListComponent";
 import { View } from "@/components/common/View";
 import { feedActions, fetchPosts } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
@@ -18,7 +18,7 @@ export const Feed: FC<FeedProps> = () => {
     dispatch(fetchPosts());
   }, [sort, dispatch]);
 
-  return <View style={styles.container}>{<FeedList />}</View>;
+  return <View style={styles.container}>{<PostViewListComponent />}</View>;
 };
 
 const styles = StyleSheet.create({
