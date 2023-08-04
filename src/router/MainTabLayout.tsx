@@ -33,7 +33,7 @@ export const MainTabLayout = () => {
         tabBarActiveTintColor: colorScheme,
         headerShown: false,
       }}
-      initialRouteName={"SettingsStack"}
+      initialRouteName={"ProfileStack"}
     >
       <Tabs.Screen
         name="FeedStack"

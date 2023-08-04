@@ -1,8 +1,8 @@
 import { Community } from "@/components/app/screens/Community/Community";
 import { Feed } from "@/components/app/screens/FeedScreen/Feed";
 import { FeedSorter } from "@/components/app/screens/FeedScreen/FeedSorter";
+import { User } from "@/components/app/screens/FeedScreen/User";
 import { Post } from "@/components/app/screens/Post/Post";
-import { User } from "@/components/app/screens/User";
 
 import {
   createNativeStackNavigator,

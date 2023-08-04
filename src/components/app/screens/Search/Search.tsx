@@ -21,7 +21,7 @@ const Temp = () => {
   const search = (
     <View style={styles.container}>
       <TextInput
-        style={[styles.searchInput, { backgroundColor: color }]}
+        style={[styles.loginInput, { backgroundColor: color }]}
         placeholder={"Search for a UserViewComponent, Post or Community"}
         clearButtonMode={"always"}
       />
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  searchInput: {
+  loginInput: {
     fontSize: 18,
     margin: 15,
     paddingEnd: 10,

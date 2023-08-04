@@ -12,41 +12,47 @@ import React, { FC, useEffect } from "react";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
-type UserViewComponentProps = {};
+type UserViewComponentProps = {
+  userType: "primary" | "clicked";
+};
 
 export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
+  const { userType } = props;
   const user = useSelector((state: RootState) => state.user.currentUser);
   let domain = getBaseDomainFromUrl(user.actor_id);
   const tabIconDefault = useThemeColor("tabIconDefault");
   const borderColor = useThemeColor("borderColor");
-  const size = 150;
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({ title: user.name });
   }, []);
-  const DisplayName = () => {
+
+  const UserBannerImage = () => {
+    return (
+      user.banner && (
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            source={{ uri: user.banner }}
+            style={{ width: "100%", height: "100%" }}
+          />
+        </View>
+      )
+    );
+  };
+  const UserDisplayName = () => {
     return (
       <Text style={{ fontSize: 28, marginTop: 20, width: "88%" }}>
         {user.display_name ? user.display_name : user.name}
       </Text>
     );
   };
-  const UserBanner = () => {
-    return (
-      <View
-        style={{
-          width: "100%",
-          height: 200,
-          overflow: "hidden",
-        }}
-      >
-        <Image
-          source={{ uri: user.banner }}
-          style={{ width: "100%", height: "100%" }}
-        />
-      </View>
-    );
-  };
+
   const UserAvatar = () => {
     return (
       <View style={[styles.userAvatar, { borderColor: borderColor }]}>
@@ -81,7 +87,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
           />
           {moment(user.published).format("MMMM Do, YYYY")}
         </Text>
-        <UserActions />
+        {userType === "clicked" && <UserActions />}
       </View>
     );
   };
@@ -116,7 +122,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
     );
   };
 
-  const Description = () => {
+  const UserBio = () => {
     return (
       user.bio && (
         <View style={[{ backgroundColor: borderColor }, styles.description]}>
@@ -132,7 +138,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
         <OptionsItem title={"Overview"} />
         <OptionsItem title={"Comments"} />
         <OptionsItem title={"Posts"} />
-        <OptionsItem title={"Saved"} />
+        {userType === "primary" && <OptionsItem title={"Saved"} />}
       </View>
     );
   };
@@ -141,10 +147,10 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
     user && (
       <ScrollView>
         <View style={styles.container}>
-          {user.banner && <UserBanner />}
-          <DisplayName />
+          <UserBannerImage />
+          <UserDisplayName />
           <UserHeader />
-          <Description />
+          <UserBio />
           <UserFooter />
         </View>
       </ScrollView>

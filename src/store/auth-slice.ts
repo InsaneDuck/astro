@@ -13,6 +13,7 @@ const userAdapter = createEntityAdapter<User>({
 export type AuthState = {
   currentUser?: User;
   allUsers?: User[];
+  authStatus: "loggedIn" | "anonymous" | "local";
 };
 
 const initialState: AuthState = {
@@ -22,13 +23,13 @@ const initialState: AuthState = {
     password: "",
     jwt: "",
   },
+  authStatus: "anonymous",
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    getAuthStatus() {},
     setAuthStatus() {},
   },
   extraReducers: (builder) => {
