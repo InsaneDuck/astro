@@ -4,6 +4,7 @@ import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { ConstantColors } from "@/components/theming/Colors";
 import { useThemeColor } from "@/components/theming/useThemeColor";
+import { MainStackNavigation } from "@/router/MainStackLayout";
 import { RootState } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
@@ -18,11 +19,48 @@ export const Community: FC<CommunityProps> = (props) => {
     (state: RootState) => state.community.currentCommunity,
   );
   const domain = getBaseDomainFromUrl(community.actor_id);
-  const navigation = useNavigation();
+  const navigation = useNavigation<MainStackNavigation>();
   const borderColor = useThemeColor("borderColor");
+  const tabIconDefault = useThemeColor("tabIconDefault");
   useEffect(() => {
-    navigation.setOptions({ title: community.name });
+    navigation.setOptions({
+      title: community.name,
+      headerRight: () => <CreatePost />,
+    });
   }, []);
+
+  const CreatePost = () => {
+    return (
+      <>
+        <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
+          <Icon icon={"plus"} color={tabIconDefault} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Modal")}
+          style={{ marginLeft: 10 }}
+        >
+          <Icon icon={"info-circle"} color={tabIconDefault} />
+        </TouchableOpacity>
+      </>
+    );
+  };
+
+  const CommunityBanner = () => {
+    return (
+      <View
+        style={{
+          width: "100%",
+          height: 200,
+          overflow: "hidden",
+        }}
+      >
+        <Image
+          source={{ uri: community.banner }}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </View>
+    );
+  };
 
   const CommunityAvatar = () => {
     return (
@@ -46,6 +84,7 @@ export const Community: FC<CommunityProps> = (props) => {
     );
   };
 
+  //todo move create post button to top
   const CommunityActions = () => {
     return (
       <>
@@ -67,11 +106,6 @@ export const Community: FC<CommunityProps> = (props) => {
             <Text style={{ fontSize: 18 }}>Block</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={[{ backgroundColor: borderColor }, styles.userActionsButton]}
-        >
-          <Text style={{ fontSize: 18 }}>Create a Post</Text>
-        </TouchableOpacity>
       </>
     );
   };
@@ -112,6 +146,7 @@ export const Community: FC<CommunityProps> = (props) => {
   return (
     <ScrollView>
       <View style={styles.container}>
+        {community.banner && <CommunityBanner />}
         <CommunityHeader />
         <Description />
       </View>
