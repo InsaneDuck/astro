@@ -4,43 +4,62 @@ import {
   createAsyncThunk,
   createEntityAdapter,
   createSlice,
+  EntityId,
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { CommentSortType, CommentView, GetComments } from "lemmy-js-client";
+import {
+  CommentSortType,
+  CommentView,
+  GetComments,
+  PostView,
+} from "lemmy-js-client";
 
 const allCommentsAdapter = createEntityAdapter<CommentView>({
   selectId: (commentView) => commentView.comment.id,
 });
 
-export type CommentsState = {
-  allComments: EntityState<CommentView>;
+export type PostState = {
+  postId: EntityId;
+  postView?: PostView;
+  comments: EntityState<CommentView>;
   page: number;
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string;
-  sort?: CommentSortType;
+  sort: CommentSortType;
 };
 
-const initialState: CommentsState = {
-  allComments: allCommentsAdapter.getInitialState(),
+const initialState: PostState = {
+  postId: 2607271,
+  comments: allCommentsAdapter.getInitialState(),
   page: 1,
-  error: "",
   loading: "idle",
+  error: "",
+  sort: "Top",
 };
 
-export const commentsSlice = createSlice({
-  name: "comments",
+export const postSlice = createSlice({
+  name: "post",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPost(state, action: PayloadAction<EntityId>) {
+      state.postId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchComments.pending, (state, action) => {
       state.loading = "pending";
-      allCommentsAdapter.setAll(state.allComments, []);
+      // if comments currently in store don't have same post id as post id in state then clear comments in store
+      if (
+        state.comments.entities[state.comments.ids[0]]?.post.id !== state.postId
+      ) {
+        allCommentsAdapter.setAll(state.comments, []);
+      }
     });
     builder.addCase(
       fetchComments.fulfilled,
       (state, action: PayloadAction<CommentView[]>) => {
-        allCommentsAdapter.addMany(state.allComments, action.payload);
+        allCommentsAdapter.addMany(state.comments, action.payload);
         console.log(action.payload.length);
         state.loading = "succeeded";
         state.page++;
@@ -52,7 +71,6 @@ export const commentsSlice = createSlice({
     });
   },
 });
-
 export const fetchComments = createAsyncThunk<
   CommentView[],
   void,
@@ -60,8 +78,8 @@ export const fetchComments = createAsyncThunk<
     state: RootState;
   }
 >("comments/fetchComments", async (_, thunkAPI) => {
-  const postId = thunkAPI.getState().feed.currentPost;
-  const page = thunkAPI.getState().comments.page;
+  const postId = thunkAPI.getState().post.postId;
+  const page = thunkAPI.getState().post.page;
   const form: GetComments = {
     limit: 5,
     page,
@@ -75,7 +93,6 @@ export const fetchComments = createAsyncThunk<
   //comments.map((item) => console.log("comment id = ", item.comment.id));
   return comments.comments;
 });
+export const postActions = postSlice.actions;
 
-export const commentsActions = commentsSlice.actions;
-
-export const commentsReducers = commentsSlice.reducer;
+export const postReducers = postSlice.reducer;

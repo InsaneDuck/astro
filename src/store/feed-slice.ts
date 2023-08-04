@@ -5,7 +5,6 @@ import {
   createAsyncThunk,
   createEntityAdapter,
   createSlice,
-  EntityId,
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
@@ -17,7 +16,6 @@ const allPostsAdapter = createEntityAdapter<PostView>({
 
 export type FeedState = {
   feedPosts: EntityState<PostView>;
-  currentPost: EntityId;
   page: number;
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string;
@@ -26,7 +24,6 @@ export type FeedState = {
 
 const initialState: FeedState = {
   feedPosts: allPostsAdapter.getInitialState(),
-  currentPost: 2607271,
   page: 1,
   loading: "idle",
   error: "",
@@ -37,9 +34,6 @@ export const feedSlice = createSlice({
   name: "feed",
   initialState,
   reducers: {
-    setCurrentPost(state, action: PayloadAction<EntityId>) {
-      state.currentPost = action.payload;
-    },
     setSort(state, action: PayloadAction<SortType>) {
       state.sort = action.payload;
     },

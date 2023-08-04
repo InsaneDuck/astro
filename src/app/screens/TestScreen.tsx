@@ -1,6 +1,7 @@
 import { CommentThread } from "@/app/screens/Post/CommentThread";
 import { Separator } from "@/components/app/Separator";
-import { fetchComments } from "@/store/comments-slice";
+import { fetchComments } from "@/store/post-slice";
+
 import { AppDispatch, RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC, useCallback, useEffect } from "react";
@@ -10,9 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 type TestScreenProps = {};
 
 export const TestScreen: FC<TestScreenProps> = (props) => {
-  const postId = useSelector((state: RootState) => state.feed.currentPost);
-  const { allComments, loading, page, error } = useSelector(
-    (state: RootState) => state.comments,
+  const postId = useSelector((state: RootState) => state.post.postId);
+  const { comments, loading, page, error } = useSelector(
+    (state: RootState) => state.post,
   );
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -32,9 +33,9 @@ export const TestScreen: FC<TestScreenProps> = (props) => {
   );
   return (
     <>
-      {allComments && (
+      {comments && (
         <FlatList
-          data={allComments?.ids}
+          data={comments?.ids}
           keyExtractor={keyExtractor}
           renderItem={commentItem}
           ItemSeparatorComponent={Separator}

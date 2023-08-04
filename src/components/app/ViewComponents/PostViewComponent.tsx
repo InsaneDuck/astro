@@ -10,8 +10,8 @@ import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
 
 import { MainStackNavigation } from "@/router/MainStackLayout";
 import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
-import { feedActions } from "@/store/feed-slice";
 import { imageActions } from "@/store/image-slice";
+import { postActions } from "@/store/post-slice";
 import { AppDispatch } from "@/store/store";
 
 import { useNavigation } from "@react-navigation/core";
@@ -54,7 +54,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
 
     const goToPost = useCallback((): any => {
       if (type === "feed") {
-        postView && dispatch(feedActions.setCurrentPost(postView.post.id));
+        postView && dispatch(postActions.setCurrentPost(postView.post.id));
         navigationCurrent.navigate("Post");
       }
     }, [type, postView, dispatch, navigation]);
@@ -166,7 +166,6 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       ) : (
         <>
           <PostActions postAggregates={postView.counts} />
-          <CommentSorter />
         </>
       );
     };

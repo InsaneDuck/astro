@@ -12,7 +12,7 @@ let count = 0;
 export const CommentThread: FC<CommentThreadProps> = (props) => {
   const comment = useSelector(
     (state: RootState) =>
-      state.comments.allComments.entities[props.commendId.toString()],
+      state.post.comments.entities[props.commendId.toString()],
   );
 
   // const path = comment?.comment ? comment.comment.path.split(".") : [];
