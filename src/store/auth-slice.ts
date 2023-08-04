@@ -1,4 +1,4 @@
-import { getLemmyHttp } from "@/api/helpers";
+import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { User } from "@/types/User";
 import {
   createAsyncThunk,

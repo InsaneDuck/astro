@@ -1,4 +1,4 @@
-import { Inbox } from "@/components/app/screens/Inbox/Inbox";
+import { Inbox } from "@/app/screens/Inbox/Inbox";
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,

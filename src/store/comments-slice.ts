@@ -1,4 +1,4 @@
-import { getLemmyHttp } from "@/api/helpers";
+import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { RootState } from "@/store/store";
 import {
   createAsyncThunk,

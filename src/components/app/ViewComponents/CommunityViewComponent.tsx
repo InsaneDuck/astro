@@ -1,9 +1,10 @@
-import { getBaseDomainFromUrl } from "@/api/helpers";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { ConstantColors } from "@/components/theming/Colors";
 import { useThemeColor } from "@/components/theming/useThemeColor";
+import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
+
 import { MainStackNavigation } from "@/router/MainStackLayout";
 import { RootState } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
@@ -13,8 +14,10 @@ import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
 type CommunityProps = {};
-
-export const Community: FC<CommunityProps> = (props) => {
+/**
+ * shows a community when user clicks on a community name anywhere in the app
+ */
+export const CommunityViewComponent: FC<CommunityProps> = (props) => {
   const community = useSelector(
     (state: RootState) => state.community.currentCommunity,
   );
@@ -32,11 +35,11 @@ export const Community: FC<CommunityProps> = (props) => {
   const CreatePost = () => {
     return (
       <>
-        <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Test")}>
           <Icon icon={"plus"} color={tabIconDefault} />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Modal")}
+          onPress={() => navigation.navigate("Test")}
           style={{ marginLeft: 10 }}
         >
           <Icon icon={"info-circle"} color={tabIconDefault} />

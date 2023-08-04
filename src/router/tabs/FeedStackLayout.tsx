@@ -1,8 +1,9 @@
-import { Community } from "@/components/app/screens/Community/Community";
-import { Feed } from "@/components/app/screens/FeedScreen/Feed";
-import { FeedSorter } from "@/components/app/screens/FeedScreen/FeedSorter";
-import { User } from "@/components/app/screens/FeedScreen/User";
-import { Post } from "@/components/app/screens/Post/Post";
+import { MainFeed } from "@/app/screens/MainFeed";
+import { Post } from "@/app/screens/Post/Post";
+import { CommunityViewComponent } from "@/components/app/ViewComponents/CommunityViewComponent";
+import { FeedSorter } from "@/components/app/ViewComponents/Feed/FeedSorter";
+
+import { UserViewComponent } from "@/components/app/ViewComponents/UserViewComponent";
 
 import {
   createNativeStackNavigator,
@@ -24,7 +25,7 @@ export const FeedStackLayout = () => {
     <FeedStack.Navigator initialRouteName={"Feed"}>
       <FeedStack.Screen
         name={"Feed"}
-        children={Feed}
+        children={MainFeed}
         options={{
           title: "Feed",
           headerRight: FeedSorter,
@@ -39,14 +40,14 @@ export const FeedStackLayout = () => {
       />
       <FeedStack.Screen
         name={"User"}
-        children={User}
+        children={() => <UserViewComponent userType={"clicked"} />}
         options={{
           title: "User",
         }}
       />
       <FeedStack.Screen
         name={"Community"}
-        children={Community}
+        children={CommunityViewComponent}
         options={{
           title: "Community",
         }}

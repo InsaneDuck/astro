@@ -1,4 +1,4 @@
-import { Search } from "@/components/app/screens/Search/Search";
+import { Search } from "@/app/screens/Search/Search";
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,

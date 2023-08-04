@@ -1,10 +1,11 @@
-import { formatTimeToDuration } from "@/api/helpers";
 import { UserButton } from "@/components/app/Buttons/UserButton";
 import { Card } from "@/components/common/Cards/Card";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
+import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
+
 import { CommentView } from "lemmy-js-client";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";

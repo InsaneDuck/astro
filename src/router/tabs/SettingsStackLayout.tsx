@@ -1,13 +1,13 @@
-import { About } from "@/components/app/screens/Settings/About";
-import { Accounts } from "@/components/app/screens/Settings/Accounts";
-import { Appearance } from "@/components/app/screens/Settings/Appearance";
-import { ExportImport } from "@/components/app/screens/Settings/ExportImport";
-import { FaceIdAndPasscode } from "@/components/app/screens/Settings/FaceIdAndPasscode";
-import { Filters } from "@/components/app/screens/Settings/Filters";
-import { General } from "@/components/app/screens/Settings/General";
-import { Rate } from "@/components/app/screens/Settings/Rate";
-import { Settings } from "@/components/app/screens/Settings/Settings";
-import { Tip } from "@/components/app/screens/Settings/Tip";
+import { About } from "@/app/screens/Settings/About";
+import { Accounts } from "@/app/screens/Settings/Accounts";
+import { Appearance } from "@/app/screens/Settings/Appearance";
+import { ExportImport } from "@/app/screens/Settings/ExportImport";
+import { FaceIdAndPasscode } from "@/app/screens/Settings/FaceIdAndPasscode";
+import { Filters } from "@/app/screens/Settings/Filters";
+import { General } from "@/app/screens/Settings/General";
+import { Rate } from "@/app/screens/Settings/Rate";
+import { Settings } from "@/app/screens/Settings/Settings";
+import { Tip } from "@/app/screens/Settings/Tip";
 
 import {
   createNativeStackNavigator,

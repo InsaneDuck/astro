@@ -1,7 +1,7 @@
-import { LoginSignUp } from "@/components/app/screens/Profile/LoginSignUp";
-import { Profile } from "@/components/app/screens/Profile/Profile";
-import { ProfileHeaderRight } from "@/components/app/screens/Profile/ProfileHeaderRight";
-import { ProfileSettings } from "@/components/app/screens/Profile/ProfileSettings";
+import { Profile } from "@/app/screens/Profile/Profile";
+import { ProfileHeaderRight } from "@/app/screens/Profile/ProfileHeaderRight";
+import { ProfileSettings } from "@/app/screens/Profile/ProfileSettings";
+import { LoginSignUp } from "@/components/app/LoginSignUp";
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,

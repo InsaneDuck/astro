@@ -1,6 +1,6 @@
-import { PostViewComponent } from "@/components/app/PostViewComponent";
-import { CommentThread } from "@/components/app/screens/Post/CommentThread";
+import { CommentThread } from "@/app/screens/Post/CommentThread";
 import { Separator } from "@/components/app/Separator";
+import { PostViewComponent } from "@/components/app/ViewComponents/PostViewComponent";
 import { Card } from "@/components/common/Cards/Card";
 import { fetchComments } from "@/store/comments-slice";
 import { AppDispatch, RootState } from "@/store/store";

@@ -1,7 +1,7 @@
-import { Error } from "@/components/app/screens/Error";
-import { ImageViewer } from "@/components/app/screens/ImageViewer/ImageViewer";
-import { ImageViewerButtons } from "@/components/app/screens/ImageViewer/ImageViewerButtons";
-import { Modal } from "@/components/app/screens/Modal";
+import { Error } from "@/app/screens/Error";
+import { ImageViewer } from "@/app/screens/ImageViewer/ImageViewer";
+import { ImageViewerButtons } from "@/app/screens/ImageViewer/ImageViewerButtons";
+import { TestScreen } from "@/app/screens/TestScreen";
 import { MainTabLayout } from "@/router/MainTabLayout";
 import {
   DarkTheme,
@@ -21,7 +21,7 @@ type LayoutProps = {};
 export type MainStackParamList = {
   Home: undefined;
   Error: undefined;
-  Modal: undefined;
+  Test: undefined;
   ImageViewer: undefined;
 };
 
@@ -43,17 +43,6 @@ export const MainStackLayout: FC<LayoutProps> = () => {
               headerShown: false,
             }}
           />
-
-          <MainStack.Screen
-            name={"Modal"}
-            component={Modal}
-            options={{ presentation: "modal" }}
-          />
-          <MainStack.Screen
-            name={"Error"}
-            component={Error}
-            options={{ title: "Oops!" }}
-          />
           <MainStack.Screen
             name={"ImageViewer"}
             component={ImageViewer}
@@ -62,6 +51,16 @@ export const MainStackLayout: FC<LayoutProps> = () => {
               title: "",
               headerRight: (props) => <ImageViewerButtons />,
             }}
+          />
+          <MainStack.Screen
+            name={"Error"}
+            component={Error}
+            options={{ title: "Oops!" }}
+          />
+          <MainStack.Screen
+            name={"Test"}
+            component={TestScreen}
+            options={{ title: "Oops!" }}
           />
         </MainStack.Navigator>
       </NavigationContainer>

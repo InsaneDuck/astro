@@ -1,10 +1,11 @@
-import { getBaseDomainFromUrl } from "@/api/helpers";
 import { OptionsItem } from "@/components/app/OptionsItem";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { ConstantColors } from "@/components/theming/Colors";
 import { useThemeColor } from "@/components/theming/useThemeColor";
+import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
+
 import { RootState } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
 import moment from "moment";

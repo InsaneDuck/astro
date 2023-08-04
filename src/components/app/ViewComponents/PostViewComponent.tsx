@@ -1,4 +1,3 @@
-import { formatTimeToDuration } from "@/api/helpers";
 import { CommunityButton } from "@/components/app/Buttons/CommunityButton";
 import { UserButton } from "@/components/app/Buttons/UserButton";
 import { PostActions } from "@/components/app/PostActions";
@@ -7,6 +6,8 @@ import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
+import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
+
 import { MainStackNavigation } from "@/router/MainStackLayout";
 import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
 import { feedActions } from "@/store/feed-slice";

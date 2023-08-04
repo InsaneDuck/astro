@@ -1,4 +1,4 @@
-import { PostViewComponent } from "@/components/app/PostViewComponent";
+import { PostViewComponent } from "@/components/app/ViewComponents/PostViewComponent";
 import { SwipeableCard } from "@/components/common/Cards/SwipeableCard";
 import { Text } from "@/components/common/Text";
 import { RootState } from "@/store/store";
