@@ -45,6 +45,9 @@ export const postSlice = createSlice({
     setCurrentPost(state, action: PayloadAction<EntityId>) {
       state.postId = action.payload;
     },
+    setCommentSort(state, action: PayloadAction<CommentSortType>) {
+      state.sort = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchComments.pending, (state, action) => {

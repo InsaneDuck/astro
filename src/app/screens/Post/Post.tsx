@@ -1,4 +1,5 @@
 import { PostViewWithCommentsComponent } from "@/app/screens/Post/PostViewWithCommentsComponent";
+import { CommentsSorter } from "@/components/app/ViewComponents/Post/CommentsSorter";
 import { Loading } from "@/components/common/Loading";
 import { View } from "@/components/common/View";
 import { RootState } from "@/store/store";
@@ -21,7 +22,7 @@ export const Post: FC<PostProps> = () => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => {},
+      headerRight: CommentsSorter,
     });
   }, []);
 
