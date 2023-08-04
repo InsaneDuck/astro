@@ -72,9 +72,9 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
         postView.post?.thumbnail_url && (
           <Pressable onPress={onImagePress}>
             <Image
-              style={{ width: "100%" }}
-              height={300}
+              style={{ width: "100%", height: 300, maxHeight: 400 }}
               source={{ uri: postView.post.thumbnail_url }}
+              resizeMode="contain"
             />
           </Pressable>
         )

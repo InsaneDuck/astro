@@ -1,6 +1,10 @@
 import { Press } from "@/components/theming/Themed";
 import React, { FC, useEffect, useState } from "react";
-import { Dimensions, Image as DefaultImage, Pressable } from "react-native";
+import {
+  Dimensions,
+  Image as DefaultImage,
+  TouchableOpacity,
+} from "react-native";
 
 type ImageProps = {
   onPress?: Press;
@@ -35,7 +39,7 @@ export const Image: FC<ImageProps> = (props) => {
     };
   }, []);
   return height === 0 ? null : (
-    <Pressable onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <DefaultImage
         source={source}
         style={{
@@ -45,6 +49,6 @@ export const Image: FC<ImageProps> = (props) => {
         resizeMode="contain"
         {...otherProps}
       />
-    </Pressable>
+    </TouchableOpacity>
   );
 };
