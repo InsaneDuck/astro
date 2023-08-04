@@ -1,4 +1,5 @@
 import {commentsReducers} from '@/store/comments-slice';
+import {communityReducers} from '@/store/community-slice';
 import {feedReducers} from '@/store/feed-slice';
 import {imageReducers} from '@/store/image-slice';
 import {settingsReducers} from '@/store/settings-slice';
@@ -16,6 +17,7 @@ export const store = configureStore({
     settings: settingsReducers,
     theme: themeReducers,
     user: userReducers,
+    community: communityReducers,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

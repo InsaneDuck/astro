@@ -10,7 +10,7 @@ type PostProps = {};
 export const Post: FC<PostProps> = () => {
   const postId = useSelector((state: RootState) => state.feed.currentPost);
   const post = useSelector(
-    (state: RootState) => state.feed.allPosts?.entities[postId.toString()],
+    (state: RootState) => state.feed.feedPosts?.entities[postId.toString()],
   );
 
   return (

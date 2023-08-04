@@ -1,3 +1,4 @@
+import { Community } from "@/components/app/screens/Community/Community";
 import { Feed } from "@/components/app/screens/FeedScreen/Feed";
 import { FeedSorter } from "@/components/app/screens/FeedScreen/FeedSorter";
 import { Post } from "@/components/app/screens/Post/Post";
@@ -45,7 +46,7 @@ export const FeedStackLayout = () => {
       />
       <FeedStack.Screen
         name={"Community"}
-        children={Feed}
+        children={Community}
         options={{
           title: "Community",
         }}

@@ -20,7 +20,7 @@ let count = 0;
 export const FeedCard: FC<FeedCardProps> = React.memo((props) => {
   const post = useSelector(
     (state: RootState) =>
-      state.feed.allPosts?.entities[props.postId.toString()],
+      state.feed.feedPosts?.entities[props.postId.toString()],
   );
 
   //console.log("Rendering Feed Card, count = ", ++count);

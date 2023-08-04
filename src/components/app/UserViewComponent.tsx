@@ -1,4 +1,4 @@
-import { getBaseDomainFromUrl } from "@/api/get";
+import { getBaseDomainFromUrl } from "@/api/helpers";
 import { OptionsItem } from "@/components/app/OptionsItem";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
@@ -6,8 +6,9 @@ import { View } from "@/components/common/View";
 import { ConstantColors } from "@/components/theming/Colors";
 import { useThemeColor } from "@/components/theming/useThemeColor";
 import { RootState } from "@/store/store";
+import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -19,10 +20,13 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const tabIconDefault = useThemeColor("tabIconDefault");
   const borderColor = useThemeColor("borderColor");
   const size = 150;
-
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ title: user.name });
+  }, []);
   const DisplayName = () => {
     return (
-      <Text style={{ fontSize: 30, marginTop: 20, width: "88%" }}>
+      <Text style={{ fontSize: 28, marginTop: 20, width: "88%" }}>
         {user.display_name ? user.display_name : user.name}
       </Text>
     );
@@ -61,8 +65,10 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const UserInfo = () => {
     return (
       <View style={styles.userInfo}>
-        <Text style={{ fontSize: 20 }}>@{user.name}</Text>
-        <Text style={{ fontStyle: "italic" }}>@{domain}</Text>
+        <View>
+          <Text style={{ fontSize: 20 }}>@{user.name}</Text>
+          <Text style={{ fontStyle: "italic" }}>@{domain}</Text>
+        </View>
         <Text style={{ fontSize: 15 }}>
           Joined {moment(user.published).fromNow()}
         </Text>
@@ -175,7 +181,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     width: "100%",
-    marginBottom: 50,
+    paddingBottom: 50,
   },
   userActions: {
     display: "flex",

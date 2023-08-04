@@ -1,3 +1,4 @@
+import { formatTimeToDuration } from "@/api/helpers";
 import { CommunityButton } from "@/components/app/Buttons/CommunityButton";
 import { UserButton } from "@/components/app/Buttons/UserButton";
 import { PostActions } from "@/components/app/PostActions";
@@ -15,7 +16,7 @@ import { AppDispatch } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC, useCallback } from "react";
-import { Image, Pressable, StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
 type PostViewComponentProps = {
@@ -101,27 +102,44 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
         )
       );
     };
+
     const PostFooterLeft = () => {
-      return <CommunityButton community={postView.community} />;
+      return (
+        <View style={styles.postFooterItems}>
+          <Icon icon={"message"} color={tabIconDefault} size={16} />
+          <Text style={{ fontSize: 18, marginRight: 3, marginLeft: 3 }}>
+            {postView.counts.comments}
+          </Text>
+          <Icon icon={"clock"} color={tabIconDefault} size={16} />
+          <Text style={{ fontSize: 18, marginLeft: 3 }}>
+            {formatTimeToDuration(postView.post.published)}
+          </Text>
+        </View>
+      );
     };
     const PostFooterRight = () => {
-      return <UserButton creator={postView.creator} />;
-    };
-    const PostFooter = () => {
       return (
-        <View style={styles.postFooter}>
-          <PostFooterLeft />
-          <PostFooterRight />
+        <View style={styles.postFooterItems}>
+          <Text style={{ fontSize: 18 }}>In </Text>
+          <CommunityButton community={postView.community} />
+          <Text style={{ fontSize: 18 }}> By </Text>
+          <UserButton creator={postView.creator} />
         </View>
       );
     };
 
-    const PostActions1 = () => {
-      return type !== "post" ? (
-        <></>
-      ) : (
+    const PostFooter = () => {
+      return (
+        <TouchableOpacity onPress={goToPost} style={styles.postFooter}>
+          <PostFooterLeft />
+          <PostFooterRight />
+        </TouchableOpacity>
+      );
+    };
+
+    const CommentSorter = () => {
+      return (
         <>
-          <PostActions postAggregates={postView.counts} />
           <View
             style={{
               display: "flex",
@@ -141,6 +159,17 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       );
     };
 
+    const PostInteraction = () => {
+      return type !== "post" ? (
+        <></>
+      ) : (
+        <>
+          <PostActions postAggregates={postView.counts} />
+          <CommentSorter />
+        </>
+      );
+    };
+
     //todo show skeleton instead of null
     return postView ? (
       <>
@@ -149,7 +178,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
         <PostEmbedDescription />
         <PostBody />
         <PostFooter />
-        <PostActions1 />
+        <PostInteraction />
       </>
     ) : null;
   },
@@ -160,7 +189,7 @@ const styles = StyleSheet.create({
   postTitle: {
     fontWeight: "bold",
     fontSize: 18,
-    padding: 10,
+    padding: 12,
   },
   postEmbedDescription: {
     fontSize: 16,
@@ -176,10 +205,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   postFooter: {
-    padding: 10,
+    paddingBottom: 12,
+    paddingLeft: 12,
+    paddingRight: 12,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+  },
+  postFooterItems: {
+    paddingTop: 10,
+    flexDirection: "row",
+    display: "flex",
+    alignItems: "center",
   },
   footerText: {
     fontSize: 18,

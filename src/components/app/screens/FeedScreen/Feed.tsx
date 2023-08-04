@@ -18,7 +18,11 @@ export const Feed: FC<FeedProps> = () => {
     dispatch(fetchPosts());
   }, [sort, dispatch]);
 
-  return <View style={styles.container}>{<PostViewListComponent />}</View>;
+  return (
+    <View style={styles.container}>
+      {<PostViewListComponent listType={"feed"} />}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import { getLemmyHttp } from "@/api/get";
+import { getLemmyHttp } from "@/api/helpers";
 import { RootState } from "@/store/store";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GetPersonDetailsResponse, Person } from "lemmy-js-client";

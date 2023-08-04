@@ -27,4 +27,5 @@ export const ConstantColors = {
   save: "#198754",
   iosBlue: "#007AFF",
   iosRed: "#FF3B30",
+  communityColor: "#00bc8c",
 };

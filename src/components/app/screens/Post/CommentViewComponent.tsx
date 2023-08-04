@@ -1,3 +1,4 @@
+import { formatTimeToDuration } from "@/api/helpers";
 import { UserButton } from "@/components/app/Buttons/UserButton";
 import { Card } from "@/components/common/Cards/Card";
 import { Icon } from "@/components/common/Icon";
@@ -16,20 +17,30 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   const { comment } = props;
   const textColor = useThemeColor("text");
   const borderColor = useThemeColor("borderColor");
-
+  const tabIconDefault = useThemeColor("tabIconDefault");
   const CommentHeaderLeft = () => {
     return <UserButton creator={comment.creator} />;
   };
 
   const CommentHeaderRight = () => {
     return (
-      <View
-        style={[{ backgroundColor: borderColor }, styles.commentHeaderRight]}
-      >
-        <Icon icon={"arrow-up"} color={textColor} size={16} />
-        <Text style={styles.headerText}>{comment.counts.upvotes}</Text>
-        <Icon icon={"arrow-down"} color={textColor} size={16} />
-        <Text style={styles.headerText}>{comment.counts.downvotes}</Text>
+      <View style={[styles.commentHeaderRight]}>
+        <Icon
+          icon={"arrow-up"}
+          color={tabIconDefault}
+          size={16}
+          style={{ marginRight: 1, marginLeft: 1 }}
+        />
+        <Text style={styles.headerText}>{comment.counts.score}</Text>
+        <Icon
+          icon={"clock"}
+          color={tabIconDefault}
+          size={16}
+          style={{ marginRight: 3, marginLeft: 3 }}
+        />
+        <Text style={styles.headerText}>
+          {formatTimeToDuration(comment.comment.published)}
+        </Text>
       </View>
     );
   };

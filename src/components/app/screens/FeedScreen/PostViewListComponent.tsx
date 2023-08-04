@@ -17,7 +17,7 @@ export const PostViewListComponent: FC<PostViewListComponentProps> = (
 ) => {
   //todo show error
   const {
-    allPosts: feed,
+    feedPosts: feed,
     loading,
     page,
     error,

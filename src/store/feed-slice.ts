@@ -1,4 +1,4 @@
-import { getLemmyHttp } from "@/api/get";
+import { getLemmyHttp } from "@/api/helpers";
 import { RootState } from "@/store/store";
 import {
   ActionReducerMapBuilder,
@@ -16,7 +16,7 @@ const allPostsAdapter = createEntityAdapter<PostView>({
 });
 
 export type FeedState = {
-  allPosts: EntityState<PostView>;
+  feedPosts: EntityState<PostView>;
   currentPost: EntityId;
   page: number;
   loading: "idle" | "pending" | "succeeded" | "failed";
@@ -25,7 +25,7 @@ export type FeedState = {
 };
 
 const initialState: FeedState = {
-  allPosts: allPostsAdapter.getInitialState(),
+  feedPosts: allPostsAdapter.getInitialState(),
   currentPost: 2607271,
   page: 1,
   loading: "idle",
@@ -45,7 +45,7 @@ export const feedSlice = createSlice({
     },
     updateFeedBySort(state) {
       state.page = 1;
-      allPostsAdapter.setAll(state.allPosts, []);
+      allPostsAdapter.setAll(state.feedPosts, []);
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<FeedState>) => {
@@ -53,8 +53,8 @@ export const feedSlice = createSlice({
       state.loading = "pending";
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
-      state.allPosts &&
-        allPostsAdapter.upsertMany(state.allPosts, action.payload);
+      state.feedPosts &&
+        allPostsAdapter.upsertMany(state.feedPosts, action.payload);
       state.loading = "succeeded";
       state.page++;
     });
