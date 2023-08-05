@@ -3,8 +3,8 @@ import React, { FC, useCallback, useEffect } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Separator } from "@/app/components/Separator";
 import { CommentThread } from "@/app/screens/Post/CommentThread";
-import { Separator } from "@/components/app/Separator";
 import { fetchComments } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
 

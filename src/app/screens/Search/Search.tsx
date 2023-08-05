@@ -2,10 +2,10 @@ import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 
-import { OptionsItem } from "@/components/app/OptionsItem";
-import { View } from "@/components/common/View";
-import { useThemeColor } from "@/components/theming/useThemeColor";
+import { OptionsItem } from "@/app/components/OptionsItem";
+import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
+import { useThemeColor } from "@/theming/useThemeColor";
 
 export const Search = () => {
   //todo show trending communities

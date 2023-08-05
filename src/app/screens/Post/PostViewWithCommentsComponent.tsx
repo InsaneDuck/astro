@@ -4,10 +4,10 @@ import { PostView } from "lemmy-js-client";
 import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Separator } from "@/app/components/Separator";
+import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
 import { CommentThread } from "@/app/screens/Post/CommentThread";
-import { Separator } from "@/components/app/Separator";
-import { PostViewComponent } from "@/components/app/ViewComponents/PostViewComponent";
-import { Card } from "@/components/common/Cards/Card";
+import { Card } from "@/common/Cards/Card";
 import { fetchComments } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
 

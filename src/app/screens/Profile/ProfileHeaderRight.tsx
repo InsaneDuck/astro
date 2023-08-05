@@ -3,7 +3,7 @@ import React from "react";
 import { Button, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
-import { Icon } from "@/components/common/Icon";
+import { Icon } from "@/common/Icon";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { RootState } from "@/store/store";
 

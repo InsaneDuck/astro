@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { CommunitySearchResultItem } from "@/app/screens/Search/CommunitySearchResultItem";
-import { View } from "@/components/common/View";
+import { View } from "@/common/View";
 import { fetchAllCommunities } from "@/store/search-slice";
 import { AppDispatch, RootState } from "@/store/store";
 

@@ -2,9 +2,9 @@ import { useNavigation } from "@react-navigation/core";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
+import { CommentsSorter } from "@/app/components/ViewComponents/Post/CommentsSorter";
 import { PostViewWithCommentsComponent } from "@/app/screens/Post/PostViewWithCommentsComponent";
-import { CommentsSorter } from "@/components/app/ViewComponents/Post/CommentsSorter";
-import { View } from "@/components/common/View";
+import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { RootState } from "@/store/store";
 

@@ -2,8 +2,8 @@ import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { OptionsItem } from "@/components/app/OptionsItem";
-import { View } from "@/components/common/View";
+import { OptionsItem } from "@/app/components/OptionsItem";
+import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 
 type SettingsProps = object;

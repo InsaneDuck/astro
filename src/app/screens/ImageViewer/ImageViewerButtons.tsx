@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Icon } from "@/components/common/Icon";
-import { useThemeColor } from "@/components/theming/useThemeColor";
+import { Icon } from "@/common/Icon";
+import { useThemeColor } from "@/theming/useThemeColor";
 
 export const ImageViewerButtons = () => {
   const iconColor = useThemeColor("tint");

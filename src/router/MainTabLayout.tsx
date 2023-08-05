@@ -4,9 +4,9 @@ import {
 } from "@react-navigation/bottom-tabs";
 import React from "react";
 
-import { Icon } from "@/components/common/Icon";
-import { useThemeColor } from "@/components/theming/useThemeColor";
+import { Icon } from "@/common/Icon";
 import { SubStackLayout } from "@/router/SubStackLayout";
+import { useThemeColor } from "@/theming/useThemeColor";
 
 export type MainTabsParamsList = {
   FeedStack: undefined;

@@ -4,6 +4,10 @@ import {
 } from "@react-navigation/native-stack";
 import React, { FC } from "react";
 
+import { LoginSignUp } from "@/app/components/LoginSignUp";
+import { CommunityViewComponent } from "@/app/components/ViewComponents/CommunityViewComponent";
+import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
+import { UserViewComponent } from "@/app/components/ViewComponents/UserViewComponent";
 import { Inbox } from "@/app/screens/Inbox/Inbox";
 import { MainFeed } from "@/app/screens/MainFeed";
 import { Post } from "@/app/screens/Post/Post";
@@ -22,10 +26,6 @@ import { General } from "@/app/screens/Settings/General";
 import { Rate } from "@/app/screens/Settings/Rate";
 import { Settings } from "@/app/screens/Settings/Settings";
 import { Tip } from "@/app/screens/Settings/Tip";
-import { LoginSignUp } from "@/components/app/LoginSignUp";
-import { CommunityViewComponent } from "@/components/app/ViewComponents/CommunityViewComponent";
-import { FeedSorter } from "@/components/app/ViewComponents/Feed/FeedSorter";
-import { UserViewComponent } from "@/components/app/ViewComponents/UserViewComponent";
 
 type SubStackLayoutProps = {
   initialRoute: keyof SubStackParamsList;

@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 
-import { Loading } from "@/components/common/Loading";
-import { View } from "@/components/common/View";
+import { Loading } from "@/common/Loading";
+import { View } from "@/common/View";
 
 export const Inbox = () => {
   return (

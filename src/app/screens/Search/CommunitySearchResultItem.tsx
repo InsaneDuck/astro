@@ -4,10 +4,10 @@ import React, { FC } from "react";
 import { TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
-import { CommunityButton } from "@/components/app/Buttons/CommunityButton";
-import { Text } from "@/components/common/Text";
-import { useThemeColor } from "@/components/theming/useThemeColor";
+import { CommunityButton } from "@/app/components/Buttons/CommunityButton";
+import { Text } from "@/common/Text";
 import { RootState } from "@/store/store";
+import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommunitySearchResultItemProps = { communityId: EntityId };
 

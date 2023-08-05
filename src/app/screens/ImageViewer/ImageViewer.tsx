@@ -2,7 +2,7 @@ import React from "react";
 import { Dimensions, Image } from "react-native";
 import { useSelector } from "react-redux";
 
-import { View } from "@/components/common/View";
+import { View } from "@/common/View";
 import { RootState } from "@/store/store";
 
 export const ImageViewer = () => {

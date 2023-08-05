@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, Switch } from "react-native";
 
-import { OptionsItem } from "@/components/app/OptionsItem";
-import { Text } from "@/components/common/Text";
-import { View } from "@/components/common/View";
+import { OptionsItem } from "@/app/components/OptionsItem";
+import { Text } from "@/common/Text";
+import { View } from "@/common/View";
 
 export const Appearance = () => {
   return (

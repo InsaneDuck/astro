@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Text } from "@/components/common/Text";
-import { View } from "@/components/common/View";
+import { Text } from "@/common/Text";
+import { View } from "@/common/View";
 
 export const ProfileSettings = () => {
   return (
