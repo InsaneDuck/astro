@@ -1,16 +1,17 @@
-import { Icon } from "@/components/common/Icon";
-import { Text } from "@/components/common/Text";
-import { View } from "@/components/common/View";
-import { ConstantColors } from "@/components/theming/Colors";
-import { useThemeColor } from "@/components/theming/useThemeColor";
-import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
-import { AppDispatch } from "@/store/store";
-import { userActions } from "@/store/user-slice";
 import { useNavigation } from "@react-navigation/core";
 import { Person } from "lemmy-js-client";
 import React, { FC } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
+
+import { Icon } from "@/components/common/Icon";
+import { Text } from "@/components/common/Text";
+import { View } from "@/components/common/View";
+import { ConstantColors } from "@/components/theming/Colors";
+import { useThemeColor } from "@/components/theming/useThemeColor";
+import { SubStackNavigation } from "@/router/SubStackLayout";
+import { AppDispatch } from "@/store/store";
+import { userActions } from "@/store/user-slice";
 
 type UserButtonProps = {
   creator: Person;
@@ -19,9 +20,8 @@ type UserButtonProps = {
 //todo show tags like mod?, op?
 export const UserButton: FC<UserButtonProps> = (props) => {
   const { creator } = props;
-  const textColor = useThemeColor("text");
   const tabIconDefault = useThemeColor("tabIconDefault");
-  const navigation = useNavigation<FeedStackNavigation>();
+  const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
   const goToUser = (): any => {
     dispatch(userActions.setUser(creator));
@@ -34,7 +34,7 @@ export const UserButton: FC<UserButtonProps> = (props) => {
           <Image source={{ uri: creator.avatar }} style={styles.image} />
         ) : (
           <Icon
-            icon={"user"}
+            icon="user"
             color={tabIconDefault}
             size={18}
             style={styles.image}

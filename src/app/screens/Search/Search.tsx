@@ -5,7 +5,7 @@ import { StyleSheet, TextInput } from "react-native";
 import { OptionsItem } from "@/components/app/OptionsItem";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
-import { SearchStackNavigation } from "@/router/tabs/SearchStackLayout";
+import { SubStackNavigation } from "@/router/SubStackLayout";
 
 export const Search = () => {
   //todo show trending communities
@@ -22,7 +22,7 @@ export const Search = () => {
   };
 
   const AllCommunities = () => {
-    const navigation = useNavigation<SearchStackNavigation>();
+    const navigation = useNavigation<SubStackNavigation>();
     const goToALlCommunities = (): any => {
       navigation.navigate("AllCommunities");
     };

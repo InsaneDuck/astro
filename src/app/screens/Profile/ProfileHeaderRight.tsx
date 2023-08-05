@@ -4,14 +4,14 @@ import { Button, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
 import { Icon } from "@/components/common/Icon";
-import { ProfileStackNavigation } from "@/router/tabs/ProfileStackLayout";
+import { SubStackNavigation } from "@/router/SubStackLayout";
 import { RootState } from "@/store/store";
 
 export const ProfileHeaderRight = () => {
   const loggedInStatus = useSelector(
     (state: RootState) => state.auth.authStatus,
   );
-  const navigation = useNavigation<ProfileStackNavigation>();
+  const navigation = useNavigation<SubStackNavigation>();
   const onPress = (): any => {
     navigation.navigate("ProfileSettings");
   };

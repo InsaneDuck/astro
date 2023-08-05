@@ -9,7 +9,7 @@ import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { ConstantColors } from "@/components/theming/Colors";
 import { useThemeColor } from "@/components/theming/useThemeColor";
-import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
+import { SubStackNavigation } from "@/router/SubStackLayout";
 import { communityActions } from "@/store/community-slice";
 import { AppDispatch } from "@/store/store";
 
@@ -20,7 +20,7 @@ type CommunityButtonProps = {
 export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   const { community } = props;
   const tabIconDefault = useThemeColor("tabIconDefault");
-  const navigation = useNavigation<FeedStackNavigation>();
+  const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
   const goToCommunity = (): any => {
     dispatch(communityActions.setCommunity(community));

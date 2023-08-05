@@ -6,11 +6,7 @@ import React from "react";
 
 import { Icon } from "@/components/common/Icon";
 import { useThemeColor } from "@/components/theming/useThemeColor";
-import { InboxStackLayout } from "@/router/tabs/InboxStackLayout";
-import { ProfileStackLayout } from "@/router/tabs/ProfileStackLayout";
-import { SearchStackLayout } from "@/router/tabs/SearchStackLayout";
-import { SettingsStackLayout } from "@/router/tabs/SettingsStackLayout";
-import { SubStackLayout } from "@/router/tabs/SubStackLayout";
+import { SubStackLayout } from "@/router/SubStackLayout";
 
 export type MainTabsParamsList = {
   FeedStack: undefined;
@@ -54,7 +50,7 @@ export const MainTabLayout = () => {
 
       <Tabs.Screen
         name="SearchStack"
-        component={SearchStackLayout}
+        children={() => <SubStackLayout initialRoute="Search" />}
         options={{
           tabBarLabel: "Search",
           tabBarIcon: ({ color }) => <Icon icon="search" color={color} />,
@@ -62,7 +58,7 @@ export const MainTabLayout = () => {
       />
       <Tabs.Screen
         name="InboxStack"
-        component={InboxStackLayout}
+        children={() => <SubStackLayout initialRoute="Inbox" />}
         options={{
           tabBarLabel: "Inbox",
           tabBarIcon: ({ color }) => <Icon icon="inbox" color={color} />,
@@ -70,7 +66,7 @@ export const MainTabLayout = () => {
       />
       <Tabs.Screen
         name="ProfileStack"
-        component={ProfileStackLayout}
+        children={() => <SubStackLayout initialRoute="Profile" />}
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color }) => <Icon icon="user" color={color} />,
@@ -79,7 +75,7 @@ export const MainTabLayout = () => {
 
       <Tabs.Screen
         name="SettingsStack"
-        component={SettingsStackLayout}
+        children={() => <SubStackLayout initialRoute="Settings" />}
         options={{
           tabBarLabel: "Settings",
           tabBarIcon: ({ color }) => <Icon icon="gear" color={color} />,

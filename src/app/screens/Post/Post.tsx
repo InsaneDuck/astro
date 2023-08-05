@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { PostViewWithCommentsComponent } from "@/app/screens/Post/PostViewWithCommentsComponent";
 import { CommentsSorter } from "@/components/app/ViewComponents/Post/CommentsSorter";
 import { View } from "@/components/common/View";
-import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
+import { SubStackNavigation } from "@/router/SubStackLayout";
 import { RootState } from "@/store/store";
 
 /**
@@ -16,7 +16,7 @@ export const Post = () => {
   const post = useSelector(
     (state: RootState) => state.feed.feedPosts?.entities[postId.toString()],
   );
-  const navigation = useNavigation<FeedStackNavigation>();
+  const navigation = useNavigation<SubStackNavigation>();
 
   useEffect(() => {
     navigation.setOptions({

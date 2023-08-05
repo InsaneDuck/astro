@@ -13,7 +13,7 @@ import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
 import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
 import { MainStackNavigation } from "@/router/MainStackLayout";
-import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
+import { SubStackNavigation } from "@/router/SubStackLayout";
 import { imageActions } from "@/store/image-slice";
 import { postActions } from "@/store/post-slice";
 import { AppDispatch } from "@/store/store";
@@ -37,7 +37,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const { postView, type } = props;
     const tabIconDefault = useThemeColor("tabIconDefault");
     const navigation = useNavigation<MainStackNavigation>();
-    const navigationCurrent = useNavigation<FeedStackNavigation>();
+    const navigationCurrent = useNavigation<SubStackNavigation>();
     const dispatch = useDispatch<AppDispatch>();
     const onImagePress = (): any => {
       if (postView.post?.thumbnail_url) {

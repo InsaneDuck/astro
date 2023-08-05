@@ -4,12 +4,12 @@ import { StyleSheet } from "react-native";
 
 import { OptionsItem } from "@/components/app/OptionsItem";
 import { View } from "@/components/common/View";
-import { SettingsStackNavigation } from "@/router/tabs/SettingsStackLayout";
+import { SubStackNavigation } from "@/router/SubStackLayout";
 
 type SettingsProps = object;
 
 export const Settings: FC<SettingsProps> = () => {
-  const navigation = useNavigation<SettingsStackNavigation>();
+  const navigation = useNavigation<SubStackNavigation>();
 
   return (
     <View style={styles.container}>
