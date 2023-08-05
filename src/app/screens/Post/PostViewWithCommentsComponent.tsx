@@ -1,16 +1,15 @@
+import { EntityId } from "@reduxjs/toolkit";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { PostView } from "lemmy-js-client";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { CommentThread } from "@/app/screens/Post/CommentThread";
 import { Separator } from "@/components/app/Separator";
 import { PostViewComponent } from "@/components/app/ViewComponents/PostViewComponent";
 import { Card } from "@/components/common/Cards/Card";
 import { fetchComments } from "@/store/post-slice";
-
 import { AppDispatch, RootState } from "@/store/store";
-import { EntityId } from "@reduxjs/toolkit";
-import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { PostView } from "lemmy-js-client";
-import React, { FC, useCallback, useEffect, useMemo } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
 
 type CommentsSectionProps = {
   postId: EntityId;
@@ -46,7 +45,7 @@ export const PostViewWithCommentsComponent: FC<CommentsSectionProps> =
     const PostHeader = useMemo(() => {
       return (
         <Card>
-          {<PostViewComponent postView={props.postView} type={"post"} />}
+          <PostViewComponent postView={props.postView} type="post" />
         </Card>
       );
     }, [props.postView]);

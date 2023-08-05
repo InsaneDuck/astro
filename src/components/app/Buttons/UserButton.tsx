@@ -20,6 +20,7 @@ type UserButtonProps = {
 export const UserButton: FC<UserButtonProps> = (props) => {
   const { creator } = props;
   const textColor = useThemeColor("text");
+  const tabIconDefault = useThemeColor("tabIconDefault");
   const navigation = useNavigation<FeedStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
   const goToUser = (): any => {
@@ -34,7 +35,7 @@ export const UserButton: FC<UserButtonProps> = (props) => {
         ) : (
           <Icon
             icon={"user"}
-            color={textColor}
+            color={tabIconDefault}
             size={18}
             style={styles.image}
           />
@@ -44,11 +45,11 @@ export const UserButton: FC<UserButtonProps> = (props) => {
       <Text
         style={{
           fontSize: 18,
-          marginLeft: 5,
+          paddingLeft: 3,
           color: ConstantColors.iosBlue,
         }}
       >
-        {creator.name}
+        {creator.display_name ? creator.display_name : creator.name}
       </Text>
     </TouchableOpacity>
   );

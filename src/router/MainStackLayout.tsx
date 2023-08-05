@@ -1,8 +1,3 @@
-import { Error } from "@/app/screens/Error";
-import { ImageViewer } from "@/app/screens/ImageViewer/ImageViewer";
-import { ImageViewerButtons } from "@/app/screens/ImageViewer/ImageViewerButtons";
-import { TestScreen } from "@/app/screens/TestScreen";
-import { MainTabLayout } from "@/router/MainTabLayout";
 import {
   DarkTheme,
   DefaultTheme,
@@ -16,7 +11,13 @@ import {
 import React, { FC } from "react";
 import { useColorScheme } from "react-native";
 
-type LayoutProps = {};
+import { Error } from "@/app/screens/Error";
+import { ImageViewer } from "@/app/screens/ImageViewer/ImageViewer";
+import { ImageViewerButtons } from "@/app/screens/ImageViewer/ImageViewerButtons";
+import { TestScreen } from "@/app/screens/TestScreen";
+import { MainTabLayout } from "@/router/MainTabLayout";
+
+type LayoutProps = object;
 
 export type MainStackParamList = {
   Home: undefined;
@@ -35,16 +36,16 @@ export const MainStackLayout: FC<LayoutProps> = () => {
       <NavigationContainer
         theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >
-        <MainStack.Navigator initialRouteName={"Home"}>
+        <MainStack.Navigator initialRouteName="Home">
           <MainStack.Screen
-            name={"Home"}
+            name="Home"
             component={MainTabLayout}
             options={{
               headerShown: false,
             }}
           />
           <MainStack.Screen
-            name={"ImageViewer"}
+            name="ImageViewer"
             component={ImageViewer}
             options={{
               presentation: "card",
@@ -53,12 +54,12 @@ export const MainStackLayout: FC<LayoutProps> = () => {
             }}
           />
           <MainStack.Screen
-            name={"Error"}
+            name="Error"
             component={Error}
             options={{ title: "Oops!" }}
           />
           <MainStack.Screen
-            name={"Test"}
+            name="Test"
             component={TestScreen}
             options={{ title: "Oops!" }}
           />

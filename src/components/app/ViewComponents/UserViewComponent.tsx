@@ -1,3 +1,9 @@
+import { useNavigation } from "@react-navigation/core";
+import moment from "moment";
+import React, { FC, useEffect } from "react";
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { useSelector } from "react-redux";
+
 import { OptionsItem } from "@/components/app/OptionsItem";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
@@ -5,13 +11,7 @@ import { View } from "@/components/common/View";
 import { ConstantColors } from "@/components/theming/Colors";
 import { useThemeColor } from "@/components/theming/useThemeColor";
 import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
-
 import { RootState } from "@/store/store";
-import { useNavigation } from "@react-navigation/core";
-import moment from "moment";
-import React, { FC, useEffect } from "react";
-import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { useSelector } from "react-redux";
 
 type UserViewComponentProps = {
   userType: "primary" | "clicked";
@@ -20,7 +20,7 @@ type UserViewComponentProps = {
 export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const { userType } = props;
   const user = useSelector((state: RootState) => state.user.currentUser);
-  let domain = getBaseDomainFromUrl(user.actor_id);
+  const domain = getBaseDomainFromUrl(user.actor_id);
   const tabIconDefault = useThemeColor("tabIconDefault");
   const borderColor = useThemeColor("borderColor");
   const navigation = useNavigation();
@@ -56,14 +56,14 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
 
   const UserAvatar = () => {
     return (
-      <View style={[styles.userAvatar, { borderColor: borderColor }]}>
+      <View style={[styles.userAvatar, { borderColor }]}>
         {user?.avatar ? (
           <Image
             source={{ uri: user.avatar }}
             style={{ width: "100%", height: "100%" }}
           />
         ) : (
-          <Icon icon={"user"} color={tabIconDefault} size={75} />
+          <Icon icon="user" color={tabIconDefault} size={75} />
         )}
       </View>
     );
@@ -81,8 +81,8 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
         </Text>
         <Text style={{ fontSize: 15 }}>
           <Icon
-            icon={"cake"}
-            color={"#ccc"}
+            icon="cake"
+            color="#ccc"
             size={14}
             style={{ marginRight: 10 }}
           />
@@ -136,10 +136,10 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const UserFooter = () => {
     return (
       <View style={styles.userFooter}>
-        <OptionsItem title={"Overview"} />
-        <OptionsItem title={"Comments"} />
-        <OptionsItem title={"Posts"} />
-        {userType === "primary" && <OptionsItem title={"Saved"} />}
+        <OptionsItem title="Overview" />
+        <OptionsItem title="Comments" />
+        <OptionsItem title="Posts" />
+        {userType === "primary" && <OptionsItem title="Saved" />}
       </View>
     );
   };

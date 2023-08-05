@@ -1,14 +1,13 @@
-import { Icon } from "@/components/common/Icon";
-import { ProfileStackNavigation } from "@/router/tabs/ProfileStackLayout";
-import { RootState } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
-import React, { FC } from "react";
+import React from "react";
 import { Button, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
-type ProfileHeaderRightProps = {};
+import { Icon } from "@/components/common/Icon";
+import { ProfileStackNavigation } from "@/router/tabs/ProfileStackLayout";
+import { RootState } from "@/store/store";
 
-export const ProfileHeaderRight: FC<ProfileHeaderRightProps> = (props) => {
+export const ProfileHeaderRight = () => {
   const loggedInStatus = useSelector(
     (state: RootState) => state.auth.authStatus,
   );
@@ -21,9 +20,9 @@ export const ProfileHeaderRight: FC<ProfileHeaderRightProps> = (props) => {
   };
   return (
     <TouchableOpacity onPress={onPress}>
-      {loggedInStatus === "loggedIn" && <Icon icon={"gear"} color={"#ccc"} />}
+      {loggedInStatus === "loggedIn" && <Icon icon="gear" color="#ccc" />}
       {loggedInStatus === "anonymous" && (
-        <Button title={"Login / Signup"} onPress={login} />
+        <Button title="Login / Signup" onPress={login} />
       )}
     </TouchableOpacity>
   );

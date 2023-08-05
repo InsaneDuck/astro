@@ -1,7 +1,5 @@
-import React, { FC } from "react";
+import React from "react";
 
-type AccountsProps = {};
-
-export const Accounts: FC<AccountsProps> = (props) => {
+export const Accounts = () => {
   return <></>;
 };

@@ -1,12 +1,15 @@
-import {communityReducers} from '@/store/community-slice';
-import {feedReducers} from '@/store/feed-slice';
-import {imageReducers} from '@/store/image-slice';
-import {postReducers} from '@/store/post-slice';
-import {settingsReducers} from '@/store/settings-slice';
-import {themeReducers} from '@/store/theme-slice';
-import {userReducers} from '@/store/user-slice';
-import {configureStore} from '@reduxjs/toolkit';
-import {authReducers} from './auth-slice';
+import { configureStore } from "@reduxjs/toolkit";
+
+import { authReducers } from "./auth-slice";
+
+import { communityReducers } from "@/store/community-slice";
+import { feedReducers } from "@/store/feed-slice";
+import { imageReducers } from "@/store/image-slice";
+import { postReducers } from "@/store/post-slice";
+import { settingsReducers } from "@/store/settings-slice";
+import { themeReducers } from "@/store/theme-slice";
+import { userReducers } from "@/store/user-slice";
+
 //todo remove middleware later
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>

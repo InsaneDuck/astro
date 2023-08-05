@@ -1,5 +1,3 @@
-import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
-import { RootState } from "@/store/store";
 import {
   createAsyncThunk,
   createEntityAdapter,
@@ -14,6 +12,9 @@ import {
   GetComments,
   PostView,
 } from "lemmy-js-client";
+
+import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
+import { RootState } from "@/store/store";
 
 const allCommentsAdapter = createEntityAdapter<CommentView>({
   selectId: (commentView) => commentView.comment.id,

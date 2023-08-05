@@ -1,6 +1,6 @@
 export type User = {
-    userName: string,
-    password: string,
-    jwt: string,
-    serverUrl: string
-}
+  userName: string;
+  password: string;
+  jwt: string;
+  serverUrl: string;
+};

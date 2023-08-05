@@ -1,15 +1,14 @@
-import { MainFeed } from "@/app/screens/MainFeed";
-import { Post } from "@/app/screens/Post/Post";
-import { CommunityViewComponent } from "@/components/app/ViewComponents/CommunityViewComponent";
-import { FeedSorter } from "@/components/app/ViewComponents/Feed/FeedSorter";
-
-import { UserViewComponent } from "@/components/app/ViewComponents/UserViewComponent";
-
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import React from "react";
+
+import { MainFeed } from "@/app/screens/MainFeed";
+import { Post } from "@/app/screens/Post/Post";
+import { CommunityViewComponent } from "@/components/app/ViewComponents/CommunityViewComponent";
+import { FeedSorter } from "@/components/app/ViewComponents/Feed/FeedSorter";
+import { UserViewComponent } from "@/components/app/ViewComponents/UserViewComponent";
 
 export type FeedStackParamList = {
   Feed: undefined;
@@ -22,32 +21,26 @@ export type FeedStackNavigation = NativeStackNavigationProp<FeedStackParamList>;
 const FeedStack = createNativeStackNavigator<FeedStackParamList>();
 export const FeedStackLayout = () => {
   return (
-    <FeedStack.Navigator initialRouteName={"Feed"}>
+    <FeedStack.Navigator initialRouteName="Feed">
       <FeedStack.Screen
-        name={"Feed"}
-        children={MainFeed}
+        name="Feed"
+        component={MainFeed}
         options={{
           title: "Feed",
           headerRight: FeedSorter,
         }}
       />
+      <FeedStack.Screen name="Post" component={Post} />
       <FeedStack.Screen
-        name={"Post"}
-        children={Post}
-        options={{
-          title: "Post",
-        }}
-      />
-      <FeedStack.Screen
-        name={"User"}
-        children={() => <UserViewComponent userType={"clicked"} />}
+        name="User"
+        children={() => <UserViewComponent userType="clicked" />}
         options={{
           title: "User",
         }}
       />
       <FeedStack.Screen
-        name={"Community"}
-        children={CommunityViewComponent}
+        name="Community"
+        component={CommunityViewComponent}
         options={{
           title: "Community",
         }}

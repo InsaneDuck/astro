@@ -1,17 +1,16 @@
-import { Icon } from "@/components/common/Icon";
+import {
+  BottomTabNavigationProp,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
+import React from "react";
 
+import { Icon } from "@/components/common/Icon";
 import { useThemeColor } from "@/components/theming/useThemeColor";
 import { FeedStackLayout } from "@/router/tabs/FeedStackLayout";
 import { InboxStackLayout } from "@/router/tabs/InboxStackLayout";
 import { ProfileStackLayout } from "@/router/tabs/ProfileStackLayout";
 import { SearchStackLayout } from "@/router/tabs/SearchStackLayout";
 import { SettingsStackLayout } from "@/router/tabs/SettingsStackLayout";
-
-import {
-  BottomTabNavigationProp,
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
-import React from "react";
 
 export type MainTabsParamsList = {
   FeedStack: undefined;
@@ -33,7 +32,7 @@ export const MainTabLayout = () => {
         tabBarActiveTintColor: colorScheme,
         headerShown: false,
       }}
-      initialRouteName={"ProfileStack"}
+      initialRouteName="ProfileStack"
     >
       <Tabs.Screen
         name="FeedStack"
@@ -72,7 +71,7 @@ export const MainTabLayout = () => {
         component={SettingsStackLayout}
         options={{
           tabBarLabel: "Settings",
-          tabBarIcon: ({ color }) => <Icon icon={"gear"} color={color} />,
+          tabBarIcon: ({ color }) => <Icon icon="gear" color={color} />,
         }}
       />
     </Tabs.Navigator>

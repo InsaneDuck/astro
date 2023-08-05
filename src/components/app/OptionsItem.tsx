@@ -1,10 +1,11 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import React, { FC, ReactNode } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { ClickProps } from "@/components/theming/Themed";
 import { useThemeColor } from "@/components/theming/useThemeColor";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import React, { FC, ReactNode } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
 
 type OptionsItemProps = {
   title: string;
@@ -31,7 +32,7 @@ export const OptionsItem: FC<OptionsItemProps> = (props) => {
       {props.children ? (
         props.children
       ) : (
-        <Icon icon={"chevron-right"} color={textColor} size={15} />
+        <Icon icon="chevron-right" color={textColor} size={15} />
       )}
     </TouchableOpacity>
   );

@@ -1,7 +1,8 @@
-import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
-import { RootState } from "@/store/store";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GetPersonDetailsResponse, Person } from "lemmy-js-client";
+
+import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
+import { RootState } from "@/store/store";
 
 export type UserState = {
   currentUser: Person;

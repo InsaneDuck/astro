@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type ThemeState = {};
+export type ThemeState = object;
 
 const initialState: ThemeState = {};
 

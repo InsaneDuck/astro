@@ -1,10 +1,11 @@
+import { EntityId } from "@reduxjs/toolkit";
+import React, { FC } from "react";
+import { useSelector } from "react-redux";
+
 import { PostViewComponent } from "@/components/app/ViewComponents/PostViewComponent";
 import { SwipeableCard } from "@/components/common/Cards/SwipeableCard";
 import { Text } from "@/components/common/Text";
 import { RootState } from "@/store/store";
-import { EntityId } from "@reduxjs/toolkit";
-import React, { FC } from "react";
-import { useSelector } from "react-redux";
 
 type FeedCardProps = {
   postId: EntityId;
@@ -16,7 +17,7 @@ const propsAreEqual = (
 ) => {
   return previousProps.postId === currentProps.postId;
 };
-let count = 0;
+const count = 0;
 export const FeedCard: FC<FeedCardProps> = React.memo((props) => {
   const post = useSelector(
     (state: RootState) =>
@@ -27,7 +28,7 @@ export const FeedCard: FC<FeedCardProps> = React.memo((props) => {
   return (
     <SwipeableCard>
       {post ? (
-        <PostViewComponent postView={post} type={"feed"} />
+        <PostViewComponent postView={post} type="feed" />
       ) : (
         <Text>Loading</Text>
       )}

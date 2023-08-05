@@ -1,7 +1,5 @@
-import React, { FC } from "react";
+import React from "react";
 
-type FiltersProps = {};
-
-export const Filters: FC<FiltersProps> = (props) => {
+export const Filters = () => {
   return <></>;
 };

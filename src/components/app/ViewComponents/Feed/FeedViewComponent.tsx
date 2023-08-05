@@ -1,13 +1,14 @@
+import { EntityId } from "@reduxjs/toolkit";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
+import { FlatList, ListRenderItemInfo } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Separator } from "@/components/app/Separator";
 import { FeedCard } from "@/components/app/ViewComponents/Feed/FeedCard";
 import { Loading } from "@/components/common/Loading";
 import { View } from "@/components/common/View";
 import { feedActions, fetchPosts } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
-import { EntityId } from "@reduxjs/toolkit";
-import React, { FC, useCallback, useEffect, useMemo } from "react";
-import { FlatList, ListRenderItemInfo } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 
 type FeedViewComponentProps = {
   feedType: "primary" | "community" | "user";
@@ -17,7 +18,6 @@ export const FeedViewComponent: FC<FeedViewComponentProps> = (props) => {
   const {
     feedPosts: feed,
     loading,
-    page,
     error,
   } = useSelector((state: RootState) => {
     switch (props.feedType) {

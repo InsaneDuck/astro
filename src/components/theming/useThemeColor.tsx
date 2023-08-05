@@ -1,5 +1,6 @@
-import Colors from '@/components/theming/Colors';
-import {useColorScheme} from 'react-native';
+import { useColorScheme } from "react-native";
+
+import Colors from "@/components/theming/Colors";
 
 /**
  * Learn more about Light and Dark modes:

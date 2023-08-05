@@ -1,7 +1,5 @@
-import React, { FC } from "react";
+import React from "react";
 
-type ExportImportProps = {};
-
-export const ExportImport: FC<ExportImportProps> = (props) => {
+export const ExportImport = () => {
   return <></>;
 };

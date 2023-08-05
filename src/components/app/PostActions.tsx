@@ -1,11 +1,12 @@
+import { PostAggregates } from "lemmy-js-client";
+import React, { FC } from "react";
+import { StyleSheet, TouchableOpacity, Vibration } from "react-native";
+
 import { Separator } from "@/components/app/Separator";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
-import { PostAggregates } from "lemmy-js-client";
-import React, { FC } from "react";
-import { StyleSheet, TouchableOpacity, Vibration } from "react-native";
 
 type PostActionsProps = {
   postAggregates: PostAggregates;
@@ -28,7 +29,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           styles.perView,
         ]}
       >
-        <Icon icon={"arrow-up"} color={textColor} size={iconSize} />
+        <Icon icon="arrow-up" color={textColor} size={iconSize} />
         <Text style={styles.text}>
           {postAggregates.upvotes < 1000
             ? postAggregates.upvotes
@@ -48,7 +49,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           styles.perView,
         ]}
       >
-        <Icon icon={"arrow-down"} color={textColor} size={iconSize} />
+        <Icon icon="arrow-down" color={textColor} size={iconSize} />
         <Text style={styles.text}>{postAggregates.downvotes}</Text>
       </TouchableOpacity>
     );
@@ -64,7 +65,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           styles.perView,
         ]}
       >
-        <Icon icon={"bookmark"} color={textColor} size={iconSize} />
+        <Icon icon="bookmark" color={textColor} size={iconSize} />
       </TouchableOpacity>
     );
   };
@@ -79,7 +80,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
           styles.perView,
         ]}
       >
-        <Icon icon={"reply"} color={textColor} size={iconSize} />
+        <Icon icon="reply" color={textColor} size={iconSize} />
       </TouchableOpacity>
     );
   };
@@ -87,7 +88,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
   const MoreOptions = () => {
     return (
       <TouchableOpacity style={[styles.perView]}>
-        <Icon icon={"ellipsis"} color={textColor} size={iconSize} />
+        <Icon icon="ellipsis" color={textColor} size={iconSize} />
       </TouchableOpacity>
     );
   };

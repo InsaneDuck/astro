@@ -1,14 +1,14 @@
-import { CommentThread } from "@/app/screens/Post/CommentThread";
-import { Separator } from "@/components/app/Separator";
-import { fetchComments } from "@/store/post-slice";
-
-import { AppDispatch, RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC, useCallback, useEffect } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-type TestScreenProps = {};
+import { CommentThread } from "@/app/screens/Post/CommentThread";
+import { Separator } from "@/components/app/Separator";
+import { fetchComments } from "@/store/post-slice";
+import { AppDispatch, RootState } from "@/store/store";
+
+type TestScreenProps = object;
 
 export const TestScreen: FC<TestScreenProps> = (props) => {
   const postId = useSelector((state: RootState) => state.post.postId);

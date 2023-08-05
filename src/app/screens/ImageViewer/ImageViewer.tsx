@@ -1,12 +1,11 @@
-import { View } from "@/components/common/View";
-import { RootState } from "@/store/store";
-import React, { FC } from "react";
+import React from "react";
 import { Dimensions, Image } from "react-native";
 import { useSelector } from "react-redux";
 
-type ImageViewerProps = {};
+import { View } from "@/components/common/View";
+import { RootState } from "@/store/store";
 
-export const ImageViewer: FC<ImageViewerProps> = () => {
+export const ImageViewer = () => {
   const imageUrls = useSelector((state: RootState) => state.image.image);
   const deviceHeight = Dimensions.get("window").height;
   // const [height, setHeight] = useState(0);

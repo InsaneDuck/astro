@@ -1,24 +1,22 @@
+import { useNavigation } from "@react-navigation/core";
+import { PostView } from "lemmy-js-client";
+import React, { FC } from "react";
+import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
+import { useDispatch } from "react-redux";
+
 import { CommunityButton } from "@/components/app/Buttons/CommunityButton";
 import { UserButton } from "@/components/app/Buttons/UserButton";
 import { PostActions } from "@/components/app/PostActions";
-import { Separator } from "@/components/app/Separator";
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
 import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
-
 import { MainStackNavigation } from "@/router/MainStackLayout";
 import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
 import { imageActions } from "@/store/image-slice";
 import { postActions } from "@/store/post-slice";
 import { AppDispatch } from "@/store/store";
-
-import { useNavigation } from "@react-navigation/core";
-import { PostView } from "lemmy-js-client";
-import React, { FC, useCallback } from "react";
-import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
 
 type PostViewComponentProps = {
   postView: PostView;
@@ -37,8 +35,6 @@ const propsAreEqual = (
 export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
   (props) => {
     const { postView, type } = props;
-    const borderColor = useThemeColor("borderColor");
-    const textColor = useThemeColor("text");
     const tabIconDefault = useThemeColor("tabIconDefault");
     const navigation = useNavigation<MainStackNavigation>();
     const navigationCurrent = useNavigation<FeedStackNavigation>();
@@ -52,12 +48,12 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       }
     };
 
-    const goToPost = useCallback((): any => {
+    const goToPost = (): any => {
       if (type === "feed") {
         postView && dispatch(postActions.setCurrentPost(postView.post.id));
         navigationCurrent.navigate("Post");
       }
-    }, [type, postView, dispatch, navigation]);
+    };
 
     //todo change shade of title after post is marked as read
     const PostTitle = () => {
@@ -107,11 +103,11 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const PostFooterLeft = () => {
       return (
         <View style={styles.postFooterItems}>
-          <Icon icon={"message"} color={tabIconDefault} size={16} />
+          <Icon icon="message" color={tabIconDefault} size={16} />
           <Text style={{ fontSize: 18, marginRight: 3, marginLeft: 3 }}>
             {postView.counts.comments}
           </Text>
-          <Icon icon={"clock"} color={tabIconDefault} size={16} />
+          <Icon icon="clock" color={tabIconDefault} size={16} />
           <Text style={{ fontSize: 18, marginLeft: 3 }}>
             {formatTimeToDuration(postView.post.published)}
           </Text>
@@ -138,28 +134,6 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       );
     };
 
-    const CommentSorter = () => {
-      return (
-        <>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: 10,
-              paddingLeft: 20,
-              paddingRight: 20,
-            }}
-          >
-            <Text style={{ fontSize: 18 }}>Sort By</Text>
-            <Icon icon={"sort"} color={textColor} size={18} />
-          </View>
-          <Separator />
-        </>
-      );
-    };
-
     const PostInteraction = () => {
       return type !== "post" ? (
         <></>
@@ -180,7 +154,9 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
         <PostFooter />
         <PostInteraction />
       </>
-    ) : null;
+    ) : (
+      <></>
+    );
   },
   propsAreEqual,
 );
@@ -216,6 +192,7 @@ const styles = StyleSheet.create({
   },
   postFooterItems: {
     paddingTop: 10,
+    paddingRight: 10,
     flexDirection: "row",
     display: "flex",
     alignItems: "center",

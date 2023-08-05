@@ -1,7 +1,5 @@
-import React, { FC } from "react";
+import React from "react";
 
-type FaceIdAndPasscodeProps = {};
-
-export const FaceIdAndPasscode: FC<FaceIdAndPasscodeProps> = (props) => {
+export const FaceIdAndPasscode = () => {
   return <></>;
 };

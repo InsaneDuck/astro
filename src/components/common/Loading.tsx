@@ -1,8 +1,9 @@
-import { useThemeColor } from "@/components/theming/useThemeColor";
 import React, { FC } from "react";
 import { ActivityIndicator } from "react-native";
 
-type LoadingProps = {} & ActivityIndicator["props"];
+import { useThemeColor } from "@/components/theming/useThemeColor";
+
+type LoadingProps = object & ActivityIndicator["props"];
 
 export const Loading: FC<LoadingProps> = (props) => {
   const color = useThemeColor("tabIconDefault");

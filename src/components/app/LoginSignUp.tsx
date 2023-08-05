@@ -1,10 +1,11 @@
-import { View } from "@/components/common/View";
-import { useThemeColor } from "@/components/theming/useThemeColor";
 import { useNavigation } from "@react-navigation/core";
 import React, { FC, useEffect } from "react";
 import { StyleSheet, TextInput } from "react-native";
 
-type LoginSignUpProps = {};
+import { View } from "@/components/common/View";
+import { useThemeColor } from "@/components/theming/useThemeColor";
+
+type LoginSignUpProps = object;
 
 export const LoginSignUp: FC<LoginSignUpProps> = (props) => {
   const color = useThemeColor("borderColor");
@@ -18,18 +19,18 @@ export const LoginSignUp: FC<LoginSignUpProps> = (props) => {
     <View style={styles.container}>
       <TextInput
         style={[styles.loginInput, { backgroundColor: color }]}
-        placeholder={"Server"}
-        clearButtonMode={"always"}
+        placeholder="Server"
+        clearButtonMode="always"
       />
       <TextInput
         style={[styles.loginInput, { backgroundColor: color }]}
-        placeholder={"Username"}
-        clearButtonMode={"always"}
+        placeholder="Username"
+        clearButtonMode="always"
       />
       <TextInput
         style={[styles.loginInput, { backgroundColor: color }]}
-        placeholder={"Password"}
-        clearButtonMode={"always"}
+        placeholder="Password"
+        clearButtonMode="always"
       />
     </View>
   );

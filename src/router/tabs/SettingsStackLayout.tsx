@@ -1,3 +1,9 @@
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
+import React, { FC } from "react";
+
 import { About } from "@/app/screens/Settings/About";
 import { Accounts } from "@/app/screens/Settings/Accounts";
 import { Appearance } from "@/app/screens/Settings/Appearance";
@@ -8,12 +14,6 @@ import { General } from "@/app/screens/Settings/General";
 import { Rate } from "@/app/screens/Settings/Rate";
 import { Settings } from "@/app/screens/Settings/Settings";
 import { Tip } from "@/app/screens/Settings/Tip";
-
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
-import React, { FC } from "react";
 
 export type SettingsStackParamList = {
   Settings: undefined;
@@ -30,24 +30,24 @@ export type SettingsStackParamList = {
 
 export type SettingsStackNavigation =
   NativeStackNavigationProp<SettingsStackParamList>;
-type SettingsStackLayoutProps = {};
+type SettingsStackLayoutProps = object;
 const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
 export const SettingsStackLayout: FC<SettingsStackLayoutProps> = (props) => {
   return (
-    <SettingsStack.Navigator initialRouteName={"Settings"}>
-      <SettingsStack.Screen name={"Settings"} children={Settings} />
-      <SettingsStack.Screen name={"General"} children={General} />
-      <SettingsStack.Screen name={"Appearance"} children={Appearance} />
-      <SettingsStack.Screen name={"Filters"} children={Filters} />
+    <SettingsStack.Navigator initialRouteName="Settings">
+      <SettingsStack.Screen name="Settings" children={Settings} />
+      <SettingsStack.Screen name="General" children={General} />
+      <SettingsStack.Screen name="Appearance" children={Appearance} />
+      <SettingsStack.Screen name="Filters" children={Filters} />
       <SettingsStack.Screen
-        name={"FaceIdAndPasscode"}
+        name="FaceIdAndPasscode"
         children={FaceIdAndPasscode}
       />
-      <SettingsStack.Screen name={"Accounts"} children={Accounts} />
-      <SettingsStack.Screen name={"ExportImport"} children={ExportImport} />
-      <SettingsStack.Screen name={"About"} children={About} />
-      <SettingsStack.Screen name={"Rate"} children={Rate} />
-      <SettingsStack.Screen name={"Tip"} children={Tip} />
+      <SettingsStack.Screen name="Accounts" children={Accounts} />
+      <SettingsStack.Screen name="ExportImport" children={ExportImport} />
+      <SettingsStack.Screen name="About" children={About} />
+      <SettingsStack.Screen name="Rate" children={Rate} />
+      <SettingsStack.Screen name="Tip" children={Tip} />
     </SettingsStack.Navigator>
   );
 };

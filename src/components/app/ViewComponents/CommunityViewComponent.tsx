@@ -1,19 +1,20 @@
-import { Icon } from "@/components/common/Icon";
-import { Text } from "@/components/common/Text";
-import { View } from "@/components/common/View";
-import { ConstantColors } from "@/components/theming/Colors";
-import { useThemeColor } from "@/components/theming/useThemeColor";
-import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
-
-import { MainStackNavigation } from "@/router/MainStackLayout";
-import { RootState } from "@/store/store";
 import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
 import React, { FC, useEffect } from "react";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
-type CommunityProps = {};
+import { Icon } from "@/components/common/Icon";
+import { Text } from "@/components/common/Text";
+import { View } from "@/components/common/View";
+import { ConstantColors } from "@/components/theming/Colors";
+import { useThemeColor } from "@/components/theming/useThemeColor";
+import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
+import { MainStackNavigation } from "@/router/MainStackLayout";
+import { RootState } from "@/store/store";
+
+type CommunityProps = object;
+
 /**
  * shows a community when user clicks on a community name anywhere in the app
  */
@@ -36,13 +37,13 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
     return (
       <>
         <TouchableOpacity onPress={() => navigation.navigate("Test")}>
-          <Icon icon={"plus"} color={tabIconDefault} />
+          <Icon icon="plus" color={tabIconDefault} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("Test")}
           style={{ marginLeft: 10 }}
         >
-          <Icon icon={"info-circle"} color={tabIconDefault} />
+          <Icon icon="info-circle" color={tabIconDefault} />
         </TouchableOpacity>
       </>
     );
@@ -71,7 +72,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
         style={[
           styles.communityAvatar,
           {
-            borderColor: borderColor,
+            borderColor,
           },
         ]}
       >
@@ -81,7 +82,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
             style={{ width: "100%", height: "100%" }}
           />
         ) : (
-          <Icon icon={"user"} color={"#ccc"} size={18} />
+          <Icon icon="user" color="#ccc" size={18} />
         )}
       </View>
     );

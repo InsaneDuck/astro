@@ -1,27 +1,26 @@
+import React from "react";
+import { StyleSheet, Switch } from "react-native";
+
 import { OptionsItem } from "@/components/app/OptionsItem";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
-import React, { FC } from "react";
-import { StyleSheet, Switch } from "react-native";
 
-type AppearanceProps = {};
-
-export const Appearance: FC<AppearanceProps> = () => {
+export const Appearance = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>THEME</Text>
       <View style={styles.innerContainer}>
-        <OptionsItem title={"Dark Mode"} />
+        <OptionsItem title="Dark Mode" />
       </View>
       <Text style={styles.title}>POST</Text>
       <View style={styles.innerContainer}>
-        <OptionsItem title={"Post Size"}>
+        <OptionsItem title="Post Size">
           <Switch />
         </OptionsItem>
       </View>
       <Text style={styles.title}>COMMENTS</Text>
       <View style={styles.innerContainer}>
-        <OptionsItem title={"Dark Mode"} />
+        <OptionsItem title="Dark Mode" />
       </View>
     </View>
   );

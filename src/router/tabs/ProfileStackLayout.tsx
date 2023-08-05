@@ -1,14 +1,15 @@
-import { Profile } from "@/app/screens/Profile/Profile";
-import { ProfileHeaderRight } from "@/app/screens/Profile/ProfileHeaderRight";
-import { ProfileSettings } from "@/app/screens/Profile/ProfileSettings";
-import { LoginSignUp } from "@/components/app/LoginSignUp";
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import React, { FC } from "react";
 
-type ProfileStackLayoutProps = {};
+import { Profile } from "@/app/screens/Profile/Profile";
+import { ProfileHeaderRight } from "@/app/screens/Profile/ProfileHeaderRight";
+import { ProfileSettings } from "@/app/screens/Profile/ProfileSettings";
+import { LoginSignUp } from "@/components/app/LoginSignUp";
+
+type ProfileStackLayoutProps = object;
 
 export type ProfileStackParamsList = {
   Profile: undefined;
@@ -24,18 +25,15 @@ export const ProfileStackLayout: FC<ProfileStackLayoutProps> = (props) => {
   return (
     <ProfileStack.Navigator>
       <ProfileStack.Screen
-        name={"Profile"}
+        name="Profile"
         component={Profile}
         options={{
           headerRight: ProfileHeaderRight,
         }}
       />
+      <ProfileStack.Screen name="ProfileSettings" component={ProfileSettings} />
       <ProfileStack.Screen
-        name={"ProfileSettings"}
-        component={ProfileSettings}
-      />
-      <ProfileStack.Screen
-        name={"LoginModal"}
+        name="LoginModal"
         component={LoginSignUp}
         options={{ presentation: "modal" }}
       />

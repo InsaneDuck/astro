@@ -1,6 +1,6 @@
 export function getBaseDomainFromUrl(inputUrl: string) {
   // Remove the protocol part of the URL (e.g., "https://")
-  let urlWithoutProtocol = inputUrl.replace(/^(https?:\/\/)?/, "");
+  const urlWithoutProtocol = inputUrl.replace(/^(https?:\/\/)?/, "");
 
   // Remove any path or query parameters from the URL
   let urlWithoutPathAndQuery = urlWithoutProtocol.split("/")[0];

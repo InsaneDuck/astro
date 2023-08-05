@@ -1,10 +1,11 @@
-import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
-import { User } from "@/types/User";
 import {
   createAsyncThunk,
   createEntityAdapter,
   createSlice,
 } from "@reduxjs/toolkit";
+
+import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
+import { User } from "@/types/User";
 
 const userAdapter = createEntityAdapter<User>({
   selectId: (user) => user.userName,

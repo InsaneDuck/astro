@@ -1,12 +1,11 @@
+import React from "react";
+import { StyleSheet, TextInput } from "react-native";
+
 import { OptionsItem } from "@/components/app/OptionsItem";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
-import React, { FC } from "react";
-import { StyleSheet, TextInput } from "react-native";
 
-type SearchProps = {};
-
-export const Search: FC<SearchProps> = () => {
+export const Search = () => {
   //todo show trending communities
   const color = useThemeColor("borderColor");
 
@@ -14,8 +13,8 @@ export const Search: FC<SearchProps> = () => {
     return (
       <TextInput
         style={[styles.searchInput, { backgroundColor: color }]}
-        placeholder={"Search for a User, Post or Community"}
-        clearButtonMode={"always"}
+        placeholder="Search for a User, Post or Community"
+        clearButtonMode="always"
       />
     );
   };
@@ -23,7 +22,7 @@ export const Search: FC<SearchProps> = () => {
   const TrendingSection = () => {
     return (
       <View style={{ width: "90%", borderRadius: 13, overflow: "hidden" }}>
-        <OptionsItem title={"Hello"} />
+        <OptionsItem title="Hello" />
       </View>
     );
   };

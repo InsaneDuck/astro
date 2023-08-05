@@ -1,12 +1,13 @@
-import { Icon } from "@/components/common/Icon";
-import { Text } from "@/components/common/Text";
-import { feedActions } from "@/store/feed-slice";
-import { AppDispatch, RootState } from "@/store/store";
 import React, { FC } from "react";
 import { ActionSheetIOS, TouchableOpacity, useColorScheme } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-type FeedSorterProps = {};
+import { Icon } from "@/components/common/Icon";
+import { Text } from "@/components/common/Text";
+import { feedActions } from "@/store/feed-slice";
+import { AppDispatch, RootState } from "@/store/store";
+
+type FeedSorterProps = object;
 
 export const FeedSorter: FC<FeedSorterProps> = (props) => {
   //todo maybe replace it with one in expo https://github.com/expo/react-native-action-sheet
@@ -142,7 +143,7 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
       onPress={onPress}
     >
       <Text style={{ fontSize: 18 }}>{sort}</Text>
-      <Icon icon={"sort"} color={"#ccc"} size={20} />
+      <Icon icon="sort" color="#ccc" size={20} />
     </TouchableOpacity>
   );
 };

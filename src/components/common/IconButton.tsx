@@ -1,9 +1,10 @@
-import { Press } from "@/components/theming/Themed";
-import { useThemeColor } from "@/components/theming/useThemeColor";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import React, { FC } from "react";
 import { TouchableOpacity } from "react-native";
+
+import { Press } from "@/components/theming/Themed";
+import { useThemeColor } from "@/components/theming/useThemeColor";
 
 type IconButtonsProps = {
   name: IconProp;

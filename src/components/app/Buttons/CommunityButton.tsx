@@ -44,7 +44,7 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
       <Text
         style={{
           fontSize: 18,
-          marginLeft: 5,
+          paddingLeft: 3,
           color: ConstantColors.communityColor,
         }}
       >

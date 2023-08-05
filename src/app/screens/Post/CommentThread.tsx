@@ -1,14 +1,16 @@
-import { CommentViewComponent } from "@/app/screens/Post/CommentViewComponent";
-import { RootState } from "@/store/store";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
+
+import { CommentViewComponent } from "@/app/screens/Post/CommentViewComponent";
+import { RootState } from "@/store/store";
 
 type CommentThreadProps = {
   commendId: EntityId;
   index: number;
 };
-let count = 0;
+
+const count = 0;
 export const CommentThread: FC<CommentThreadProps> = (props) => {
   const comment = useSelector(
     (state: RootState) =>

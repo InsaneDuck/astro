@@ -1,7 +1,5 @@
-import React, { FC } from "react";
+import React from "react";
 
-type AboutProps = {};
-
-export const About: FC<AboutProps> = (props) => {
+export const About = () => {
   return <></>;
 };

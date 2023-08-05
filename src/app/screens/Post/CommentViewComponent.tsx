@@ -1,3 +1,7 @@
+import { CommentView } from "lemmy-js-client";
+import React, { FC } from "react";
+import { StyleSheet } from "react-native";
+
 import { UserButton } from "@/components/app/Buttons/UserButton";
 import { Card } from "@/components/common/Cards/Card";
 import { Icon } from "@/components/common/Icon";
@@ -6,18 +10,12 @@ import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
 import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
 
-import { CommentView } from "lemmy-js-client";
-import React, { FC } from "react";
-import { StyleSheet } from "react-native";
-
 type CommentViewComponentProps = {
   comment: CommentView;
 };
 
 export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   const { comment } = props;
-  const textColor = useThemeColor("text");
-  const borderColor = useThemeColor("borderColor");
   const tabIconDefault = useThemeColor("tabIconDefault");
   const CommentHeaderLeft = () => {
     return <UserButton creator={comment.creator} />;
@@ -27,14 +25,14 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
     return (
       <View style={[styles.commentHeaderRight]}>
         <Icon
-          icon={"arrow-up"}
+          icon="arrow-up"
           color={tabIconDefault}
           size={16}
           style={{ marginRight: 1, marginLeft: 1 }}
         />
         <Text style={styles.headerText}>{comment.counts.score}</Text>
         <Icon
-          icon={"clock"}
+          icon="clock"
           color={tabIconDefault}
           size={16}
           style={{ marginRight: 3, marginLeft: 3 }}

@@ -1,11 +1,11 @@
-import { Text } from "@/components/common/Text";
-import { View } from "@/components/common/View";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import { FC } from "react";
 import { StyleSheet } from "react-native";
 
-type ErrorProps = {};
+import { Text } from "@/components/common/Text";
+import { View } from "@/components/common/View";
+
+type ErrorProps = object;
 const ErrorStack = createNativeStackNavigator;
 export const Error: FC<ErrorProps> = (props) => {
   return (

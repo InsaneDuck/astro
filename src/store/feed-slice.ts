@@ -1,5 +1,3 @@
-import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
-import { RootState } from "@/store/store";
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
@@ -9,6 +7,9 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { PostView, SortType } from "lemmy-js-client";
+
+import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
+import { RootState } from "@/store/store";
 
 const allPostsAdapter = createEntityAdapter<PostView>({
   selectId: (postView) => postView.post.id,

@@ -1,11 +1,7 @@
-import React, {FC} from 'react';
+import React, { FC } from "react";
 
-type TipProps = {}
+type TipProps = object;
 
-export const Tip: FC<TipProps> = props => {
-  return (
-    <>
-
-    </>
-  );
+export const Tip: FC<TipProps> = (props) => {
+  return <></>;
 };
