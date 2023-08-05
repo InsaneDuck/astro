@@ -31,6 +31,9 @@ const MainStack = createNativeStackNavigator<MainStackParamList>();
 export const MainStackLayout: FC<LayoutProps> = () => {
   //todo get from system or from user preferences
   const colorScheme = useColorScheme();
+
+  const ImageActions = (props: any) => <ImageViewerButtons />;
+
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <NavigationContainer
@@ -50,13 +53,13 @@ export const MainStackLayout: FC<LayoutProps> = () => {
             options={{
               presentation: "card",
               title: "",
-              headerRight: (props) => <ImageViewerButtons />,
+              headerRight: ImageActions,
             }}
           />
           <MainStack.Screen
             name="Error"
             component={Error}
-            options={{ title: "Oops!" }}
+            options={{ title: "Oops!", presentation: "modal" }}
           />
           <MainStack.Screen
             name="Test"

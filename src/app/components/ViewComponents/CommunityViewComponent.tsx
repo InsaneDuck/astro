@@ -1,9 +1,10 @@
 import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
+import { ImageEditButton } from "@/app/components/ImageEditButton";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -26,6 +27,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
   const navigation = useNavigation<MainStackNavigation>();
   const borderColor = useThemeColor("borderColor");
   const tabIconDefault = useThemeColor("tabIconDefault");
+  const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     navigation.setOptions({
       title: community.name,
@@ -62,6 +64,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
           source={{ uri: community.banner }}
           style={{ width: "100%", height: "100%" }}
         />
+        <ImageEditButton type="community-banner" />
       </View>
     );
   };
@@ -84,6 +87,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
         ) : (
           <Icon icon="user" color="#ccc" size={18} />
         )}
+        <ImageEditButton type="community-avatar" />
       </View>
     );
   };
@@ -140,8 +144,26 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
   const Description = () => {
     return (
       community.description && (
-        <View style={[{ backgroundColor: borderColor }, styles.description]}>
+        <View
+          style={[
+            { backgroundColor: borderColor, height: !expanded ? 100 : "auto" },
+            styles.description,
+          ]}
+        >
           <Text>{community.description}</Text>
+          <Text
+            style={{
+              right: 0,
+              bottom: 0,
+              position: "absolute",
+              paddingRight: 15,
+              paddingBottom: 15,
+              color: ConstantColors.iosBlue,
+            }}
+            onPress={() => setExpanded((prevState) => !prevState)}
+          >
+            {expanded ? "Less" : "Show More"}
+          </Text>
         </View>
       )
     );

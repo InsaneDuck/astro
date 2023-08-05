@@ -7,6 +7,7 @@ import React, { FC } from "react";
 import { LoginSignUp } from "@/app/components/LoginSignUp";
 import { CommunityViewComponent } from "@/app/components/ViewComponents/CommunityViewComponent";
 import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
+import { CommentsSorter } from "@/app/components/ViewComponents/Post/CommentsSorter";
 import { UserViewComponent } from "@/app/components/ViewComponents/UserViewComponent";
 import { Inbox } from "@/app/screens/Inbox/Inbox";
 import { MainFeed } from "@/app/screens/MainFeed";
@@ -65,7 +66,13 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
           headerRight: FeedSorter,
         }}
       />
-      <SubStack.Screen name="Post" component={Post} />
+      <SubStack.Screen
+        name="Post"
+        component={Post}
+        options={{
+          headerRight: CommentsSorter,
+        }}
+      />
       <SubStack.Screen
         name="User"
         children={() => <UserViewComponent userType="clicked" />}

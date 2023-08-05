@@ -1,11 +1,8 @@
-import { useNavigation } from "@react-navigation/core";
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
-import { CommentsSorter } from "@/app/components/ViewComponents/Post/CommentsSorter";
 import { PostViewWithCommentsComponent } from "@/app/screens/Post/PostViewWithCommentsComponent";
 import { View } from "@/common/View";
-import { SubStackNavigation } from "@/router/SubStackLayout";
 import { RootState } from "@/store/store";
 
 /**
@@ -16,13 +13,6 @@ export const Post = () => {
   const post = useSelector(
     (state: RootState) => state.feed.feedPosts?.entities[postId.toString()],
   );
-  const navigation = useNavigation<SubStackNavigation>();
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: CommentsSorter,
-    });
-  }, []);
 
   return (
     <View style={{ width: "100%", height: "100%" }}>

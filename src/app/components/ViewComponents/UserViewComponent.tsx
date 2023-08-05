@@ -4,6 +4,7 @@ import React, { FC, useEffect } from "react";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
+import { ImageEditButton } from "@/app/components/ImageEditButton";
 import { OptionsItem } from "@/app/components/OptionsItem";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
@@ -42,6 +43,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
             source={{ uri: user.banner }}
             style={{ width: "100%", height: "100%" }}
           />
+          <ImageEditButton type="user-banner" />
         </View>
       )
     );
@@ -65,6 +67,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
         ) : (
           <Icon icon="user" color={tabIconDefault} size={75} />
         )}
+        <ImageEditButton type="user-avatar" />
       </View>
     );
   };
