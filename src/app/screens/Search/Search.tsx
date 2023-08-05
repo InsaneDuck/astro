@@ -1,9 +1,11 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 
 import { OptionsItem } from "@/components/app/OptionsItem";
 import { View } from "@/components/common/View";
 import { useThemeColor } from "@/components/theming/useThemeColor";
+import { SearchStackNavigation } from "@/router/tabs/SearchStackLayout";
 
 export const Search = () => {
   //todo show trending communities
@@ -19,10 +21,14 @@ export const Search = () => {
     );
   };
 
-  const TrendingSection = () => {
+  const AllCommunities = () => {
+    const navigation = useNavigation<SearchStackNavigation>();
+    const goToALlCommunities = (): any => {
+      navigation.navigate("AllCommunities");
+    };
     return (
       <View style={{ width: "90%", borderRadius: 13, overflow: "hidden" }}>
-        <OptionsItem title="Hello" />
+        <OptionsItem title="All Communities" onPress={goToALlCommunities} />
       </View>
     );
   };
@@ -30,7 +36,7 @@ export const Search = () => {
   return (
     <View style={styles.container}>
       <SearchInput />
-      <TrendingSection />
+      <AllCommunities />
     </View>
   );
 };

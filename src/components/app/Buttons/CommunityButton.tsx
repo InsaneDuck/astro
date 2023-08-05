@@ -1,3 +1,9 @@
+import { useNavigation } from "@react-navigation/core";
+import { Community } from "lemmy-js-client";
+import React, { FC } from "react";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { useDispatch } from "react-redux";
+
 import { Icon } from "@/components/common/Icon";
 import { Text } from "@/components/common/Text";
 import { View } from "@/components/common/View";
@@ -6,11 +12,6 @@ import { useThemeColor } from "@/components/theming/useThemeColor";
 import { FeedStackNavigation } from "@/router/tabs/FeedStackLayout";
 import { communityActions } from "@/store/community-slice";
 import { AppDispatch } from "@/store/store";
-import { useNavigation } from "@react-navigation/core";
-import { Community } from "lemmy-js-client";
-import React, { FC } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
 
 type CommunityButtonProps = {
   community: Community;
@@ -18,7 +19,6 @@ type CommunityButtonProps = {
 
 export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   const { community } = props;
-  const textColor = useThemeColor("text");
   const tabIconDefault = useThemeColor("tabIconDefault");
   const navigation = useNavigation<FeedStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
@@ -33,7 +33,7 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
           <Image source={{ uri: community.icon }} style={styles.image} />
         ) : (
           <Icon
-            icon={"user"}
+            icon="user"
             color={tabIconDefault}
             size={18}
             style={styles.image}
