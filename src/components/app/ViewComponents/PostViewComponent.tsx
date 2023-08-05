@@ -108,7 +108,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
             {postView.counts.comments}
           </Text>
           <Icon icon="clock" color={tabIconDefault} size={16} />
-          <Text style={{ fontSize: 18, marginLeft: 3 }}>
+          <Text style={{ fontSize: 18, marginLeft: 3, paddingRight: 10 }}>
             {formatTimeToDuration(postView.post.published)}
           </Text>
         </View>
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   postFooterItems: {
     paddingTop: 10,
-    paddingRight: 10,
+
     flexDirection: "row",
     display: "flex",
     alignItems: "center",

@@ -10,8 +10,8 @@ import { AppDispatch, RootState } from "@/store/store";
 type CommentsSorterProps = object;
 
 export const CommentsSorter: FC<CommentsSorterProps> = (props) => {
-  const sort = useSelector((state: RootState) => state.post.sort);
   const theme = useColorScheme() || "dark";
+  const sort = useSelector((state: RootState) => state.post.sort);
   const dispatch = useDispatch<AppDispatch>();
 
   const all = () => {
