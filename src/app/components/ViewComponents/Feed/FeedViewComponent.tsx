@@ -1,6 +1,6 @@
 import { EntityId } from "@reduxjs/toolkit";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import React, { FC, useCallback, useEffect, useMemo } from "react";
-import { FlatList, ListRenderItemInfo } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
@@ -82,7 +82,7 @@ export const FeedViewComponent: FC<FeedViewComponentProps> = (props) => {
       }}
     >
       {feed ? (
-        <FlatList
+        <FlashList
           data={feed?.ids}
           keyExtractor={keyExtractor}
           renderItem={FeedItem}
@@ -92,6 +92,7 @@ export const FeedViewComponent: FC<FeedViewComponentProps> = (props) => {
           refreshing={loading === "pending"}
           ListHeaderComponent={FeedHeader}
           ListFooterComponent={FeedFooter}
+          estimatedItemSize={350}
         />
       ) : (
         loading === "pending" && <Loading />

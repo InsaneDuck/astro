@@ -1,11 +1,13 @@
 import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
 import React, { FC, useEffect } from "react";
-import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
-import { ImageEditButton } from "@/app/components/ImageEditButton";
 import { OptionsItem } from "@/app/components/OptionsItem";
+import { Description } from "@/app/components/ViewComponents/Community/Description";
+import { Avatar } from "@/app/components/ViewComponents/User/Avatar";
+import { Banner } from "@/app/components/ViewComponents/User/Banner";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -29,46 +31,11 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
     navigation.setOptions({ title: user.name });
   }, []);
 
-  const UserBannerImage = () => {
-    return (
-      user.banner && (
-        <View
-          style={{
-            width: "100%",
-            height: 200,
-            overflow: "hidden",
-          }}
-        >
-          <Image
-            source={{ uri: user.banner }}
-            style={{ width: "100%", height: "100%" }}
-          />
-          <ImageEditButton type="user-banner" />
-        </View>
-      )
-    );
-  };
   const UserDisplayName = () => {
     return (
       <Text style={{ fontSize: 28, marginTop: 20, width: "88%" }}>
         {user.display_name ? user.display_name : user.name}
       </Text>
-    );
-  };
-
-  const UserAvatar = () => {
-    return (
-      <View style={[styles.userAvatar, { borderColor }]}>
-        {user?.avatar ? (
-          <Image
-            source={{ uri: user.avatar }}
-            style={{ width: "100%", height: "100%" }}
-          />
-        ) : (
-          <Icon icon="user" color={tabIconDefault} size={75} />
-        )}
-        <ImageEditButton type="user-avatar" />
-      </View>
     );
   };
 
@@ -104,7 +71,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
             styles.userActionsButton,
           ]}
         >
-          <Text style={{ fontSize: 18 }}>Message</Text>
+          <Text style={{ color: "#ffffff" }}>MESSAGE</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -112,7 +79,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
             styles.userActionsButton,
           ]}
         >
-          <Text style={{ fontSize: 18 }}>Block</Text>
+          <Text style={{ color: "#ffffff" }}>BLOCK</Text>
         </TouchableOpacity>
       </View>
     );
@@ -120,7 +87,11 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const UserHeader = () => {
     return (
       <View style={styles.userHeader}>
-        <UserAvatar />
+        <Avatar
+          borderColor={borderColor}
+          avatar={user.avatar}
+          color={tabIconDefault}
+        />
         <UserInfo />
       </View>
     );
@@ -151,10 +122,10 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
     user && (
       <ScrollView>
         <View style={styles.container}>
-          <UserBannerImage />
+          {user.banner && <Banner banner={user.banner} />}
           <UserDisplayName />
           <UserHeader />
-          <UserBio />
+          {user.bio && <Description description={user.bio} />}
           <UserFooter />
         </View>
       </ScrollView>

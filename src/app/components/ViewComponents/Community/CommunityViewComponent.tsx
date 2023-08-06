@@ -5,6 +5,7 @@ import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
 import { ImageEditButton } from "@/app/components/ImageEditButton";
+import { Description } from "@/app/components/ViewComponents/Community/Description";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -103,7 +104,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
               styles.userActionsButton,
             ]}
           >
-            <Text style={{ fontSize: 18 }}>Subscribe</Text>
+            <Text style={{ color: "#ffffff" }}>SUBSCRIBE</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -111,7 +112,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
               styles.userActionsButton,
             ]}
           >
-            <Text style={{ fontSize: 18 }}>Block</Text>
+            <Text style={{ color: "#ffffff" }}>BLOCK</Text>
           </TouchableOpacity>
         </View>
       </>
@@ -141,40 +142,14 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
     );
   };
 
-  const Description = () => {
-    return (
-      community.description && (
-        <View
-          style={[
-            { backgroundColor: borderColor, height: !expanded ? 100 : "auto" },
-            styles.description,
-          ]}
-        >
-          <Text>{community.description}</Text>
-          <Text
-            style={{
-              right: 0,
-              bottom: 0,
-              position: "absolute",
-              paddingRight: 15,
-              paddingBottom: 15,
-              color: ConstantColors.iosBlue,
-            }}
-            onPress={() => setExpanded((prevState) => !prevState)}
-          >
-            {expanded ? "Less" : "Show More"}
-          </Text>
-        </View>
-      )
-    );
-  };
-
   return (
     <ScrollView>
       <View style={styles.container}>
         {community.banner && <CommunityBanner />}
         <CommunityHeader />
-        <Description />
+        {community.description && (
+          <Description description={community.description} />
+        )}
       </View>
     </ScrollView>
   );
@@ -192,12 +167,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     paddingBottom: 50,
-  },
-  description: {
-    width: "90%",
-    borderRadius: 13,
-    marginTop: 20,
-    padding: 15,
   },
   communityAvatar: {
     width: 150,
