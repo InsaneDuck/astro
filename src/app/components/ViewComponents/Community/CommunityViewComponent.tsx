@@ -5,7 +5,7 @@ import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
 import { ImageEditButton } from "@/app/components/ImageEditButton";
-import { Description } from "@/app/components/ViewComponents/Community/Description";
+import { Description } from "@/app/components/ViewComponents/Description";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";

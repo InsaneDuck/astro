@@ -1,9 +1,8 @@
 import React, { FC, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
-import { ConstantColors } from "@/theming/Colors";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type DescriptionProps = {
@@ -15,22 +14,17 @@ export const Description: FC<DescriptionProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
   //todo check if description is short
   return (
-    <View style={{ height: !expanded ? 150 : "auto", width: "90%" }}>
-      <View style={[{ backgroundColor: borderColor }, styles.description]}>
-        <Text>{props.description}</Text>
-      </View>
-      <Text
-        style={{
-          right: 0,
-          bottom: 0,
-          position: "absolute",
-          paddingRight: 10,
-          color: ConstantColors.iosBlue,
-        }}
+    <View style={{ height: "auto", width: "90%" }}>
+      <TouchableOpacity
         onPress={() => setExpanded((prevState) => !prevState)}
+        style={[
+          { backgroundColor: borderColor, height: !expanded ? 100 : "auto" },
+          styles.description,
+        ]}
+        activeOpacity={1}
       >
-        {expanded ? "Less" : "Show More"}
-      </Text>
+        <Text>{props.description}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
