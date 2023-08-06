@@ -15,25 +15,23 @@ export const Description: FC<DescriptionProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
   //todo check if description is short
   return (
-    props.description && (
-      <View style={{ height: !expanded ? 150 : "auto", width: "90%" }}>
-        <View style={[{ backgroundColor: borderColor }, styles.description]}>
-          <Text>{props.description}</Text>
-        </View>
-        <Text
-          style={{
-            right: 0,
-            bottom: 0,
-            position: "absolute",
-            paddingRight: 10,
-            color: ConstantColors.iosBlue,
-          }}
-          onPress={() => setExpanded((prevState) => !prevState)}
-        >
-          {expanded ? "Less" : "Show More"}
-        </Text>
+    <View style={{ height: !expanded ? 150 : "auto", width: "90%" }}>
+      <View style={[{ backgroundColor: borderColor }, styles.description]}>
+        <Text>{props.description}</Text>
       </View>
-    )
+      <Text
+        style={{
+          right: 0,
+          bottom: 0,
+          position: "absolute",
+          paddingRight: 10,
+          color: ConstantColors.iosBlue,
+        }}
+        onPress={() => setExpanded((prevState) => !prevState)}
+      >
+        {expanded ? "Less" : "Show More"}
+      </Text>
+    </View>
   );
 };
 

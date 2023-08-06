@@ -53,6 +53,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
   };
 
   const CommunityBanner = () => {
+    const onPress = (): any => {};
     return (
       <View
         style={{
@@ -65,12 +66,13 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
           source={{ uri: community.banner }}
           style={{ width: "100%", height: "100%" }}
         />
-        <ImageEditButton type="community-banner" />
+        <ImageEditButton onPress={onPress} />
       </View>
     );
   };
 
   const CommunityAvatar = () => {
+    const onPress = (): any => {};
     return (
       <View
         style={[
@@ -88,7 +90,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
         ) : (
           <Icon icon="user" color="#ccc" size={18} />
         )}
-        <ImageEditButton type="community-avatar" />
+        <ImageEditButton onPress={onPress} />
       </View>
     );
   };
