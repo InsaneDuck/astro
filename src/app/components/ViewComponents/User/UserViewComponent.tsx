@@ -71,7 +71,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
             styles.userActionsButton,
           ]}
         >
-          <Text style={{ color: "#ffffff" }}>MESSAGE</Text>
+          <Text style={{ color: "#ffffff", fontWeight: "bold" }}>MESSAGE</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -79,7 +79,7 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
             styles.userActionsButton,
           ]}
         >
-          <Text style={{ color: "#ffffff" }}>BLOCK</Text>
+          <Text style={{ color: "#ffffff", fontWeight: "bold" }}>BLOCK</Text>
         </TouchableOpacity>
       </View>
     );
@@ -94,16 +94,6 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
         />
         <UserInfo />
       </View>
-    );
-  };
-
-  const UserBio = () => {
-    return (
-      user.bio && (
-        <View style={[{ backgroundColor: borderColor }, styles.description]}>
-          <Text>{user.bio}</Text>
-        </View>
-      )
     );
   };
 

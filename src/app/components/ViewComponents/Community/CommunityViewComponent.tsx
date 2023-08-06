@@ -106,7 +106,9 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
               styles.userActionsButton,
             ]}
           >
-            <Text style={{ color: "#ffffff" }}>SUBSCRIBE</Text>
+            <Text style={{ color: "#ffffff", fontWeight: "bold" }}>
+              SUBSCRIBE
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -114,7 +116,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
               styles.userActionsButton,
             ]}
           >
-            <Text style={{ color: "#ffffff" }}>BLOCK</Text>
+            <Text style={{ color: "#ffffff", fontWeight: "bold" }}>BLOCK</Text>
           </TouchableOpacity>
         </View>
       </>
