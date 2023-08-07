@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { PostViewWithCommentsComponent } from "@/app/screens/Post/PostViewWithCommentsComponent";
+import { FullPostViewComponent } from "@/app/components/ViewComponents/FullPost/FullPostViewComponent";
 import { View } from "@/common/View";
 import { RootState } from "@/store/store";
 
@@ -16,9 +16,7 @@ export const Post = () => {
 
   return (
     <View style={{ width: "100%", height: "100%" }}>
-      {post && (
-        <PostViewWithCommentsComponent postId={postId} postView={post} />
-      )}
+      {post && <FullPostViewComponent postId={postId} postView={post} />}
     </View>
   );
 };

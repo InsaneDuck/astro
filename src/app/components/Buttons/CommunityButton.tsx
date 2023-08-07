@@ -1,9 +1,10 @@
 import { useNavigation } from "@react-navigation/core";
 import { Community } from "lemmy-js-client";
 import React, { FC } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
+import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -30,7 +31,7 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
     <TouchableOpacity onPress={goToCommunity} style={styles.container}>
       <View style={styles.imageContainer}>
         {community.icon ? (
-          <Image source={{ uri: community.icon }} style={styles.image} />
+          <CustomImage source={{ uri: community.icon }} style={styles.image} />
         ) : (
           <Icon
             icon="user"

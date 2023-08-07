@@ -1,10 +1,11 @@
 import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
-import React, { FC, useEffect, useState } from "react";
-import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import React, { FC, useEffect } from "react";
+import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
-import { ImageEditButton } from "@/app/components/ImageEditButton";
+import { Avatar } from "@/app/components/ViewComponents/Avatar";
+import { Banner } from "@/app/components/ViewComponents/Banner";
 import { Description } from "@/app/components/ViewComponents/Description";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
@@ -28,7 +29,6 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
   const navigation = useNavigation<MainStackNavigation>();
   const borderColor = useThemeColor("borderColor");
   const tabIconDefault = useThemeColor("tabIconDefault");
-  const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     navigation.setOptions({
       title: community.name,
@@ -49,49 +49,6 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
           <Icon icon="info-circle" color={tabIconDefault} />
         </TouchableOpacity>
       </>
-    );
-  };
-
-  const CommunityBanner = () => {
-    const onPress = (): any => {};
-    return (
-      <View
-        style={{
-          width: "100%",
-          height: 200,
-          overflow: "hidden",
-        }}
-      >
-        <Image
-          source={{ uri: community.banner }}
-          style={{ width: "100%", height: "100%" }}
-        />
-        <ImageEditButton onPress={onPress} />
-      </View>
-    );
-  };
-
-  const CommunityAvatar = () => {
-    const onPress = (): any => {};
-    return (
-      <View
-        style={[
-          styles.communityAvatar,
-          {
-            borderColor,
-          },
-        ]}
-      >
-        {community.icon ? (
-          <Image
-            source={{ uri: community.icon }}
-            style={{ width: "100%", height: "100%" }}
-          />
-        ) : (
-          <Icon icon="user" color="#ccc" size={18} />
-        )}
-        <ImageEditButton onPress={onPress} />
-      </View>
     );
   };
 
@@ -137,20 +94,19 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
       </View>
     );
   };
-  const CommunityHeader = () => {
-    return (
-      <View style={styles.communityHeader}>
-        <CommunityAvatar />
-        <CommunityInfo />
-      </View>
-    );
-  };
 
   return (
     <ScrollView>
       <View style={styles.container}>
-        {community.banner && <CommunityBanner />}
-        <CommunityHeader />
+        {community.banner && <Banner banner={community.banner} />}
+        <View style={styles.communityHeader}>
+          <Avatar
+            avatar={community.icon}
+            borderColor={borderColor}
+            color={tabIconDefault}
+          />
+          <CommunityInfo />
+        </View>
         {community.description && (
           <Description description={community.description} />
         )}

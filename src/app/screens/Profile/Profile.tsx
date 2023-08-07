@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
 import { LoginSignUp } from "@/app/components/LoginSignUp";
-import { UserViewComponent } from "@/app/components/ViewComponents/User/UserViewComponent";
+import { UserViewComponent } from "@/app/components/ViewComponents/UserViewComponent";
 import { RootState } from "@/store/store";
 
 type ProfileProps = object;

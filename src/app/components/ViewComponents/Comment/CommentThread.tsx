@@ -2,7 +2,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
-import { CommentViewComponent } from "@/app/screens/Post/CommentViewComponent";
+import { CommentViewComponent } from "@/app/components/ViewComponents/Comment/CommentViewComponent";
 import { RootState } from "@/store/store";
 
 type CommentThreadProps = {

@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
-import { CommentThread } from "@/app/screens/Post/CommentThread";
+import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
 import { fetchComments } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
 

@@ -1,12 +1,13 @@
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC } from "react";
-import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { CommunityButton } from "@/app/components/Buttons/CommunityButton";
 import { UserButton } from "@/app/components/Buttons/UserButton";
 import { PostActions } from "@/app/components/PostActions";
+import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -67,13 +68,12 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const PostImage = () => {
       return (
         postView.post?.thumbnail_url && (
-          <Pressable onPress={onImagePress}>
-            <Image
-              style={{ width: "100%", height: 300, maxHeight: 400 }}
-              source={{ uri: postView.post.thumbnail_url }}
-              resizeMode="contain"
-            />
-          </Pressable>
+          <CustomImage
+            onPress={onImagePress}
+            style={{ width: "100%", height: 300, maxHeight: 400 }}
+            source={{ uri: postView.post.thumbnail_url }}
+            resizeMode="contain"
+          />
         )
       );
     };

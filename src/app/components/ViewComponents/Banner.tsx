@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { Image } from "react-native";
 
 import { ImageEditButton } from "@/app/components/ImageEditButton";
+import { CustomImage } from "@/common/CustomImage";
 import { View } from "@/common/View";
 import { Press } from "@/theming/Themed";
 
@@ -19,7 +19,7 @@ export const Banner: FC<BannerProps> = (props) => {
         overflow: "hidden",
       }}
     >
-      <Image
+      <CustomImage
         source={{ uri: props.banner }}
         style={{ width: "100%", height: "100%" }}
       />

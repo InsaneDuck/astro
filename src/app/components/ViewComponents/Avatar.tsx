@@ -1,7 +1,8 @@
 import React, { FC } from "react";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { ImageEditButton } from "@/app/components/ImageEditButton";
+import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
 import { View } from "@/common/View";
 import { Press } from "@/theming/Themed";
@@ -16,9 +17,10 @@ type AvatarProps = {
 export const Avatar: FC<AvatarProps> = (props) => (
   <View style={[styles.avatar, { borderColor: props.borderColor }]}>
     {props.avatar ? (
-      <Image
+      <CustomImage
         source={{ uri: props.avatar }}
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: 150, height: 150 }}
+        resizeMode="cover"
       />
     ) : (
       <Icon icon="user" color={props.color} size={75} />

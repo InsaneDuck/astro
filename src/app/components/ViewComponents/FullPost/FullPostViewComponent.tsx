@@ -5,8 +5,8 @@ import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
+import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
 import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
-import { CommentThread } from "@/app/screens/Post/CommentThread";
 import { Card } from "@/common/Cards/Card";
 import { fetchComments } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
@@ -23,8 +23,8 @@ const propsAreEqual = (
   return previousProps.postId === currentProps.postId;
 };
 
-export const PostViewWithCommentsComponent: FC<CommentsSectionProps> =
-  React.memo((props) => {
+export const FullPostViewComponent: FC<CommentsSectionProps> = React.memo(
+  (props) => {
     const allCommentIds = useSelector(
       (state: RootState) => state.post.comments.ids,
     );
@@ -73,4 +73,6 @@ export const PostViewWithCommentsComponent: FC<CommentsSectionProps> =
         refreshing={loading === "pending"}
       />
     );
-  }, propsAreEqual);
+  },
+  propsAreEqual,
+);

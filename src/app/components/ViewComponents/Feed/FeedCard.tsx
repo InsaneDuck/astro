@@ -17,14 +17,13 @@ const propsAreEqual = (
 ) => {
   return previousProps.postId === currentProps.postId;
 };
-const count = 0;
+
 export const FeedCard: FC<FeedCardProps> = React.memo((props) => {
   const post = useSelector(
     (state: RootState) =>
       state.feed.feedPosts?.entities[props.postId.toString()],
   );
 
-  //console.log("Rendering Feed Card, count = ", ++count);
   return (
     <SwipeableCard>
       {post ? (

@@ -5,10 +5,10 @@ import {
 import React, { FC } from "react";
 
 import { LoginSignUp } from "@/app/components/LoginSignUp";
-import { CommunityViewComponent } from "@/app/components/ViewComponents/Community/CommunityViewComponent";
+import { CommunityViewComponent } from "@/app/components/ViewComponents/CommunityViewComponent";
 import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
-import { CommentsSorter } from "@/app/components/ViewComponents/Post/CommentsSorter";
-import { UserViewComponent } from "@/app/components/ViewComponents/User/UserViewComponent";
+import { CommentsSorter } from "@/app/components/ViewComponents/FullPost/CommentsSorter";
+import { UserViewComponent } from "@/app/components/ViewComponents/UserViewComponent";
 import { Inbox } from "@/app/screens/Inbox/Inbox";
 import { MainFeed } from "@/app/screens/MainFeed";
 import { Post } from "@/app/screens/Post/Post";

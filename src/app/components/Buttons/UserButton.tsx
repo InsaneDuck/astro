@@ -1,9 +1,10 @@
 import { useNavigation } from "@react-navigation/core";
 import { Person } from "lemmy-js-client";
 import React, { FC } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
+import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -33,7 +34,7 @@ export const UserButton: FC<UserButtonProps> = (props) => {
     <TouchableOpacity onPress={goToUser} style={styles.container}>
       <View style={styles.imageContainer}>
         {creator.avatar ? (
-          <Image source={{ uri: creator.avatar }} style={styles.image} />
+          <CustomImage source={{ uri: creator.avatar }} style={styles.image} />
         ) : (
           <Icon
             icon="user"

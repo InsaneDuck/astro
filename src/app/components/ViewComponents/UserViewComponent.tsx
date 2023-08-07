@@ -28,7 +28,9 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
   const navigation = useNavigation();
   useEffect(() => {
-    navigation.setOptions({ title: user.name });
+    navigation.setOptions({
+      title: user.display_name ? user.display_name : user.name,
+    });
   }, []);
 
   const UserDisplayName = () => {
@@ -84,18 +86,6 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
       </View>
     );
   };
-  const UserHeader = () => {
-    return (
-      <View style={styles.userHeader}>
-        <Avatar
-          borderColor={borderColor}
-          avatar={user.avatar}
-          color={tabIconDefault}
-        />
-        <UserInfo />
-      </View>
-    );
-  };
 
   const UserFooter = () => {
     return (
@@ -114,7 +104,14 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
         <View style={styles.container}>
           {user.banner && <Banner banner={user.banner} />}
           <UserDisplayName />
-          <UserHeader />
+          <View style={styles.userHeader}>
+            <Avatar
+              borderColor={borderColor}
+              avatar={user.avatar}
+              color={tabIconDefault}
+            />
+            <UserInfo />
+          </View>
           {user.bio && <Description description={user.bio} />}
           <UserFooter />
         </View>
