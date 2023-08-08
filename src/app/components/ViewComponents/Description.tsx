@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
   description: {
     borderRadius: 13,
     marginTop: 20,
-    marginBottom: 20,
     padding: 15,
   },
 });
