@@ -2,6 +2,7 @@ import {
   ActionReducerMapBuilder,
   createAsyncThunk,
   createEntityAdapter,
+  createSelector,
   createSlice,
   EntityState,
   PayloadAction,
@@ -77,3 +78,15 @@ export const fetchPosts = createAsyncThunk<
 export const feedActions = feedSlice.actions;
 
 export const feedReducers = feedSlice.reducer;
+
+const selectFeedState = (state: RootState) => state.feed;
+
+const selectFeedPosts = createSelector(
+  [selectFeedState],
+  (feedState) => feedState.feedPosts,
+);
+
+const selectFeedLoading = createSelector(
+  [selectFeedState],
+  (feedState) => feedState.loading,
+);

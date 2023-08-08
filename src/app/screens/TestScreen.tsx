@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
 import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
-import { Text } from "@/common/Text";
+import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
+import { Loading } from "@/common/Loading";
 import { useGetPostsQuery } from "@/store/feed-slice-alt";
 import { fetchComments } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
@@ -13,7 +14,7 @@ import { AppDispatch, RootState } from "@/store/store";
 type TestScreenProps = object;
 
 export const TestScreen: FC<TestScreenProps> = (props) => {
-  const { data, isLoading, error } = useGetPostsQuery({
+  const { data, isLoading, isFetching, error } = useGetPostsQuery({
     sort: "New",
     page: 1,
     limit: 50,
@@ -21,10 +22,13 @@ export const TestScreen: FC<TestScreenProps> = (props) => {
 
   return (
     <ScrollView>
-      {data &&
-        data.posts.map((post) => (
-          <Text key={post.post.id}>{post.post.id}</Text>
-        ))}
+      {data ? (
+        data.map((post) => (
+          <PostViewComponent key={post.post.id} postView={post} type="feed" />
+        ))
+      ) : (
+        <Loading />
+      )}
     </ScrollView>
   );
 };

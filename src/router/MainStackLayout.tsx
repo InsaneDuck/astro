@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import {
   DarkTheme,
   DefaultTheme,
@@ -9,7 +10,7 @@ import {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import React, { FC } from "react";
-import { useColorScheme } from "react-native";
+import { Button, useColorScheme } from "react-native";
 
 import { Error } from "@/app/screens/Error";
 import { ImageViewer } from "@/app/screens/ImageViewer/ImageViewer";
@@ -64,10 +65,15 @@ export const MainStackLayout: FC<LayoutProps> = () => {
           <MainStack.Screen
             name="Test"
             component={TestScreen}
-            options={{ title: "Oops!" }}
+            options={{ title: "Test", headerRight: GoHome }}
           />
         </MainStack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
   );
+};
+
+const GoHome = () => {
+  const navigation = useNavigation<MainStackNavigation>();
+  return <Button title="Home" onPress={() => navigation.navigate("Home")} />;
 };

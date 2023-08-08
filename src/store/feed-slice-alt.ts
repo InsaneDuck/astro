@@ -1,22 +1,32 @@
 // Need to use the React-specific entry point to allow generating React hooks
-import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
-import { GetPosts, GetPostsResponse } from "lemmy-js-client";
+import { createEntityAdapter } from "@reduxjs/toolkit";
+import {
+  BaseQueryApi,
+  createApi,
+  fakeBaseQuery,
+} from "@reduxjs/toolkit/query/react";
+import { GetPosts, PostView } from "lemmy-js-client";
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 
+const postsAdapter = createEntityAdapter<PostView>({
+  selectId: (model) => model.post.id,
+});
 // Define a service using a base URL and expected endpoints
 export const feedAltApi = createApi({
   reducerPath: "feed-alt",
   baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
-    getPosts: builder.query<GetPostsResponse, GetPosts>({
-      queryFn: async (arg, api, extraOptions) => {
+    getPosts: builder.query<PostView[], GetPosts>({
+      queryFn: async (arg, api: BaseQueryApi, extraOptions, baseQuery) => {
         console.log(
           "fetching feed, page = " + arg.page + " sort = " + arg.sort,
         );
         const client = getLemmyHttp();
         const response = await client.getPosts(arg);
-        return { data: response };
+        const posts = response.posts;
+
+        return { data: posts };
       },
     }),
   }),

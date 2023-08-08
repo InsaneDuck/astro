@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { authReducers } from "./auth-slice";
+import { authReducers, authSlice } from "./auth-slice";
 
 import { communityReducers } from "@/store/community-slice";
 import { feedReducers } from "@/store/feed-slice";
@@ -17,7 +17,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(feedAltApi.middleware),
   reducer: {
-    auth: authReducers,
+    [authSlice.name]: authReducers,
     community: communityReducers,
     feed: feedReducers,
     image: imageReducers,
