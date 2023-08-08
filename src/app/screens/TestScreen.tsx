@@ -1,17 +1,35 @@
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC, useCallback, useEffect } from "react";
-import { FlatList, ListRenderItemInfo } from "react-native";
+import { FlatList, ListRenderItemInfo, ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
 import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
+import { Text } from "@/common/Text";
+import { useGetPostsQuery } from "@/store/feed-slice-alt";
 import { fetchComments } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
 
 type TestScreenProps = object;
 
 export const TestScreen: FC<TestScreenProps> = (props) => {
-  const postId = useSelector((state: RootState) => state.post.postId);
+  const { data, isLoading, error } = useGetPostsQuery({
+    sort: "New",
+    page: 1,
+    limit: 50,
+  });
+
+  return (
+    <ScrollView>
+      {data &&
+        data.posts.map((post) => (
+          <Text key={post.post.id}>{post.post.id}</Text>
+        ))}
+    </ScrollView>
+  );
+};
+
+const Comments = () => {
   const { comments, loading, page, error } = useSelector(
     (state: RootState) => state.post,
   );
