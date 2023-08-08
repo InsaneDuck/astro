@@ -18,7 +18,7 @@ export const Description: FC<DescriptionProps> = (props) => {
       <TouchableOpacity
         onPress={() => setExpanded((prevState) => !prevState)}
         style={[
-          { backgroundColor: borderColor, height: !expanded ? 100 : "auto" },
+          { backgroundColor: borderColor, maxHeight: !expanded ? 100 : "auto" },
           styles.description,
         ]}
         activeOpacity={1}
