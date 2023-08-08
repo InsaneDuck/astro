@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Separator } from "@/app/components/Separator";
 import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
 import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
-import { useGetPostsQuery } from "@/store/feed-slice-alt";
 import { fetchComments } from "@/store/post-slice";
+import { useGetPostsQuery } from "@/store/posts-slice";
 import { AppDispatch, RootState } from "@/store/store";
 
 type TestScreenProps = object;

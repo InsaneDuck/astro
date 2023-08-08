@@ -13,8 +13,8 @@ const postsAdapter = createEntityAdapter<PostView>({
   selectId: (model) => model.post.id,
 });
 // Define a service using a base URL and expected endpoints
-export const feedAltApi = createApi({
-  reducerPath: "feed-alt",
+export const postsApi = createApi({
+  reducerPath: "posts",
   baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
     getPosts: builder.query<EntityState<PostView>, GetPosts>({
@@ -34,4 +34,4 @@ export const feedAltApi = createApi({
 
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPostsQuery } = feedAltApi;
+export const { useGetPostsQuery } = postsApi;

@@ -4,9 +4,9 @@ import { authReducers, authSlice } from "./auth-slice";
 
 import { communityReducers } from "@/store/community-slice";
 import { feedReducers } from "@/store/feed-slice";
-import { feedAltApi } from "@/store/feed-slice-alt";
 import { imageReducers } from "@/store/image-slice";
 import { postReducers } from "@/store/post-slice";
+import { postsApi } from "@/store/posts-slice";
 import { searchReducers } from "@/store/search-slice";
 import { settingsReducers } from "@/store/settings-slice";
 import { themeReducers } from "@/store/theme-slice";
@@ -15,7 +15,7 @@ import { userReducers } from "@/store/user-slice";
 //todo remove middleware later
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(feedAltApi.middleware),
+    getDefaultMiddleware().concat(postsApi.middleware),
   reducer: {
     [authSlice.name]: authReducers,
     community: communityReducers,
@@ -26,7 +26,7 @@ export const store = configureStore({
     theme: themeReducers,
     user: userReducers,
     search: searchReducers,
-    [feedAltApi.reducerPath]: feedAltApi.reducer,
+    [postsApi.reducerPath]: postsApi.reducer,
   },
 });
 
