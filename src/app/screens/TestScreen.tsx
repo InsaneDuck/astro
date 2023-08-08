@@ -1,12 +1,11 @@
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC, useCallback, useEffect } from "react";
-import { FlatList, ListRenderItemInfo, ScrollView } from "react-native";
+import { FlatList, ListRenderItemInfo } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
 import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
 import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
-import { Loading } from "@/common/Loading";
 import { useGetPostsQuery } from "@/store/feed-slice-alt";
 import { fetchComments } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
@@ -20,16 +19,26 @@ export const TestScreen: FC<TestScreenProps> = (props) => {
     limit: 50,
   });
 
+  const renderItem = ({ item, index }: ListRenderItemInfo<EntityId>) => {
+    const postView = data?.entities[item];
+
+    return postView ? (
+      <PostViewComponent
+        key={item.toString()}
+        postView={postView}
+        type="feed"
+      />
+    ) : (
+      <></>
+    );
+  };
+
   return (
-    <ScrollView>
-      {data ? (
-        data.map((post) => (
-          <PostViewComponent key={post.post.id} postView={post} type="feed" />
-        ))
-      ) : (
-        <Loading />
-      )}
-    </ScrollView>
+    <FlatList
+      data={data?.ids}
+      renderItem={renderItem}
+      ItemSeparatorComponent={Separator}
+    />
   );
 };
 

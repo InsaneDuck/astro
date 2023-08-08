@@ -1,5 +1,5 @@
 // Need to use the React-specific entry point to allow generating React hooks
-import { createEntityAdapter } from "@reduxjs/toolkit";
+import { createEntityAdapter, EntityState } from "@reduxjs/toolkit";
 import {
   BaseQueryApi,
   createApi,
@@ -17,7 +17,7 @@ export const feedAltApi = createApi({
   reducerPath: "feed-alt",
   baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
-    getPosts: builder.query<PostView[], GetPosts>({
+    getPosts: builder.query<EntityState<PostView>, GetPosts>({
       queryFn: async (arg, api: BaseQueryApi, extraOptions, baseQuery) => {
         console.log(
           "fetching feed, page = " + arg.page + " sort = " + arg.sort,
@@ -25,8 +25,8 @@ export const feedAltApi = createApi({
         const client = getLemmyHttp();
         const response = await client.getPosts(arg);
         const posts = response.posts;
-
-        return { data: posts };
+        const temp = postsAdapter.setAll(postsAdapter.getInitialState(), posts);
+        return { data: temp };
       },
     }),
   }),
