@@ -1,24 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { authReducers, authSlice } from "./auth-slice";
+import { authReducers } from "./auth-slice";
 
-import { lemmyApi } from "@/store/api/api-slice";
+import { lemmyMiddleware, lemmyReducers } from "@/store/api/api-slice";
 import { settingsReducers } from "@/store/settings-slice";
 import { sharedReducers } from "@/store/shared-slice";
 import { feedReducers } from "@/store/to-be-removed/feed-slice";
-import { postReducers } from "@/store/to-be-removed/post-slice";
 
 //todo remove middleware later
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(lemmyApi.middleware),
+    getDefaultMiddleware().concat(lemmyMiddleware),
   reducer: {
-    [authSlice.name]: authReducers,
+    auth: authReducers,
     feed: feedReducers,
-    post: postReducers,
+    lemmy: lemmyReducers,
     settings: settingsReducers,
     shared: sharedReducers,
-    lemmy: lemmyApi.reducer,
   },
 });
 

@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo } from "react-native";
 
 import { CommunitySearchResultItem } from "@/app/screens/Search/CommunitySearchResultItem";
 import { View } from "@/common/View";
-import { useListCommunitiesQuery } from "@/store/api/api-slice";
+import { useListCommunitiesQuery } from "@/store/api/communityApi";
 
 type AllCommunitiesProps = object;
 

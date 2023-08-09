@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo } from "react-native";
 
 import { Separator } from "@/app/components/Separator";
 import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
-import { useGetPostsQuery } from "@/store/api/api-slice";
+import { useGetPostsQuery } from "@/store/api/postApi";
 
 type TestScreenProps = object;
 

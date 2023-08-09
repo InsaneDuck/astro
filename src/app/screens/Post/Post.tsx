@@ -1,17 +1,16 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { PostView } from "lemmy-js-client";
-import React, { FC, useCallback, useEffect, useMemo } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import React, { FC, useCallback, useMemo } from "react";
+import { connect } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
 import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
 import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { View } from "@/common/View";
-import { useGetCommentsQuery } from "@/store/api/api-slice";
-import { AppDispatch, RootState } from "@/store/store";
-import { fetchComments } from "@/store/to-be-removed/post-slice";
+import { useGetCommentsQuery } from "@/store/api/postApi";
+import { RootState } from "@/store/store";
 
 type PostProps = {
   postId: EntityId;
@@ -23,21 +22,13 @@ const propsAreEqual = (previousProps: PostProps, currentProps: PostProps) => {
 };
 
 const Post: FC<PostProps> = React.memo((props) => {
-  const { data: comment } = useGetCommentsQuery({
+  const { data: comment, isLoading: loading } = useGetCommentsQuery({
     limit: 5,
     page: 1,
     post_id: Number(props.postId),
     sort: "Top",
     max_depth: 1,
   });
-
-  const commentIds = useSelector((state: RootState) => state.post.comments.ids);
-  const loading = useSelector((state: RootState) => state.post.loading);
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(fetchComments());
-  }, []);
 
   const commentItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => {
@@ -64,7 +55,7 @@ const Post: FC<PostProps> = React.memo((props) => {
   );
 
   const endOfLine = () => {
-    if (loading !== "pending") {
+    if (loading) {
       //todo fetch more comments
       //dispatch(fetchComments());
     }
@@ -72,24 +63,26 @@ const Post: FC<PostProps> = React.memo((props) => {
 
   return (
     <View style={{ width: "100%", height: "100%" }}>
-      <FlashList
-        data={commentIds}
-        keyExtractor={keyExtractor}
-        renderItem={commentItem}
-        estimatedItemSize={99}
-        ListHeaderComponent={PostHeader}
-        ItemSeparatorComponent={Separator}
-        onEndReached={endOfLine}
-        refreshing={loading === "pending"}
-      />
+      {comment?.ids && (
+        <FlashList
+          data={comment.ids}
+          keyExtractor={keyExtractor}
+          renderItem={commentItem}
+          estimatedItemSize={99}
+          ListHeaderComponent={PostHeader}
+          ItemSeparatorComponent={Separator}
+          onEndReached={endOfLine}
+          refreshing={loading}
+        />
+      )}
     </View>
   );
 }, propsAreEqual);
 
 const mapStateToProps = (state: RootState) => {
   const props: PostProps = {
-    postId: state.post.postId,
-    postView: state.feed.feedPosts?.entities[state.post.postId],
+    postId: state.shared.postId,
+    postView: state.feed.feedPosts?.entities[state.shared.postId],
   };
   return props;
 };

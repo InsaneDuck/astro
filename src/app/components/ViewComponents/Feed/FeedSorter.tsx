@@ -31,7 +31,7 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
     ];
     return ActionSheetIOS.showActionSheetWithOptions(
       {
-        title: "Sort by",
+        title: "Sort feed by",
         options: allOptions,
         cancelButtonIndex: 0,
         userInterfaceStyle: theme,

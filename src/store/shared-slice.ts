@@ -1,11 +1,13 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Community, Person } from "lemmy-js-client";
+import { createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
+import { Community, Person, PostView } from "lemmy-js-client";
 
 export type SharedState = {
   images: string[];
   clickedPerson: Person;
   primaryPerson: Person;
   community: Community;
+  postId: EntityId;
+  postView?: PostView;
 };
 
 const defaultPerson = {
@@ -40,6 +42,7 @@ const defaultCommunity = {
 };
 
 const initialState: SharedState = {
+  postId: 0,
   images: [],
   clickedPerson: defaultPerson,
   primaryPerson: defaultPerson,
@@ -61,6 +64,9 @@ export const sharedSlice = createSlice({
     },
     setCommunity(state, action: PayloadAction<Community>) {
       state.community = action.payload;
+    },
+    setPostId(state, action: PayloadAction<EntityId>) {
+      state.postId = action.payload;
     },
   },
 });

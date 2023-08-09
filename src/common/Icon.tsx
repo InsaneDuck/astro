@@ -14,12 +14,13 @@ type IconProps = {
   size?: number;
   style?: FontAwesomeIconStyle;
 };
+
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-library.add(fab, fas, far);
 export const Icon: FC<IconProps> = (props) => {
   const { icon, style, size, color, ...otherProps } = props;
+  library.add(fab, fas, far);
   return (
     <FontAwesomeIcon
       icon={icon}

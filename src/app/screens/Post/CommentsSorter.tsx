@@ -1,24 +1,23 @@
 import React, { FC } from "react";
 import { ActionSheetIOS, TouchableOpacity, useColorScheme } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
-import { AppDispatch, RootState } from "@/store/store";
-import { postActions } from "@/store/to-be-removed/post-slice";
+import { AppDispatch } from "@/store/store";
 
 type CommentsSorterProps = object;
 
 export const CommentsSorter: FC<CommentsSorterProps> = (props) => {
   const theme = useColorScheme() || "dark";
-  const sort = useSelector((state: RootState) => state.post.sort);
-  const dispatch = useDispatch<AppDispatch>();
 
+  const dispatch = useDispatch<AppDispatch>();
+  //todo this
   const all = () => {
     const allOptions = ["Cancel", "Hot", "Top", "New", "Old"];
     return ActionSheetIOS.showActionSheetWithOptions(
       {
-        title: "Sort by",
+        title: "Sort comments by",
         options: allOptions,
         cancelButtonIndex: 0,
         userInterfaceStyle: theme,
@@ -28,16 +27,16 @@ export const CommentsSorter: FC<CommentsSorterProps> = (props) => {
           case 0:
             break;
           case 1:
-            dispatch(postActions.setCommentSort("Hot"));
+            //dispatch(postActions.setCommentSort("Hot"));
             break;
           case 2:
-            dispatch(postActions.setCommentSort("Top"));
+            //dispatch(postActions.setCommentSort("Top"));
             break;
           case 3:
-            dispatch(postActions.setCommentSort("New"));
+            //dispatch(postActions.setCommentSort("New"));
             break;
           case 4:
-            dispatch(postActions.setCommentSort("Old"));
+            //dispatch(postActions.setCommentSort("Old"));
             break;
         }
       },
@@ -58,7 +57,7 @@ export const CommentsSorter: FC<CommentsSorterProps> = (props) => {
       }}
       onPress={onPress}
     >
-      <Text style={{ fontSize: 18 }}>{sort}</Text>
+      <Text style={{ fontSize: 18 }}>sort</Text>
       <Icon icon="sort" color="#ccc" size={20} />
     </TouchableOpacity>
   );

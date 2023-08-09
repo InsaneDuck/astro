@@ -16,7 +16,6 @@ import { MainStackNavigation } from "@/router/MainStackLayout";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
-import { postActions } from "@/store/to-be-removed/post-slice";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type PostViewComponentProps = {
@@ -49,7 +48,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
 
     const goToPost = (): any => {
       if (type === "feed") {
-        postView && dispatch(postActions.setCurrentPost(postView.post.id));
+        postView && dispatch(sharedActions.setPostId(postView.post.id));
         navigationCurrent.navigate("Post");
       }
     };

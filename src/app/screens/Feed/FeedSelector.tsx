@@ -15,7 +15,7 @@ export const FeedSelector = () => {
     const allOptions = ["Cancel", "All", "Local", "Subscribed"];
     return ActionSheetIOS.showActionSheetWithOptions(
       {
-        title: "Feed",
+        title: "Select feed type",
         options: allOptions,
         cancelButtonIndex: 0,
         userInterfaceStyle: theme,

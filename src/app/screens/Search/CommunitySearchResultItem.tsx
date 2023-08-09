@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 
 import { CommunityButton } from "@/app/components/Buttons/CommunityButton";
 import { Text } from "@/common/Text";
-import { useListCommunitiesQuery } from "@/store/api/api-slice";
+import { useListCommunitiesQuery } from "@/store/api/communityApi";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommunitySearchResultItemProps = { communityId: EntityId };
