@@ -9,8 +9,8 @@ import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentTh
 import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { View } from "@/common/View";
-import { fetchComments } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
+import { fetchComments } from "@/store/to-be-removed/post-slice";
 
 type PostProps = {
   postId: EntityId;

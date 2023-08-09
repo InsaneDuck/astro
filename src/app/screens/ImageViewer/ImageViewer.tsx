@@ -6,7 +6,7 @@ import { View } from "@/common/View";
 import { RootState } from "@/store/store";
 
 export const ImageViewer = () => {
-  const imageUrls = useSelector((state: RootState) => state.image.image);
+  const imageUrls = useSelector((state: RootState) => state.shared.images);
   const deviceHeight = Dimensions.get("window").height;
   // const [height, setHeight] = useState(0);
   // useEffect(() => {

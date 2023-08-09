@@ -1,12 +1,10 @@
 import { EntityId } from "@reduxjs/toolkit";
-import { CommunityView } from "lemmy-js-client";
 import React, { FC } from "react";
 import { TouchableOpacity } from "react-native";
-import { useSelector } from "react-redux";
 
 import { CommunityButton } from "@/app/components/Buttons/CommunityButton";
 import { Text } from "@/common/Text";
-import { RootState } from "@/store/store";
+import { useListCommunitiesQuery } from "@/store/api/api-slice";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommunitySearchResultItemProps = { communityId: EntityId };
@@ -14,12 +12,19 @@ type CommunitySearchResultItemProps = { communityId: EntityId };
 export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
   props,
 ) => {
-  const communityView = useSelector(
-    (state: RootState) =>
-      state.search.allCommunities.entities[props.communityId],
+  const { data: communityView } = useListCommunitiesQuery(
+    {
+      limit: 50,
+      sort: "TopAll",
+    },
+    {
+      selectFromResult: (state) => {
+        const data = state.data?.entities[props.communityId];
+        return { data };
+      },
+    },
   );
 
-  let temp: CommunityView;
   const borderColor = useThemeColor("borderColor");
   return (
     communityView && (

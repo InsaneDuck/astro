@@ -8,8 +8,9 @@ import { LoginSignUp } from "@/app/components/LoginSignUp";
 import { CommunityViewComponent } from "@/app/components/ViewComponents/CommunityViewComponent";
 import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
 import { UserViewComponent } from "@/app/components/ViewComponents/UserViewComponent";
+import { FeedSelector } from "@/app/screens/Feed/FeedSelector";
+import { MainFeed } from "@/app/screens/Feed/MainFeed";
 import { Inbox } from "@/app/screens/Inbox/Inbox";
-import { MainFeed } from "@/app/screens/MainFeed";
 import { CommentsSorter } from "@/app/screens/Post/CommentsSorter";
 import Post from "@/app/screens/Post/Post";
 import { Profile } from "@/app/screens/Profile/Profile";
@@ -64,6 +65,7 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
         options={{
           title: "Feed",
           headerRight: FeedSorter,
+          headerTitle: FeedSelector,
         }}
       />
       <SubStack.Screen

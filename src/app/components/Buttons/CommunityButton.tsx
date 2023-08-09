@@ -9,7 +9,7 @@ import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
-import { communityActions } from "@/store/community-slice";
+import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
 import { useThemeColor } from "@/theming/useThemeColor";
@@ -24,7 +24,7 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
   const goToCommunity = (): any => {
-    dispatch(communityActions.setCommunity(community));
+    dispatch(sharedActions.setCommunity(community));
     navigation.navigate("Community");
   };
   return (

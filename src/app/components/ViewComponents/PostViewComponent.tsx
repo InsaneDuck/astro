@@ -14,9 +14,9 @@ import { View } from "@/common/View";
 import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
 import { MainStackNavigation } from "@/router/MainStackLayout";
 import { SubStackNavigation } from "@/router/SubStackLayout";
-import { imageActions } from "@/store/image-slice";
-import { postActions } from "@/store/post-slice";
+import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
+import { postActions } from "@/store/to-be-removed/post-slice";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type PostViewComponentProps = {
@@ -42,9 +42,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
     const dispatch = useDispatch<AppDispatch>();
     const onImagePress = (): any => {
       if (postView.post?.thumbnail_url) {
-        dispatch(
-          imageActions.addImage({ image: [postView.post.thumbnail_url] }),
-        );
+        dispatch(sharedActions.setImages([postView.post.thumbnail_url]));
         navigation.navigate("ImageViewer");
       }
     };

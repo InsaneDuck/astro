@@ -22,7 +22,7 @@ type UserViewComponentProps = {
 
 export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const { userType } = props;
-  const user = useSelector((state: RootState) => state.user.currentUser);
+  const user = useSelector((state: RootState) => state.shared.clickedPerson);
   const domain = getBaseDomainFromUrl(user.actor_id);
   const tabIconDefault = useThemeColor("tabIconDefault");
   const borderColor = useThemeColor("borderColor");

@@ -7,8 +7,8 @@ import { Separator } from "@/app/components/Separator";
 import { FeedCard } from "@/app/components/ViewComponents/Feed/FeedCard";
 import { Loading } from "@/common/Loading";
 import { View } from "@/common/View";
-import { feedActions, fetchPosts } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
+import { feedActions, fetchPosts } from "@/store/to-be-removed/feed-slice";
 
 type FeedViewComponentProps = {
   feedType: "primary" | "community" | "user";
@@ -31,13 +31,14 @@ export const FeedViewComponent: FC<FeedViewComponentProps> = (props) => {
   });
 
   const sort = useSelector((state: RootState) => state.feed.sort);
-
+  const type = useSelector((state: RootState) => state.feed.type);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(feedActions.updateFeedBySort());
+    dispatch(feedActions.updateFeedByType());
     dispatch(fetchPosts());
-  }, [sort, dispatch]);
+  }, [sort, type, dispatch]);
 
   const keyExtractor = useCallback(
     (item: EntityId, index: number) => item.toString(),

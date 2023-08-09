@@ -1,25 +1,18 @@
 import { EntityId } from "@reduxjs/toolkit";
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 
 import { CommunitySearchResultItem } from "@/app/screens/Search/CommunitySearchResultItem";
 import { View } from "@/common/View";
-import { fetchAllCommunities } from "@/store/search-slice";
-import { AppDispatch, RootState } from "@/store/store";
+import { useListCommunitiesQuery } from "@/store/api/api-slice";
 
 type AllCommunitiesProps = object;
 
 export const AllCommunities: FC<AllCommunitiesProps> = (props) => {
-  const communities = useSelector(
-    (state: RootState) => state.search.allCommunities,
-  );
-
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(fetchAllCommunities());
-  }, [dispatch]);
+  const { data: communities } = useListCommunitiesQuery({
+    limit: 50,
+    sort: "TopAll",
+  });
 
   const allCommunitiesItem = ({
     item,
@@ -36,13 +29,15 @@ export const AllCommunities: FC<AllCommunitiesProps> = (props) => {
         flex: 1,
       }}
     >
-      <FlatList
-        style={{ padding: 10, width: "100%" }}
-        data={communities.ids}
-        renderItem={allCommunitiesItem}
-        showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{ marginTop: 10 }} />}
-      />
+      {communities && (
+        <FlatList
+          style={{ padding: 10, width: "100%" }}
+          data={communities.ids}
+          renderItem={allCommunitiesItem}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={{ marginTop: 10 }} />}
+        />
+      )}
     </View>
   );
 };

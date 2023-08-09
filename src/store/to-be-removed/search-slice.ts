@@ -15,6 +15,12 @@ const allCommunitiesAdapter = createEntityAdapter<CommunityView>({
   },
 });
 
+const listCommunitiesAdapter = createEntityAdapter<CommunityView>({
+  selectId: (communityView) => {
+    return communityView.community.id;
+  },
+});
+
 export type SearchState = {
   allCommunities: EntityState<CommunityView>;
 };

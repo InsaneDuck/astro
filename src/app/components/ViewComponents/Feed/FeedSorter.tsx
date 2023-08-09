@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
-import { feedActions } from "@/store/feed-slice";
 import { AppDispatch, RootState } from "@/store/store";
+import { feedActions } from "@/store/to-be-removed/feed-slice";
 
 type FeedSorterProps = object;
 

@@ -2,31 +2,25 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { authReducers, authSlice } from "./auth-slice";
 
-import { communityReducers } from "@/store/community-slice";
-import { feedReducers } from "@/store/feed-slice";
-import { imageReducers } from "@/store/image-slice";
-import { postReducers } from "@/store/post-slice";
-import { postsApi } from "@/store/posts-slice";
-import { searchReducers } from "@/store/search-slice";
+import { lemmyApi } from "@/store/api/api-slice";
 import { settingsReducers } from "@/store/settings-slice";
-import { themeReducers } from "@/store/theme-slice";
-import { userReducers } from "@/store/user-slice";
+import { sharedReducers } from "@/store/shared-slice";
+import { feedReducers } from "@/store/to-be-removed/feed-slice";
+import { postReducers } from "@/store/to-be-removed/post-slice";
+import { searchReducers } from "@/store/to-be-removed/search-slice";
 
 //todo remove middleware later
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postsApi.middleware),
+    getDefaultMiddleware().concat(lemmyApi.middleware),
   reducer: {
     [authSlice.name]: authReducers,
-    community: communityReducers,
     feed: feedReducers,
-    image: imageReducers,
     post: postReducers,
     settings: settingsReducers,
-    theme: themeReducers,
-    user: userReducers,
+    shared: sharedReducers,
     search: searchReducers,
-    [postsApi.reducerPath]: postsApi.reducer,
+    lemmy: lemmyApi.reducer,
   },
 });
 

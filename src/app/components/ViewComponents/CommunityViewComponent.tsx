@@ -22,9 +22,7 @@ type CommunityProps = object;
  * shows a community when user clicks on a community name anywhere in the app
  */
 export const CommunityViewComponent: FC<CommunityProps> = (props) => {
-  const community = useSelector(
-    (state: RootState) => state.community.currentCommunity,
-  );
+  const community = useSelector((state: RootState) => state.shared.community);
   const domain = getBaseDomainFromUrl(community.actor_id);
   const navigation = useNavigation<MainStackNavigation>();
   const borderColor = useThemeColor("borderColor");

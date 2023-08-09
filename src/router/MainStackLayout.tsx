@@ -40,7 +40,7 @@ export const MainStackLayout: FC<LayoutProps> = () => {
       <NavigationContainer
         theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       >
-        <MainStack.Navigator initialRouteName="Test">
+        <MainStack.Navigator initialRouteName="Home">
           <MainStack.Screen
             name="Home"
             component={MainTabLayout}

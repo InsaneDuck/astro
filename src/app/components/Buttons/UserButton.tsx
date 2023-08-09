@@ -9,8 +9,8 @@ import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
+import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
-import { userActions } from "@/store/user-slice";
 import { ConstantColors } from "@/theming/Colors";
 import { useThemeColor } from "@/theming/useThemeColor";
 
@@ -26,7 +26,7 @@ export const UserButton: FC<UserButtonProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const goToUser = (): any => {
-    dispatch(userActions.setUser(creator));
+    dispatch(sharedActions.setClickedPerson(creator));
     navigation.navigate("User");
   };
 

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
-import { postActions } from "@/store/post-slice";
 import { AppDispatch, RootState } from "@/store/store";
+import { postActions } from "@/store/to-be-removed/post-slice";
 
 type CommentsSorterProps = object;
 
