@@ -7,7 +7,6 @@ import { settingsReducers } from "@/store/settings-slice";
 import { sharedReducers } from "@/store/shared-slice";
 import { feedReducers } from "@/store/to-be-removed/feed-slice";
 import { postReducers } from "@/store/to-be-removed/post-slice";
-import { searchReducers } from "@/store/to-be-removed/search-slice";
 
 //todo remove middleware later
 export const store = configureStore({
@@ -19,7 +18,6 @@ export const store = configureStore({
     post: postReducers,
     settings: settingsReducers,
     shared: sharedReducers,
-    search: searchReducers,
     lemmy: lemmyApi.reducer,
   },
 });

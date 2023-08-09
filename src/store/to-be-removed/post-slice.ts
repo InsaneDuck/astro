@@ -6,12 +6,7 @@ import {
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import {
-  CommentSortType,
-  CommentView,
-  GetComments,
-  PostView,
-} from "lemmy-js-client";
+import { CommentSortType, CommentView, GetComments } from "lemmy-js-client";
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { RootState } from "@/store/store";
@@ -22,7 +17,6 @@ const allCommentsAdapter = createEntityAdapter<CommentView>({
 
 export type PostState = {
   postId: EntityId;
-  postView?: PostView;
   comments: EntityState<CommentView>;
   page: number;
   loading: "idle" | "pending" | "succeeded" | "failed";

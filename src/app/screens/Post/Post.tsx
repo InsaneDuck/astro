@@ -9,6 +9,7 @@ import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentTh
 import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { View } from "@/common/View";
+import { useGetCommentsQuery } from "@/store/api/api-slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchComments } from "@/store/to-be-removed/post-slice";
 
@@ -22,9 +23,15 @@ const propsAreEqual = (previousProps: PostProps, currentProps: PostProps) => {
 };
 
 const Post: FC<PostProps> = React.memo((props) => {
-  const allCommentIds = useSelector(
-    (state: RootState) => state.post.comments.ids,
-  );
+  const { data: comment } = useGetCommentsQuery({
+    limit: 5,
+    page: 1,
+    post_id: Number(props.postId),
+    sort: "Top",
+    max_depth: 1,
+  });
+
+  const commentIds = useSelector((state: RootState) => state.post.comments.ids);
   const loading = useSelector((state: RootState) => state.post.loading);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -34,7 +41,9 @@ const Post: FC<PostProps> = React.memo((props) => {
 
   const commentItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => {
-      return <CommentThread commendId={item} index={index} />;
+      return (
+        <CommentThread postId={props.postId} commendId={item} index={index} />
+      );
     },
     [],
   );
@@ -64,7 +73,7 @@ const Post: FC<PostProps> = React.memo((props) => {
   return (
     <View style={{ width: "100%", height: "100%" }}>
       <FlashList
-        data={allCommentIds}
+        data={commentIds}
         keyExtractor={keyExtractor}
         renderItem={commentItem}
         estimatedItemSize={99}

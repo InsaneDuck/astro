@@ -3,11 +3,11 @@ import { createEntityAdapter, EntityState } from "@reduxjs/toolkit";
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   CommentResponse,
+  CommentView,
   CommunityResponse,
   CommunityView,
   GetComment,
   GetComments,
-  GetCommentsResponse,
   GetCommunity,
   GetFederatedInstances,
   GetFederatedInstancesResponse,
@@ -26,6 +26,10 @@ const postsAdapter = createEntityAdapter<PostView>({
 const listCommunitiesAdapter = createEntityAdapter<CommunityView>({
   selectId: (communityView) => communityView.community.id,
 });
+
+const commentsAdapter = createEntityAdapter<CommentView>({
+  selectId: (commentView) => commentView.comment.id,
+});
 // Define a service using a base URL and expected endpoints
 const client = getLemmyHttp();
 export const lemmyApi = createApi({
@@ -39,10 +43,14 @@ export const lemmyApi = createApi({
         return { data };
       },
     }),
-    getComments: builder.query<GetCommentsResponse, GetComments>({
+    getComments: builder.query<EntityState<CommentView>, GetComments>({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
         console.log("fetching getComments : " + arg);
-        const data = await client.getComments(arg);
+        const response = await client.getComments(arg);
+        const data = commentsAdapter.setAll(
+          commentsAdapter.getInitialState(),
+          response.comments,
+        );
         return { data };
       },
     }),
