@@ -8,7 +8,10 @@ import { LoginSignUp } from "@/app/components/LoginSignUp";
 import { CommunityViewComponent } from "@/app/components/ViewComponents/CommunityViewComponent";
 import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
 import { UserViewComponent } from "@/app/components/ViewComponents/UserViewComponent";
+import { ServerSelector } from "@/app/screens/Accounts/ServerSelector";
+import { AllCommunities } from "@/app/screens/Communities/AllCommunities";
 import { FeedSelector } from "@/app/screens/Feed/FeedSelector";
+import { FeedServer } from "@/app/screens/Feed/FeedServer";
 import { MainFeed } from "@/app/screens/Feed/MainFeed";
 import { Inbox } from "@/app/screens/Inbox/Inbox";
 import { CommentsSorter } from "@/app/screens/Post/CommentsSorter";
@@ -16,7 +19,6 @@ import Post from "@/app/screens/Post/Post";
 import { Profile } from "@/app/screens/Profile/Profile";
 import { ProfileHeaderRight } from "@/app/screens/Profile/ProfileHeaderRight";
 import { ProfileSettings } from "@/app/screens/Profile/ProfileSettings";
-import { AllCommunities } from "@/app/screens/Search/AllCommunities";
 import { Search } from "@/app/screens/Search/Search";
 import { About } from "@/app/screens/Settings/About";
 import { Accounts } from "@/app/screens/Settings/Accounts";
@@ -33,6 +35,7 @@ type SubStackLayoutProps = {
   initialRoute: keyof SubStackParamsList;
 };
 type SubStackParamsList = {
+  Server: undefined;
   Feed: undefined;
   Post: undefined;
   User: undefined;
@@ -60,10 +63,19 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
   return (
     <SubStack.Navigator initialRouteName={props.initialRoute}>
       <SubStack.Screen
+        name="Server"
+        component={ServerSelector}
+        options={{
+          title: "Server",
+          presentation: "modal",
+        }}
+      />
+      <SubStack.Screen
         name="Feed"
         component={MainFeed}
         options={{
           title: "Feed",
+          headerLeft: FeedServer,
           headerRight: FeedSorter,
           headerTitle: FeedSelector,
         }}
@@ -109,16 +121,23 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
         component={LoginSignUp}
         options={{ presentation: "modal" }}
       />
-      <SubStack.Screen name="Settings" children={Settings} />
-      <SubStack.Screen name="General" children={General} />
-      <SubStack.Screen name="Appearance" children={Appearance} />
-      <SubStack.Screen name="Filters" children={Filters} />
-      <SubStack.Screen name="FaceIdAndPasscode" children={FaceIdAndPasscode} />
-      <SubStack.Screen name="Accounts" children={Accounts} />
-      <SubStack.Screen name="ExportImport" children={ExportImport} />
-      <SubStack.Screen name="About" children={About} />
-      <SubStack.Screen name="Rate" children={Rate} />
-      <SubStack.Screen name="Tip" children={Tip} />
+      {props.initialRoute === "Settings" && (
+        <>
+          <SubStack.Screen name="Settings" children={Settings} />
+          <SubStack.Screen name="General" children={General} />
+          <SubStack.Screen name="Appearance" children={Appearance} />
+          <SubStack.Screen name="Filters" children={Filters} />
+          <SubStack.Screen
+            name="FaceIdAndPasscode"
+            children={FaceIdAndPasscode}
+          />
+          <SubStack.Screen name="Accounts" children={Accounts} />
+          <SubStack.Screen name="ExportImport" children={ExportImport} />
+          <SubStack.Screen name="About" children={About} />
+          <SubStack.Screen name="Rate" children={Rate} />
+          <SubStack.Screen name="Tip" children={Tip} />
+        </>
+      )}
     </SubStack.Navigator>
   );
 };

@@ -4,7 +4,7 @@ import React, { FC, useEffect } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
-import { OptionsItem } from "@/app/components/OptionsItem";
+import { ListItem } from "@/app/components/ListItem";
 import { Avatar } from "@/app/components/ViewComponents/Avatar";
 import { Banner } from "@/app/components/ViewComponents/Banner";
 import { Description } from "@/app/components/ViewComponents/Description";
@@ -90,10 +90,10 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const UserFooter = () => {
     return (
       <View style={styles.userFooter}>
-        <OptionsItem title="Overview" />
-        <OptionsItem title="Comments" />
-        <OptionsItem title="Posts" />
-        {userType === "primary" && <OptionsItem title="Saved" />}
+        <ListItem title="Overview" />
+        <ListItem title="Comments" />
+        <ListItem title="Posts" />
+        {userType === "primary" && <ListItem title="Saved" />}
       </View>
     );
   };

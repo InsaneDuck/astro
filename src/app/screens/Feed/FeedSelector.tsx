@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Text } from "@/common/Text";
 import { AppDispatch, RootState } from "@/store/store";
 import { feedActions } from "@/store/to-be-removed/feed-slice";
+import { ConstantColors } from "@/theming/Colors";
 
 export const FeedSelector = () => {
   const theme = useColorScheme() || "dark";
@@ -38,7 +39,10 @@ export const FeedSelector = () => {
     );
   };
   return (
-    <Text style={{ fontSize: 18 }} onPress={onPress}>
+    <Text
+      style={{ fontSize: 18, color: ConstantColors.iosBlue }}
+      onPress={onPress}
+    >
       {type}
     </Text>
   );

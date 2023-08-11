@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
 import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
-import { SwipeableCard } from "@/common/Cards/SwipeableCard";
+import { Card } from "@/common/Cards/Card";
 import { Text } from "@/common/Text";
 import { RootState } from "@/store/store";
 
@@ -25,12 +25,12 @@ export const FeedCard: FC<FeedCardProps> = React.memo((props) => {
   );
 
   return (
-    <SwipeableCard>
+    <Card>
       {post ? (
         <PostViewComponent postView={post} type="feed" />
       ) : (
         <Text>Loading</Text>
       )}
-    </SwipeableCard>
+    </Card>
   );
 }, propsAreEqual);

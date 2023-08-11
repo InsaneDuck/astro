@@ -10,7 +10,9 @@ import { feedReducers } from "@/store/to-be-removed/feed-slice";
 //todo remove middleware later
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(lemmyApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(lemmyApi.middleware),
   reducer: {
     auth: authReducers,
     feed: feedReducers,

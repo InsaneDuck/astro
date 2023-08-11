@@ -10,11 +10,14 @@ const instanceApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     getFederatedInstances: builder.query<
       GetFederatedInstancesResponse,
-      GetFederatedInstances
+      GetFederatedInstances | void
     >({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
         console.log("fetching getFederatedInstances : " + JSON.stringify(arg));
-        const data = await getLemmyHttp().getFederatedInstances(arg);
+        const data = arg
+          ? await getLemmyHttp().getFederatedInstances(arg)
+          : await getLemmyHttp().getFederatedInstances();
+
         return { data };
       },
     }),

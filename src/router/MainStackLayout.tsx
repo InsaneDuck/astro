@@ -55,6 +55,7 @@ export const MainStackLayout: FC<LayoutProps> = () => {
               presentation: "card",
               title: "",
               headerRight: ImageActions,
+              animation: "fade_from_bottom",
             }}
           />
           <MainStack.Screen

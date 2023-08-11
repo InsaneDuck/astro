@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Switch } from "react-native";
 
-import { OptionsItem } from "@/app/components/OptionsItem";
+import { ListItem } from "@/app/components/ListItem";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 
@@ -10,17 +10,17 @@ export const Appearance = () => {
     <View style={styles.container}>
       <Text style={styles.title}>THEME</Text>
       <View style={styles.innerContainer}>
-        <OptionsItem title="Dark Mode" />
+        <ListItem title="Dark Mode" />
       </View>
       <Text style={styles.title}>POST</Text>
       <View style={styles.innerContainer}>
-        <OptionsItem title="Post Size">
+        <ListItem title="Post Size">
           <Switch />
-        </OptionsItem>
+        </ListItem>
       </View>
       <Text style={styles.title}>COMMENTS</Text>
       <View style={styles.innerContainer}>
-        <OptionsItem title="Dark Mode" />
+        <ListItem title="Dark Mode" />
       </View>
     </View>
   );

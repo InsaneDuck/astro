@@ -13,7 +13,7 @@ type OptionsItemProps = {
   children?: ReactNode;
 } & ClickProps;
 
-export const OptionsItem: FC<OptionsItemProps> = (props) => {
+export const ListItem: FC<OptionsItemProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
   const textColor = useThemeColor("text");
   const view = useThemeColor("background");
@@ -51,6 +51,5 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     borderBottomWidth: 1,
-    borderColor: "transparent",
   },
 });

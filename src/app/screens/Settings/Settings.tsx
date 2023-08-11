@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { OptionsItem } from "@/app/components/OptionsItem";
+import { ListItem } from "@/app/components/ListItem";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 
@@ -14,39 +14,36 @@ export const Settings: FC<SettingsProps> = () => {
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <OptionsItem
+        <ListItem
           title="General"
           onPress={() => navigation.navigate("General")}
         />
-        <OptionsItem
+        <ListItem
           title="Appearance"
           onPress={() => navigation.navigate("Appearance")}
         />
-        <OptionsItem
+        <ListItem
           title="Filters"
           onPress={() => navigation.navigate("Filters")}
         />
-        <OptionsItem
+        <ListItem
           title="Face ID & Passcode"
           onPress={() => navigation.navigate("FaceIdAndPasscode")}
         />
-        <OptionsItem
+        <ListItem
           title="Accounts"
           onPress={() => navigation.navigate("Accounts")}
         />
-        <OptionsItem
+        <ListItem
           title="Export/Import"
           onPress={() => navigation.navigate("ExportImport")}
         />
       </View>
 
       <View style={styles.innerContainer}>
-        <OptionsItem
-          title="About"
-          onPress={() => navigation.navigate("About")}
-        />
-        <OptionsItem title="Rate" onPress={() => navigation.navigate("Rate")} />
-        <OptionsItem title="Tip" onPress={() => navigation.navigate("Tip")} />
+        <ListItem title="About" onPress={() => navigation.navigate("About")} />
+        <ListItem title="Rate" onPress={() => navigation.navigate("Rate")} />
+        <ListItem title="Tip" onPress={() => navigation.navigate("Tip")} />
       </View>
     </View>
   );

@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 
 import { CommunitySearchResultItem } from "@/app/screens/Search/CommunitySearchResultItem";
+import { InvertedSeparator } from "@/common/InvertedSeparator";
 import { View } from "@/common/View";
 import { useListCommunitiesQuery } from "@/store/api/communityApi";
 
@@ -13,7 +14,6 @@ export const AllCommunities: FC<AllCommunitiesProps> = (props) => {
     limit: 50,
     sort: "TopAll",
   });
-
   const allCommunitiesItem = ({
     item,
     index,
@@ -47,6 +47,7 @@ export const AllCommunities: FC<AllCommunitiesProps> = (props) => {
           data={communities.ids}
           renderItem={allCommunitiesItem}
           showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={InvertedSeparator}
         />
       )}
     </View>
