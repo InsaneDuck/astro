@@ -31,6 +31,7 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
     navigation.navigate("Community");
   };
   const onPress = (): any => {
+    //todo add sub api
     setActionText((text) => (text === "Undo" ? "Sub" : "Undo"));
   };
   return (

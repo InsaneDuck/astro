@@ -18,7 +18,16 @@ export const AllCommunities: FC<AllCommunitiesProps> = (props) => {
     item,
     index,
   }: ListRenderItemInfo<EntityId>) => {
-    return <CommunitySearchResultItem communityId={item} />;
+    return (
+      <CommunitySearchResultItem
+        communityId={item}
+        style={{
+          borderTopStartRadius: index === 0 ? 13 : 0,
+          borderTopEndRadius: index === 0 ? 13 : 0,
+          marginTop: index === 0 ? 20 : 0,
+        }}
+      />
+    );
   };
 
   return (
@@ -31,11 +40,13 @@ export const AllCommunities: FC<AllCommunitiesProps> = (props) => {
     >
       {communities && (
         <FlatList
-          style={{ padding: 10, width: "100%" }}
+          style={{
+            width: "90%",
+            overflow: "hidden",
+          }}
           data={communities.ids}
           renderItem={allCommunitiesItem}
           showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{ marginTop: 10 }} />}
         />
       )}
     </View>

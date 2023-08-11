@@ -1,13 +1,21 @@
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
-import { TouchableOpacity } from "react-native";
+import {
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 
 import { CommunityButton } from "@/app/components/Buttons/CommunityButton";
 import { Text } from "@/common/Text";
 import { useListCommunitiesQuery } from "@/store/api/communityApi";
 import { useThemeColor } from "@/theming/useThemeColor";
 
-type CommunitySearchResultItemProps = { communityId: EntityId };
+type CommunitySearchResultItemProps = {
+  communityId: EntityId;
+  style?: StyleProp<ViewStyle>;
+};
 
 export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
   props,
@@ -29,16 +37,11 @@ export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
   return (
     communityView && (
       <TouchableOpacity
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderRadius: 13,
-          width: "100%",
-          backgroundColor: borderColor,
-          padding: 15,
-        }}
+        style={[
+          styles.container,
+          props.style,
+          { backgroundColor: borderColor },
+        ]}
       >
         <CommunityButton community={communityView.community} />
         <Text>{communityView.counts.subscribers}</Text>
@@ -46,3 +49,16 @@ export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
     )
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderColor: "#000000",
+    width: "100%",
+    padding: 12,
+  },
+});
