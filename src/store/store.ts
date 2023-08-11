@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { authReducers } from "./auth-slice";
 
-import { lemmyApi } from "@/store/api/api-slice";
+import { lemmyApi, lemmyReducers } from "@/store/api/api-slice";
 import { settingsReducers } from "@/store/settings-slice";
 import { sharedReducers } from "@/store/shared-slice";
 import { feedReducers } from "@/store/to-be-removed/feed-slice";
@@ -14,7 +14,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducers,
     feed: feedReducers,
-    [lemmyApi.reducerPath]: lemmyApi.reducer,
+    lemmy: lemmyReducers,
     settings: settingsReducers,
     shared: sharedReducers,
   },

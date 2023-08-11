@@ -23,11 +23,10 @@ const propsAreEqual = (previousProps: PostProps, currentProps: PostProps) => {
 
 const Post: FC<PostProps> = React.memo((props) => {
   const { data: comment, isLoading: loading } = useGetCommentsQuery({
-    limit: 5,
+    limit: 50,
     page: 1,
     post_id: Number(props.postId),
-    sort: "Top",
-    max_depth: 1,
+    max_depth: 5,
   });
 
   const commentItem = useCallback(

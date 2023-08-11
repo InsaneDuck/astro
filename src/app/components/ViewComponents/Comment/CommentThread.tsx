@@ -14,11 +14,10 @@ const count = 0;
 export const CommentThread: FC<CommentThreadProps> = (props) => {
   const { data: commentView } = useGetCommentsQuery(
     {
-      limit: 5,
+      limit: 50,
       page: 1,
       post_id: Number(props.postId),
-      sort: "Top",
-      max_depth: 1,
+      max_depth: 5,
     },
     {
       selectFromResult: (state) => {
@@ -37,5 +36,9 @@ export const CommentThread: FC<CommentThreadProps> = (props) => {
 
   //console.log("Rendering comments, count = ", count++);
 
-  return commentView && <CommentViewComponent comment={commentView} />;
+  return (
+    commentView && (
+      <CommentViewComponent comment={commentView} index={props.index} />
+    )
+  );
 };

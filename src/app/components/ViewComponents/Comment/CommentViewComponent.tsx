@@ -1,6 +1,6 @@
 import { CommentView } from "lemmy-js-client";
-import React, { FC } from "react";
-import { StyleSheet } from "react-native";
+import React, { FC, useState } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { UserButton } from "@/app/components/Buttons/UserButton";
 import { Card } from "@/common/Cards/Card";
@@ -12,13 +12,19 @@ import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommentViewComponentProps = {
   comment: CommentView;
+  index: number;
 };
 
 export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   const { comment } = props;
   const tabIconDefault = useThemeColor("tabIconDefault");
+  const [expanded, setExpanded] = useState(true);
   const CommentHeaderLeft = () => {
     return <UserButton creator={comment.creator} />;
+  };
+
+  const toggleExpander = () => {
+    setExpanded((prevState) => !prevState);
   };
 
   const CommentHeaderRight = () => {
@@ -46,29 +52,40 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
 
   const CommentHeader = () => {
     return (
-      <View style={styles.commentHeader}>
+      <TouchableOpacity onPress={toggleExpander} style={styles.commentHeader}>
         <CommentHeaderLeft />
         <CommentHeaderRight />
-      </View>
+      </TouchableOpacity>
     );
   };
   const CommentContent = () => {
     return (
-      <Text style={styles.commentContent}>{comment?.comment.content}</Text>
+      <Text onPress={toggleExpander} style={styles.commentContent}>
+        {comment?.comment.content}
+      </Text>
     );
   };
   return (
     <>
       <Card style={styles.comment}>
-        <CommentHeader />
-        <CommentContent />
+        <View
+          style={{
+            backgroundColor: "#f63900",
+            width: 5,
+            height: "100%",
+          }}
+        />
+        <View style={{ padding: 10, flex: 1 }}>
+          <CommentHeader />
+          {expanded && <CommentContent />}
+        </View>
       </Card>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  comment: { padding: 10 },
+  comment: { flexDirection: "row" },
   commentHeaderRight: {
     display: "flex",
     flexDirection: "row",
