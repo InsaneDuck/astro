@@ -19,6 +19,5 @@ const styles = StyleSheet.create({
     height: "100%",
     flex: 1,
     alignItems: "center",
-    marginTop: 20,
   },
 });
