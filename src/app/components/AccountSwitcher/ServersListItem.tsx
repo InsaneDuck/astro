@@ -14,7 +14,15 @@ export const ServersListItem: FC<ServersListItemProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
   return (
     <TouchableOpacity
-      style={[props.style, { backgroundColor: borderColor, padding: 15 }]}
+      style={[
+        props.style,
+        {
+          backgroundColor: borderColor,
+          padding: 12,
+          height: 50,
+          justifyContent: "center",
+        },
+      ]}
       key={props.item.id}
     >
       <Text>{props.item.domain}</Text>

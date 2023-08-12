@@ -47,8 +47,8 @@ const postApi = lemmyApi.injectEndpoints({
         console.log(state);
         const response = await getLemmyHttp().getPosts(arg);
         const posts = response.posts;
-        const temp = postsAdapter.setAll(postsAdapter.getInitialState(), posts);
-        return { data: temp };
+        const data = postsAdapter.setAll(postsAdapter.getInitialState(), posts);
+        return { data };
       },
     }),
   }),

@@ -96,13 +96,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
   return (
     <>
       <Separator />
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          width: "100%",
-        }}
-      >
+      <View style={styles.container}>
         <UpVote />
         <DownVote />
         <Save />
@@ -115,6 +109,11 @@ export const PostActions: FC<PostActionsProps> = (props) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+  },
   perView: {
     borderRightWidth: 1,
     display: "flex",
@@ -125,7 +124,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
   },
-
   text: {
     fontSize: 18,
   },

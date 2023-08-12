@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import { Loading } from "@/common/Loading";
 import { View } from "@/common/View";
 
-export const Inbox = () => {
+export const InboxScreen = () => {
   return (
     <View style={[styles.container]}>
       <Loading />

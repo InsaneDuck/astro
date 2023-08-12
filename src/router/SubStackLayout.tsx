@@ -4,58 +4,58 @@ import {
 } from "@react-navigation/native-stack";
 import React, { FC } from "react";
 
-import { LoginSignUp } from "@/app/components/LoginSignUp";
-import { CommunityViewComponent } from "@/app/components/ViewComponents/CommunityViewComponent";
+import { CommentsSorter } from "@/app/components/CommentsSorter";
+import { ProfileHeaderRight } from "@/app/components/ProfileHeaderRight";
+import { FeedSelector } from "@/app/components/ViewComponents/Feed/FeedSelector";
+import { FeedServer } from "@/app/components/ViewComponents/Feed/FeedServer";
 import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
-import { UserViewComponent } from "@/app/components/ViewComponents/UserViewComponent";
-import { ServerSelector } from "@/app/screens/Accounts/ServerSelector";
-import { AllCommunities } from "@/app/screens/Communities/AllCommunities";
-import { FeedSelector } from "@/app/screens/Feed/FeedSelector";
-import { FeedServer } from "@/app/screens/Feed/FeedServer";
-import { MainFeed } from "@/app/screens/Feed/MainFeed";
-import { Inbox } from "@/app/screens/Inbox/Inbox";
-import { CommentsSorter } from "@/app/screens/Post/CommentsSorter";
-import Post from "@/app/screens/Post/Post";
-import { Profile } from "@/app/screens/Profile/Profile";
-import { ProfileHeaderRight } from "@/app/screens/Profile/ProfileHeaderRight";
-import { ProfileSettings } from "@/app/screens/Profile/ProfileSettings";
-import { Search } from "@/app/screens/Search/Search";
-import { About } from "@/app/screens/Settings/About";
-import { Accounts } from "@/app/screens/Settings/Accounts";
-import { Appearance } from "@/app/screens/Settings/Appearance";
-import { ExportImport } from "@/app/screens/Settings/ExportImport";
-import { FaceIdAndPasscode } from "@/app/screens/Settings/FaceIdAndPasscode";
-import { Filters } from "@/app/screens/Settings/Filters";
-import { General } from "@/app/screens/Settings/General";
-import { Rate } from "@/app/screens/Settings/Rate";
-import { Settings } from "@/app/screens/Settings/Settings";
-import { Tip } from "@/app/screens/Settings/Tip";
+import { AccountSwitcherScreen } from "@/app/screens/SubStack/AccountSwitcherScreen";
+import { AllCommunitiesScreen } from "@/app/screens/SubStack/AllCommunitiesScreen";
+import { CommunityScreen } from "@/app/screens/SubStack/CommunityScreen";
+import { InboxScreen } from "@/app/screens/SubStack/InboxScreen";
+import { LoginModalScreen } from "@/app/screens/SubStack/LoginModalScreen";
+import { MainFeedScreen } from "@/app/screens/SubStack/MainFeedScreen";
+import PostScreen from "@/app/screens/SubStack/PostScreen";
+import { ProfileScreen } from "@/app/screens/SubStack/ProfileScreen";
+import { ProfileSettingsScreen } from "@/app/screens/SubStack/ProfileSettingsScreen";
+import { SearchScreen } from "@/app/screens/SubStack/SearchScreen";
+import { About } from "@/app/screens/SubStack/Settings/About";
+import { Accounts } from "@/app/screens/SubStack/Settings/Accounts";
+import { Appearance } from "@/app/screens/SubStack/Settings/Appearance";
+import { ExportImport } from "@/app/screens/SubStack/Settings/ExportImport";
+import { FaceIdAndPasscode } from "@/app/screens/SubStack/Settings/FaceIdAndPasscode";
+import { Filters } from "@/app/screens/SubStack/Settings/Filters";
+import { General } from "@/app/screens/SubStack/Settings/General";
+import { Rate } from "@/app/screens/SubStack/Settings/Rate";
+import { Settings } from "@/app/screens/SubStack/Settings/Settings";
+import { Tip } from "@/app/screens/SubStack/Settings/Tip";
+import { UserScreen } from "@/app/screens/SubStack/UserScreen";
 
 type SubStackLayoutProps = {
   initialRoute: keyof SubStackParamsList;
 };
 type SubStackParamsList = {
-  Server: undefined;
-  Feed: undefined;
-  Post: undefined;
-  User: undefined;
-  Community: undefined;
+  About: undefined;
+  Accounts: undefined;
+  AccountSwitcher: undefined;
   AllCommunities: undefined;
-  Search: undefined;
+  Appearance: undefined;
+  Community: undefined;
+  ExportImport: undefined;
+  FaceIdAndPasscode: undefined;
+  Filters: undefined;
+  General: undefined;
   Inbox: undefined;
+  LoginModal: undefined;
+  MainFeed: undefined;
+  Post: undefined;
   Profile: undefined;
   ProfileSettings: undefined;
-  LoginModal: undefined;
-  Settings: undefined;
-  General: undefined;
-  Appearance: undefined;
-  Filters: undefined;
-  FaceIdAndPasscode: undefined;
-  Accounts: undefined;
-  ExportImport: undefined;
-  About: undefined;
   Rate: undefined;
+  Search: undefined;
+  Settings: undefined;
   Tip: undefined;
+  User: undefined;
 };
 export type SubStackNavigation = NativeStackNavigationProp<SubStackParamsList>;
 const SubStack = createNativeStackNavigator<SubStackParamsList>();
@@ -63,16 +63,16 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
   return (
     <SubStack.Navigator initialRouteName={props.initialRoute}>
       <SubStack.Screen
-        name="Server"
-        component={ServerSelector}
+        name="AccountSwitcher"
+        component={AccountSwitcherScreen}
         options={{
-          title: "Server",
+          title: "Select Account",
           presentation: "modal",
         }}
       />
       <SubStack.Screen
-        name="Feed"
-        component={MainFeed}
+        name="MainFeed"
+        component={MainFeedScreen}
         options={{
           title: "Feed",
           headerLeft: FeedServer,
@@ -82,43 +82,46 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
       />
       <SubStack.Screen
         name="Post"
-        component={Post}
+        component={PostScreen}
         options={{
           headerRight: CommentsSorter,
         }}
       />
       <SubStack.Screen
         name="User"
-        children={() => <UserViewComponent userType="clicked" />}
+        children={UserScreen}
         options={{
           title: "User",
         }}
       />
       <SubStack.Screen
         name="Community"
-        component={CommunityViewComponent}
+        component={CommunityScreen}
         options={{
           title: "Community",
         }}
       />
       <SubStack.Screen
         name="AllCommunities"
-        component={AllCommunities}
+        component={AllCommunitiesScreen}
         options={{ title: "All Communities" }}
       />
-      <SubStack.Screen name="Search" component={Search} />
-      <SubStack.Screen name="Inbox" component={Inbox} />
+      <SubStack.Screen name="Search" component={SearchScreen} />
+      <SubStack.Screen name="Inbox" component={InboxScreen} />
       <SubStack.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileScreen}
         options={{
           headerRight: ProfileHeaderRight,
         }}
       />
-      <SubStack.Screen name="ProfileSettings" component={ProfileSettings} />
+      <SubStack.Screen
+        name="ProfileSettings"
+        component={ProfileSettingsScreen}
+      />
       <SubStack.Screen
         name="LoginModal"
-        component={LoginSignUp}
+        component={LoginModalScreen}
         options={{ presentation: "modal" }}
       />
       {props.initialRoute === "Settings" && (

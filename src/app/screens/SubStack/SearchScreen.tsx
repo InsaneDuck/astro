@@ -7,7 +7,7 @@ import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { useThemeColor } from "@/theming/useThemeColor";
 
-export const Search = () => {
+export const SearchScreen = () => {
   //todo show trending communities
   const color = useThemeColor("borderColor");
 

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
 import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
-import { PostViewComponent } from "@/app/components/ViewComponents/PostViewComponent";
+import { PostViewComponent } from "@/app/components/ViewComponents/Post/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { View } from "@/common/View";
 import { useGetCommentsQuery } from "@/store/api/postApi";
@@ -21,12 +21,12 @@ const propsAreEqual = (previousProps: PostProps, currentProps: PostProps) => {
   return previousProps.postId === currentProps.postId;
 };
 
-const Post: FC<PostProps> = React.memo((props) => {
+const PostScreen: FC<PostProps> = React.memo((props) => {
   const { data: comment, isLoading: loading } = useGetCommentsQuery({
-    limit: 50,
+    limit: 10,
     page: 1,
     post_id: Number(props.postId),
-    max_depth: 5,
+    max_depth: 1,
   });
 
   const commentItem = useCallback(
@@ -86,4 +86,4 @@ const mapStateToProps = (state: RootState) => {
   return props;
 };
 
-export default connect(mapStateToProps)(Post);
+export default connect(mapStateToProps)(PostScreen);

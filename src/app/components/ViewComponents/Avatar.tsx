@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { ImageEditButton } from "@/app/components/ImageEditButton";
+import { ImageEditButton } from "@/app/components/ViewComponents/ImageEditButton";
 import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
 import { View } from "@/common/View";

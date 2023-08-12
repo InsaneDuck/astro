@@ -14,10 +14,10 @@ const count = 0;
 export const CommentThread: FC<CommentThreadProps> = (props) => {
   const { data: commentView } = useGetCommentsQuery(
     {
-      limit: 50,
+      limit: 10,
       page: 1,
       post_id: Number(props.postId),
-      max_depth: 5,
+      max_depth: 1,
     },
     {
       selectFromResult: (state) => {

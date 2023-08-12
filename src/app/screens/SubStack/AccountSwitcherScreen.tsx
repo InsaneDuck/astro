@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 
-import { ServersList } from "@/app/screens/Accounts/ServersList";
+import { ServersList } from "@/app/components/AccountSwitcher/ServersList";
 import { View } from "@/common/View";
 
-export const ServerSelector = () => {
+export const AccountSwitcherScreen = () => {
   return (
     <View style={styles.container}>
       <View style={{ width: "90%", height: "100%" }}>

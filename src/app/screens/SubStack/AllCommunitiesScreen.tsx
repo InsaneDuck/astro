@@ -2,14 +2,14 @@ import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 
-import { CommunitySearchResultItem } from "@/app/screens/Search/CommunitySearchResultItem";
+import { CommunitySearchResultItem } from "@/app/components/CommunitySearchResultItem";
 import { InvertedSeparator } from "@/common/InvertedSeparator";
 import { View } from "@/common/View";
 import { useListCommunitiesQuery } from "@/store/api/communityApi";
 
 type AllCommunitiesProps = object;
 
-export const AllCommunities: FC<AllCommunitiesProps> = (props) => {
+export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
   const { data: communities } = useListCommunitiesQuery({
     limit: 50,
     sort: "TopAll",

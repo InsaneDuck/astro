@@ -33,7 +33,7 @@ export const MainTabLayout = () => {
     >
       <Tabs.Screen
         name="FeedStack"
-        children={() => <SubStackLayout initialRoute="Feed" />}
+        children={() => <SubStackLayout initialRoute="MainFeed" />}
         options={{
           tabBarLabel: "Feed",
           tabBarIcon: ({ color }) => <Icon icon="house" color={color} />,

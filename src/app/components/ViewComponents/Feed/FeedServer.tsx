@@ -7,7 +7,7 @@ import { SubStackNavigation } from "@/router/SubStackLayout";
 export const FeedServer = () => {
   const navigation = useNavigation<SubStackNavigation>();
   const onPress = (): any => {
-    navigation.navigate("Server");
+    navigation.navigate("AccountSwitcher");
   };
   return <Button title="Server" onPress={onPress} />;
 };

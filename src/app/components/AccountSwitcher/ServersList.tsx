@@ -3,9 +3,9 @@ import { Instance } from "lemmy-js-client";
 import { useCallback } from "react";
 import { StyleSheet } from "react-native";
 
-import { ServersListItem } from "@/app/screens/Accounts/ServersListItem";
+import { ServersListItem } from "@/app/components/AccountSwitcher/ServersListItem";
 import { InvertedSeparator } from "@/common/InvertedSeparator";
-import { Text } from "@/common/Text";
+import { Loading } from "@/common/Loading";
 import { View } from "@/common/View";
 import { useGetFederatedInstancesQuery } from "@/store/api/instanceApi";
 
@@ -43,7 +43,7 @@ export const ServersList = () => {
           showsVerticalScrollIndicator={false}
         />
       ) : (
-        <Text>Data</Text>
+        <Loading />
       )}
     </View>
   );

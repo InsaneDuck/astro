@@ -12,10 +12,10 @@ import {
 import React, { FC } from "react";
 import { Button, useColorScheme } from "react-native";
 
-import { Error } from "@/app/screens/Error";
-import { ImageViewer } from "@/app/screens/ImageViewer/ImageViewer";
-import { ImageViewerButtons } from "@/app/screens/ImageViewer/ImageViewerButtons";
-import { TestScreen } from "@/app/screens/TestScreen";
+import { ImageViewerButtons } from "@/app/ImageViewer/ImageViewerButtons";
+import { Error } from "@/app/screens/MainStack/Error";
+import { ImageViewer } from "@/app/screens/MainStack/ImageViewer";
+import { TestScreen } from "@/app/screens/MainStack/TestScreen";
 import { MainTabLayout } from "@/router/MainTabLayout";
 
 type LayoutProps = object;
