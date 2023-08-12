@@ -6,8 +6,10 @@ const baseUrl = "https://lemmy.ml/";
 const operatingSystem = Platform.OS;
 
 export const getLemmyHttp = () => {
-  client = new LemmyHttp(baseUrl, {
-    headers: { "User-Agent": `Memmy ${operatingSystem}` },
-  });
+  const options = {
+    headers: { "User-Agent": `Astro ${operatingSystem}` },
+    fetchFunction: undefined,
+  };
+  client = new LemmyHttp(baseUrl);
   return client;
 };
