@@ -4,12 +4,12 @@ import {
 } from "@react-navigation/native-stack";
 import React, { FC } from "react";
 
-import { CommentsSorter } from "@/app/components/CommentsSorter";
 import { CreatePost } from "@/app/components/CreatePost";
 import { ProfileHeaderRight } from "@/app/components/ProfileHeaderRight";
 import { FeedSelector } from "@/app/components/ViewComponents/Feed/FeedSelector";
 import { FeedServer } from "@/app/components/ViewComponents/Feed/FeedServer";
 import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
+import { CommentsSorter } from "@/app/components/ViewComponents/Feed/Post/CommentsSorter";
 import { AccountSwitcherScreen } from "@/app/screens/SubStack/AccountSwitcherScreen";
 import { AllCommunitiesScreen } from "@/app/screens/SubStack/AllCommunitiesScreen";
 import { CommunityInfoScreen } from "@/app/screens/SubStack/CommunityInfoScreen";
@@ -115,7 +115,7 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
       <SubStack.Screen
         name="AllCommunities"
         component={AllCommunitiesScreen}
-        options={{ title: "All Communities" }}
+        options={{ title: "Communities" }}
       />
       <SubStack.Screen name="Search" component={SearchScreen} />
       <SubStack.Screen name="Inbox" component={InboxScreen} />

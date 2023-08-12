@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 
 import { Separator } from "@/app/components/Separator";
-import { PostViewComponent } from "@/app/components/ViewComponents/Post/PostViewComponent";
+import { PostViewComponent } from "@/app/components/ViewComponents/Feed/Post/PostViewComponent";
 import { useGetPostsQuery } from "@/store/api/postApi";
 
 type TestScreenProps = object;

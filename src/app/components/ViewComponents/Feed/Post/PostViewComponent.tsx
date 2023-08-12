@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import { CommunityButton } from "@/app/components/Buttons/CommunityButton";
 import { UserButton } from "@/app/components/Buttons/UserButton";
-import { PostActions } from "@/app/components/ViewComponents/Post/PostActions";
+import { PostActions } from "@/app/components/ViewComponents/Feed/Post/PostActions";
 import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";

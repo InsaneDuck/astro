@@ -17,7 +17,7 @@ export const CommunityInfoScreen = () => {
   //console.log(communityResponse);
   return (
     <ScrollView>
-      <View style={{ alignItems: "center" }}>
+      <View style={styles.container}>
         <View style={{ width: "90%" }}>
           <View
             style={[
@@ -86,9 +86,14 @@ export const CommunityInfoScreen = () => {
                   styles.textWrapper,
                 ]}
               >
-                <Text>Mods</Text>
+                <Text style={{ fontSize: 18 }}>Moderators</Text>
                 {communityResponse.moderators.map((mod) => {
-                  return <UserButton person={mod.moderator} />;
+                  return (
+                    <UserButton
+                      style={{ marginTop: 10 }}
+                      person={mod.moderator}
+                    />
+                  );
                 })}
               </View>
             </>
@@ -101,9 +106,13 @@ export const CommunityInfoScreen = () => {
 
 const styles = StyleSheet.create({
   textWrapper: {
-    padding: 10,
+    padding: 15,
     overflow: "hidden",
     borderRadius: 13,
     marginTop: 20,
+  },
+  container: {
+    alignItems: "center",
+    paddingBottom: 20,
   },
 });

@@ -1,7 +1,12 @@
 import { useNavigation } from "@react-navigation/core";
 import { Person } from "lemmy-js-client";
 import React, { FC } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import {
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 import { useDispatch } from "react-redux";
 
 import { CustomImage } from "@/common/CustomImage";
@@ -16,6 +21,7 @@ import { useThemeColor } from "@/theming/useThemeColor";
 
 type UserButtonProps = {
   person: Person;
+  style?: StyleProp<ViewStyle>;
 };
 
 //todo show tags like mod?, op?
@@ -31,7 +37,10 @@ export const UserButton: FC<UserButtonProps> = (props) => {
   };
 
   return (
-    <TouchableOpacity onPress={goToUser} style={styles.container}>
+    <TouchableOpacity
+      onPress={goToUser}
+      style={[styles.container, props.style]}
+    >
       <View style={styles.imageContainer}>
         {person.avatar ? (
           <CustomImage source={{ uri: person.avatar }} style={styles.image} />

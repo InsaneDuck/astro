@@ -5,9 +5,9 @@ import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
 import { ListItem } from "@/app/components/ListItem";
-import { Avatar } from "@/app/components/ViewComponents/Avatar";
-import { Banner } from "@/app/components/ViewComponents/Banner";
-import { Description } from "@/app/components/ViewComponents/Description";
+import { Avatar } from "@/app/components/ViewComponents/Community/Avatar";
+import { Banner } from "@/app/components/ViewComponents/Community/Banner";
+import { Description } from "@/app/components/ViewComponents/Community/Description";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";

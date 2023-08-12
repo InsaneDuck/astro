@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { ImageEditButton } from "@/app/components/ViewComponents/ImageEditButton";
+import { ImageEditButton } from "@/app/components/ViewComponents/Community/ImageEditButton";
 import { CustomImage } from "@/common/CustomImage";
 import { View } from "@/common/View";
 import { Press } from "@/theming/Themed";

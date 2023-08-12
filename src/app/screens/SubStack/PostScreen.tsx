@@ -5,8 +5,8 @@ import React, { FC, useCallback, useMemo } from "react";
 import { connect } from "react-redux";
 
 import { Separator } from "@/app/components/Separator";
-import { CommentThread } from "@/app/components/ViewComponents/Comment/CommentThread";
-import { PostViewComponent } from "@/app/components/ViewComponents/Post/PostViewComponent";
+import { CommentThread } from "@/app/components/ViewComponents/Feed/Post/Comment/CommentThread";
+import { PostViewComponent } from "@/app/components/ViewComponents/Feed/Post/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { View } from "@/common/View";
 import { useGetCommentsQuery } from "@/store/api/postApi";
