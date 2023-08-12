@@ -4,10 +4,10 @@ import React, { FC, useEffect } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
+import { Avatar } from "@/app/components/Community/Avatar";
+import { Banner } from "@/app/components/Community/Banner";
+import { Description } from "@/app/components/Community/Description";
 import { ListItem } from "@/app/components/ListItem";
-import { Avatar } from "@/app/components/ViewComponents/Community/Avatar";
-import { Banner } from "@/app/components/ViewComponents/Community/Banner";
-import { Description } from "@/app/components/ViewComponents/Community/Description";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";

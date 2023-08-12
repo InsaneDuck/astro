@@ -3,9 +3,9 @@ import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Separator } from "@/app/components/Separator";
-import { FeedCard } from "@/app/components/ViewComponents/Feed/FeedCard";
+import { FeedCard } from "@/app/components/Feed/FeedCard";
 import { Loading } from "@/common/Loading";
+import { Separator } from "@/common/Separator";
 import { View } from "@/common/View";
 import { AppDispatch, RootState } from "@/store/store";
 import { feedActions, fetchPosts } from "@/store/to-be-removed/feed-slice";

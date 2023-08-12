@@ -4,16 +4,17 @@ import {
 } from "@react-navigation/native-stack";
 import React, { FC } from "react";
 
-import { CreatePost } from "@/app/components/CreatePost";
-import { ProfileHeaderRight } from "@/app/components/ProfileHeaderRight";
-import { FeedSelector } from "@/app/components/ViewComponents/Feed/FeedSelector";
-import { FeedServer } from "@/app/components/ViewComponents/Feed/FeedServer";
-import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
-import { CommentsSorter } from "@/app/components/ViewComponents/Feed/Post/CommentsSorter";
+import { CommunityButtons } from "@/app/components/Community/CommunityButtons";
+import { FeedAccount } from "@/app/components/Feed/FeedAccount";
+import { FeedSelector } from "@/app/components/Feed/FeedSelector";
+import { FeedSorter } from "@/app/components/Feed/FeedSorter";
+import { ProfileHeaderRight } from "@/app/components/Person/ProfileHeaderRight";
+import { CommentsSorter } from "@/app/components/Post/Comment/CommentsSorter";
 import { AccountSwitcherScreen } from "@/app/screens/SubStack/AccountSwitcherScreen";
 import { AllCommunitiesScreen } from "@/app/screens/SubStack/AllCommunitiesScreen";
 import { CommunityInfoScreen } from "@/app/screens/SubStack/CommunityInfoScreen";
 import { CommunityScreen } from "@/app/screens/SubStack/CommunityScreen";
+import { CreatePostScreen } from "@/app/screens/SubStack/CreatePostScreen";
 import { InboxScreen } from "@/app/screens/SubStack/InboxScreen";
 import { LoginModalScreen } from "@/app/screens/SubStack/LoginModalScreen";
 import { MainFeedScreen } from "@/app/screens/SubStack/MainFeedScreen";
@@ -44,6 +45,7 @@ type SubStackParamsList = {
   Appearance: undefined;
   Community: undefined;
   CommunityInfo: undefined;
+  CreatePost: undefined;
   ExportImport: undefined;
   FaceIdAndPasscode: undefined;
   Filters: undefined;
@@ -78,7 +80,7 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
         component={MainFeedScreen}
         options={{
           title: "Feed",
-          headerLeft: FeedServer,
+          headerLeft: FeedAccount,
           headerRight: FeedSorter,
           headerTitle: FeedSelector,
         }}
@@ -102,7 +104,7 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
         component={CommunityScreen}
         options={{
           title: "Community",
-          headerRight: CreatePost,
+          headerRight: CommunityButtons,
         }}
       />
       <SubStack.Screen
@@ -110,6 +112,13 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
         component={CommunityInfoScreen}
         options={{
           title: "Info",
+        }}
+      />
+      <SubStack.Screen
+        name="CreatePost"
+        component={CreatePostScreen}
+        options={{
+          title: "Create Post",
         }}
       />
       <SubStack.Screen

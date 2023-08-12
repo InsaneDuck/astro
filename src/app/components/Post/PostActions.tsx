@@ -2,8 +2,8 @@ import { PostAggregates } from "lemmy-js-client";
 import React, { FC } from "react";
 import { StyleSheet, TouchableOpacity, Vibration } from "react-native";
 
-import { Separator } from "@/app/components/Separator";
 import { Icon } from "@/common/Icon";
+import { Separator } from "@/common/Separator";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { useThemeColor } from "@/theming/useThemeColor";

@@ -1,8 +1,8 @@
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
-import { FlatList, ListRenderItemInfo } from "react-native";
+import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
 
-import { CommunitySearchResultItem } from "@/app/components/CommunitySearchResultItem";
+import { CommunitySearchResultItem } from "@/app/components/Community/CommunitySearchResultItem";
 import { InvertedSeparator } from "@/common/InvertedSeparator";
 import { View } from "@/common/View";
 import { useListCommunitiesQuery } from "@/store/api/communityApi";
@@ -31,19 +31,10 @@ export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
   };
 
   return (
-    <View
-      style={{
-        display: "flex",
-        alignItems: "center",
-        flex: 1,
-      }}
-    >
+    <View style={styles.container}>
       {communities && (
         <FlatList
-          style={{
-            width: "90%",
-            overflow: "hidden",
-          }}
+          style={styles.list}
           data={communities.ids}
           renderItem={allCommunitiesItem}
           showsVerticalScrollIndicator={false}
@@ -53,3 +44,15 @@ export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    alignItems: "center",
+    flex: 1,
+  },
+  list: {
+    width: "90%",
+    overflow: "hidden",
+  },
+});

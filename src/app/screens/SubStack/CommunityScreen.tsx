@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { CommunityViewComponent } from "@/app/components/ViewComponents/Community/CommunityViewComponent";
+import { CommunityViewComponent } from "@/app/components/Community/CommunityViewComponent";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { RootState } from "@/store/store";
 

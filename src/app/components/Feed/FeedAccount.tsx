@@ -4,10 +4,10 @@ import { Button } from "react-native";
 
 import { SubStackNavigation } from "@/router/SubStackLayout";
 
-export const FeedServer = () => {
+export const FeedAccount = () => {
   const navigation = useNavigation<SubStackNavigation>();
   const onPress = (): any => {
     navigation.navigate("AccountSwitcher");
   };
-  return <Button title="Server" onPress={onPress} />;
+  return <Button title="Account" onPress={onPress} />;
 };

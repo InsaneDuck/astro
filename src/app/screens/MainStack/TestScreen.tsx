@@ -2,8 +2,8 @@ import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 
-import { Separator } from "@/app/components/Separator";
-import { PostViewComponent } from "@/app/components/ViewComponents/Feed/Post/PostViewComponent";
+import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
+import { Separator } from "@/common/Separator";
 import { useGetPostsQuery } from "@/store/api/postApi";
 
 type TestScreenProps = object;

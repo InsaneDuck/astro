@@ -2,7 +2,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
-import { PostViewComponent } from "@/app/components/ViewComponents/Feed/Post/PostViewComponent";
+import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { Text } from "@/common/Text";
 import { RootState } from "@/store/store";

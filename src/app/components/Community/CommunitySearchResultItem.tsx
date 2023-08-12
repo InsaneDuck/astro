@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
 import {
@@ -6,10 +7,15 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
+import { useDispatch } from "react-redux";
 
-import { CommunityButton } from "@/app/components/Buttons/CommunityButton";
+import { CommunityButton } from "@/app/components/Community/CommunityButton";
 import { Text } from "@/common/Text";
+import { aggregateHelper } from "@/helper-functions/aggregateHelper";
+import { SubStackNavigation } from "@/router/SubStackLayout";
 import { useListCommunitiesQuery } from "@/store/api/communityApi";
+import { sharedActions } from "@/store/shared-slice";
+import { AppDispatch } from "@/store/store";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommunitySearchResultItemProps = {
@@ -33,6 +39,14 @@ export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
     },
   );
 
+  const navigation = useNavigation<SubStackNavigation>();
+  const dispatch = useDispatch<AppDispatch>();
+  const goToCommunity = () => {
+    communityView &&
+      dispatch(sharedActions.setCommunity(communityView.community));
+    navigation.navigate("Community");
+  };
+
   const borderColor = useThemeColor("borderColor");
   return (
     communityView && (
@@ -42,9 +56,12 @@ export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
           props.style,
           { backgroundColor: borderColor },
         ]}
+        onPress={goToCommunity}
       >
         <CommunityButton community={communityView.community} />
-        <Text>{communityView.counts.subscribers}</Text>
+        <Text style={{ fontSize: 18 }}>
+          {aggregateHelper(communityView.counts.subscribers)}
+        </Text>
       </TouchableOpacity>
     )
   );

@@ -22,11 +22,10 @@ type CommunityButtonProps = {
 export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   const [actionText, setActionText] = useState("Sub");
   const { community } = props;
-  const borderColor = useThemeColor("borderColor");
   const tabIconDefault = useThemeColor("tabIconDefault");
   const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
-  const goToCommunity = (): any => {
+  const goToCommunity = () => {
     dispatch(sharedActions.setCommunity(community));
     navigation.navigate("Community");
   };

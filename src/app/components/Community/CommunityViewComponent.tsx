@@ -3,9 +3,9 @@ import moment from "moment";
 import React, { FC } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 
-import { Avatar } from "@/app/components/ViewComponents/Community/Avatar";
-import { Banner } from "@/app/components/ViewComponents/Community/Banner";
-import { Description } from "@/app/components/ViewComponents/Community/Description";
+import { Avatar } from "@/app/components/Community/Avatar";
+import { Banner } from "@/app/components/Community/Banner";
+import { Description } from "@/app/components/Community/Description";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";

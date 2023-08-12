@@ -2,7 +2,7 @@ import { CommentView } from "lemmy-js-client";
 import React, { FC, useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { UserButton } from "@/app/components/Buttons/UserButton";
+import { UserButton } from "@/app/components/Person/UserButton";
 import { Card } from "@/common/Cards/Card";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";

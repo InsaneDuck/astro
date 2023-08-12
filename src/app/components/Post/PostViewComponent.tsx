@@ -4,9 +4,9 @@ import React, { FC } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { CommunityButton } from "@/app/components/Buttons/CommunityButton";
-import { UserButton } from "@/app/components/Buttons/UserButton";
-import { PostActions } from "@/app/components/ViewComponents/Feed/Post/PostActions";
+import { CommunityButton } from "@/app/components/Community/CommunityButton";
+import { UserButton } from "@/app/components/Person/UserButton";
+import { PostActions } from "@/app/components/Post/PostActions";
 import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
