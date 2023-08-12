@@ -1,54 +1,29 @@
-import { useNavigation } from "@react-navigation/core";
+import { Community } from "lemmy-js-client";
 import moment from "moment";
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { useSelector } from "react-redux";
 
 import { Avatar } from "@/app/components/ViewComponents/Avatar";
 import { Banner } from "@/app/components/ViewComponents/Banner";
 import { Description } from "@/app/components/ViewComponents/Description";
-import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
-import { MainStackNavigation } from "@/router/MainStackLayout";
-import { RootState } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
 import { useThemeColor } from "@/theming/useThemeColor";
 
-type CommunityProps = object;
+type CommunityProps = {
+  community: Community;
+};
 
 /**
  * shows a community when user clicks on a community name anywhere in the app
  */
 export const CommunityViewComponent: FC<CommunityProps> = (props) => {
-  const community = useSelector((state: RootState) => state.shared.community);
+  const { community } = props;
   const domain = getBaseDomainFromUrl(community.actor_id);
-  const navigation = useNavigation<MainStackNavigation>();
   const borderColor = useThemeColor("borderColor");
   const tabIconDefault = useThemeColor("tabIconDefault");
-  useEffect(() => {
-    navigation.setOptions({
-      title: community.name,
-      headerRight: () => <CreatePost />,
-    });
-  }, []);
-
-  const CreatePost = () => {
-    return (
-      <>
-        <TouchableOpacity onPress={() => navigation.navigate("Test")}>
-          <Icon icon="plus" color={tabIconDefault} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Test")}
-          style={{ marginLeft: 10 }}
-        >
-          <Icon icon="info-circle" color={tabIconDefault} />
-        </TouchableOpacity>
-      </>
-    );
-  };
 
   //todo move create post button to top
   const CommunityActions = () => {

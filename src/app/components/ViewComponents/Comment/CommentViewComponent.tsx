@@ -20,7 +20,7 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   const tabIconDefault = useThemeColor("tabIconDefault");
   const [expanded, setExpanded] = useState(true);
   const CommentHeaderLeft = () => {
-    return <UserButton creator={comment.creator} />;
+    return <UserButton person={comment.creator} />;
   };
 
   const toggleExpander = () => {

@@ -1,8 +1,8 @@
 import { createEntityAdapter, EntityState } from "@reduxjs/toolkit";
 import {
-  CommunityResponse,
   CommunityView,
   GetCommunity,
+  GetCommunityResponse,
   ListCommunities,
 } from "lemmy-js-client";
 
@@ -27,7 +27,7 @@ const communityApi = lemmyApi.injectEndpoints({
         },
       },
     ),
-    getCommunity: builder.query<CommunityResponse, GetCommunity>({
+    getCommunity: builder.query<GetCommunityResponse, GetCommunity>({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
         console.log("fetching getCommunity : " + JSON.stringify(arg));
         const communityResponse = await getLemmyHttp().getCommunity(arg);

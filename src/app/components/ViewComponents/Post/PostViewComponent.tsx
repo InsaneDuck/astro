@@ -117,7 +117,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
           <Text style={{ fontSize: 18 }}>In </Text>
           <CommunityButton community={postView.community} />
           <Text style={{ fontSize: 18 }}> By </Text>
-          <UserButton creator={postView.creator} />
+          <UserButton person={postView.creator} />
         </View>
       );
     };

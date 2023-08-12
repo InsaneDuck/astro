@@ -5,12 +5,14 @@ import {
 import React, { FC } from "react";
 
 import { CommentsSorter } from "@/app/components/CommentsSorter";
+import { CreatePost } from "@/app/components/CreatePost";
 import { ProfileHeaderRight } from "@/app/components/ProfileHeaderRight";
 import { FeedSelector } from "@/app/components/ViewComponents/Feed/FeedSelector";
 import { FeedServer } from "@/app/components/ViewComponents/Feed/FeedServer";
 import { FeedSorter } from "@/app/components/ViewComponents/Feed/FeedSorter";
 import { AccountSwitcherScreen } from "@/app/screens/SubStack/AccountSwitcherScreen";
 import { AllCommunitiesScreen } from "@/app/screens/SubStack/AllCommunitiesScreen";
+import { CommunityInfoScreen } from "@/app/screens/SubStack/CommunityInfoScreen";
 import { CommunityScreen } from "@/app/screens/SubStack/CommunityScreen";
 import { InboxScreen } from "@/app/screens/SubStack/InboxScreen";
 import { LoginModalScreen } from "@/app/screens/SubStack/LoginModalScreen";
@@ -41,6 +43,7 @@ type SubStackParamsList = {
   AllCommunities: undefined;
   Appearance: undefined;
   Community: undefined;
+  CommunityInfo: undefined;
   ExportImport: undefined;
   FaceIdAndPasscode: undefined;
   Filters: undefined;
@@ -89,7 +92,7 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
       />
       <SubStack.Screen
         name="User"
-        children={UserScreen}
+        component={UserScreen}
         options={{
           title: "User",
         }}
@@ -99,6 +102,14 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
         component={CommunityScreen}
         options={{
           title: "Community",
+          headerRight: CreatePost,
+        }}
+      />
+      <SubStack.Screen
+        name="CommunityInfo"
+        component={CommunityInfoScreen}
+        options={{
+          title: "Info",
         }}
       />
       <SubStack.Screen
@@ -126,19 +137,19 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
       />
       {props.initialRoute === "Settings" && (
         <>
-          <SubStack.Screen name="Settings" children={Settings} />
-          <SubStack.Screen name="General" children={General} />
-          <SubStack.Screen name="Appearance" children={Appearance} />
-          <SubStack.Screen name="Filters" children={Filters} />
+          <SubStack.Screen name="Settings" component={Settings} />
+          <SubStack.Screen name="General" component={General} />
+          <SubStack.Screen name="Appearance" component={Appearance} />
+          <SubStack.Screen name="Filters" component={Filters} />
           <SubStack.Screen
             name="FaceIdAndPasscode"
-            children={FaceIdAndPasscode}
+            component={FaceIdAndPasscode}
           />
-          <SubStack.Screen name="Accounts" children={Accounts} />
-          <SubStack.Screen name="ExportImport" children={ExportImport} />
-          <SubStack.Screen name="About" children={About} />
-          <SubStack.Screen name="Rate" children={Rate} />
-          <SubStack.Screen name="Tip" children={Tip} />
+          <SubStack.Screen name="Accounts" component={Accounts} />
+          <SubStack.Screen name="ExportImport" component={ExportImport} />
+          <SubStack.Screen name="About" component={About} />
+          <SubStack.Screen name="Rate" component={Rate} />
+          <SubStack.Screen name="Tip" component={Tip} />
         </>
       )}
     </SubStack.Navigator>

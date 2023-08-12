@@ -15,26 +15,26 @@ import { ConstantColors } from "@/theming/Colors";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type UserButtonProps = {
-  creator: Person;
+  person: Person;
 };
 
 //todo show tags like mod?, op?
 export const UserButton: FC<UserButtonProps> = (props) => {
-  const { creator } = props;
+  const { person } = props;
   const tabIconDefault = useThemeColor("tabIconDefault");
   const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
 
   const goToUser = (): any => {
-    dispatch(sharedActions.setClickedPerson(creator));
+    dispatch(sharedActions.setClickedPerson(person));
     navigation.navigate("User");
   };
 
   return (
     <TouchableOpacity onPress={goToUser} style={styles.container}>
       <View style={styles.imageContainer}>
-        {creator.avatar ? (
-          <CustomImage source={{ uri: creator.avatar }} style={styles.image} />
+        {person.avatar ? (
+          <CustomImage source={{ uri: person.avatar }} style={styles.image} />
         ) : (
           <Icon
             icon="user"
@@ -52,7 +52,7 @@ export const UserButton: FC<UserButtonProps> = (props) => {
           color: ConstantColors.iosBlue,
         }}
       >
-        {creator.display_name ? creator.display_name : creator.name}
+        {person.display_name ? person.display_name : person.name}
       </Text>
     </TouchableOpacity>
   );
