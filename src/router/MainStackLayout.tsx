@@ -12,7 +12,7 @@ import {
 import React, { FC } from "react";
 import { Button, useColorScheme } from "react-native";
 
-import { ImageViewerButtons } from "@/app/ImageViewer/ImageViewerButtons";
+import { ImageViewerButtons } from "@/app/components/ImageViewer/ImageViewerButtons";
 import { Error } from "@/app/screens/MainStack/Error";
 import { ImageViewer } from "@/app/screens/MainStack/ImageViewer";
 import { TestScreen } from "@/app/screens/MainStack/TestScreen";
@@ -21,10 +21,10 @@ import { MainTabLayout } from "@/router/MainTabLayout";
 type LayoutProps = object;
 
 export type MainStackParamList = {
-  Home: undefined;
   Error: undefined;
-  Test: undefined;
+  Home: undefined;
   ImageViewer: undefined;
+  Test: undefined;
 };
 
 export type MainStackNavigation = NativeStackNavigationProp<MainStackParamList>;
