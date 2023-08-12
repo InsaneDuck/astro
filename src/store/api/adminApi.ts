@@ -8,6 +8,12 @@ import {
   BanFromCommunityResponse,
   BanPerson,
   BanPersonResponse,
+  ChangePassword,
+  CommentReportResponse,
+  CommentResponse,
+  CreateComment,
+  CreateCommentReport,
+  LoginResponse,
   RegistrationApplicationResponse,
 } from "lemmy-js-client";
 
@@ -66,27 +72,28 @@ const adminApi = lemmyApi.injectEndpoints({
         return { data };
       },
     }),
-    changePassword: builder.query<BanFromCommunityResponse, BanFromCommunity>({
+    changePassword: builder.query<LoginResponse, ChangePassword>({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().banFromCommunity(arg);
+        const data = await getLemmyHttp().changePassword(arg);
         return { data };
       },
     }),
-    createComment: builder.query<BanFromCommunityResponse, BanFromCommunity>({
+    createComment: builder.query<CommentResponse, CreateComment>({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().banFromCommunity(arg);
+        const data = await getLemmyHttp().createComment(arg);
         return { data };
       },
     }),
     createCommentReport: builder.query<
-      BanFromCommunityResponse,
-      BanFromCommunity
+      CommentReportResponse,
+      CreateCommentReport
     >({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().banFromCommunity(arg);
+        const data = await getLemmyHttp().createCommentReport(arg);
         return { data };
       },
     }),
+
     createPost: builder.query<BanFromCommunityResponse, BanFromCommunity>({
       query: () => "/post",
     }),
