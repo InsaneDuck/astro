@@ -39,45 +39,20 @@ export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
           onPress={goToCommunity}
         />
       ) : (
-        <View
-          style={{
-            height: "100%",
-            width: "100%",
-
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 30,
-            }}
-          >
-            No Banner
-          </Text>
+        <View style={styles.noBannerText}>
+          <Text style={{ fontSize: 30 }}>No Banner</Text>
         </View>
       )}
       <View style={styles.footer}>
-        <View
-          style={{
-            flexDirection: "row",
-            backgroundColor: "transparent",
-            alignItems: "center",
-          }}
-        >
+        <View style={styles.footerLeft}>
           <CustomImage
             source={{ uri: props.community.community.icon }}
-            style={{
-              width: 50,
-              height: 50,
-              borderRadius: 5,
-              overflow: "hidden",
-            }}
+            style={styles.icon}
           />
           <View
             style={{
               backgroundColor: "transparent",
-              marginLeft: 10,
+              marginLeft: 5,
             }}
           >
             <Text style={styles.communityName}>
@@ -107,6 +82,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 200,
   },
+  icon: {
+    width: 50,
+    height: 50,
+    borderRadius: 5,
+    overflow: "hidden",
+  },
   footer: {
     position: "absolute",
     bottom: 0,
@@ -116,10 +97,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#00000030",
     padding: 5,
+    paddingRight: 15,
+    paddingLeft: 15,
     width: "100%",
+  },
+  footerLeft: {
+    flexDirection: "row",
+    backgroundColor: "transparent",
+    alignItems: "center",
   },
   communityName: {
     fontSize: 20,
     color: "#ffffff",
+  },
+  noBannerText: {
+    height: "100%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
