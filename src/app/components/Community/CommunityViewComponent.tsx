@@ -1,12 +1,13 @@
 import { Community } from "lemmy-js-client";
 import moment from "moment";
 import React, { FC } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { Button } from "@/app/components/Button";
 import { Avatar } from "@/app/components/Community/Avatar";
 import { Banner } from "@/app/components/Community/Banner";
 import { Description } from "@/app/components/Community/Description";
+import { Separator } from "@/common/Separator";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
@@ -54,7 +55,7 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
   };
 
   return (
-    <ScrollView>
+    <>
       <View style={styles.container}>
         {community.banner && <Banner banner={community.banner} />}
         <View style={styles.communityHeader}>
@@ -69,7 +70,8 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
           <Description description={community.description} />
         )}
       </View>
-    </ScrollView>
+      <Separator />
+    </>
   );
 };
 
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     width: "100%",
-    paddingBottom: 50,
+    paddingBottom: 20,
   },
   communityAvatar: {
     width: 150,

@@ -5,16 +5,12 @@ import {
   GetComment,
   GetComments,
   GetPosts,
-  PostView,
+  GetPostsResponse,
 } from "lemmy-js-client";
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { lemmyApi } from "@/store/api/api-slice";
-import { RootState } from "@/store/store";
 
-const postsAdapter = createEntityAdapter<PostView>({
-  selectId: (model) => model.post.id,
-});
 const commentsAdapter = createEntityAdapter<CommentView>({
   selectId: (commentView) => commentView.comment.id,
 });
@@ -40,14 +36,10 @@ const postApi = lemmyApi.injectEndpoints({
         return { data };
       },
     }),
-    getPosts: builder.query<EntityState<PostView>, GetPosts>({
-      queryFn: async (arg, api, extraOptions, baseQuery) => {
+    getPosts: builder.query<GetPostsResponse, GetPosts>({
+      queryFn: async (arg: GetPosts) => {
         console.log("fetching getPosts : " + JSON.stringify(arg));
-        const state = api.getState() as RootState;
-        console.log(state);
-        const response = await getLemmyHttp().getPosts(arg);
-        const posts = response.posts;
-        const data = postsAdapter.setAll(postsAdapter.getInitialState(), posts);
+        const data = await getLemmyHttp().getPosts(arg);
         return { data };
       },
     }),

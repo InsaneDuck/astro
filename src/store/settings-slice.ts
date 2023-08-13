@@ -6,7 +6,6 @@ import {
 } from "@reduxjs/toolkit";
 
 import { defaultSettings } from "@/constants/defaultSettings";
-import { Optional } from "@/types/Optional";
 import { Settings } from "@/types/Settings";
 
 const allSettingsAdapter = createEntityAdapter<Settings>({
@@ -15,13 +14,13 @@ const allSettingsAdapter = createEntityAdapter<Settings>({
 
 export type SettingsState = {
   defaultSettings: Settings;
-  currentSettings?: Optional<Settings>;
+  currentSettings?: Settings;
   allSettings: EntityState<Settings>;
 };
-
+//todo get currentSettings from storage
 const initialState: SettingsState = {
   defaultSettings,
-  currentSettings: undefined,
+  currentSettings: defaultSettings,
   allSettings: allSettingsAdapter.getInitialState(),
 };
 

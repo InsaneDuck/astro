@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     flex: 1,
+    paddingBottom: 20,
   },
   title: {
     marginTop: 20,

@@ -41,16 +41,26 @@ const initialState: StateState = {
   userPosts: userPostsAdapter.getInitialState(),
 };
 
-export const stateSlice = createSlice({
-  name: "state",
+export const entitiesSlice = createSlice({
+  name: "entities",
   initialState,
   reducers: {
     setFeedPosts(state, action: PayloadAction<PostView[]>) {
       feedPostsAdapter.upsertMany(state.feedPosts, action.payload);
     },
+    setCommunityPosts(state, action: PayloadAction<PostView[]>) {
+      if (
+        state.communityPosts.entities[state.communityPosts.ids[0]]?.community
+          .id === action.payload[0].community.id
+      ) {
+        communityPostsAdapter.upsertMany(state.communityPosts, action.payload);
+      } else {
+        communityPostsAdapter.setAll(state.communityPosts, action.payload);
+      }
+    },
   },
 });
 
-export const stateActions = stateSlice.actions;
+export const entitiesActions = entitiesSlice.actions;
 
-export const stateReducers = stateSlice.reducer;
+export const entitiesReducers = entitiesSlice.reducer;
