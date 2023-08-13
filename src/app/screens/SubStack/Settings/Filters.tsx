@@ -11,13 +11,13 @@ export const Filters = () => {
         title="KEYWORDS"
         description="Block any post from appearing on your feed by certain words in their title"
       >
-        <ListText name="keywords" />
+        <ListText name="+ Add Keywords" />
       </List>
       <List title="COMMUNITIES">
-        <ListText name="Communities" />
+        <ListText name="+ Add Community" />
       </List>
       <List title="USERS">
-        <ListText name="Users" />
+        <ListText name="+ Add Users" />
       </List>
     </View>
   );

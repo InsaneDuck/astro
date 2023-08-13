@@ -8,7 +8,7 @@ import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { User } from "@/types/User";
 
 const userAdapter = createEntityAdapter<User>({
-  selectId: (user) => user.userName,
+  selectId: (user) => user.id,
 });
 
 export type AuthState = {
@@ -19,6 +19,7 @@ export type AuthState = {
 
 const initialState: AuthState = {
   currentUser: {
+    id: 0,
     serverUrl: "enterprise.lemmy.ml",
     userName: "",
     password: "",

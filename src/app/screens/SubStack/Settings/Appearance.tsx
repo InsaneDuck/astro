@@ -10,7 +10,7 @@ export const Appearance = () => {
   return (
     <View style={styles.container}>
       <List title="THEME">
-        <ListSelect name="Dark Mode" />
+        <ListSelect name="Dark Mode" selected="Dark" />
       </List>
       <List title="POST">
         <Toggle name="Hide Username" />
@@ -19,7 +19,7 @@ export const Appearance = () => {
       <List title="FEED">
         <Toggle name="Hide Username" />
         <Toggle name="Hide Community Name" />
-        <ListSelect name="Post Size" />
+        <ListSelect name="Post Size" selected="expanded" />
       </List>
     </View>
   );

@@ -11,17 +11,19 @@ import { useThemeColor } from "@/theming/useThemeColor";
 type ListSelectProps = {
   name: string;
   onPress?: Press;
+  options?: string[];
+  selected: string;
 };
 
 export const ListSelect: FC<ListSelectProps> = (props) => {
-  const { name, onPress } = props;
+  const { name, onPress, selected, options } = props;
   const textColor = useThemeColor("text");
 
   return (
     <ListItem onPress={onPress}>
       <Text style={{ fontSize: 18 }}>{name}</Text>
       <View style={styles.right}>
-        <Text style={styles.selected}>Option</Text>
+        <Text style={styles.selected}>{selected}</Text>
         <Icon icon="chevron-right" color={textColor} size={15} />
       </View>
     </ListItem>

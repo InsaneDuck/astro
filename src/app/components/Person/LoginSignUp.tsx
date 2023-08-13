@@ -20,7 +20,7 @@ export const LoginSignUp: FC<LoginSignUpProps> = (props) => {
   return (
     <View style={styles.container}>
       <List title="LOGIN">
-        <ListSelect name="Server" />
+        <ListSelect name="Server" selected="lemmy.world" />
         <TextInputItem placeholder="Username" />
         <TextInputItem placeholder="Password" />
       </List>
