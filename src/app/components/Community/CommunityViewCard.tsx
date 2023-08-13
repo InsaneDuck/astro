@@ -8,6 +8,7 @@ import { Button } from "@/app/components/Button";
 import { CustomImage } from "@/common/CustomImage";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
+import { aggregateHelper } from "@/helper-functions/aggregateHelper";
 import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
@@ -26,23 +27,9 @@ export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
     dispatch(sharedActions.setCommunity(props.community.community));
     navigation.navigate("Community");
   };
-  return (
-    <TouchableOpacity
-      onPress={goToCommunity}
-      style={[styles.container, { borderColor }]}
-    >
-      {props.community.community.banner ? (
-        <CustomImage
-          source={{ uri: props.community.community.banner }}
-          resizeMode="cover"
-          style={styles.banner}
-          onPress={goToCommunity}
-        />
-      ) : (
-        <View style={styles.noBannerText}>
-          <Text style={{ fontSize: 30 }}>No Banner</Text>
-        </View>
-      )}
+
+  const Footer = () => {
+    return (
       <View style={styles.footer}>
         <View style={styles.footerLeft}>
           <CustomImage
@@ -66,6 +53,41 @@ export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
 
         <Button text="SUBSCRIBE" color={ConstantColors.iosBlue} />
       </View>
+    );
+  };
+
+  return (
+    <TouchableOpacity
+      onPress={goToCommunity}
+      style={[styles.container, { borderColor }]}
+    >
+      {props.community.community.banner ? (
+        <CustomImage
+          source={{ uri: props.community.community.banner }}
+          resizeMode="cover"
+          style={styles.banner}
+          onPress={goToCommunity}
+        />
+      ) : (
+        <View style={styles.noBannerText}>
+          <Text style={{ fontSize: 30 }}>No Banner</Text>
+        </View>
+      )}
+      <Footer />
+      <Text
+        style={{
+          top: 0,
+          right: 0,
+          position: "absolute",
+          margin: 10,
+          padding: 5,
+          backgroundColor: "#00000030",
+          borderRadius: 5,
+          overflow: "hidden",
+        }}
+      >
+        {aggregateHelper(props.community.counts.subscribers)}
+      </Text>
     </TouchableOpacity>
   );
 };

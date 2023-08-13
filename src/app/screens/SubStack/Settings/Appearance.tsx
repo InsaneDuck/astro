@@ -13,7 +13,13 @@ export const Appearance = () => {
         <Select name="Dark Mode" />
       </List>
       <List title="POST">
-        <Toggle name="Post Size" />
+        <Toggle name="Hide Username" />
+        <Toggle name="Hide Community Name" />
+      </List>
+      <List title="FEED">
+        <Toggle name="Hide Username" />
+        <Toggle name="Hide Community Name" />
+        <Select name="Post Size" />
       </List>
     </View>
   );
