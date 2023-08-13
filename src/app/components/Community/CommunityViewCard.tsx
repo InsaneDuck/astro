@@ -58,14 +58,37 @@ export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
         </View>
       )}
       <View style={styles.footer}>
-        <View style={{ backgroundColor: "transparent" }}>
-          <Text style={styles.communityName}>
-            {props.community.community.name}
-          </Text>
-          <Text style={{ color: "#ffffff" }}>
-            @{getBaseDomainFromUrl(props.community.community.actor_id)}
-          </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            backgroundColor: "transparent",
+            alignItems: "center",
+          }}
+        >
+          <CustomImage
+            source={{ uri: props.community.community.icon }}
+            style={{
+              width: 50,
+              height: 50,
+              borderRadius: 5,
+              overflow: "hidden",
+            }}
+          />
+          <View
+            style={{
+              backgroundColor: "transparent",
+              marginLeft: 10,
+            }}
+          >
+            <Text style={styles.communityName}>
+              {props.community.community.name}
+            </Text>
+            <Text style={{ color: "#ffffff", marginBottom: 1 }}>
+              @{getBaseDomainFromUrl(props.community.community.actor_id)}
+            </Text>
+          </View>
         </View>
+
         <Button text="SUBSCRIBE" color={ConstantColors.iosBlue} />
       </View>
     </TouchableOpacity>
@@ -78,7 +101,6 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     overflow: "hidden",
     borderWidth: 1,
-
     marginTop: 20,
   },
   banner: {
@@ -93,7 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#00000030",
-    padding: 8,
+    padding: 5,
     width: "100%",
   },
   communityName: {
