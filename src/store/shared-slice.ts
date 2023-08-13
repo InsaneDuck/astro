@@ -1,5 +1,11 @@
 import { createSlice, EntityId, PayloadAction } from "@reduxjs/toolkit";
-import { Community, Person, PostView } from "lemmy-js-client";
+import {
+  Community,
+  ListingType,
+  Person,
+  PostView,
+  SortType,
+} from "lemmy-js-client";
 
 export type SharedState = {
   images: string[];
@@ -8,6 +14,9 @@ export type SharedState = {
   community: Community;
   postId: EntityId;
   postView?: PostView;
+  feedSort: SortType;
+  feedType: ListingType;
+  communitySort: SortType;
 };
 
 const defaultPerson = {
@@ -42,6 +51,9 @@ const defaultCommunity = {
 };
 
 const initialState: SharedState = {
+  communitySort: "Active",
+  feedSort: "Active",
+  feedType: "All",
   postId: 0,
   images: [],
   clickedPerson: defaultPerson,
@@ -67,6 +79,9 @@ export const sharedSlice = createSlice({
     },
     setPostId(state, action: PayloadAction<EntityId>) {
       state.postId = action.payload;
+    },
+    setFeedSort(state, action: PayloadAction<SortType>) {
+      state.feedSort = action.payload;
     },
   },
 });

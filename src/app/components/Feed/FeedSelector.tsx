@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ActionSheetIOS, useColorScheme } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,6 +11,11 @@ export const FeedSelector = () => {
   const theme = useColorScheme() || "dark";
   const dispatch = useDispatch<AppDispatch>();
   const type = useSelector((state: RootState) => state.feed.type);
+  const [temp, setTemp] = useState(type);
+
+  useEffect(() => {
+    dispatch(feedActions.setType(temp));
+  }, [temp]);
 
   const onPress = (): any => {
     const allOptions = ["Cancel", "All", "Local", "Subscribed"];
@@ -26,13 +31,13 @@ export const FeedSelector = () => {
           case 0:
             break;
           case 1:
-            dispatch(feedActions.setType("All"));
+            setTemp("All");
             break;
           case 2:
-            dispatch(feedActions.setType("Local"));
+            setTemp("Local");
             break;
           case 3:
-            dispatch(feedActions.setType("Subscribed"));
+            setTemp("Subscribed");
             break;
         }
       },

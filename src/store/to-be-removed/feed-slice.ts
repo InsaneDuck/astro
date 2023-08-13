@@ -7,7 +7,7 @@ import {
   EntityState,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { ListingType, PostView, SortType } from "lemmy-js-client";
+import { ListingType, PostView } from "lemmy-js-client";
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { RootState } from "@/store/store";
@@ -21,7 +21,6 @@ export type FeedState = {
   page: number;
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string;
-  sort: SortType;
   type: ListingType;
 };
 
@@ -30,7 +29,6 @@ const initialState: FeedState = {
   page: 1,
   loading: "idle",
   error: "",
-  sort: "Active",
   type: "All",
 };
 
@@ -38,9 +36,6 @@ export const feedSlice = createSlice({
   name: "feed",
   initialState,
   reducers: {
-    setSort(state, action: PayloadAction<SortType>) {
-      state.sort = action.payload;
-    },
     setType(state, action: PayloadAction<ListingType>) {
       state.type = action.payload;
     },
@@ -76,7 +71,7 @@ export const fetchPosts = createAsyncThunk<
   { state: RootState }
 >("feed/fetchPosts", async (payload, thunkAPI) => {
   const page = thunkAPI.getState().feed.page;
-  const sort = thunkAPI.getState().feed.sort;
+  const sort = thunkAPI.getState().shared.feedSort;
   const type = thunkAPI.getState().feed.type;
   console.log(
     "fetching feed, page = " + page + " sort = " + sort + " type = " + type,

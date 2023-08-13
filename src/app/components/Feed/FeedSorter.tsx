@@ -1,22 +1,27 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { ActionSheetIOS, TouchableOpacity, useColorScheme } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
+import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch, RootState } from "@/store/store";
-import { feedActions } from "@/store/to-be-removed/feed-slice";
 
 type FeedSorterProps = object;
 
 export const FeedSorter: FC<FeedSorterProps> = (props) => {
   //todo maybe replace it with one in expo https://github.com/expo/react-native-action-sheet
-  const sort = useSelector((state: RootState) => state.feed.sort);
+  const sort = useSelector((state: RootState) => state.shared.feedSort);
+  const [temp, setTemp] = useState(sort);
   const theme = useColorScheme() || "dark";
   const dispatch = useDispatch<AppDispatch>();
   const onPress = (): any => {
     all();
   };
+
+  useEffect(() => {
+    dispatch(sharedActions.setFeedSort(temp));
+  }, [temp]);
 
   const all = () => {
     const allOptions = [
@@ -41,22 +46,22 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
           case 0:
             break;
           case 1:
-            dispatch(feedActions.setSort("Active"));
+            setTemp("Active");
             break;
           case 2:
-            dispatch(feedActions.setSort("Hot"));
+            setTemp("Hot");
             break;
           case 3:
-            dispatch(feedActions.setSort("New"));
+            setTemp("New");
             break;
           case 4:
-            dispatch(feedActions.setSort("Old"));
+            setTemp("Old");
             break;
           case 5:
-            dispatch(feedActions.setSort("MostComments"));
+            setTemp("MostComments");
             break;
           case 6:
-            dispatch(feedActions.setSort("NewComments"));
+            setTemp("NewComments");
             break;
           case 7:
             top();
@@ -93,37 +98,37 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
           case 0:
             break;
           case 1:
-            dispatch(feedActions.setSort("TopAll"));
+            setTemp("TopAll");
             break;
           case 2:
-            dispatch(feedActions.setSort("TopHour"));
+            setTemp("TopHour");
             break;
           case 3:
-            dispatch(feedActions.setSort("TopDay"));
+            setTemp("TopDay");
             break;
           case 4:
-            dispatch(feedActions.setSort("TopWeek"));
+            setTemp("TopWeek");
             break;
           case 5:
-            dispatch(feedActions.setSort("TopMonth"));
+            setTemp("TopMonth");
             break;
           case 6:
-            dispatch(feedActions.setSort("TopYear"));
+            setTemp("TopYear");
             break;
           case 7:
-            dispatch(feedActions.setSort("TopSixHour"));
+            setTemp("TopSixHour");
             break;
           case 8:
-            dispatch(feedActions.setSort("TopTwelveHour"));
+            setTemp("TopTwelveHour");
             break;
           case 9:
-            dispatch(feedActions.setSort("TopThreeMonths"));
+            setTemp("TopThreeMonths");
             break;
           case 10:
-            dispatch(feedActions.setSort("TopSixMonths"));
+            setTemp("TopSixMonths");
             break;
           case 11:
-            dispatch(feedActions.setSort("TopNineMonths"));
+            setTemp("TopNineMonths");
             break;
         }
       },

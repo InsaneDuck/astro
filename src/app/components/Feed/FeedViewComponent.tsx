@@ -30,7 +30,7 @@ export const FeedViewComponent: FC<FeedViewComponentProps> = (props) => {
     }
   });
 
-  const sort = useSelector((state: RootState) => state.feed.sort);
+  const sort = useSelector((state: RootState) => state.shared.feedSort);
   const type = useSelector((state: RootState) => state.feed.type);
   const dispatch = useDispatch<AppDispatch>();
 
