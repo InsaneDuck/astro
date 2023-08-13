@@ -3,18 +3,18 @@ import { ActionSheetIOS, useColorScheme } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Text } from "@/common/Text";
+import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch, RootState } from "@/store/store";
-import { feedActions } from "@/store/to-be-removed/feed-slice";
 import { ConstantColors } from "@/theming/Colors";
 
 export const FeedSelector = () => {
   const theme = useColorScheme() || "dark";
   const dispatch = useDispatch<AppDispatch>();
-  const type = useSelector((state: RootState) => state.feed.type);
+  const type = useSelector((state: RootState) => state.shared.feedType);
   const [temp, setTemp] = useState(type);
 
   useEffect(() => {
-    dispatch(feedActions.setType(temp));
+    dispatch(sharedActions.setFeedType(temp));
   }, [temp]);
 
   const onPress = (): any => {

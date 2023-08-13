@@ -48,7 +48,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
 
     const goToPost = (): any => {
       if (type === "feed") {
-        postView && dispatch(sharedActions.setPostId(postView.post.id));
+        postView && dispatch(sharedActions.setPostView(postView));
         navigationCurrent.navigate("Post");
       }
     };

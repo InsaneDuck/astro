@@ -13,26 +13,31 @@ import { useGetCommentsQuery } from "@/store/api/postApi";
 import { RootState } from "@/store/store";
 
 type PostProps = {
-  postId: EntityId;
   postView?: PostView;
 };
 
 const propsAreEqual = (previousProps: PostProps, currentProps: PostProps) => {
-  return previousProps.postId === currentProps.postId;
+  return previousProps.postView?.post.id === currentProps.postView?.post.id;
 };
 
 const PostScreen: FC<PostProps> = React.memo((props) => {
   const { data: comment, isLoading: loading } = useGetCommentsQuery({
     limit: 10,
     page: 1,
-    post_id: Number(props.postId),
+    post_id: Number(props.postView?.post.id),
     max_depth: 1,
   });
 
   const commentItem = useCallback(
     ({ item, index }: ListRenderItemInfo<EntityId>) => {
-      return (
-        <CommentThread postId={props.postId} commendId={item} index={index} />
+      return props.postView?.post.id ? (
+        <CommentThread
+          postId={props.postView.post.id}
+          commendId={item}
+          index={index}
+        />
+      ) : (
+        <></>
       );
     },
     [],
@@ -80,8 +85,7 @@ const PostScreen: FC<PostProps> = React.memo((props) => {
 
 const mapStateToProps = (state: RootState) => {
   const props: PostProps = {
-    postId: state.shared.postId,
-    postView: state.feed.feedPosts?.entities[state.shared.postId],
+    postView: state.shared.postView,
   };
   return props;
 };

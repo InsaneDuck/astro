@@ -6,7 +6,6 @@ import { lemmyApi, lemmyReducers } from "@/store/api/api-slice";
 import { entitiesReducers } from "@/store/entities-slice";
 import { settingsReducers } from "@/store/settings-slice";
 import { sharedReducers } from "@/store/shared-slice";
-import { feedReducers } from "@/store/to-be-removed/feed-slice";
 
 //todo remove middleware later
 export const store = configureStore({
@@ -17,7 +16,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducers,
     entities: entitiesReducers,
-    feed: feedReducers,
+
     lemmy: lemmyReducers,
     settings: settingsReducers,
     shared: sharedReducers,

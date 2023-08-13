@@ -83,6 +83,12 @@ export const sharedSlice = createSlice({
     setFeedSort(state, action: PayloadAction<SortType>) {
       state.feedSort = action.payload;
     },
+    setFeedType(state, action: PayloadAction<ListingType>) {
+      state.feedType = action.payload;
+    },
+    setPostView(state, action: PayloadAction<PostView>) {
+      state.postView = action.payload;
+    },
   },
 });
 
