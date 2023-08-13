@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/core";
 import { CommunityView } from "lemmy-js-client";
 import { FC } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { Button } from "@/app/components/Button";
@@ -13,11 +13,13 @@ import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
+import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommunityViewCardProps = {
   community: CommunityView;
 };
 export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
+  const borderColor = useThemeColor("borderColor");
   const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
   const goToCommunity = () => {
@@ -25,14 +27,35 @@ export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
     navigation.navigate("Community");
   };
   return (
-    <View style={styles.container}>
-      {props.community.community.banner && (
+    <TouchableOpacity
+      onPress={goToCommunity}
+      style={[styles.container, { borderColor }]}
+    >
+      {props.community.community.banner ? (
         <CustomImage
           source={{ uri: props.community.community.banner }}
           resizeMode="cover"
           style={styles.banner}
           onPress={goToCommunity}
         />
+      ) : (
+        <View
+          style={{
+            height: "100%",
+            width: "100%",
+
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 30,
+            }}
+          >
+            No Banner
+          </Text>
+        </View>
       )}
       <View style={styles.footer}>
         <View style={{ backgroundColor: "transparent" }}>
@@ -45,7 +68,7 @@ export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
         </View>
         <Button text="SUBSCRIBE" color={ConstantColors.iosBlue} />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -55,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     overflow: "hidden",
     borderWidth: 1,
-    borderColor: "#ccc",
+
     marginTop: 20,
   },
   banner: {
