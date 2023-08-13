@@ -1,5 +1,5 @@
 import { LoginSignUp } from "@/app/components/Person/LoginSignUp";
 
-export const LoginModalScreen = () => {
+export const LoginScreen = () => {
   return <LoginSignUp />;
 };

@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 
-import { TextItem } from "@/app/components/List/TextItem";
+import { ListText } from "@/app/components/List/ListText";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { useThemeColor } from "@/theming/useThemeColor";
@@ -28,7 +28,7 @@ export const SearchScreen = () => {
     };
     return (
       <View style={{ width: "90%", borderRadius: 13, overflow: "hidden" }}>
-        <TextItem name="All Communities" onPress={goToALlCommunities} />
+        <ListText name="All Communities" onPress={goToALlCommunities} />
       </View>
     );
   };

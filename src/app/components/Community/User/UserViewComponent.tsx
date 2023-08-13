@@ -9,7 +9,7 @@ import { Avatar } from "@/app/components/Community/Avatar";
 import { Banner } from "@/app/components/Community/Banner";
 import { Description } from "@/app/components/Community/Description";
 import { List } from "@/app/components/List/List";
-import { TextItem } from "@/app/components/List/TextItem";
+import { ListText } from "@/app/components/List/ListText";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -78,10 +78,10 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const UserFooter = () => {
     return (
       <List>
-        <TextItem name="Overview" />
-        <TextItem name="Comments" />
-        <TextItem name="Posts" />
-        {userType === "primary" && <TextItem name="Saved" />}
+        <ListText name="Overview" />
+        <ListText name="Comments" />
+        <ListText name="Posts" />
+        {userType === "primary" && <ListText name="Saved" />}
       </List>
     );
   };

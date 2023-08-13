@@ -1,14 +1,16 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { FC, useEffect } from "react";
-import { StyleSheet, TextInput } from "react-native";
+import { StyleSheet } from "react-native";
 
+import { List } from "@/app/components/List/List";
+import { ListButton } from "@/app/components/List/ListButton";
+import { ListSelect } from "@/app/components/List/ListSelect";
+import { TextInputItem } from "@/app/components/List/TextInputItem";
 import { View } from "@/common/View";
-import { useThemeColor } from "@/theming/useThemeColor";
 
 type LoginSignUpProps = object;
 
 export const LoginSignUp: FC<LoginSignUpProps> = (props) => {
-  const color = useThemeColor("borderColor");
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -17,21 +19,14 @@ export const LoginSignUp: FC<LoginSignUpProps> = (props) => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={[styles.loginInput, { backgroundColor: color }]}
-        placeholder="Server"
-        clearButtonMode="always"
-      />
-      <TextInput
-        style={[styles.loginInput, { backgroundColor: color }]}
-        placeholder="Username"
-        clearButtonMode="always"
-      />
-      <TextInput
-        style={[styles.loginInput, { backgroundColor: color }]}
-        placeholder="Password"
-        clearButtonMode="always"
-      />
+      <List title="LOGIN">
+        <ListSelect name="Server" />
+        <TextInputItem placeholder="Username" />
+        <TextInputItem placeholder="Password" />
+      </List>
+      <List>
+        <ListButton name="Login" />
+      </List>
     </View>
   );
 };

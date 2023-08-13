@@ -16,7 +16,7 @@ import { CommunityInfoScreen } from "@/app/screens/SubStack/CommunityInfoScreen"
 import { CommunityScreen } from "@/app/screens/SubStack/CommunityScreen";
 import { CreatePostScreen } from "@/app/screens/SubStack/CreatePostScreen";
 import { InboxScreen } from "@/app/screens/SubStack/InboxScreen";
-import { LoginModalScreen } from "@/app/screens/SubStack/LoginModalScreen";
+import { LoginScreen } from "@/app/screens/SubStack/LoginScreen";
 import { MainFeedScreen } from "@/app/screens/SubStack/MainFeedScreen";
 import PostScreen from "@/app/screens/SubStack/PostScreen";
 import { ProfileScreen } from "@/app/screens/SubStack/ProfileScreen";
@@ -51,7 +51,7 @@ type SubStackParamsList = {
   Filters: undefined;
   General: undefined;
   Inbox: undefined;
-  LoginModal: undefined;
+  Login: undefined;
   MainFeed: undefined;
   Post: undefined;
   Profile: undefined;
@@ -139,11 +139,7 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
         name="ProfileSettings"
         component={ProfileSettingsScreen}
       />
-      <SubStack.Screen
-        name="LoginModal"
-        component={LoginModalScreen}
-        options={{ presentation: "modal" }}
-      />
+      <SubStack.Screen name="Login" component={LoginScreen} />
       {props.initialRoute === "Settings" && (
         <>
           <SubStack.Screen name="Settings" component={Settings} />
@@ -153,9 +149,16 @@ export const SubStackLayout: FC<SubStackLayoutProps> = (props) => {
           <SubStack.Screen
             name="FaceIdAndPasscode"
             component={FaceIdAndPasscode}
+            options={{
+              title: "Face ID & Passcode",
+            }}
           />
           <SubStack.Screen name="Accounts" component={Accounts} />
-          <SubStack.Screen name="ExportImport" component={ExportImport} />
+          <SubStack.Screen
+            name="ExportImport"
+            component={ExportImport}
+            options={{ title: "Export/Import" }}
+          />
           <SubStack.Screen name="About" component={About} />
           <SubStack.Screen name="Rate" component={Rate} />
           <SubStack.Screen name="Tip" component={Tip} />

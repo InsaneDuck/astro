@@ -14,7 +14,7 @@ type ListItemProps = {
   children?: ReactNode;
 } & ClickProps;
 
-export const TextItem: FC<ListItemProps> = (props) => {
+export const ListText: FC<ListItemProps> = (props) => {
   const textColor = useThemeColor("text");
 
   return (

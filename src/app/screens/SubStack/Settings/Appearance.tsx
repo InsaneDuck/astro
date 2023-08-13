@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 import { List } from "@/app/components/List/List";
-import { Select } from "@/app/components/List/Select";
+import { ListSelect } from "@/app/components/List/ListSelect";
 import { Toggle } from "@/app/components/List/Toggle";
 import { View } from "@/common/View";
 
@@ -10,7 +10,7 @@ export const Appearance = () => {
   return (
     <View style={styles.container}>
       <List title="THEME">
-        <Select name="Dark Mode" />
+        <ListSelect name="Dark Mode" />
       </List>
       <List title="POST">
         <Toggle name="Hide Username" />
@@ -19,7 +19,7 @@ export const Appearance = () => {
       <List title="FEED">
         <Toggle name="Hide Username" />
         <Toggle name="Hide Community Name" />
-        <Select name="Post Size" />
+        <ListSelect name="Post Size" />
       </List>
     </View>
   );

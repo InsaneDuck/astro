@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { Button, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 
 import { Icon } from "@/common/Icon";
@@ -15,15 +15,10 @@ export const ProfileHeaderRight = () => {
   const onPress = (): any => {
     navigation.navigate("ProfileSettings");
   };
-  const login = (): any => {
-    navigation.navigate("LoginModal");
-  };
+
   return (
     <TouchableOpacity onPress={onPress}>
       {loggedInStatus === "loggedIn" && <Icon icon="gear" color="#ccc" />}
-      {loggedInStatus === "anonymous" && (
-        <Button title="Login / Signup" onPress={login} />
-      )}
     </TouchableOpacity>
   );
 };
