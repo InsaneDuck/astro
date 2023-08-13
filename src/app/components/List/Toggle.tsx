@@ -6,7 +6,8 @@ import { Text } from "@/common/Text";
 
 type ToggleProps = {
   name: string;
-  value?: boolean;
+  value: boolean;
+  onChange?: (value: boolean) => void;
 };
 
 export const Toggle: FC<ToggleProps> = (props) => {
@@ -16,10 +17,15 @@ export const Toggle: FC<ToggleProps> = (props) => {
   const toggle = (): any => {
     setIsEnabled((prevState) => !prevState);
   };
+
+  function onChange(): any {
+    props.onChange && props.onChange(value);
+  }
+
   return (
     <ListItem onPress={toggle}>
       <Text style={{ fontSize: 18 }}>{name}</Text>
-      <Switch onValueChange={toggle} value={isEnabled} />
+      <Switch onValueChange={toggle} value={isEnabled} onChange={onChange} />
     </ListItem>
   );
 };

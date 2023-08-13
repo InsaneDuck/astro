@@ -7,6 +7,8 @@ export const defaultSettings: Settings = {
       allowNSFW: false,
       blurNSFW: true,
       feedSort: "Active",
+      feedType: "Subscribed",
+      hideReadPosts: false,
     },
     post: {},
     comments: {

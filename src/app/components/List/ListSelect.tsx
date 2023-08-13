@@ -13,6 +13,7 @@ type ListSelectProps = {
   onPress?: Press;
   options?: string[];
   selected: string;
+  onChange?: Function;
 };
 
 export const ListSelect: FC<ListSelectProps> = (props) => {

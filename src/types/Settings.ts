@@ -1,4 +1,4 @@
-import { CommentSortType, SortType } from "lemmy-js-client";
+import { CommentSortType, ListingType, SortType } from "lemmy-js-client";
 
 import { PostSize } from "@/types/PostSize";
 import { Theme } from "@/types/Theme";
@@ -18,6 +18,8 @@ export type SettingsGeneral = {
     allowNSFW: boolean;
     blurNSFW: boolean;
     feedSort: SortType;
+    feedType: ListingType;
+    hideReadPosts: boolean;
   };
   post: object;
   comments: {

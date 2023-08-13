@@ -8,8 +8,8 @@ export const FaceIdAndPasscode = () => {
   return (
     <View style={{ alignItems: "center", flex: 1 }}>
       <List title="SECURITY" description="Lock app using Face ID or Passcode">
-        <Toggle name="Face ID" />
-        <Toggle name="Passcode" />
+        <Toggle name="Face ID" value={false} />
+        <Toggle name="Passcode" value={false} />
       </List>
     </View>
   );
