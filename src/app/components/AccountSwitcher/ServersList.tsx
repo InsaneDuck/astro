@@ -11,7 +11,7 @@ import { useGetFederatedInstancesQuery } from "@/store/api/instanceApi";
 
 export const ServersList = () => {
   const { data } = useGetFederatedInstancesQuery();
-
+  //todo remove hacky way
   const listItem = ({ item, index }: ListRenderItemInfo<Instance>) => {
     return (
       <ServersListItem

@@ -1,22 +1,18 @@
 import { useNavigation } from "@react-navigation/core";
 import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
-import {
-  StyleProp,
-  StyleSheet,
-  TouchableOpacity,
-  ViewStyle,
-} from "react-native";
+import { StyleProp, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { CommunityButton } from "@/app/components/Community/CommunityButton";
+import { CommunityViewCard } from "@/app/components/Community/CommunityViewCard";
+import { ListItem } from "@/app/components/List/ListItem";
 import { Text } from "@/common/Text";
 import { aggregateHelper } from "@/helper-functions/aggregateHelper";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { useListCommunitiesQuery } from "@/store/api/communityApi";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
-import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommunitySearchResultItemProps = {
   communityId: EntityId;
@@ -47,34 +43,18 @@ export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
     navigation.navigate("Community");
   };
 
-  const borderColor = useThemeColor("borderColor");
-  return (
-    communityView && (
-      <TouchableOpacity
-        style={[
-          styles.container,
-          props.style,
-          { backgroundColor: borderColor },
-        ]}
-        onPress={goToCommunity}
-      >
-        <CommunityButton community={communityView.community} />
-        <Text style={{ fontSize: 18 }}>
-          {aggregateHelper(communityView.counts.subscribers)}
-        </Text>
-      </TouchableOpacity>
-    )
-  );
-};
+  const Temp = () => {
+    return (
+      communityView && (
+        <ListItem style={props.style} onPress={goToCommunity}>
+          <CommunityButton community={communityView.community} />
+          <Text style={{ fontSize: 18 }}>
+            {aggregateHelper(communityView.counts.subscribers)}
+          </Text>
+        </ListItem>
+      )
+    );
+  };
 
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    padding: 12,
-    height: 50,
-  },
-});
+  return communityView && <CommunityViewCard community={communityView} />;
+};

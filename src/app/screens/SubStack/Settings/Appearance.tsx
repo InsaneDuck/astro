@@ -1,27 +1,20 @@
 import React from "react";
-import { StyleSheet, Switch } from "react-native";
+import { StyleSheet } from "react-native";
 
-import { ListItem } from "@/app/components/ListItem";
-import { Text } from "@/common/Text";
+import { List } from "@/app/components/List/List";
+import { Select } from "@/app/components/List/Select";
+import { Toggle } from "@/app/components/List/Toggle";
 import { View } from "@/common/View";
 
 export const Appearance = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>THEME</Text>
-      <View style={styles.innerContainer}>
-        <ListItem title="Dark Mode" />
-      </View>
-      <Text style={styles.title}>POST</Text>
-      <View style={styles.innerContainer}>
-        <ListItem title="Post Size">
-          <Switch />
-        </ListItem>
-      </View>
-      <Text style={styles.title}>COMMENTS</Text>
-      <View style={styles.innerContainer}>
-        <ListItem title="Dark Mode" />
-      </View>
+      <List title="THEME">
+        <Select name="Dark Mode" />
+      </List>
+      <List title="POST">
+        <Toggle name="Post Size" />
+      </List>
     </View>
   );
 };

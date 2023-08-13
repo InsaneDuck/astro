@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { ListItem } from "@/app/components/ListItem";
+import { TextItem } from "@/app/components/List/TextItem";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 
@@ -14,36 +14,36 @@ export const Settings: FC<SettingsProps> = () => {
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <ListItem
-          title="General"
+        <TextItem
+          name="General"
           onPress={() => navigation.navigate("General")}
         />
-        <ListItem
-          title="Appearance"
+        <TextItem
+          name="Appearance"
           onPress={() => navigation.navigate("Appearance")}
         />
-        <ListItem
-          title="Filters"
+        <TextItem
+          name="Filters"
           onPress={() => navigation.navigate("Filters")}
         />
-        <ListItem
-          title="Face ID & Passcode"
+        <TextItem
+          name="Face ID & Passcode"
           onPress={() => navigation.navigate("FaceIdAndPasscode")}
         />
-        <ListItem
-          title="Accounts"
+        <TextItem
+          name="Accounts"
           onPress={() => navigation.navigate("Accounts")}
         />
-        <ListItem
-          title="Export/Import"
+        <TextItem
+          name="Export/Import"
           onPress={() => navigation.navigate("ExportImport")}
         />
       </View>
 
       <View style={styles.innerContainer}>
-        <ListItem title="About" onPress={() => navigation.navigate("About")} />
-        <ListItem title="Rate" onPress={() => navigation.navigate("Rate")} />
-        <ListItem title="Tip" onPress={() => navigation.navigate("Tip")} />
+        <TextItem name="About" onPress={() => navigation.navigate("About")} />
+        <TextItem name="Rate" onPress={() => navigation.navigate("Rate")} />
+        <TextItem name="Tip" onPress={() => navigation.navigate("Tip")} />
       </View>
     </View>
   );

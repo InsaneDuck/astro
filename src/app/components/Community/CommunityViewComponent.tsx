@@ -1,8 +1,9 @@
 import { Community } from "lemmy-js-client";
 import moment from "moment";
 import React, { FC } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
+import { Button } from "@/app/components/Button";
 import { Avatar } from "@/app/components/Community/Avatar";
 import { Banner } from "@/app/components/Community/Banner";
 import { Description } from "@/app/components/Community/Description";
@@ -30,24 +31,8 @@ export const CommunityViewComponent: FC<CommunityProps> = (props) => {
     return (
       <>
         <View style={styles.communityActions}>
-          <TouchableOpacity
-            style={[
-              { backgroundColor: ConstantColors.iosBlue },
-              styles.userActionsButton,
-            ]}
-          >
-            <Text style={{ color: "#ffffff", fontWeight: "bold" }}>
-              SUBSCRIBE
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              { backgroundColor: ConstantColors.iosRed },
-              styles.userActionsButton,
-            ]}
-          >
-            <Text style={{ color: "#ffffff", fontWeight: "bold" }}>BLOCK</Text>
-          </TouchableOpacity>
+          <Button text="SUBSCRIBE" color={ConstantColors.iosBlue} />
+          <Button text="BLOCK" color={ConstantColors.iosRed} />
         </View>
       </>
     );

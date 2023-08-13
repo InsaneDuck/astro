@@ -14,10 +14,8 @@ export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
     limit: 50,
     sort: "TopAll",
   });
-  const allCommunitiesItem = ({
-    item,
-    index,
-  }: ListRenderItemInfo<EntityId>) => {
+  //todo remove hacky way
+  const communityItem = ({ item, index }: ListRenderItemInfo<EntityId>) => {
     return (
       <CommunitySearchResultItem
         communityId={item}
@@ -29,6 +27,7 @@ export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
       />
     );
   };
+  const communityItemAlt = () => {};
 
   return (
     <View style={styles.container}>
@@ -36,7 +35,7 @@ export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
         <FlatList
           style={styles.list}
           data={communities.ids}
-          renderItem={allCommunitiesItem}
+          renderItem={communityItem}
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={InvertedSeparator}
         />

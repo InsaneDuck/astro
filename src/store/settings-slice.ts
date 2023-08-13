@@ -7,27 +7,38 @@ import {
 import { CommentSortType, SortType } from "lemmy-js-client";
 
 type PostSize = "compact" | "expanded" | "text-only";
-type Themes = "light" | "dark";
+type Theme = "light" | "dark";
 export type Settings = {
-  settingsId: number | string;
-  blurNSFW: boolean;
-  defaultPostSize: PostSize;
-  defaultFeedSort: SortType;
-  defaultCommunitySort: SortType;
-  defaultCommentSort: CommentSortType;
-  defaultServerUrl: string;
-  selectedPostSize: PostSize;
-  selectedFeedSort: SortType;
-  selectedCommunitySort: SortType;
-  selectedCommentSort: CommentSortType;
-  selectedServerUrl: string;
-  showNSFW: boolean;
-  showUserNameInTabBar: boolean;
-  theme: Themes;
+  id: number | string;
+  General: {
+    blurNSFW: boolean;
+    feedSort: SortType;
+    communitySort: SortType;
+    commentSort: CommentSortType;
+    allowNSFW: boolean;
+  };
+  Appearance?: {
+    postSize: PostSize;
+    showUserNameInTabBar: boolean;
+    theme: Theme;
+  };
+  Filters?: {
+    keywords: string[];
+  };
+  FaceIdPasscode?: {
+    faceId: boolean;
+    passcode: boolean;
+  };
+  Accounts: {
+    serverUrl: string;
+  };
+  ExportImport?: {
+    data: object;
+  };
 };
 
 const allSettingsAdapter = createEntityAdapter<Settings>({
-  selectId: (settings) => settings.settingsId,
+  selectId: (settings) => settings.id,
 });
 
 export type SettingsState = {
@@ -38,38 +49,45 @@ export type SettingsState = {
 
 const initialState: SettingsState = {
   defaultSettings: {
-    settingsId: 0,
-    blurNSFW: true,
-    defaultPostSize: "expanded",
-    defaultFeedSort: "Active",
-    defaultCommunitySort: "Active",
-    defaultCommentSort: "Hot",
-    defaultServerUrl: "https://lemmy.world/",
-    selectedPostSize: "expanded",
-    selectedFeedSort: "Active",
-    selectedCommunitySort: "Active",
-    selectedCommentSort: "Hot",
-    selectedServerUrl: "https://lemmy.world/",
-    showNSFW: false,
-    showUserNameInTabBar: false,
-    theme: "dark",
+    id: 0,
+    General: {
+      feedSort: "Active",
+      communitySort: "Active",
+      commentSort: "Hot",
+      allowNSFW: false,
+      blurNSFW: false,
+    },
+    Appearance: {
+      postSize: "expanded",
+      showUserNameInTabBar: false,
+      theme: "light",
+    },
+    Filters: {
+      keywords: [],
+    },
+    FaceIdPasscode: {
+      faceId: false,
+      passcode: false,
+    },
+    Accounts: {
+      serverUrl: "https://lemmy.world/",
+    },
+    ExportImport: {
+      data: {},
+    },
   },
   currentSettings: {
-    settingsId: 0,
-    blurNSFW: true,
-    defaultPostSize: "expanded",
-    defaultFeedSort: "Active",
-    defaultCommunitySort: "Active",
-    defaultCommentSort: "Hot",
-    defaultServerUrl: "https://lemmy.world/",
-    selectedPostSize: "expanded",
-    selectedFeedSort: "Active",
-    selectedCommunitySort: "Active",
-    selectedCommentSort: "Hot",
-    selectedServerUrl: "https://lemmy.world/",
-    showNSFW: false,
-    showUserNameInTabBar: false,
-    theme: "dark",
+    id: 0,
+    General: {
+      feedSort: "Active",
+      communitySort: "Active",
+      commentSort: "Hot",
+      allowNSFW: false,
+      blurNSFW: false,
+    },
+    Accounts: {
+      serverUrl: "https://lemmy.world/",
+    },
   },
   allSettings: allSettingsAdapter.getInitialState(),
 };

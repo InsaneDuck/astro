@@ -1,13 +1,15 @@
 import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
 import React, { FC, useEffect } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
+import { Button } from "@/app/components/Button";
 import { Avatar } from "@/app/components/Community/Avatar";
 import { Banner } from "@/app/components/Community/Banner";
 import { Description } from "@/app/components/Community/Description";
-import { ListItem } from "@/app/components/ListItem";
+import { List } from "@/app/components/List/List";
+import { TextItem } from "@/app/components/List/TextItem";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -67,34 +69,20 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
   const UserActions = () => {
     return (
       <View style={styles.userActions}>
-        <TouchableOpacity
-          style={[
-            { backgroundColor: ConstantColors.iosBlue },
-            styles.userActionsButton,
-          ]}
-        >
-          <Text style={{ color: "#ffffff", fontWeight: "bold" }}>MESSAGE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            { backgroundColor: ConstantColors.iosRed },
-            styles.userActionsButton,
-          ]}
-        >
-          <Text style={{ color: "#ffffff", fontWeight: "bold" }}>BLOCK</Text>
-        </TouchableOpacity>
+        <Button text="MESSAGE" color={ConstantColors.iosBlue} />
+        <Button text="BLOCK" color={ConstantColors.iosRed} />
       </View>
     );
   };
 
   const UserFooter = () => {
     return (
-      <View style={styles.userFooter}>
-        <ListItem title="Overview" />
-        <ListItem title="Comments" />
-        <ListItem title="Posts" />
-        {userType === "primary" && <ListItem title="Saved" />}
-      </View>
+      <List>
+        <TextItem name="Overview" />
+        <TextItem name="Comments" />
+        <TextItem name="Posts" />
+        {userType === "primary" && <TextItem name="Saved" />}
+      </List>
     );
   };
   //todo fix scrollview

@@ -1,9 +1,9 @@
 import { Instance } from "lemmy-js-client";
 import { FC } from "react";
-import { StyleProp, TextStyle, TouchableOpacity } from "react-native";
+import { StyleProp, TextStyle } from "react-native";
 
+import { ListItem } from "@/app/components/List/ListItem";
 import { Text } from "@/common/Text";
-import { useThemeColor } from "@/theming/useThemeColor";
 
 type ServersListItemProps = {
   item: Instance;
@@ -11,21 +11,9 @@ type ServersListItemProps = {
 };
 
 export const ServersListItem: FC<ServersListItemProps> = (props) => {
-  const borderColor = useThemeColor("borderColor");
   return (
-    <TouchableOpacity
-      style={[
-        props.style,
-        {
-          backgroundColor: borderColor,
-          padding: 12,
-          height: 50,
-          justifyContent: "center",
-        },
-      ]}
-      key={props.item.id}
-    >
+    <ListItem style={props.style} key={props.item.id}>
       <Text>{props.item.domain}</Text>
-    </TouchableOpacity>
+    </ListItem>
   );
 };
