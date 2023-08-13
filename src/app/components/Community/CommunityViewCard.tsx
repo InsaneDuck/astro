@@ -74,18 +74,7 @@ export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
         </View>
       )}
       <Footer />
-      <Text
-        style={{
-          top: 0,
-          right: 0,
-          position: "absolute",
-          margin: 10,
-          padding: 5,
-          backgroundColor: "#00000030",
-          borderRadius: 5,
-          overflow: "hidden",
-        }}
-      >
+      <Text style={styles.subscribers}>
         {aggregateHelper(props.community.counts.subscribers)}
       </Text>
     </TouchableOpacity>
@@ -137,5 +126,15 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  subscribers: {
+    top: 0,
+    right: 0,
+    position: "absolute",
+    margin: 10,
+    padding: 5,
+    backgroundColor: "#00000030",
+    borderRadius: 5,
+    overflow: "hidden",
   },
 });
