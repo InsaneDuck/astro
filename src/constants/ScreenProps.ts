@@ -37,7 +37,11 @@ import { Rate } from "@/app/screens/SubStack/Settings/Rate";
 import { Settings } from "@/app/screens/SubStack/Settings/Settings";
 import { Tip } from "@/app/screens/SubStack/Settings/Tip";
 import { UserScreen } from "@/app/screens/SubStack/UserScreen";
-import { SubStackParamsList } from "@/router/SubStackLayout";
+import {
+  SettingsParamsList,
+  SharedParamsList,
+  SubStackParamsList,
+} from "@/router/SubStackLayout";
 
 type ScreenProps = RouteConfig<
   SubStackParamsList,
@@ -46,16 +50,54 @@ type ScreenProps = RouteConfig<
   NativeStackNavigationOptions,
   NativeStackNavigationEventMap
 >;
+export const settings: Record<keyof SettingsParamsList, ScreenProps> = {
+  Rate: {
+    component: Rate,
+    name: "Rate",
+  },
 
-export const screenProps: Record<keyof SubStackParamsList, ScreenProps> = {
-  About: {
-    name: "About",
-    component: About,
+  Settings: {
+    component: Settings,
+    name: "Settings",
+  },
+  Tip: {
+    component: Tip,
+    name: "Tip",
   },
   Accounts: {
     name: "Accounts",
     component: Accounts,
   },
+  About: {
+    name: "About",
+    component: About,
+  },
+  Appearance: {
+    component: Appearance,
+    name: "Appearance",
+  },
+  ExportImport: {
+    component: ExportImport,
+    name: "ExportImport",
+    options: { title: "Export/Import" },
+  },
+  FaceIdAndPasscode: {
+    component: FaceIdAndPasscode,
+    name: "FaceIdAndPasscode",
+    options: {
+      title: "Face ID & Passcode",
+    },
+  },
+  Filters: {
+    component: Filters,
+    name: "Filters",
+  },
+  General: {
+    component: General,
+    name: "General",
+  },
+};
+export const shared: Record<keyof SharedParamsList, ScreenProps> = {
   AccountSwitcher: {
     component: AccountSwitcherScreen,
     name: "AccountSwitcher",
@@ -64,14 +106,15 @@ export const screenProps: Record<keyof SubStackParamsList, ScreenProps> = {
       presentation: "modal",
     },
   },
+
   AllCommunities: {
     component: AllCommunitiesScreen,
     name: "AllCommunities",
     options: { title: "Communities" },
   },
-  Appearance: {
-    component: Appearance,
-    name: "Appearance",
+  Search: {
+    component: SearchScreen,
+    name: "Search",
   },
   Community: {
     component: CommunityScreen,
@@ -95,26 +138,7 @@ export const screenProps: Record<keyof SubStackParamsList, ScreenProps> = {
       title: "Create Post",
     },
   },
-  ExportImport: {
-    component: ExportImport,
-    name: "ExportImport",
-    options: { title: "Export/Import" },
-  },
-  FaceIdAndPasscode: {
-    component: FaceIdAndPasscode,
-    name: "FaceIdAndPasscode",
-    options: {
-      title: "Face ID & Passcode",
-    },
-  },
-  Filters: {
-    component: Filters,
-    name: "Filters",
-  },
-  General: {
-    component: General,
-    name: "General",
-  },
+
   Inbox: {
     component: InboxScreen,
     name: "Inbox",
@@ -151,22 +175,7 @@ export const screenProps: Record<keyof SubStackParamsList, ScreenProps> = {
     component: ProfileSettingsScreen,
     name: "ProfileSettings",
   },
-  Rate: {
-    component: Rate,
-    name: "Rate",
-  },
-  Search: {
-    component: SearchScreen,
-    name: "Search",
-  },
-  Settings: {
-    component: Settings,
-    name: "Settings",
-  },
-  Tip: {
-    component: Tip,
-    name: "Tip",
-  },
+
   User: {
     component: UserScreen,
     name: "User",
