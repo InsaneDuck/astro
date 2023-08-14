@@ -1,6 +1,7 @@
 import { EntityId } from "@reduxjs/toolkit";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import React, { FC } from "react";
-import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { CommunitySearchResultItem } from "@/app/components/Community/CommunitySearchResultItem";
 import { InvertedSeparator } from "@/common/InvertedSeparator";
@@ -20,38 +21,33 @@ export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
       <CommunitySearchResultItem
         communityId={item}
         style={{
-          borderTopStartRadius: index === 0 ? 13 : 0,
-          borderTopEndRadius: index === 0 ? 13 : 0,
           marginTop: index === 0 ? 20 : 0,
         }}
       />
     );
   };
-  const communityItemAlt = () => {};
 
   return (
     <View style={styles.container}>
-      {communities && (
-        <FlatList
-          style={styles.list}
-          data={communities.ids}
-          renderItem={communityItem}
-          showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={InvertedSeparator}
-        />
-      )}
+      <View style={{ width: "90%", height: "100%" }}>
+        {communities && (
+          <FlashList
+            data={communities.ids}
+            renderItem={communityItem}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={InvertedSeparator}
+            estimatedItemSize={50}
+          />
+        )}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
+    width: "100%",
+    height: "100%",
     alignItems: "center",
-    flex: 1,
-  },
-  list: {
-    width: "90%",
-    overflow: "hidden",
   },
 });

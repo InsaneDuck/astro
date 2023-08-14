@@ -1,7 +1,14 @@
 import { EntityId } from "@reduxjs/toolkit";
-import { Community, ListingType, SortType } from "lemmy-js-client";
-import React, { FC, useEffect, useMemo, useState } from "react";
-import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import {
+  Community,
+  GetPosts,
+  ListingType,
+  PostView,
+  SortType,
+} from "lemmy-js-client";
+import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { CommunityViewComponent } from "@/app/components/Community/CommunityViewComponent";
@@ -19,6 +26,96 @@ type PostsViewComponentProps = {
 };
 
 export const PostsViewComponent: FC<PostsViewComponentProps> = (props) => {
+  const { community, sort, type: type_ } = props;
+  const {
+    data: posts,
+    isFetching,
+    nextPage,
+  } = useGetPosts(
+    community
+      ? { community_id: community.id, sort, limit: 50 }
+      : { sort, type_, limit: 50 },
+  );
+  const ListHeader = () => {
+    return community && <CommunityViewComponent community={community} />;
+  };
+
+  const ListItem = ({ item, index }: ListRenderItemInfo<PostView>) => {
+    const postView = item;
+
+    return postView ? (
+      <PostViewComponent postView={postView} type="feed" />
+    ) : (
+      <></>
+    );
+  };
+
+  const onEndReached = () => {
+    nextPage();
+  };
+
+  const keyExtractor = (item: PostView, index: number) => {
+    return item.post.id.toString();
+  };
+
+  const ListFooterComponent = useMemo(
+    () => (isFetching ? <Loading style={{ padding: 100 }} /> : null),
+    [],
+  );
+
+  return (
+    <>
+      <FlashList
+        keyExtractor={keyExtractor}
+        ListHeaderComponent={ListHeader}
+        ListFooterComponent={ListFooterComponent}
+        data={posts}
+        renderItem={ListItem}
+        ItemSeparatorComponent={Separator}
+        onEndReached={onEndReached}
+        estimatedItemSize={200}
+        refreshing={isFetching}
+      />
+    </>
+  );
+};
+
+const styles = StyleSheet.create({});
+
+const useGetPosts = (arg: GetPosts) => {
+  const { page: ignored, ...others } = arg;
+  const [page, setPage] = useState(1);
+  const {
+    data: response,
+    isFetching,
+    ...otherProps
+  } = useGetPostsQuery({
+    page,
+    ...others,
+  });
+
+  const [data, setData] = useState<PostView[]>([]);
+
+  useEffect(() => {
+    response && setData((prevState) => [...prevState, ...response.posts]);
+  }, [data]);
+
+  useEffect(() => {
+    setData((prevState) =>
+      response ? [...prevState, ...response.posts] : prevState,
+    );
+  }, [page, data]);
+
+  const nextPage = () => {
+    if (!isFetching) {
+      setPage((prevState) => prevState + 1);
+    }
+  };
+
+  return { data, isFetching, nextPage, ...otherProps };
+};
+
+export const PostsViewComponent1: FC<PostsViewComponentProps> = (props) => {
   const { community, sort, type: type_ } = props;
   const dispatch = useDispatch<AppDispatch>();
   const [page, setPage] = useState(1);
@@ -55,31 +152,30 @@ export const PostsViewComponent: FC<PostsViewComponentProps> = (props) => {
     );
   };
 
-  const onEnd = () => {
+  const onEndReached = useCallback(() => {
     if (!isFetching) {
       setPage((prevState) => prevState + 1);
     }
-  };
-  const FeedFooter = useMemo(
+  }, []);
+  const ListFooterComponent = useMemo(
     () => (isFetching ? <Loading style={{ padding: 100 }} /> : null),
-    [isFetching],
+    [],
   );
 
   return (
     <>
       {posts && (
-        <FlatList
+        <FlashList
           ListHeaderComponent={ListHeader}
-          ListFooterComponent={FeedFooter}
+          ListFooterComponent={ListFooterComponent}
           data={posts.ids}
           renderItem={ListItem}
           refreshing={isFetching}
           ItemSeparatorComponent={Separator}
-          onEndReached={onEnd}
+          onEndReached={onEndReached}
+          estimatedItemSize={200}
         />
       )}
     </>
   );
 };
-
-const styles = StyleSheet.create({});
