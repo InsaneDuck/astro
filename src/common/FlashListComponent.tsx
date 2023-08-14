@@ -1,41 +1,35 @@
-import { EntityId } from "@reduxjs/toolkit";
-import { FlashList, ListRenderItem } from "@shopify/flash-list";
-import React, { useEffect, useMemo, useState } from "react";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import React, { ReactNode, useEffect, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
 import { View } from "@/common/View";
 
-type FlashListComponentProps = {
-  ItemSeparatorComponent: React.ComponentType<any>;
-  ListFooterComponent: React.ComponentType<any>;
+type FlashListComponentProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
-  data: readonly EntityId[];
   estimatedItemSize: number;
-  onEndReached: () => void;
-  refreshing: boolean;
-  renderItem: ListRenderItem<unknown>;
-  fetchFn: (page: number) => [];
+  useFetch: (args: Request) => { data: ListEntity[]; isFetching: boolean };
+  renderItem: ({ item, index }: ListRenderItemInfo<ListEntity>) => ReactNode;
 };
 
-export const FlashListComponent = <K extends []>({
-  ListHeaderComponent,
-  renderItem,
-  ItemSeparatorComponent,
-  estimatedItemSize,
-  fetchFn,
-}: FlashListComponentProps) => {
-  const [data, setData] = useState<K[]>([]);
-  const [isFetching, setIsFetching] = useState(false);
+export const FlashListComponent = <ListEntity, Request>(
+  props: FlashListComponentProps<ListEntity, Request>,
+) => {
+  const [data, setData] = useState<ListEntity[]>([]);
   const [page, setPage] = useState(1);
 
+  const { data: response, isFetching } = props.useFetch({ page } as Request);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = fetchFn(page);
-    };
-    fetchData();
+    setData((prevState) => [...prevState, ...response]);
   }, [page]);
+
+  const setRenderItem = ({ item, index }: ListRenderItemInfo<ListEntity>) => {
+    console.log(item, index);
+    //props.renderItem(item,index)
+    return <></>;
+  };
 
   function onEndReached(): any {
     if (!isFetching) {
@@ -53,11 +47,11 @@ export const FlashListComponent = <K extends []>({
       <View style={styles.inner}>
         <FlashList
           data={data}
-          ListHeaderComponent={ListHeaderComponent}
-          renderItem={renderItem}
-          ItemSeparatorComponent={ItemSeparatorComponent && Separator}
+          ListHeaderComponent={props.ListHeaderComponent}
+          renderItem={setRenderItem}
+          ItemSeparatorComponent={Separator}
           ListFooterComponent={ListFooterComponent}
-          estimatedItemSize={estimatedItemSize}
+          estimatedItemSize={props.estimatedItemSize}
           onEndReached={onEndReached}
           refreshing={isFetching}
         />
