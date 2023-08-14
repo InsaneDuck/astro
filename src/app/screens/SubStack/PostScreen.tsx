@@ -9,7 +9,7 @@ import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { Separator } from "@/common/Separator";
 import { View } from "@/common/View";
-import { useGetCommentsQuery } from "@/store/api/postApi";
+import { useGetCommentsQuery } from "@/store/api/post-api";
 import { RootState } from "@/store/store";
 
 type PostProps = {

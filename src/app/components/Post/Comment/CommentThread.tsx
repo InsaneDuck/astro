@@ -2,7 +2,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import React, { FC } from "react";
 
 import { CommentViewComponent } from "@/app/components/Post/Comment/CommentViewComponent";
-import { useGetCommentsQuery } from "@/store/api/postApi";
+import { useGetCommentsQuery } from "@/store/api/post-api";
 
 type CommentThreadProps = {
   commendId: EntityId;

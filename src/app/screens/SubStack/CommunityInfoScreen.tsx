@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { UserButton } from "@/app/components/Person/UserButton";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
-import { useGetCommunityQuery } from "@/store/api/communityApi";
+import { useGetCommunityQuery } from "@/store/api/community-api";
 import { RootState } from "@/store/store";
 import { useThemeColor } from "@/theming/useThemeColor";
 

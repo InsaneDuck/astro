@@ -8,7 +8,7 @@ import { CommunityViewComponent } from "@/app/components/Community/CommunityView
 import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
 import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
-import { useGetPostsQuery } from "@/store/api/postApi";
+import { useGetPostsQuery } from "@/store/api/post-api";
 import { entitiesActions } from "@/store/entities-slice";
 import { AppDispatch, RootState } from "@/store/store";
 

@@ -10,7 +10,7 @@ import { ListItem } from "@/app/components/List/ListItem";
 import { Text } from "@/common/Text";
 import { aggregateHelper } from "@/helper-functions/aggregateHelper";
 import { SubStackNavigation } from "@/router/SubStackLayout";
-import { useListCommunitiesQuery } from "@/store/api/communityApi";
+import { useListCommunitiesQuery } from "@/store/api/community-api";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
 

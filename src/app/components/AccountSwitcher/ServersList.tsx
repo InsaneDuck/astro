@@ -7,7 +7,7 @@ import { ServersListItem } from "@/app/components/AccountSwitcher/ServersListIte
 import { InvertedSeparator } from "@/common/InvertedSeparator";
 import { Loading } from "@/common/Loading";
 import { View } from "@/common/View";
-import { useGetFederatedInstancesQuery } from "@/store/api/instanceApi";
+import { useGetFederatedInstancesQuery } from "@/store/api/instance-api";
 
 export const ServersList = () => {
   const { data } = useGetFederatedInstancesQuery();
