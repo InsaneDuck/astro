@@ -47,7 +47,7 @@ type ScreenProps = RouteConfig<
   NativeStackNavigationEventMap
 >;
 
-export const screens: Record<keyof SubStackParamsList, ScreenProps> = {
+export const screenProps: Record<keyof SubStackParamsList, ScreenProps> = {
   About: {
     name: "About",
     component: About,
