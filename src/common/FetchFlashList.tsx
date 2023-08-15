@@ -1,7 +1,13 @@
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { GetPosts, ListingType, PostView, SortType } from "lemmy-js-client";
-import React, { ReactNode, useEffect, useMemo, useState } from "react";
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { StyleSheet } from "react-native";
 
 import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
@@ -43,7 +49,11 @@ export function FetchFlashList<ListEntity, Request>(
   const [data, setData] = useState<Record<string, ListEntity>>({});
   const [page, setPage] = useState(1);
 
-  const { data: response, isFetching } = props.useFetch({
+  const {
+    data: response,
+    isFetching,
+    isLoading,
+  } = props.useFetch({
     page,
     ...props.requestArgs,
   });
@@ -58,7 +68,6 @@ export function FetchFlashList<ListEntity, Request>(
         },
         {},
       );
-
       setData((prevState) => Object.assign(prevState, temp));
     }
   }, [page]);
@@ -69,11 +78,12 @@ export function FetchFlashList<ListEntity, Request>(
     return <>{element}</>;
   };
 
-  function onEndReached(): any {
-    if (!isFetching) {
+  //removing callback fixed issue
+  const onEndReached = useCallback(() => {
+    if (!isFetching || !isLoading) {
       setPage((prevState) => prevState + 1);
     }
-  }
+  }, [isFetching]);
 
   const ListFooterComponent = useMemo(
     () => (isFetching ? <Loading style={{ padding: 100 }} /> : null),
@@ -83,18 +93,16 @@ export function FetchFlashList<ListEntity, Request>(
   return (
     <>
       {response && (
-        <View style={styles.container}>
-          <FlashList
-            data={Object.keys(data)}
-            ListHeaderComponent={props.ListHeaderComponent}
-            renderItem={setRenderItem}
-            ItemSeparatorComponent={Separator}
-            ListFooterComponent={ListFooterComponent}
-            estimatedItemSize={props.estimatedItemSize}
-            onEndReached={onEndReached}
-            refreshing={isFetching}
-          />
-        </View>
+        <FlashList
+          data={Object.keys(data)}
+          ListHeaderComponent={props.ListHeaderComponent}
+          renderItem={setRenderItem}
+          ItemSeparatorComponent={Separator}
+          ListFooterComponent={ListFooterComponent}
+          estimatedItemSize={props.estimatedItemSize}
+          onEndReached={onEndReached}
+          refreshing={isFetching}
+        />
       )}
     </>
   );
@@ -120,13 +128,15 @@ export const Test = ({ type, sort }: { sort: SortType; type: ListingType }) => {
     return <PostViewComponent postView={item} type="feed" />;
   };
   return (
-    <FetchFlashList
-      ListHeaderComponent={Header}
-      entityIdExtractor={entityIdExtractor}
-      estimatedItemSize={200}
-      renderItem={renderItem}
-      useFetch={useGetPostsQuery}
-      requestArgs={args}
-    />
+    <View style={{ height: "100%", width: "100%" }}>
+      <FetchFlashList
+        ListHeaderComponent={Header}
+        entityIdExtractor={entityIdExtractor}
+        estimatedItemSize={200}
+        renderItem={renderItem}
+        useFetch={useGetPostsQuery}
+        requestArgs={args}
+      />
+    </View>
   );
 };
