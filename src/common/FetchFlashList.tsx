@@ -21,6 +21,13 @@ type FetchFlashListFlashListProps<ListEntity, Request> = {
   requestArgs: Request;
 };
 
+// type temp<Request, Response> = UseQueryHookResult<
+//   QueryDefinition<Request, BaseQueryFn, never, Response, "lemmy">,
+//   UseQueryStateDefaultResult<
+//     QueryDefinition<Request, BaseQueryFn, never, Response, "lemmy">
+//   >
+// >;
+
 type ReturnTypeOfUseFetch<Request, ListEntity> = {
   data?: ListEntity[];
   isFetching: boolean;
