@@ -1,6 +1,5 @@
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { GetPosts, ListingType, PostView, SortType } from "lemmy-js-client";
 import React, {
   ReactNode,
   useCallback,
@@ -10,11 +9,8 @@ import React, {
 } from "react";
 import { StyleSheet } from "react-native";
 
-import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
 import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
-import { View } from "@/common/View";
-import { useGetPostsQuery } from "@/store/api/post-api";
 
 type FetchFlashListFlashListProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
@@ -63,7 +59,7 @@ export function FetchFlashList<ListEntity, Request>(
       const temp: Record<string, ListEntity> = response.reduce(
         (acc: Record<string, ListEntity>, listEntity) => {
           const id = props.entityIdExtractor(listEntity);
-          acc[id] = listEntity;
+          !acc[id] && (acc[id] = listEntity);
           return acc;
         },
         {},
@@ -80,9 +76,7 @@ export function FetchFlashList<ListEntity, Request>(
 
   //removing callback fixed issue
   const onEndReached = useCallback(() => {
-    if (!isFetching || !isLoading) {
-      setPage((prevState) => prevState + 1);
-    }
+    !isFetching && setPage((prevState) => prevState + 1);
   }, [isFetching]);
 
   const ListFooterComponent = useMemo(
@@ -101,7 +95,7 @@ export function FetchFlashList<ListEntity, Request>(
           ListFooterComponent={ListFooterComponent}
           estimatedItemSize={props.estimatedItemSize}
           onEndReached={onEndReached}
-          refreshing={isFetching}
+          refreshing={isLoading}
         />
       )}
     </>
@@ -115,28 +109,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export const Test = ({ type, sort }: { sort: SortType; type: ListingType }) => {
-  const args: GetPosts = { sort, type_: type, limit: 50 };
-  const Header = () => {
-    return <></>;
-  };
-  const entityIdExtractor = (postView: PostView) => {
-    return postView.post.id.toString();
-  };
-  const renderItem = (item: PostView, index: number) => {
-    return <PostViewComponent postView={item} type="feed" />;
-  };
-  return (
-    <View style={{ height: "100%", width: "100%" }}>
-      <FetchFlashList
-        ListHeaderComponent={Header}
-        entityIdExtractor={entityIdExtractor}
-        estimatedItemSize={200}
-        renderItem={renderItem}
-        useFetch={useGetPostsQuery}
-        requestArgs={args}
-      />
-    </View>
-  );
-};
