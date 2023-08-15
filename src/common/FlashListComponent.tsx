@@ -9,10 +9,11 @@ import { View } from "@/common/View";
 
 type FlashListComponentProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
-  estimatedItemSize: number;
-  useFetch: (args: Request) => ReturnTypeOfUseFetch<Request, ListEntity>;
-  renderItem: ({ item, index }: ListRenderItemInfo<ListEntity>) => ReactNode;
   entityIdExtractor: (listEntity: ListEntity) => string;
+  estimatedItemSize: number;
+  renderItem: ({ item, index }: ListRenderItemInfo<ListEntity>) => ReactNode;
+  useFetch: (args: Request) => ReturnTypeOfUseFetch<Request, ListEntity>;
+  requestArgs: Request;
 };
 
 type ReturnTypeOfUseFetch<Request, ListEntity> = {
@@ -39,7 +40,7 @@ export function FlashListComponent<ListEntity, Request>(
   const [data, setData] = useState<Record<string, ListEntity>>({});
   const [page, setPage] = useState(1);
 
-  const { data: response, isFetching } = props.useFetch({ page } as Request);
+  const { data: response, isFetching } = props.useFetch(props.requestArgs);
 
   useEffect(() => {
     if (response) {
