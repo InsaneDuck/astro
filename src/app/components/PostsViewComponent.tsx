@@ -1,4 +1,3 @@
-import { EntityId } from "@reduxjs/toolkit";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import {
   Community,
@@ -7,17 +6,14 @@ import {
   PostView,
   SortType,
 } from "lemmy-js-client";
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 
 import { CommunityViewComponent } from "@/app/components/Community/CommunityViewComponent";
 import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
 import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
 import { useGetPostsQuery } from "@/store/api/post-api";
-import { entitiesActions } from "@/store/entities-slice";
-import { AppDispatch, RootState } from "@/store/store";
 
 type PostsViewComponentProps = {
   community?: Community;
@@ -113,85 +109,4 @@ const useGetPosts = (arg: GetPosts) => {
   };
 
   return { data, isFetching, nextPage, ...otherProps };
-};
-
-export const PostsViewComponent1: FC<PostsViewComponentProps> = (props) => {
-  const { community, sort, type: type_ } = props;
-  const dispatch = useDispatch<AppDispatch>();
-  const [page, setPage] = useState(1);
-  const {
-    data,
-    isFetching,
-    currentData,
-    originalArgs,
-    isUninitialized,
-    isSuccess,
-    startedTimeStamp,
-    fulfilledTimeStamp,
-    isError,
-    error,
-    isLoading,
-    status,
-    requestId,
-    refetch,
-    endpointName,
-  } = useGetPostsQuery(
-    community
-      ? { community_id: community.id, page, sort, limit: 50 }
-      : { page, sort, type_, limit: 50 },
-  );
-
-  const posts = useSelector((state: RootState) => {
-    return community ? state.entities.communityPosts : state.entities.feedPosts;
-  });
-
-  useEffect(() => {
-    data &&
-      dispatch(
-        community
-          ? entitiesActions.setCommunityPosts(data)
-          : entitiesActions.setFeedPosts(data),
-      );
-  }, [data]);
-
-  const ListHeader = () => {
-    return community && <CommunityViewComponent community={community} />;
-  };
-
-  const ListItem = ({ item, index }: ListRenderItemInfo<EntityId>) => {
-    const postView = posts?.entities[item.toString()];
-
-    return postView ? (
-      <PostViewComponent postView={postView} type="feed" />
-    ) : (
-      <></>
-    );
-  };
-
-  const onEndReached = useCallback(() => {
-    if (!isFetching) {
-      setPage((prevState) => prevState + 1);
-    }
-  }, []);
-  const ListFooterComponent = useMemo(
-    () => (isFetching ? <Loading style={{ padding: 100 }} /> : null),
-    [],
-  );
-
-  return (
-    <>
-      {posts && (
-        <FlashList
-          ListHeaderComponent={ListHeader}
-          ListFooterComponent={ListFooterComponent}
-          data={posts.ids}
-          renderItem={ListItem}
-          refreshing={isFetching}
-          ItemSeparatorComponent={Separator}
-          onEndReached={onEndReached}
-          estimatedItemSize={200}
-        />
-      )}
-    </>
-  );
 };
