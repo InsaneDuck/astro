@@ -1,6 +1,6 @@
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { GetPosts, PostView } from "lemmy-js-client";
+import { GetPosts, ListingType, PostView, SortType } from "lemmy-js-client";
 import React, { ReactNode, useEffect, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 
@@ -43,7 +43,10 @@ export function FetchFlashList<ListEntity, Request>(
   const [data, setData] = useState<Record<string, ListEntity>>({});
   const [page, setPage] = useState(1);
 
-  const { data: response, isFetching } = props.useFetch(props.requestArgs);
+  const { data: response, isFetching } = props.useFetch({
+    page,
+    ...props.requestArgs,
+  });
 
   useEffect(() => {
     if (response) {
@@ -58,10 +61,6 @@ export function FetchFlashList<ListEntity, Request>(
 
       setData((prevState) => Object.assign(prevState, temp));
     }
-
-    // setData((prevState) =>
-    //   response ? [...prevState, ...response] : prevState,
-    // );
   }, [page]);
 
   const setRenderItem = ({ item, index }: ListRenderItemInfo<string>) => {
@@ -82,18 +81,22 @@ export function FetchFlashList<ListEntity, Request>(
   );
 
   return (
-    <View style={styles.container}>
-      <FlashList
-        data={Object.keys(data)}
-        ListHeaderComponent={props.ListHeaderComponent}
-        renderItem={setRenderItem}
-        ItemSeparatorComponent={Separator}
-        ListFooterComponent={ListFooterComponent}
-        estimatedItemSize={props.estimatedItemSize}
-        onEndReached={onEndReached}
-        refreshing={isFetching}
-      />
-    </View>
+    <>
+      {response && (
+        <View style={styles.container}>
+          <FlashList
+            data={Object.keys(data)}
+            ListHeaderComponent={props.ListHeaderComponent}
+            renderItem={setRenderItem}
+            ItemSeparatorComponent={Separator}
+            ListFooterComponent={ListFooterComponent}
+            estimatedItemSize={props.estimatedItemSize}
+            onEndReached={onEndReached}
+            refreshing={isFetching}
+          />
+        </View>
+      )}
+    </>
   );
 }
 
@@ -105,12 +108,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const Test = () => {
-  const args: GetPosts = {};
+export const Test = ({ type, sort }: { sort: SortType; type: ListingType }) => {
+  const args: GetPosts = { sort, type_: type, limit: 50 };
   const Header = () => {
     return <></>;
   };
-  const entityIdExtractor = (): any => {};
+  const entityIdExtractor = (postView: PostView) => {
+    return postView.post.id.toString();
+  };
   const renderItem = (item: PostView, index: number) => {
     return <PostViewComponent postView={item} type="feed" />;
   };
