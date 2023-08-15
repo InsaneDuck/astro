@@ -7,7 +7,7 @@ import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
 import { View } from "@/common/View";
 
-type FlashListComponentProps<ListEntity, Request> = {
+type FetchFlashListFlashListProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
   entityIdExtractor: (listEntity: ListEntity) => string;
   estimatedItemSize: number;
@@ -34,8 +34,8 @@ type ReturnTypeOfUseFetch<Request, ListEntity> = {
   endpointName: string | undefined;
 };
 
-export function FlashListComponent<ListEntity, Request>(
-  props: FlashListComponentProps<ListEntity, Request>,
+export function FetchFlashList<ListEntity, Request>(
+  props: FetchFlashListFlashListProps<ListEntity, Request>,
 ) {
   const [data, setData] = useState<Record<string, ListEntity>>({});
   const [page, setPage] = useState(1);
