@@ -118,8 +118,8 @@ const Temp = () => {
   });
   const onEndReached = (): any => {
     //fetch
-    const response = [] as PostView[];
-    dispatch.addMany(response);
+    const response = [] as readonly PostView[];
+    //dispatch({ type: Action.UPSERT_MANY, response });
   };
   return (
     <FlashList

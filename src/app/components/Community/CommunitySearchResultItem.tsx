@@ -43,7 +43,7 @@ export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
     navigation.navigate("Community");
   };
 
-  const Temp = () => {
+  const Alt = () => {
     return (
       communityView && (
         <ListItem style={props.style} onPress={goToCommunity}>

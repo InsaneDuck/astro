@@ -7,7 +7,6 @@ import {
   SortType,
 } from "lemmy-js-client";
 import React, { FC, useEffect, useMemo, useState } from "react";
-import { StyleSheet } from "react-native";
 
 import { CommunityViewComponent } from "@/app/components/Community/CommunityViewComponent";
 import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
@@ -75,8 +74,6 @@ export const PostsViewComponent: FC<PostsViewComponentProps> = (props) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({});
 
 const useGetPosts = (arg: GetPosts) => {
   const { page: ignored, ...others } = arg;
