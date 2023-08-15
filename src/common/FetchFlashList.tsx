@@ -44,11 +44,15 @@ export function FetchFlashList<ListEntity, Request>(
 
   useEffect(() => {
     if (response) {
-      const temp: Record<string, ListEntity> = {};
-      response.map((listEntity) => {
-        const id = props.entityIdExtractor(listEntity);
-        temp[id] = listEntity;
-      });
+      const temp: Record<string, ListEntity> = response.reduce(
+        (acc: Record<string, ListEntity>, listEntity) => {
+          const id = props.entityIdExtractor(listEntity);
+          acc[id] = listEntity;
+          return acc;
+        },
+        {},
+      );
+
       setData((prevState) => Object.assign(prevState, temp));
     }
 
@@ -59,7 +63,8 @@ export function FetchFlashList<ListEntity, Request>(
 
   const setRenderItem = ({ item, index }: ListRenderItemInfo<string>) => {
     const listEntity = data[item];
-    return props.renderItem(listEntity, index);
+    const element = props.renderItem(listEntity, index);
+    return <>{element}</>;
   };
 
   function onEndReached(): any {
