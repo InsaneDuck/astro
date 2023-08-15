@@ -97,12 +97,12 @@ const useGetPosts = (arg: GetPosts) => {
   const [data, setData] = useState<PostView[]>([]);
 
   useEffect(() => {
-    response && setData((prevState) => [...prevState, ...response.posts]);
+    response && setData((prevState) => [...prevState, ...response]);
   }, [data]);
 
   useEffect(() => {
     setData((prevState) =>
-      response ? [...prevState, ...response.posts] : prevState,
+      response ? [...prevState, ...response] : prevState,
     );
   }, [page, data]);
 
@@ -149,8 +149,8 @@ export const PostsViewComponent1: FC<PostsViewComponentProps> = (props) => {
     data &&
       dispatch(
         community
-          ? entitiesActions.setCommunityPosts(data.posts)
-          : entitiesActions.setFeedPosts(data.posts),
+          ? entitiesActions.setCommunityPosts(data)
+          : entitiesActions.setFeedPosts(data),
       );
   }, [data]);
 

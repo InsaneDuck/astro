@@ -5,7 +5,7 @@ import {
   GetComment,
   GetComments,
   GetPosts,
-  GetPostsResponse,
+  PostView,
 } from "lemmy-js-client";
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
@@ -36,11 +36,11 @@ const postApi = lemmyApi.injectEndpoints({
         return { data };
       },
     }),
-    getPosts: builder.query<GetPostsResponse, GetPosts>({
+    getPosts: builder.query<PostView[], GetPosts>({
       queryFn: async (arg: GetPosts) => {
         console.log("fetching getPosts : " + JSON.stringify(arg));
-        const data = await getLemmyHttp().getPosts(arg);
-        return { data };
+        const response = await getLemmyHttp().getPosts(arg);
+        return { data: response.posts };
       },
     }),
   }),

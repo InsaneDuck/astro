@@ -1,11 +1,14 @@
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { GetPosts, PostView } from "lemmy-js-client";
 import React, { ReactNode, useEffect, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 
+import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
 import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
 import { View } from "@/common/View";
+import { useGetPostsQuery } from "@/store/api/post-api";
 
 type FetchFlashListFlashListProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
@@ -17,21 +20,21 @@ type FetchFlashListFlashListProps<ListEntity, Request> = {
 };
 
 type ReturnTypeOfUseFetch<Request, ListEntity> = {
-  data: ListEntity[] | undefined;
+  data?: ListEntity[];
   isFetching: boolean;
-  currentData: ListEntity[] | undefined;
-  originalArgs: Request | undefined;
+  currentData?: ListEntity[];
+  originalArgs?: Request;
   isUninitialized: boolean;
   isSuccess: boolean;
-  startedTimeStamp: number | undefined;
-  fulfilledTimeStamp: number | undefined;
+  startedTimeStamp?: number;
+  fulfilledTimeStamp?: number;
   isError: boolean;
-  error: any;
+  error?: any;
   isLoading: boolean;
   status: QueryStatus;
-  requestId: string;
-  refetch: () => ListEntity[];
-  endpointName: string | undefined;
+  requestId?: string;
+  refetch: () => void;
+  endpointName?: string;
 };
 
 export function FetchFlashList<ListEntity, Request>(
@@ -101,3 +104,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+const Test = () => {
+  const args: GetPosts = {};
+  const Header = () => {
+    return <></>;
+  };
+  const entityIdExtractor = (): any => {};
+  const renderItem = (item: PostView, index: number) => {
+    return <PostViewComponent postView={item} type="feed" />;
+  };
+  return (
+    <FetchFlashList
+      ListHeaderComponent={Header}
+      entityIdExtractor={entityIdExtractor}
+      estimatedItemSize={200}
+      renderItem={renderItem}
+      useFetch={useGetPostsQuery}
+      requestArgs={args}
+    />
+  );
+};
