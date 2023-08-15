@@ -1,5 +1,6 @@
 import { QueryStatus } from "@reduxjs/toolkit/query";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { PostView } from "lemmy-js-client";
 import React, {
   ReactNode,
   useCallback,
@@ -7,10 +8,11 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { StyleSheet } from "react-native";
 
 import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
+import { Text } from "@/common/Text";
+import { useEntityAdapter } from "@/hooks/useEntityAdapter";
 
 type FetchFlashListFlashListProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
@@ -83,7 +85,7 @@ export function FetchFlashList<ListEntity, Request>(
 
   //removing callback fixed issue
   const onEndReached = useCallback(() => {
-    !isFetching && setPage((prevState) => prevState + 1);
+    //!isFetching && setPage((prevState) => prevState + 1);
   }, [isFetching]);
 
   const ListFooterComponent = useMemo(
@@ -109,10 +111,21 @@ export function FetchFlashList<ListEntity, Request>(
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
-  },
-});
+const Temp = () => {
+  const { data, dispatch } = useEntityAdapter<PostView>({
+    selectId: (model) => model.post.id,
+    sortComparer: false,
+  });
+  const onEndReached = (): any => {
+    //fetch
+    const response = [] as PostView[];
+    dispatch.addMany(response);
+  };
+  return (
+    <FlashList
+      data={data.ids}
+      renderItem={(item) => <Text>{item.item.toString()}</Text>}
+      onEndReached={onEndReached}
+    />
+  );
+};

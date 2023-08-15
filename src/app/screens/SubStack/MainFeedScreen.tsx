@@ -30,6 +30,8 @@ export const Test = ({ type, sort }: { sort: SortType; type: ListingType }) => {
     return postView.post.id.toString();
   };
   const renderItem = (item: PostView, index: number) => {
+    console.log(item.post.id);
+
     return <PostViewComponent postView={item} type="feed" />;
   };
   return (
