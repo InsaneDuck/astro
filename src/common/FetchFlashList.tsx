@@ -11,7 +11,7 @@ type FetchFlashListFlashListProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
   entityIdExtractor: (listEntity: ListEntity) => string;
   estimatedItemSize: number;
-  renderItem: ({ item, index }: ListRenderItemInfo<ListEntity>) => ReactNode;
+  renderItem: (item: ListEntity, index: number) => ReactNode;
   useFetch: (args: Request) => ReturnTypeOfUseFetch<Request, ListEntity>;
   requestArgs: Request;
 };
@@ -59,9 +59,7 @@ export function FetchFlashList<ListEntity, Request>(
 
   const setRenderItem = ({ item, index }: ListRenderItemInfo<string>) => {
     const listEntity = data[item];
-    console.log(item, index, listEntity);
-    //props.renderItem(item,index)
-    return <></>;
+    return props.renderItem(listEntity, index);
   };
 
   function onEndReached(): any {
@@ -77,18 +75,16 @@ export function FetchFlashList<ListEntity, Request>(
 
   return (
     <View style={styles.container}>
-      <View style={styles.inner}>
-        <FlashList
-          data={Object.keys(data)}
-          ListHeaderComponent={props.ListHeaderComponent}
-          renderItem={setRenderItem}
-          ItemSeparatorComponent={Separator}
-          ListFooterComponent={ListFooterComponent}
-          estimatedItemSize={props.estimatedItemSize}
-          onEndReached={onEndReached}
-          refreshing={isFetching}
-        />
-      </View>
+      <FlashList
+        data={Object.keys(data)}
+        ListHeaderComponent={props.ListHeaderComponent}
+        renderItem={setRenderItem}
+        ItemSeparatorComponent={Separator}
+        ListFooterComponent={ListFooterComponent}
+        estimatedItemSize={props.estimatedItemSize}
+        onEndReached={onEndReached}
+        refreshing={isFetching}
+      />
     </View>
   );
 }
@@ -99,54 +95,4 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
   },
-  inner: { width: "90%", height: "100%" },
 });
-
-const useFetchedData = <Response, Request>(useHook: Function) => {
-  const [temp, setTemp] = useState([]);
-  const [page, setPage] = useState(1);
-  const [request, setRequest] = useState<Request>();
-  const {
-    data,
-    isFetching,
-    error,
-    isError,
-    isLoading,
-    currentData,
-    endpointName,
-    fulfilledTimeStamp,
-    startedTimeStamp,
-    isSuccess,
-    isUninitialized,
-    originalArgs,
-    refetch,
-    requestId,
-    status,
-  } = useHook();
-
-  useEffect(() => {
-    const fetchData = async () => {};
-    const response = fetchData();
-  }, [page]);
-
-  return {
-    temp,
-    page,
-    setPage,
-    data,
-    isFetching,
-    error,
-    isError,
-    isLoading,
-    currentData,
-    endpointName,
-    fulfilledTimeStamp,
-    startedTimeStamp,
-    isSuccess,
-    isUninitialized,
-    originalArgs,
-    refetch,
-    requestId,
-    status,
-  };
-};
