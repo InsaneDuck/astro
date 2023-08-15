@@ -119,7 +119,23 @@ export const PostsViewComponent1: FC<PostsViewComponentProps> = (props) => {
   const { community, sort, type: type_ } = props;
   const dispatch = useDispatch<AppDispatch>();
   const [page, setPage] = useState(1);
-  const { data, isFetching } = useGetPostsQuery(
+  const {
+    data,
+    isFetching,
+    currentData,
+    originalArgs,
+    isUninitialized,
+    isSuccess,
+    startedTimeStamp,
+    fulfilledTimeStamp,
+    isError,
+    error,
+    isLoading,
+    status,
+    requestId,
+    refetch,
+    endpointName,
+  } = useGetPostsQuery(
     community
       ? { community_id: community.id, page, sort, limit: 50 }
       : { page, sort, type_, limit: 50 },

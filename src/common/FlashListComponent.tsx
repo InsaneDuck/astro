@@ -1,3 +1,4 @@
+import { QueryStatus } from "@reduxjs/toolkit/query";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import React, { ReactNode, useEffect, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -9,24 +10,55 @@ import { View } from "@/common/View";
 type FlashListComponentProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
   estimatedItemSize: number;
-  useFetch: (args: Request) => { data: ListEntity[]; isFetching: boolean };
+  useFetch: (args: Request) => ReturnTypeOfUseFetch<Request, ListEntity>;
   renderItem: ({ item, index }: ListRenderItemInfo<ListEntity>) => ReactNode;
+  entityIdExtractor: (listEntity: ListEntity) => string;
 };
 
-export const FlashListComponent = <ListEntity, Request>(
+type ReturnTypeOfUseFetch<Request, ListEntity> = {
+  data: ListEntity[] | undefined;
+  isFetching: boolean;
+  currentData: ListEntity[] | undefined;
+  originalArgs: Request | undefined;
+  isUninitialized: boolean;
+  isSuccess: boolean;
+  startedTimeStamp: number | undefined;
+  fulfilledTimeStamp: number | undefined;
+  isError: boolean;
+  error: any;
+  isLoading: boolean;
+  status: QueryStatus;
+  requestId: string;
+  refetch: () => ListEntity[];
+  endpointName: string | undefined;
+};
+
+export function FlashListComponent<ListEntity, Request>(
   props: FlashListComponentProps<ListEntity, Request>,
-) => {
-  const [data, setData] = useState<ListEntity[]>([]);
+) {
+  const [data, setData] = useState<Record<string, ListEntity>>({});
   const [page, setPage] = useState(1);
 
   const { data: response, isFetching } = props.useFetch({ page } as Request);
 
   useEffect(() => {
-    setData((prevState) => [...prevState, ...response]);
+    if (response) {
+      const temp: Record<string, ListEntity> = {};
+      response.map((listEntity) => {
+        const id = props.entityIdExtractor(listEntity);
+        temp[id] = listEntity;
+      });
+      setData((prevState) => Object.assign(prevState, temp));
+    }
+
+    // setData((prevState) =>
+    //   response ? [...prevState, ...response] : prevState,
+    // );
   }, [page]);
 
-  const setRenderItem = ({ item, index }: ListRenderItemInfo<ListEntity>) => {
-    console.log(item, index);
+  const setRenderItem = ({ item, index }: ListRenderItemInfo<string>) => {
+    const listEntity = data[item];
+    console.log(item, index, listEntity);
     //props.renderItem(item,index)
     return <></>;
   };
@@ -46,7 +78,7 @@ export const FlashListComponent = <ListEntity, Request>(
     <View style={styles.container}>
       <View style={styles.inner}>
         <FlashList
-          data={data}
+          data={Object.keys(data)}
           ListHeaderComponent={props.ListHeaderComponent}
           renderItem={setRenderItem}
           ItemSeparatorComponent={Separator}
@@ -58,7 +90,7 @@ export const FlashListComponent = <ListEntity, Request>(
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
