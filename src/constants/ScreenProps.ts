@@ -8,6 +8,7 @@ import {
   NativeStackNavigationOptions,
 } from "@react-navigation/native-stack";
 
+import { AllCommunitiesHeader } from "@/app/components/Community/AllCommunitiesHeader";
 import { CommunityButtons } from "@/app/components/Community/CommunityButtons";
 import { FeedAccount } from "@/app/components/Feed/FeedAccount";
 import { FeedSelector } from "@/app/components/Feed/FeedSelector";
@@ -110,7 +111,7 @@ export const shared: Record<keyof SharedParamsList, ScreenProps> = {
   AllCommunities: {
     component: AllCommunitiesScreen,
     name: "AllCommunities",
-    options: { title: "Communities" },
+    options: { title: "Communities", headerTitle: AllCommunitiesHeader },
   },
   Search: {
     component: SearchScreen,
