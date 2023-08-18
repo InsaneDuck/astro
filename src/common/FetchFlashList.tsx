@@ -12,7 +12,7 @@ import React, {
 import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
 import { Text } from "@/common/Text";
-import { useEntityAdapter } from "@/hooks/useEntityAdapter";
+import { useNormalizer } from "@/hooks/useNormalizer";
 
 type FetchFlashListFlashListProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
@@ -85,7 +85,7 @@ export function FetchFlashList<ListEntity, Request>(
 
   //removing callback fixed issue
   const onEndReached = useCallback(() => {
-    //!isFetching && setPage((prevState) => prevState + 1);
+    !isFetching && setPage((prevState) => prevState + 1);
   }, [isFetching]);
 
   const ListFooterComponent = useMemo(
@@ -112,7 +112,7 @@ export function FetchFlashList<ListEntity, Request>(
 }
 
 const Temp = () => {
-  const { data, dispatch } = useEntityAdapter<PostView>({
+  const { data, dispatch } = useNormalizer<PostView>({
     selectId: (model) => model.post.id,
     sortComparer: false,
   });

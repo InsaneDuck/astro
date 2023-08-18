@@ -82,34 +82,6 @@ export enum Action {
   UPSERT_MANY = "UPSERT_MANY",
 }
 
-const reducer = <T>(
-  state: EntityState<T>,
-  action: { type: Action; payload?: readonly T[] | T | EntityId },
-) => {
-  switch (action.type) {
-    case Action.ADD_ONE:
-      return state;
-    case Action.ADD_MANY:
-      return state;
-    case Action.SET_ALL:
-      return state;
-    case Action.REMOVE_ONE:
-      return state;
-    case Action.REMOVE_MANY:
-      return state;
-    case Action.REMOVE_ALL:
-      return state;
-    case Action.UPDATE_ONE:
-      return state;
-    case Action.UPDATE_MANY:
-      return state;
-    case Action.UPSERT_ONE:
-      return state;
-    case Action.UPSERT_MANY:
-      return state;
-  }
-};
-
 type ReducerFunctionType<T> = (
   state: EntityState<T>,
   action: { type: Action; payload?: readonly T[] },
@@ -121,9 +93,55 @@ const initializer: InitializerType = () => {
     entities: {},
   };
 };
-export const useEntityAdapter = <T>(init: EntityDefinition<T>) => {
-  //const [data, setData] = useState<EntityState<T>>({ ids: [], entities: {} });
 
+function isOfType<T extends object>(value: unknown, type: T): value is T {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    Object.keys(type).every((key) => key in value)
+  );
+}
+
+export const useNormalizer = <T>(init: EntityDefinition<T>) => {
+  const reducer = <T>(
+    state: EntityState<T>,
+    action: { type: Action; payload?: readonly T[] },
+  ) => {
+    switch (action.type) {
+      case Action.ADD_ONE: {
+        // if (isOfType(action.payload,  T)) {
+        //   const id = init.selectId(action.payload);
+        //   state.ids.push(id);
+        //   state.entities[id] = action.payload;
+        // }
+        return state;
+      }
+      case Action.ADD_MANY:
+        return state;
+      case Action.SET_ALL:
+        return state;
+      case Action.REMOVE_ONE:
+        return state;
+      case Action.REMOVE_MANY:
+        return state;
+      case Action.REMOVE_ALL:
+        return state;
+      case Action.UPDATE_ONE:
+        return state;
+      case Action.UPDATE_MANY:
+        return state;
+      case Action.UPSERT_ONE:
+        return state;
+      case Action.UPSERT_MANY: {
+        // if (isOfType(action.payload,  T)) {
+        //   const id = init.selectId(action.payload);
+        //   state.ids.push(id);
+        //   state.entities[id] = action.payload;
+        // }
+        return state;
+      }
+    }
+  };
   const [data, dispatch] = useReducer<ReducerFunctionType<T>, EntityState<T>>(
     reducer,
     {
