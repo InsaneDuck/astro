@@ -12,7 +12,6 @@ import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
-import { MainStackNavigation } from "@/router/MainStackLayout";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
@@ -36,15 +35,8 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
   (props) => {
     const { postView, type } = props;
     const tabIconDefault = useThemeColor("tabIconDefault");
-    const navigation = useNavigation<MainStackNavigation>();
     const navigationCurrent = useNavigation<SubStackNavigation>();
     const dispatch = useDispatch<AppDispatch>();
-    const onImagePress = (): any => {
-      if (postView.post?.thumbnail_url) {
-        dispatch(sharedActions.setImages([postView.post.thumbnail_url]));
-        navigation.navigate("ImageViewer");
-      }
-    };
 
     const goToPost = (): any => {
       if (type === "feed") {
@@ -66,7 +58,6 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
       return (
         postView.post?.thumbnail_url && (
           <CustomImage
-            onPress={onImagePress}
             style={{ width: "100%", height: 300, maxHeight: 400 }}
             source={{ uri: postView.post.thumbnail_url }}
             resizeMode="contain"
