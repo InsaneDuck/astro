@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 
-export type EntityId = number | string;
+export type EntityId = string;
 
 export type Comparer<T> = (a: T, b: T) => number;
 
@@ -51,59 +51,63 @@ const initializer: InitializerType = () => {
   };
 };
 
-export const useNormalizer = <EntityType>(
+type ReducerAction<T> = { type: Action; payload?: readonly T[] };
+
+export const useStateNormalized = <EntityType>(
   init: EntityDefinition<EntityType>,
 ) => {
-  const reducer = <T>(
-    state: EntityState<T>,
-    action: { type: Action; payload?: readonly T[] },
+  const reducer = (
+    state: EntityState<EntityType>,
+    action: ReducerAction<EntityType>,
   ) => {
     switch (action.type) {
       case Action.ADD_ONE: {
-        // if (isOfType(action.payload,  T)) {
-        //   const id = init.selectId(action.payload);
-        //   state.ids.push(id);
-        //   state.entities[id] = action.payload;
-        // }
         return state;
       }
-      case Action.ADD_MANY:
+      case Action.ADD_MANY: {
         return state;
-      case Action.SET_ALL:
+      }
+      case Action.SET_ALL: {
         return state;
-      case Action.REMOVE_ONE:
+      }
+      case Action.REMOVE_ONE: {
         return state;
-      case Action.REMOVE_MANY:
+      }
+      case Action.REMOVE_MANY: {
         return state;
-      case Action.REMOVE_ALL:
+      }
+      case Action.REMOVE_ALL: {
         return state;
-      case Action.UPDATE_ONE:
+      }
+      case Action.UPDATE_ONE: {
         return state;
-      case Action.UPDATE_MANY:
+      }
+      case Action.UPDATE_MANY: {
         return state;
-      case Action.UPSERT_ONE:
+      }
+      case Action.UPSERT_ONE: {
         return state;
+      }
       case Action.UPSERT_MANY: {
-        // action.payload?.map((item) => {
-        //   const id = init.selectId<EntityType>(item);
-        //   state.ids.push(id);
-        //   state.entities[id] = item;
-        // });
+        if (action.payload) {
+          action.payload.map((item) => {
+            const id = init.selectId(item);
+
+            state.ids.push(id);
+            state.entities[id] = item;
+          });
+        }
+
         return state;
       }
     }
   };
-  const [data, dispatch] = useReducer<
-    ReducerFunctionType<EntityType>,
-    EntityState<EntityType>
-  >(
+  const [data, dispatch] = useReducer<ReducerFunctionType<EntityType>>(
     reducer,
     {
-      ids: [],
+      ids: [] as EntityId[],
       entities: {},
     },
-    initializer,
   );
-
   return { data, dispatch };
 };

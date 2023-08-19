@@ -47,5 +47,11 @@ const postApi = lemmyApi.injectEndpoints({
   overrideExisting: true,
 });
 
-export const { useGetPostsQuery, useGetCommentQuery, useGetCommentsQuery } =
-  postApi;
+export const {
+  useGetPostsQuery,
+  useLazyGetPostsQuery,
+  useGetCommentQuery,
+  useLazyGetCommentQuery,
+  useGetCommentsQuery,
+  useLazyGetCommentsQuery,
+} = postApi;

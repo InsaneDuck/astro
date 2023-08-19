@@ -29,10 +29,11 @@ export const Test = ({ type, sort }: { sort: SortType; type: ListingType }) => {
   const entityIdExtractor = (postView: PostView) => {
     return postView.post.id.toString();
   };
-  const renderItem = (item: PostView, index: number) => {
-    //console.log(item.post.id);
-
-    return <PostViewComponent postView={item} type="feed" />;
+  const renderItem = (item: PostView | undefined, index: number) => {
+    return item && <PostViewComponent postView={item} type="feed" />;
+  };
+  const idExtractor = (entity: PostView) => {
+    return entity.post.id.toString();
   };
   return (
     <View style={{ height: "100%", width: "100%" }}>
@@ -43,6 +44,7 @@ export const Test = ({ type, sort }: { sort: SortType; type: ListingType }) => {
         renderItem={renderItem}
         useFetch={useGetPostsQuery}
         requestArgs={args}
+        idExtractor={idExtractor}
       />
     </View>
   );
