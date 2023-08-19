@@ -1,4 +1,5 @@
 import { QueryStatus } from "@reduxjs/toolkit/query";
+import { FlashList } from "@shopify/flash-list";
 import React, {
   ReactNode,
   useCallback,
@@ -10,6 +11,7 @@ import { FlatList, ListRenderItemInfo } from "react-native";
 
 import { Loading } from "@/common/Loading";
 import { Separator } from "@/common/Separator";
+import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import {
   Action,
@@ -53,24 +55,6 @@ type ReturnTypeOfUseFetch<Request, ListEntity> = {
   endpointName?: string;
 };
 
-type ReturnTypeOfUseLazyFetch<Request, ListEntity> = {
-  data?: ListEntity[];
-  isFetching: boolean;
-  currentData?: ListEntity[];
-  originalArgs?: Request;
-  isUninitialized: boolean;
-  isSuccess: boolean;
-  startedTimeStamp?: number;
-  fulfilledTimeStamp?: number;
-  isError: boolean;
-  error?: any;
-  isLoading: boolean;
-  status: QueryStatus;
-  requestId?: string;
-  refetch: () => void;
-  endpointName?: string;
-};
-
 export function FetchFlashList<ListEntity, Request>(
   props: FetchFlashListFlashListProps<ListEntity, Request>,
 ) {
@@ -93,12 +77,6 @@ export function FetchFlashList<ListEntity, Request>(
     dispatch({ type: Action.UPSERT_MANY, payload: response });
   }, [response]);
 
-  const setRenderItem = ({ item, index }: ListRenderItemInfo<EntityId>) => {
-    const listEntity = data?.entities[item];
-    const element = props.renderItem(listEntity, index);
-    return <>{element}</>;
-  };
-
   //removing callback fixed issue
   const onEndReached = useCallback(() => {
     !isFetching && setPage((prevState) => prevState + 1);
@@ -108,37 +86,45 @@ export function FetchFlashList<ListEntity, Request>(
     () => (isFetching ? <Loading style={{ padding: 100 }} /> : null),
     [],
   );
-  console.log(data.ids.length);
 
-  // const temp =
-  //   data.ids.length > 0 ? (
-  //     <FlashList
-  //       data={data.ids}
-  //       ListHeaderComponent={props.ListHeaderComponent}
-  //       renderItem={setRenderItem}
-  //       ItemSeparatorComponent={Separator}
-  //       ListFooterComponent={ListFooterComponent}
-  //       estimatedItemSize={props.estimatedItemSize}
-  //       onEndReached={onEndReached}
-  //       refreshing={isLoading}
-  //     />
-  //   ) : (
-  //     <>
-  //       <Loading />
-  //       <Text>Not working</Text>
-  //     </>
-  //   );
+  const setRenderItem = ({ item, index }: ListRenderItemInfo<EntityId>) => {
+    console.log(item);
+    const listEntity = data?.entities[item];
+    const element = props.renderItem(listEntity, index);
+    return <>{element}</>;
+  };
+
+  const value = true;
+
+  if (value) {
+    return (
+      <View style={{ width: "100%", height: "100%" }}>
+        <Text style={{ textAlign: "center" }}>FlatList</Text>
+        <FlatList
+          data={data.ids}
+          ListHeaderComponent={props.ListHeaderComponent}
+          renderItem={setRenderItem}
+          ItemSeparatorComponent={Separator}
+          ListFooterComponent={ListFooterComponent}
+          onEndReached={onEndReached}
+          refreshing={isLoading}
+        />
+      </View>
+    );
+  }
 
   return (
     <View style={{ width: "100%", height: "100%" }}>
-      <FlatList
+      <FlashList
         data={data.ids}
+        keyExtractor={(item) => item.toString()}
         ListHeaderComponent={props.ListHeaderComponent}
-        renderItem={setRenderItem}
+        renderItem={({ item }) => <Text style={{ padding: 20 }}>{item}</Text>}
         ItemSeparatorComponent={Separator}
         ListFooterComponent={ListFooterComponent}
         onEndReached={onEndReached}
         refreshing={isLoading}
+        estimatedItemSize={100}
       />
     </View>
   );
