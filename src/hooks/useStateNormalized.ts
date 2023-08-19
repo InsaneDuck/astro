@@ -41,15 +41,8 @@ export enum Action {
 
 type ReducerFunctionType<T> = (
   state: EntityState<T>,
-  action: { type: Action; payload?: readonly T[] },
+  action: ReducerAction<T>,
 ) => EntityState<T>;
-type InitializerType = <T>() => EntityState<T>;
-const initializer: InitializerType = () => {
-  return {
-    ids: [],
-    entities: {},
-  };
-};
 
 type ReducerAction<T> = { type: Action; payload?: readonly T[] };
 
