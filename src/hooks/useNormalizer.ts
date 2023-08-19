@@ -4,7 +4,7 @@ export type EntityId = number | string;
 
 export type Comparer<T> = (a: T, b: T) => number;
 
-export type IdSelector<T> = (model: T) => EntityId;
+export type IdSelector<T> = (entity: T) => EntityId;
 
 export interface DictionaryNum<T> {
   [id: number]: T | undefined;
@@ -24,49 +24,6 @@ export interface EntityState<T> {
 export interface EntityDefinition<T> {
   selectId: IdSelector<T>;
   sortComparer: false | Comparer<T>;
-}
-
-export type ReturnType<T> = {
-  data: EntityState<T>;
-};
-
-export interface EntityStateAdapter<T> {
-  addOne(entity: T): void;
-
-  addMany(entities: readonly T[]): void;
-
-  setAll(entities: readonly T[]): void;
-
-  removeOne(key: EntityId): void;
-
-  removeMany(keys: readonly EntityId[]): void;
-
-  removeAll(): void;
-
-  updateOne(update: Update<T>): void;
-
-  updateMany(updates: readonly Update<T>[]): void;
-
-  upsertOne(entity: T): void;
-
-  upsertMany(entities: readonly T[]): void;
-}
-
-export function selectIdValue<T>(entity: T, selectId: IdSelector<T>) {
-  const key = selectId(entity);
-
-  if (process.env.NODE_ENV !== "production" && key === undefined) {
-    console.warn(
-      "The entity passed to the `selectId` implementation returned undefined.",
-      "You should probably provide your own `selectId` implementation.",
-      "The entity that was passed:",
-      entity,
-      "The `selectId` implementation:",
-      selectId.toString(),
-    );
-  }
-
-  return key;
 }
 
 export enum Action {
@@ -94,15 +51,9 @@ const initializer: InitializerType = () => {
   };
 };
 
-function isOfType<T extends object>(value: unknown, type: T): value is T {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    Object.keys(type).every((key) => key in value)
-  );
-}
-
-export const useNormalizer = <T>(init: EntityDefinition<T>) => {
+export const useNormalizer = <EntityType>(
+  init: EntityDefinition<EntityType>,
+) => {
   const reducer = <T>(
     state: EntityState<T>,
     action: { type: Action; payload?: readonly T[] },
@@ -133,16 +84,19 @@ export const useNormalizer = <T>(init: EntityDefinition<T>) => {
       case Action.UPSERT_ONE:
         return state;
       case Action.UPSERT_MANY: {
-        // if (isOfType(action.payload,  T)) {
-        //   const id = init.selectId(action.payload);
+        // action.payload?.map((item) => {
+        //   const id = init.selectId<EntityType>(item);
         //   state.ids.push(id);
-        //   state.entities[id] = action.payload;
-        // }
+        //   state.entities[id] = item;
+        // });
         return state;
       }
     }
   };
-  const [data, dispatch] = useReducer<ReducerFunctionType<T>, EntityState<T>>(
+  const [data, dispatch] = useReducer<
+    ReducerFunctionType<EntityType>,
+    EntityState<EntityType>
+  >(
     reducer,
     {
       ids: [],

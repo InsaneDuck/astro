@@ -1,3 +1,4 @@
+import { SortType } from "lemmy-js-client";
 import React, { FC, useEffect, useState } from "react";
 import { ActionSheetIOS, TouchableOpacity, useColorScheme } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +16,33 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
   const [temp, setTemp] = useState(sort);
   const theme = useColorScheme() || "dark";
   const dispatch = useDispatch<AppDispatch>();
+
+  enum allOptions {
+    Cancel = "Cancel",
+    Active = "Active",
+    Hot = "Hot",
+    New = "New",
+    Old = "Old",
+    MostComments = "Most Comments",
+    NewComments = "New Comments",
+    Top = "Top",
+  }
+
+  enum topOptions {
+    Cancel = "Cancel",
+    TopAll = "All Time",
+    TopHour = "Last Hour",
+    TopSixHour = "Last Six Hours",
+    TopTwelveHour = "Last Twelve Hours",
+    TopDay = "All Day",
+    TopWeek = "This Week",
+    TopMonth = "This Month",
+    TopThreeMonths = "Last Three Months",
+    TopSixMonths = "Last Six Months",
+    TopNineMonths = "Last Nine Months",
+    TopYear = "This Year",
+  }
+
   const onPress = (): any => {
     all();
   };
@@ -24,112 +52,36 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
   }, [temp]);
 
   const all = () => {
-    const allOptions = [
-      "Cancel",
-      "Active",
-      "Hot",
-      "New",
-      "Old",
-      "MostComments",
-      "NewComments",
-      "Top",
-    ];
     return ActionSheetIOS.showActionSheetWithOptions(
       {
         title: "Sort feed by",
-        options: allOptions,
+        options: Object.values(allOptions),
         cancelButtonIndex: 0,
         userInterfaceStyle: theme,
       },
       (buttonIndex) => {
-        switch (buttonIndex) {
-          case 0:
-            break;
-          case 1:
-            setTemp("Active");
-            break;
-          case 2:
-            setTemp("Hot");
-            break;
-          case 3:
-            setTemp("New");
-            break;
-          case 4:
-            setTemp("Old");
-            break;
-          case 5:
-            setTemp("MostComments");
-            break;
-          case 6:
-            setTemp("NewComments");
-            break;
-          case 7:
-            top();
-            break;
+        if (buttonIndex === 7) {
+          top();
+        } else if (buttonIndex !== 0) {
+          const value = Object.keys(allOptions)[buttonIndex] as SortType;
+          setTemp(value);
         }
       },
     );
   };
 
   const top = () => {
-    const topOptions = [
-      "Cancel",
-      "All Time",
-      "Last Hour",
-      "All Day",
-      "This Week",
-      "This Month",
-      "This Year",
-      "Last Six Hours",
-      "Last Twelve Hours",
-      "Last Three Months",
-      "Last Six Months",
-      "Last Nine Months",
-    ];
     return ActionSheetIOS.showActionSheetWithOptions(
       {
         title: "Top of",
-        options: topOptions,
+        options: Object.values(topOptions),
         cancelButtonIndex: 0,
         userInterfaceStyle: theme,
       },
       (buttonIndex) => {
-        switch (buttonIndex) {
-          case 0:
-            break;
-          case 1:
-            setTemp("TopAll");
-            break;
-          case 2:
-            setTemp("TopHour");
-            break;
-          case 3:
-            setTemp("TopDay");
-            break;
-          case 4:
-            setTemp("TopWeek");
-            break;
-          case 5:
-            setTemp("TopMonth");
-            break;
-          case 6:
-            setTemp("TopYear");
-            break;
-          case 7:
-            setTemp("TopSixHour");
-            break;
-          case 8:
-            setTemp("TopTwelveHour");
-            break;
-          case 9:
-            setTemp("TopThreeMonths");
-            break;
-          case 10:
-            setTemp("TopSixMonths");
-            break;
-          case 11:
-            setTemp("TopNineMonths");
-            break;
+        if (buttonIndex !== 0) {
+          const value = Object.keys(topOptions)[buttonIndex] as SortType;
+          setTemp(value);
         }
       },
     );
