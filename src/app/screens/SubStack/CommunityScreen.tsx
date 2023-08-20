@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { PostsViewComponent } from "@/app/components/PostsViewComponent";
+import { CommunityViewComponent } from "@/app/components/Community/CommunityViewComponent";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { RootState } from "@/store/store";
 
@@ -16,9 +16,5 @@ export const CommunityScreen = () => {
       title: community.name,
     });
   }, []);
-  return community ? (
-    <PostsViewComponent type={type} sort={sort} community={community} />
-  ) : (
-    <PostsViewComponent type={type} sort={sort} />
-  );
+  return community && <CommunityViewComponent community={community} />;
 };

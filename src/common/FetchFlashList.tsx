@@ -88,7 +88,6 @@ export function FetchFlashList<ListEntity, Request>(
   );
 
   const setRenderItem = ({ item, index }: ListRenderItemInfo<EntityId>) => {
-    console.log(item);
     const listEntity = data?.entities[item];
     const element = props.renderItem(listEntity, index);
     return <>{element}</>;
