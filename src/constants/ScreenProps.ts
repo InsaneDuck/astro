@@ -9,7 +9,7 @@ import {
 } from "@react-navigation/native-stack";
 
 import { AllCommunitiesHeader } from "@/app/components/Community/AllCommunitiesHeader";
-import { CommunityButtons } from "@/app/components/Community/CommunityButtons";
+import { CommunityHeaderRight } from "@/app/components/Community/CommunityHeaderRight";
 import { FeedAccount } from "@/app/components/Feed/FeedAccount";
 import { FeedSelector } from "@/app/components/Feed/FeedSelector";
 import { FeedSorter } from "@/app/components/Feed/FeedSorter";
@@ -38,12 +38,35 @@ import { Rate } from "@/app/screens/SubStack/Settings/Rate";
 import { Settings } from "@/app/screens/SubStack/Settings/Settings";
 import { Tip } from "@/app/screens/SubStack/Settings/Tip";
 import { UserScreen } from "@/app/screens/SubStack/UserScreen";
-import {
-  SettingsParamsList,
-  SharedParamsList,
-  SubStackParamsList,
-} from "@/router/SubStackLayout";
 
+export type SharedParamsList = {
+  AccountSwitcher: undefined;
+  AllCommunities: undefined;
+  Community: undefined;
+  CommunityInfo: undefined;
+  CreatePost: undefined;
+  Inbox: undefined;
+  Login: undefined;
+  MainFeed: undefined;
+  Post: undefined;
+  Profile: undefined;
+  ProfileSettings: undefined;
+  Search: undefined;
+  User: undefined;
+};
+export type SettingsParamsList = {
+  About: undefined;
+  Accounts: undefined;
+  Appearance: undefined;
+  ExportImport: undefined;
+  FaceIdAndPasscode: undefined;
+  Filters: undefined;
+  General: undefined;
+  Rate: undefined;
+  Settings: undefined;
+  Tip: undefined;
+};
+export type SubStackParamsList = SharedParamsList & SettingsParamsList;
 type ScreenProps = RouteConfig<
   SubStackParamsList,
   keyof SubStackParamsList,
@@ -122,7 +145,7 @@ export const shared: Record<keyof SharedParamsList, ScreenProps> = {
     name: "Community",
     options: {
       title: "Community",
-      headerRight: CommunityButtons,
+      headerRight: CommunityHeaderRight,
     },
   },
   CommunityInfo: {

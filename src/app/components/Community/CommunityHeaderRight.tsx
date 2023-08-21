@@ -6,21 +6,24 @@ import { Icon } from "@/common/Icon";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { useThemeColor } from "@/theming/useThemeColor";
 
-export const CommunityButtons = () => {
+export const CommunityHeaderRight = () => {
   const navigation = useNavigation<SubStackNavigation>();
   const tabIconDefault = useThemeColor("tabIconDefault");
-  const showCommunityInfo = (): any => {
+  const onPressCommunityInfo = (): any => {
     navigation.navigate("CommunityInfo");
   };
-  const showCreatePost = (): any => {
+  const onPressCreatePost = (): any => {
     navigation.navigate("CreatePost");
   };
   return (
     <>
-      <TouchableOpacity onPress={showCreatePost}>
+      <TouchableOpacity onPress={onPressCreatePost}>
         <Icon icon="plus" color={tabIconDefault} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={showCommunityInfo} style={{ marginLeft: 10 }}>
+      <TouchableOpacity
+        onPress={onPressCommunityInfo}
+        style={{ marginLeft: 10 }}
+      >
         <Icon icon="info-circle" color={tabIconDefault} />
       </TouchableOpacity>
     </>

@@ -130,7 +130,7 @@ export function FetchFlashList<ListEntity, Request>(
         ListFooterComponent={ListFooterComponent}
         onEndReached={onEndReached}
         refreshing={isLoading}
-        estimatedItemSize={100}
+        estimatedItemSize={estimatedItemSize}
       />
     </View>
   );

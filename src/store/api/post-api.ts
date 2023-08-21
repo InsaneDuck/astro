@@ -1,4 +1,3 @@
-import { createEntityAdapter, EntityState } from "@reduxjs/toolkit";
 import {
   CommentResponse,
   CommentView,
@@ -11,10 +10,6 @@ import {
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { lemmyApi } from "@/store/api/api-slice";
 
-const commentsAdapter = createEntityAdapter<CommentView>({
-  selectId: (commentView) => commentView.comment.id,
-});
-
 const postApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     getComment: builder.query<CommentResponse, GetComment>({
@@ -24,16 +19,12 @@ const postApi = lemmyApi.injectEndpoints({
         return { data };
       },
     }),
-    getComments: builder.query<EntityState<CommentView>, GetComments>({
+    getComments: builder.query<CommentView[], GetComments>({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
         console.log("fetching getComments : " + JSON.stringify(arg));
         const response = await getLemmyHttp().getComments(arg);
         console.log("comments count = " + response.comments.length);
-        const data = commentsAdapter.setAll(
-          commentsAdapter.getInitialState(),
-          response.comments,
-        );
-        return { data };
+        return { data: response.comments };
       },
     }),
     getPosts: builder.query<PostView[], GetPosts>({

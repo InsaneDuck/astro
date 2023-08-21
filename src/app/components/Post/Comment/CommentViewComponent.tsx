@@ -11,16 +11,16 @@ import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommentViewComponentProps = {
-  comment: CommentView;
+  commentView: CommentView;
   index: number;
 };
 
 export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
-  const { comment } = props;
+  const { commentView } = props;
   const tabIconDefault = useThemeColor("tabIconDefault");
   const [expanded, setExpanded] = useState(true);
   const CommentHeaderLeft = () => {
-    return <UserButton person={comment.creator} />;
+    return <UserButton person={commentView.creator} />;
   };
 
   const toggleExpander = () => {
@@ -36,7 +36,7 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
           size={16}
           style={{ marginRight: 1, marginLeft: 1 }}
         />
-        <Text style={styles.headerText}>{comment.counts.score}</Text>
+        <Text style={styles.headerText}>{commentView.counts.score}</Text>
         <Icon
           icon="clock"
           color={tabIconDefault}
@@ -44,7 +44,7 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
           style={{ marginRight: 3, marginLeft: 3 }}
         />
         <Text style={styles.headerText}>
-          {formatTimeToDuration(comment.comment.published)}
+          {formatTimeToDuration(commentView.comment.published)}
         </Text>
       </View>
     );
@@ -61,7 +61,7 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
   const CommentContent = () => {
     return (
       <Text onPress={toggleExpander} style={styles.commentContent}>
-        {comment?.comment.content}
+        {commentView?.comment.content}
       </Text>
     );
   };

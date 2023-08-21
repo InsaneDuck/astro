@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from "react";
 import { ActionSheetIOS, TouchableOpacity, useColorScheme } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
+import { ActionSheetButton } from "@/app/components/Feed/ActionSheetButton";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { sharedActions } from "@/store/shared-slice";
@@ -42,6 +43,15 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
     TopNineMonths = "Last Nine Months",
     TopYear = "This Year",
   }
+
+  const onValueChanged = () => {};
+  const temp1 = (
+    <ActionSheetButton
+      options={topOptions}
+      selected="All Time"
+      onValueChange={onValueChanged}
+    />
+  );
 
   const onPress = (): any => {
     all();
