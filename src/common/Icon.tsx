@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/react-native-fontawesome";
 import React, { FC } from "react";
 
-type IconProps = {
+export type IconProps = {
   icon: IconProp;
   color: string;
   size?: number;
@@ -16,7 +16,7 @@ type IconProps = {
 };
 library.add(fab, fas, far);
 /**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+ * You can explore the built-in icon families and icons on the web at https://fontawesome.com/search?o=r&m=free
  */
 export const Icon: FC<IconProps> = (props) => {
   const { icon, style, size, color, ...otherProps } = props;

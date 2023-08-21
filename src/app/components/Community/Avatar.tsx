@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { ImageEditButton } from "@/app/components/Community/ImageEditButton";
+import { Button } from "@/common/Button";
 import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
 import { View } from "@/common/View";
@@ -25,7 +25,7 @@ export const Avatar: FC<AvatarProps> = (props) => (
     ) : (
       <Icon icon="user" color={props.color} size={75} />
     )}
-    <ImageEditButton onPress={props.onPress} />
+    <Button type="edit" onPress={props.onPress} />
   </View>
 );
 

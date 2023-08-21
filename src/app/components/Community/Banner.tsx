@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { ImageEditButton } from "@/app/components/Community/ImageEditButton";
+import { Button } from "@/common/Button";
 import { CustomImage } from "@/common/CustomImage";
 import { View } from "@/common/View";
 import { Press } from "@/theming/Themed";
@@ -23,7 +23,7 @@ export const Banner: FC<BannerProps> = (props) => {
         source={{ uri: props.banner }}
         style={{ width: "100%", height: "100%" }}
       />
-      <ImageEditButton onPress={props.onEdit} />
+      <Button type="edit" onPress={props.onEdit} />
     </View>
   );
 };

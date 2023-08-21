@@ -22,12 +22,11 @@ import {
 
 type FetchFlashListFlashListProps<ListEntity, Request> = {
   ListHeaderComponent: React.ComponentType<any>;
-  entityIdExtractor: (listEntity: ListEntity) => string;
+  entityIdExtractor: IdSelector<ListEntity>;
   estimatedItemSize: number;
   renderItem: (item: ListEntity | undefined, index: number) => ReactNode;
   useFetch: (args: Request) => ReturnTypeOfUseFetch<Request, ListEntity>;
   requestArgs: Request;
-  idExtractor: IdSelector<ListEntity>;
 };
 
 // type temp<Request, Response> = UseQueryHookResult<
@@ -58,8 +57,16 @@ type ReturnTypeOfUseFetch<Request, ListEntity> = {
 export function FetchFlashList<ListEntity, Request>(
   props: FetchFlashListFlashListProps<ListEntity, Request>,
 ) {
+  const {
+    useFetch,
+    estimatedItemSize,
+    renderItem,
+    requestArgs,
+    ListHeaderComponent,
+    entityIdExtractor,
+  } = props;
   const { data, dispatch } = useStateNormalized<ListEntity>({
-    selectId: props.idExtractor,
+    selectId: entityIdExtractor,
     sortComparer: false,
   });
   const [page, setPage] = useState(1);
@@ -68,9 +75,9 @@ export function FetchFlashList<ListEntity, Request>(
     data: response,
     isFetching,
     isLoading,
-  } = props.useFetch({
+  } = useFetch({
     page,
-    ...props.requestArgs,
+    ...requestArgs,
   });
 
   useEffect(() => {
@@ -89,7 +96,7 @@ export function FetchFlashList<ListEntity, Request>(
 
   const setRenderItem = ({ item, index }: ListRenderItemInfo<EntityId>) => {
     const listEntity = data?.entities[item];
-    const element = props.renderItem(listEntity, index);
+    const element = renderItem(listEntity, index);
     return <>{element}</>;
   };
 
@@ -101,7 +108,7 @@ export function FetchFlashList<ListEntity, Request>(
         <Text style={{ textAlign: "center" }}>FlatList</Text>
         <FlatList
           data={data.ids}
-          ListHeaderComponent={props.ListHeaderComponent}
+          ListHeaderComponent={ListHeaderComponent}
           renderItem={setRenderItem}
           ItemSeparatorComponent={Separator}
           ListFooterComponent={ListFooterComponent}
@@ -117,7 +124,7 @@ export function FetchFlashList<ListEntity, Request>(
       <FlashList
         data={data.ids}
         keyExtractor={(item) => item.toString()}
-        ListHeaderComponent={props.ListHeaderComponent}
+        ListHeaderComponent={ListHeaderComponent}
         renderItem={({ item }) => <Text style={{ padding: 20 }}>{item}</Text>}
         ItemSeparatorComponent={Separator}
         ListFooterComponent={ListFooterComponent}

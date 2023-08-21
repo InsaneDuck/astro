@@ -23,9 +23,7 @@ export const MainFeed: FC<MainFeedProps> = (props) => {
   const renderItem = (item: PostView | undefined, index: number) => {
     return item && <PostViewComponent postView={item} type="feed" />;
   };
-  const idExtractor = (entity: PostView) => {
-    return entity.post.id.toString();
-  };
+
   return (
     <View style={{ height: "100%", width: "100%" }}>
       <FetchFlashList
@@ -35,7 +33,6 @@ export const MainFeed: FC<MainFeedProps> = (props) => {
         renderItem={renderItem}
         useFetch={useGetPostsQuery}
         requestArgs={args}
-        idExtractor={idExtractor}
       />
     </View>
   );

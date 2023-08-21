@@ -12,7 +12,7 @@ type ButtonProps = {
 export const Button: FC<ButtonProps> = (props) => {
   return (
     <TouchableOpacity
-      style={[{ backgroundColor: props.color }, styles.userActionsButton]}
+      style={[{ backgroundColor: props.color }, styles.button]}
       onPress={props.onPress}
     >
       <Text style={styles.text}>{props.text}</Text>
@@ -21,7 +21,7 @@ export const Button: FC<ButtonProps> = (props) => {
 };
 
 const styles = StyleSheet.create({
-  userActionsButton: {
+  button: {
     alignItems: "center",
     justifyContent: "center",
     padding: 6,
