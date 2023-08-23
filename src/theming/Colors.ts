@@ -1,31 +1,29 @@
-const tintColorLight = "#2f95dc";
-const tintColorDark = "#fff";
-
-export default {
-  light: {
-    text: "#000",
-    background: "#fff",
-    tint: tintColorLight,
-    tabIconDefault: "#ccc",
-    tabIconSelected: tintColorLight,
-    borderColor: "#eee",
-  },
-  dark: {
-    text: "#fff",
-    background: "#000",
-    tint: tintColorDark,
-    tabIconDefault: "#ccc",
-    tabIconSelected: tintColorDark,
-    borderColor: "#1c1c1c",
-  },
-};
-
 export const ConstantColors = {
-  upVote: "#0d6efd",
   downVote: "#fd7e14",
-  reply: "#6610f2",
-  save: "#198754",
   iosBlue: "#007AFF",
   iosRed: "#FF3B30",
-  communityColor: "#00bc8c",
+  lemmyGreen: "#00bc8c",
+  reply: "#6610f2",
+  save: "#198754",
+  tintColorDark: "#fff",
+  tintColorLight: "#2f95dc",
+  upVote: "#0d6efd",
+};
+export default {
+  light: {
+    background: "#fff",
+    borderColor: "#eee",
+    tabIconDefault: "#ccc",
+    tabIconSelected: ConstantColors.tintColorLight,
+    text: "#000",
+    tint: ConstantColors.tintColorLight,
+  },
+  dark: {
+    background: "#000",
+    borderColor: "#1c1c1c",
+    tabIconDefault: "#ccc",
+    tabIconSelected: ConstantColors.tintColorDark,
+    text: "#fff",
+    tint: ConstantColors.tintColorDark,
+  },
 };

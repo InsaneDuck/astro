@@ -15,6 +15,7 @@ import { FeedSelector } from "@/app/components/Feed/FeedSelector";
 import { FeedSorter } from "@/app/components/Feed/FeedSorter";
 import { ProfileHeaderRight } from "@/app/components/Person/ProfileHeaderRight";
 import { CommentsSorter } from "@/app/components/Post/Comment/CommentsSorter";
+import { SearchTypeSelector } from "@/app/components/Search/SearchTypeSelector";
 import { AccountSwitcherScreen } from "@/app/screens/SubStack/AccountSwitcherScreen";
 import { AllCommunitiesScreen } from "@/app/screens/SubStack/AllCommunitiesScreen";
 import { CommunityInfoScreen } from "@/app/screens/SubStack/CommunityInfoScreen";
@@ -139,6 +140,9 @@ export const shared: Record<keyof SharedParamsList, ScreenProps> = {
   Search: {
     component: SearchScreen,
     name: "Search",
+    options: {
+      headerTitle: SearchTypeSelector,
+    },
   },
   Community: {
     component: CommunityScreen,

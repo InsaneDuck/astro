@@ -50,7 +50,7 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
         <Text
           style={[
             {
-              color: ConstantColors.communityColor,
+              color: ConstantColors.lemmyGreen,
             },
             styles.communityName,
           ]}
