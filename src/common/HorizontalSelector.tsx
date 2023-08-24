@@ -14,13 +14,14 @@ export const HorizontalSelector: FC<HorizontalSelectorProps> = (props) => {
   const { options, selectedIndex, onValueChange } = props;
   const [ind, setInd] = useState<number>(selectedIndex);
   const borderColor = useThemeColor("borderColor");
+  const background = useThemeColor("background");
   const width = `${100 / options.length + 1}%`;
 
   useEffect(() => {
     onValueChange(options[ind]);
   }, [ind]);
 
-  const Temp = ({ option, index }: { option: string; index: number }) => {
+  const Option = ({ value, index }: { value: string; index: number }) => {
     const onPress = () => {
       setInd(index);
     };
@@ -29,21 +30,20 @@ export const HorizontalSelector: FC<HorizontalSelectorProps> = (props) => {
         style={[
           styles.text,
           {
-            width: "auto",
-            backgroundColor: ind === index ? borderColor : "transparent",
+            backgroundColor: ind === index ? background : "transparent",
           },
         ]}
         onPress={onPress}
       >
-        {option}
+        {value}
       </Text>
     );
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: borderColor }]}>
       {options.map((option, index) => {
-        return <Temp key={option} option={option} index={index} />;
+        return <Option key={option} value={option} index={index} />;
       })}
     </View>
   );
@@ -59,11 +59,12 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   text: {
-    borderRadius: 5,
+    fontSize: 16,
+    width: "auto",
+    borderRadius: 8,
     flexGrow: 1,
     overflow: "hidden",
     padding: 5,
     textAlign: "center",
-    width: "50%",
   },
 });
