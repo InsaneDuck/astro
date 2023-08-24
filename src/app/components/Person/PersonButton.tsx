@@ -19,13 +19,13 @@ import { AppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
 import { useThemeColor } from "@/theming/useThemeColor";
 
-type UserButtonProps = {
+type PersonButtonProps = {
   person: Person;
   style?: StyleProp<ViewStyle>;
 };
 
 //todo show tags like mod?, op?
-export const UserButton: FC<UserButtonProps> = (props) => {
+export const PersonButton: FC<PersonButtonProps> = (props) => {
   const { person } = props;
   const tabIconDefault = useThemeColor("tabIconDefault");
   const navigation = useNavigation<SubStackNavigation>();

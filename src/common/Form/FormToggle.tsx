@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { Switch } from "react-native";
 
-import { FormItem } from "@/app/components/Form/FormItem";
+import { FormItem } from "@/common/Form/FormItem";
 import { Text } from "@/common/Text";
 
 type ToggleProps = {
@@ -14,7 +14,7 @@ export const FormToggle: FC<ToggleProps> = (props) => {
   const { name, value } = props;
   const [isEnabled, setIsEnabled] = useState(value);
 
-  const toggle = (): any => {
+  const onPressToggle = (): any => {
     setIsEnabled((prevState) => !prevState);
   };
 
@@ -23,9 +23,13 @@ export const FormToggle: FC<ToggleProps> = (props) => {
   }
 
   return (
-    <FormItem onPress={toggle}>
+    <FormItem onPress={onPressToggle}>
       <Text style={{ fontSize: 18 }}>{name}</Text>
-      <Switch onValueChange={toggle} value={isEnabled} onChange={onChange} />
+      <Switch
+        onValueChange={onPressToggle}
+        value={isEnabled}
+        onChange={onChange}
+      />
     </FormItem>
   );
 };

@@ -2,10 +2,10 @@ import { useNavigation } from "@react-navigation/core";
 import React, { FC, useEffect } from "react";
 import { StyleSheet } from "react-native";
 
-import { Form } from "@/app/components/Form/Form";
-import { FormButton } from "@/app/components/Form/FormButton";
-import { FormInput } from "@/app/components/Form/FormInput";
-import { FormSelect } from "@/app/components/Form/FormSelect";
+import { Form } from "@/common/Form/Form";
+import { FormButton } from "@/common/Form/FormButton";
+import { FormInput } from "@/common/Form/FormInput";
+import { FormSelect } from "@/common/Form/FormSelect";
 import { View } from "@/common/View";
 
 type LoginSignUpProps = object;

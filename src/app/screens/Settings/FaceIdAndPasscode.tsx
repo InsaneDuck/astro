@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { Form } from "@/app/components/Form/Form";
-import { FormToggle } from "@/app/components/Form/FormToggle";
+import { Form } from "@/common/Form/Form";
+import { FormToggle } from "@/common/Form/FormToggle";
 import { View } from "@/common/View";
 import { RootState } from "@/store/store";
 

@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
-import { UserButton } from "@/app/components/Person/UserButton";
+import { PersonButton } from "@/app/components/Person/PersonButton";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { useGetCommunityQuery } from "@/store/api/community-api";
@@ -89,7 +89,7 @@ export const CommunityInfoScreen = () => {
                 <Text style={{ fontSize: 18 }}>Moderators</Text>
                 {communityResponse.moderators.map((mod) => {
                   return (
-                    <UserButton
+                    <PersonButton
                       key={mod.moderator.id}
                       style={{ marginTop: 10 }}
                       person={mod.moderator}

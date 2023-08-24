@@ -2,7 +2,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import React, { FC, ReactNode } from "react";
 import { StyleSheet } from "react-native";
 
-import { FormItem } from "@/app/components/Form/FormItem";
+import { FormItem } from "@/common/Form/FormItem";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { ClickProps } from "@/theming/Themed";

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { StyleSheet, TextInput } from "react-native";
 
-import { FormItem } from "@/app/components/Form/FormItem";
+import { FormItem } from "@/common/Form/FormItem";
 
 type TextInputItemProps = {
   placeholder: string;

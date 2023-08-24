@@ -2,7 +2,7 @@ import { Instance } from "lemmy-js-client";
 import { FC } from "react";
 import { StyleProp, TextStyle } from "react-native";
 
-import { FormItem } from "@/app/components/Form/FormItem";
+import { FormItem } from "@/common/Form/FormItem";
 import { Text } from "@/common/Text";
 
 type ServersListItemProps = {

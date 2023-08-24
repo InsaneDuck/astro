@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Form } from "@/app/components/Form/Form";
-import { FormText } from "@/app/components/Form/FormText";
+import { Form } from "@/common/Form/Form";
+import { FormText } from "@/common/Form/FormText";
 import { View } from "@/common/View";
 
 export const ExportImport = () => {

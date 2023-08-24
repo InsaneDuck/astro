@@ -1,7 +1,7 @@
 import React from "react";
 
-import { UserViewComponent } from "@/app/components/Person/UserViewComponent";
+import { PersonViewComponent } from "@/app/components/Person/PersonViewComponent";
 
 export const UserScreen = () => {
-  return <UserViewComponent userType="clicked" />;
+  return <PersonViewComponent userType="clicked" />;
 };

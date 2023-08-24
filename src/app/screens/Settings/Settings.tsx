@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { FormText } from "@/app/components/Form/FormText";
+import { FormText } from "@/common/Form/FormText";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 

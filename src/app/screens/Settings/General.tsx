@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 
-import { Form } from "@/app/components/Form/Form";
-import { FormSelect } from "@/app/components/Form/FormSelect";
-import { FormToggle } from "@/app/components/Form/FormToggle";
+import { Form } from "@/common/Form/Form";
+import { FormSelect } from "@/common/Form/FormSelect";
+import { FormToggle } from "@/common/Form/FormToggle";
 import { View } from "@/common/View";
 import { RootState } from "@/store/store";
 

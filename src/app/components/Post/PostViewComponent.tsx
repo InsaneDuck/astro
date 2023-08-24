@@ -5,7 +5,7 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { CommunityButton } from "@/app/components/Community/CommunityButton";
-import { UserButton } from "@/app/components/Person/UserButton";
+import { PersonButton } from "@/app/components/Person/PersonButton";
 import { PostActions } from "@/app/components/Post/PostActions";
 import { CustomImage } from "@/common/CustomImage";
 import { Icon } from "@/common/Icon";
@@ -108,7 +108,7 @@ export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
           <Text style={{ fontSize: 18 }}>In </Text>
           <CommunityButton community={postView.community} />
           <Text style={{ fontSize: 18 }}> By </Text>
-          <UserButton person={postView.creator} />
+          <PersonButton person={postView.creator} />
         </View>
       );
     };

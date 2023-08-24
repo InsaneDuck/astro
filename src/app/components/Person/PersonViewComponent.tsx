@@ -8,8 +8,8 @@ import { Avatar } from "@/app/components/Avatar";
 import { Banner } from "@/app/components/Banner";
 import { Button } from "@/app/components/Button";
 import { Description } from "@/app/components/Description";
-import { Form } from "@/app/components/Form/Form";
-import { FormText } from "@/app/components/Form/FormText";
+import { Form } from "@/common/Form/Form";
+import { FormText } from "@/common/Form/FormText";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -18,11 +18,11 @@ import { RootState } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
 import { useThemeColor } from "@/theming/useThemeColor";
 
-type UserViewComponentProps = {
+type PersonViewComponentProps = {
   userType: "primary" | "clicked";
 };
 
-export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
+export const PersonViewComponent: FC<PersonViewComponentProps> = (props) => {
   const { userType } = props;
   const user = useSelector((state: RootState) => state.shared.clickedPerson);
   const domain = getBaseDomainFromUrl(user.actor_id);

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { FormItem } from "@/app/components/Form/FormItem";
+import { FormItem } from "@/common/Form/FormItem";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";

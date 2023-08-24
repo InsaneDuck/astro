@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Button, StyleSheet } from "react-native";
 
-import { FormItem } from "@/app/components/Form/FormItem";
+import { FormItem } from "@/common/Form/FormItem";
 
 type ListButtonProps = {
   name: string;

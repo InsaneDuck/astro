@@ -1,11 +1,13 @@
 import { useNavigation } from "@react-navigation/core";
 import { CommunityView } from "lemmy-js-client";
-import { FC } from "react";
+import React, { FC } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { Button } from "@/app/components/Button";
+import { CommunityButton } from "@/app/components/Community/CommunityButton";
 import { CustomImage } from "@/common/CustomImage";
+import { FormItem } from "@/common/Form/FormItem";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { aggregateHelper } from "@/helper-functions/aggregateHelper";
@@ -26,6 +28,19 @@ export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
   const goToCommunity = () => {
     dispatch(sharedActions.setCommunity(props.community.community));
     navigation.navigate("Community");
+  };
+
+  const Alt = () => {
+    return (
+      props.community && (
+        <FormItem onPress={goToCommunity}>
+          <CommunityButton community={props.community.community} />
+          <Text style={{ fontSize: 18 }}>
+            {aggregateHelper(props.community.counts.subscribers)}
+          </Text>
+        </FormItem>
+      )
+    );
   };
 
   const Footer = () => {

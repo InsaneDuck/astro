@@ -20,7 +20,6 @@ type CommunityButtonProps = {
 };
 
 export const CommunityButton: FC<CommunityButtonProps> = (props) => {
-  const [actionText, setActionText] = useState("Sub");
   const { community } = props;
   const tabIconDefault = useThemeColor("tabIconDefault");
   const navigation = useNavigation<SubStackNavigation>();
@@ -29,40 +28,56 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
     dispatch(sharedActions.setCommunity(community));
     navigation.navigate("Community");
   };
-  const onPress = (): any => {
-    //todo add sub api
-    setActionText((text) => (text === "Undo" ? "Sub" : "Undo"));
+
+  const CommunityIcon = () => {
+    return (
+      <View style={styles.imageContainer}>
+        {community.icon ? (
+          <CustomImage source={{ uri: community.icon }} style={styles.image} />
+        ) : (
+          <Icon icon="users" color={tabIconDefault} size={12} />
+        )}
+      </View>
+    );
   };
+
+  const CommunityName = () => {
+    return (
+      <Text
+        style={[
+          {
+            color: ConstantColors.lemmyGreen,
+          },
+          styles.communityName,
+        ]}
+      >
+        {community.name}
+      </Text>
+    );
+  };
+
+  const SubscribeButton = () => {
+    const [actionText, setActionText] = useState("Sub");
+    const onPressSubscribe = (): any => {
+      //todo add sub api
+      setActionText((text) => (text === "Undo" ? "Sub" : "Undo"));
+    };
+    return (
+      !props.subscribed && (
+        <Text style={styles.actionButton} onPress={onPressSubscribe}>
+          {actionText}
+        </Text>
+      )
+    );
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={goToCommunity} style={styles.community}>
-        <View style={styles.imageContainer}>
-          {community.icon ? (
-            <CustomImage
-              source={{ uri: community.icon }}
-              style={styles.image}
-            />
-          ) : (
-            <Icon icon="users" color={tabIconDefault} size={12} />
-          )}
-        </View>
-
-        <Text
-          style={[
-            {
-              color: ConstantColors.lemmyGreen,
-            },
-            styles.communityName,
-          ]}
-        >
-          {community.name}
-        </Text>
+        <CommunityIcon />
+        <CommunityName />
       </TouchableOpacity>
-      {!props.subscribed && (
-        <Text style={styles.actionButton} onPress={onPress}>
-          {actionText}
-        </Text>
-      )}
+      <SubscribeButton />
     </View>
   );
 };

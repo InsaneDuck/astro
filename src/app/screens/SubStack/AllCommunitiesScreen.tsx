@@ -2,7 +2,7 @@ import { CommunityView, ListCommunities } from "lemmy-js-client";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { CommunityListItem } from "@/app/components/Community/CommunityListItem";
+import { CommunityViewCard } from "@/app/components/Community/CommunityViewCard";
 import { FetchFlashList } from "@/common/FetchFlashList";
 import { View } from "@/common/View";
 import { useListCommunitiesQuery } from "@/store/api/community-api";
@@ -18,7 +18,7 @@ export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
   const Header = () => <></>;
   const communityItem = (item: CommunityView | undefined, index: number) => {
     //todo add margin on top
-    return item && <CommunityListItem communityView={item} />;
+    return item && <CommunityViewCard community={item} />;
   };
 
   const entityIdExtractor = (communityView: CommunityView) => {
