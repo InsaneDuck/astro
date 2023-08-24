@@ -27,7 +27,7 @@ import { Rate } from "@/app/screens/Settings/Rate";
 import { Settings } from "@/app/screens/Settings/Settings";
 import { Tip } from "@/app/screens/Settings/Tip";
 import { AccountSwitcherScreen } from "@/app/screens/SubStack/AccountSwitcherScreen";
-import { AllCommunitiesScreen } from "@/app/screens/SubStack/AllCommunitiesScreen";
+import { CommunitiesScreen } from "@/app/screens/SubStack/CommunitiesScreen";
 import { CommunityInfoScreen } from "@/app/screens/SubStack/CommunityInfoScreen";
 import { CommunityScreen } from "@/app/screens/SubStack/CommunityScreen";
 import { CreatePostScreen } from "@/app/screens/SubStack/CreatePostScreen";
@@ -42,7 +42,7 @@ import { UserScreen } from "@/app/screens/SubStack/UserScreen";
 
 export type SharedParamsList = {
   AccountSwitcher: undefined;
-  AllCommunities: undefined;
+  Communities: undefined;
   Community: undefined;
   CommunityInfo: undefined;
   CreatePost: undefined;
@@ -132,9 +132,9 @@ export const shared: Record<keyof SharedParamsList, ScreenProps> = {
     },
   },
 
-  AllCommunities: {
-    component: AllCommunitiesScreen,
-    name: "AllCommunities",
+  Communities: {
+    component: CommunitiesScreen,
+    name: "Communities",
     options: { title: "Communities", headerTitle: AllCommunitiesHeader },
   },
   Search: {

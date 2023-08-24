@@ -10,7 +10,7 @@ type AllCommunitiesButtonProps = object;
 export const AllCommunitiesButton: FC<AllCommunitiesButtonProps> = (props) => {
   const navigation = useNavigation<SubStackNavigation>();
   const goToALlCommunities = (): any => {
-    navigation.navigate("AllCommunities");
+    navigation.navigate("Communities");
   };
   return (
     <View style={{ width: "90%", borderRadius: 13, overflow: "hidden" }}>

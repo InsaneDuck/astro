@@ -7,9 +7,9 @@ import { FetchFlashList } from "@/common/FetchFlashList";
 import { View } from "@/common/View";
 import { useListCommunitiesQuery } from "@/store/api/community-api";
 
-type AllCommunitiesProps = object;
+type CommunitiesProps = object;
 
-export const AllCommunitiesScreen: FC<AllCommunitiesProps> = (props) => {
+export const CommunitiesScreen: FC<CommunitiesProps> = (props) => {
   const args: ListCommunities = {
     limit: 50,
     sort: "TopAll",

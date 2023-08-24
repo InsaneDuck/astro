@@ -41,7 +41,7 @@ export const MainTabLayout = () => {
       />
       <Tabs.Screen
         name="CommunitiesStack"
-        children={() => <SubStackLayout initialRoute="AllCommunities" />}
+        children={() => <SubStackLayout initialRoute="Communities" />}
         options={{
           tabBarLabel: "Communities",
           tabBarIcon: ({ color }) => <Icon icon="users" color={color} />,
