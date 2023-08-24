@@ -23,7 +23,7 @@ export const SearchTypeSelector: FC<SearchTypeSelectorProps> = (props) => {
     <View style={{ marginTop: 20 }}>
       <HorizontalSelector
         options={Object.keys(SearchType)}
-        selectedIndex={1}
+        selectedIndex={3}
         onValueChange={onValueChange}
       />
     </View>

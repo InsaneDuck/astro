@@ -19,7 +19,7 @@ export const SearchScreen = () => {
     <View style={styles.container}>
       <SearchTypeSelector onValueChange={onValueChange} />
       <SearchInput searchText={(value: string) => setSearch(value)} />
-      {search && <SearchResult args={{ type_: type, q: search }} />}
+      {search && <SearchResult args={{ type_: type, q: search, limit: 50 }} />}
     </View>
   );
 };

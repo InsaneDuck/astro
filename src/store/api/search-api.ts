@@ -13,8 +13,7 @@ export type CustomSearch =
   | PostView[]
   | PersonView[]
   | CommunityView[]
-  | CommentView[]
-  | undefined;
+  | CommentView[];
 
 export type CustomSearchItem =
   | PostView
@@ -29,7 +28,7 @@ const searchApi = lemmyApi.injectEndpoints({
       queryFn: async (args) => {
         console.log("fetching searchQuery : " + JSON.stringify(args));
         const response = await getLemmyHttp().search(args);
-        let data;
+        let data: CustomSearch = [];
         switch (args.type_) {
           case "Comments":
             data = response.comments;
