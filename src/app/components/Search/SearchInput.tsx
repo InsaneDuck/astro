@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import {
   NativeSyntheticEvent,
   TextInputSubmitEditingEventData,
@@ -13,14 +13,9 @@ type SearchInputProps = {
 export const SearchInput: FC<SearchInputProps> = (props) => {
   //todo show trending communities
 
-  const [value, setValue] = useState<string>();
-
-  useEffect(() => {}, [value]);
-
   const onSubmit = (
     value: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
   ) => {
-    setValue(value.nativeEvent.text);
     props.searchText(value.nativeEvent.text);
   };
 
@@ -29,7 +24,6 @@ export const SearchInput: FC<SearchInputProps> = (props) => {
       <FormInput
         placeholder="Search for a User, Post or Community"
         clearButtonMode="always"
-        value={value}
         onSubmitEditing={onSubmit}
       />
     </Form>
