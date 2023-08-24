@@ -1,14 +1,50 @@
-import { Search, SearchResponse } from "lemmy-js-client";
+import {
+  CommentView,
+  CommunityView,
+  PersonView,
+  PostView,
+  Search,
+} from "lemmy-js-client";
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { lemmyApi } from "@/store/api/api-slice";
 
+export type CustomSearch =
+  | PostView[]
+  | PersonView[]
+  | CommunityView[]
+  | CommentView[]
+  | undefined;
+
+export type CustomSearchItem =
+  | PostView
+  | PersonView
+  | CommunityView
+  | CommentView
+  | undefined;
+
 const searchApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
-    search: builder.query<SearchResponse, Search>({
+    search: builder.query<CustomSearch, Search>({
       queryFn: async (args) => {
+        console.log("fetching searchQuery : " + JSON.stringify(args));
         const response = await getLemmyHttp().search(args);
-        return { data: response };
+        let data;
+        switch (args.type_) {
+          case "Comments":
+            data = response.comments;
+            break;
+          case "Communities":
+            data = response.communities;
+            break;
+          case "Posts":
+            data = response.posts;
+            break;
+          case "Users":
+            data = response.users;
+            break;
+        }
+        return { data };
       },
     }),
   }),

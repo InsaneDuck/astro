@@ -4,38 +4,34 @@ import {
   TextInputSubmitEditingEventData,
 } from "react-native";
 
+import { Form } from "@/common/Form/Form";
 import { FormInput } from "@/common/Form/FormInput";
-import { useLazySearchQuery } from "@/store/api/search-api";
 
-type SearchInputProps = object;
+type SearchInputProps = {
+  searchText: (value: string) => void;
+};
 export const SearchInput: FC<SearchInputProps> = (props) => {
   //todo show trending communities
 
   const [value, setValue] = useState<string>();
-  const [trigger, { data }] = useLazySearchQuery();
 
-  useEffect(() => {
-    if (value) {
-      trigger({ q: value, type_: "Communities" });
-    }
-  }, [value]);
-
-  useEffect(() => {
-    console.log(JSON.stringify(data));
-  }, [data]);
+  useEffect(() => {}, [value]);
 
   const onSubmit = (
     value: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
   ) => {
     setValue(value.nativeEvent.text);
+    props.searchText(value.nativeEvent.text);
   };
 
   return (
-    <FormInput
-      placeholder="Search for a User, Post or Community"
-      clearButtonMode="always"
-      value={value}
-      onSubmitEditing={onSubmit}
-    />
+    <Form>
+      <FormInput
+        placeholder="Search for a User, Post or Community"
+        clearButtonMode="always"
+        value={value}
+        onSubmitEditing={onSubmit}
+      />
+    </Form>
   );
 };

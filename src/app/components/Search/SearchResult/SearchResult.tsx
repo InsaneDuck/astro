@@ -1,32 +1,66 @@
-import { SearchType } from "lemmy-js-client";
+import {
+  CommentView,
+  CommunityView,
+  PersonView,
+  PostView,
+  Search,
+} from "lemmy-js-client";
 import { FC } from "react";
 
-import { AllSearchResult } from "@/app/components/Search/SearchResult/AllSearchResult";
-import { CommentsSearchResult } from "@/app/components/Search/SearchResult/CommentsSearchResult";
-import { CommunitiesSearchResult } from "@/app/components/Search/SearchResult/CommunitiesSearchResult";
-import { PostsSearchResult } from "@/app/components/Search/SearchResult/PostsSearchResult";
-import { Trending } from "@/app/components/Search/SearchResult/Trending";
-import { URLSearchResult } from "@/app/components/Search/SearchResult/URLSearchResult";
-import { UsersSearchResult } from "@/app/components/Search/SearchResult/UsersSearchResult";
+import { CommunityViewCard } from "@/app/components/Community/CommunityViewCard";
+import { CommentViewComponent } from "@/app/components/Post/FullPost/CommentViewComponent";
+import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
+import { FetchFlashList } from "@/common/FetchFlashList";
+import { Text } from "@/common/Text";
+import { CustomSearchItem, useSearchQuery } from "@/store/api/search-api";
 
 type SearchResultProps = {
-  type: SearchType;
+  args: Search;
 };
 export const SearchResult: FC<SearchResultProps> = (props) => {
-  switch (props.type) {
-    case "All":
-      return <AllSearchResult />;
-    case "Comments":
-      return <CommentsSearchResult />;
-    case "Url":
-      return <URLSearchResult />;
-    case "Users":
-      return <UsersSearchResult />;
-    case "Posts":
-      return <PostsSearchResult />;
-    case "Communities":
-      return <CommunitiesSearchResult />;
-    default:
-      return <Trending />;
-  }
+  const { args } = props;
+
+  const entityIdExtractor = (entity: CustomSearchItem) => {
+    switch (args.type_) {
+      case "Posts":
+        return (entity as PostView).post.id.toString();
+      case "Comments":
+        return (entity as CommentView).comment.id.toString();
+      case "Communities":
+        return (entity as CommunityView).community.id.toString();
+      case "Users":
+        return (entity as PersonView).person.id.toString();
+      default:
+        return "";
+    }
+  };
+  const renderItem = (item: CustomSearchItem, index: number) => {
+    switch (args.type_) {
+      case "Posts":
+        return <PostViewComponent postView={item as PostView} type="feed" />;
+      case "Comments":
+        return (
+          <CommentViewComponent
+            commentView={item as CommentView}
+            index={index}
+          />
+        );
+      case "Communities":
+        return <CommunityViewCard community={item as CommunityView} />;
+      case "Users":
+        return <Text>{(item as PersonView).person.name}</Text>;
+      default:
+        return <></>;
+    }
+  };
+  return (
+    <FetchFlashList
+      ListHeaderComponent={() => <></>}
+      entityIdExtractor={entityIdExtractor}
+      estimatedItemSize={100}
+      renderItem={renderItem}
+      useFetch={useSearchQuery}
+      requestArgs={args}
+    />
+  );
 };

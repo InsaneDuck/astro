@@ -15,7 +15,6 @@ export const HorizontalSelector: FC<HorizontalSelectorProps> = (props) => {
   const [ind, setInd] = useState<number>(selectedIndex);
   const borderColor = useThemeColor("borderColor");
   const background = useThemeColor("background");
-  const width = `${100 / options.length + 1}%`;
 
   useEffect(() => {
     onValueChange(options[ind]);
