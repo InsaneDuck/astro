@@ -47,9 +47,21 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
   const onValueChanged = () => {};
   const temp1 = (
     <ActionSheetButton
+      title="Select sort option"
+      options={allOptions}
+      selected="All Time"
+      onValueChange={onValueChanged}
+      triggerOnMount
+    />
+  );
+
+  const temp2 = (
+    <ActionSheetButton
+      title="Select top option"
       options={topOptions}
       selected="All Time"
       onValueChange={onValueChanged}
+      triggerOnMount
     />
   );
 

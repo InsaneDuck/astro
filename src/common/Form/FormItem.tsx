@@ -26,6 +26,7 @@ export const FormItem: FC<LisItemProps> = (props) => {
         props.style,
         { backgroundColor: borderColor, borderColor: view },
       ]}
+      activeOpacity={props.onPress ? 0.2 : 1}
     >
       {props.children}
     </TouchableOpacity>

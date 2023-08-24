@@ -1,19 +1,37 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 
-import { AllCommunitiesButton } from "@/app/components/Search/AllCommunitiesButton";
-import { Search } from "@/app/components/Search/Search";
+import { SearchInput } from "@/app/components/Search/SearchInput";
+import { Form } from "@/common/Form/Form";
+import { FormSelectAlt } from "@/common/Form/FormSelectAlt";
 import { View } from "@/common/View";
 
 export const SearchScreen = () => {
-  const onSelectChange = (value: string) => {
+  enum SearchType {
+    Cancel = "Cancel",
+    All = "All",
+    Comments = "Comments",
+    Posts = "Posts",
+    Communities = "Communities",
+    Users = "Users",
+    Url = "Url",
+  }
+
+  const onValueChange = (value: string) => {
     console.log(value);
   };
-
   return (
     <View style={styles.container}>
-      <Search />
-      <AllCommunitiesButton />
+      <Form>
+        <FormSelectAlt
+          title="Type"
+          description="Select search type"
+          options={SearchType}
+          selected="Communities"
+          onValueChange={onValueChange}
+        />
+        <SearchInput />
+      </Form>
     </View>
   );
 };
