@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Post } from "@/app/components/Post/Post";
+import { Post } from "@/app/components/Post/FullPost/Post";
 
 const PostScreen = () => <Post sort="Hot" />;
 

@@ -6,6 +6,7 @@ import { Icon } from "@/common/Icon";
 import { Separator } from "@/common/Separator";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
+import { aggregateHelper } from "@/helper-functions/aggregateHelper";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type PostActionsProps = {
@@ -31,9 +32,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
       >
         <Icon icon="arrow-up" color={textColor} size={iconSize} />
         <Text style={styles.text}>
-          {postAggregates.upvotes < 1000
-            ? postAggregates.upvotes
-            : (postAggregates.upvotes / 1000).toFixed(1) + "K"}
+          {aggregateHelper(postAggregates.upvotes)}
         </Text>
       </TouchableOpacity>
     );
@@ -50,7 +49,9 @@ export const PostActions: FC<PostActionsProps> = (props) => {
         ]}
       >
         <Icon icon="arrow-down" color={textColor} size={iconSize} />
-        <Text style={styles.text}>{postAggregates.downvotes}</Text>
+        <Text style={styles.text}>
+          {aggregateHelper(postAggregates.downvotes)}
+        </Text>
       </TouchableOpacity>
     );
   };

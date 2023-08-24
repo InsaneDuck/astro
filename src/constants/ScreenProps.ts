@@ -14,7 +14,7 @@ import { FeedAccount } from "@/app/components/Feed/Headers/FeedAccount";
 import { FeedSelector } from "@/app/components/Feed/Headers/FeedSelector";
 import { FeedSorter } from "@/app/components/Feed/Headers/FeedSorter";
 import { ProfileHeaderRight } from "@/app/components/Person/Headers/ProfileHeaderRight";
-import { CommentsSorter } from "@/app/components/Post/Header/CommentsSorter";
+import { CommentsSorter } from "@/app/components/Post/FullPost/Header/CommentsSorter";
 import { SearchTypeSelector } from "@/app/components/Search/SearchTypeSelector";
 import { About } from "@/app/screens/Settings/About";
 import { Accounts } from "@/app/screens/Settings/Accounts";
