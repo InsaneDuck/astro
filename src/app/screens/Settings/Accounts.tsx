@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
 
-import { List } from "@/app/components/List/List";
-import { ListText } from "@/app/components/List/ListText";
+import { Form } from "@/app/components/Form/Form";
+import { FormText } from "@/app/components/Form/FormText";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 
@@ -13,9 +13,9 @@ export const Accounts = () => {
   };
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
-      <List title="ACCOUNTS">
-        <ListText name="+ Add Account" onPress={goToLogin} />
-      </List>
+      <Form title="ACCOUNTS">
+        <FormText name="+ Add Account" onPress={goToLogin} />
+      </Form>
     </View>
   );
 };

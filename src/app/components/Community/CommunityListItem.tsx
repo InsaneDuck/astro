@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { CommunityButton } from "@/app/components/Community/CommunityButton";
 import { CommunityViewCard } from "@/app/components/Community/CommunityViewCard";
-import { ListItem } from "@/app/components/List/ListItem";
+import { FormItem } from "@/app/components/Form/FormItem";
 import { Text } from "@/common/Text";
 import { aggregateHelper } from "@/helper-functions/aggregateHelper";
 import { SubStackNavigation } from "@/router/SubStackLayout";
@@ -32,12 +32,12 @@ export const CommunityListItem: FC<CommunitySearchResultItemProps> = (
   const Alt = () => {
     return (
       communityView && (
-        <ListItem onPress={goToCommunity}>
+        <FormItem onPress={goToCommunity}>
           <CommunityButton community={communityView.community} />
           <Text style={{ fontSize: 18 }}>
             {aggregateHelper(communityView.counts.subscribers)}
           </Text>
-        </ListItem>
+        </FormItem>
       )
     );
   };

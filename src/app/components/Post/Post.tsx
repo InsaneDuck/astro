@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
-import { CommentViewComponent } from "@/app/components/Post/Comment/CommentViewComponent";
+import { CommentViewComponent } from "@/app/components/Post/CommentViewComponent";
 import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { FetchFlashList } from "@/common/FetchFlashList";

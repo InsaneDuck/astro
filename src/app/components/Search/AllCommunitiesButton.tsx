@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { ListText } from "@/app/components/List/ListText";
+import { FormText } from "@/app/components/Form/FormText";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 
@@ -14,7 +14,7 @@ export const AllCommunitiesButton: FC<AllCommunitiesButtonProps> = (props) => {
   };
   return (
     <View style={{ width: "90%", borderRadius: 13, overflow: "hidden" }}>
-      <ListText name="All Communities" onPress={goToALlCommunities} />
+      <FormText name="All Communities" onPress={goToALlCommunities} />
     </View>
   );
 };

@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import { Button, StyleSheet } from "react-native";
 
-import { ListItem } from "@/app/components/List/ListItem";
+import { FormItem } from "@/app/components/Form/FormItem";
 
 type ListButtonProps = {
   name: string;
 };
-export const ListButton: FC<ListButtonProps> = (props) => {
+export const FormButton: FC<ListButtonProps> = (props) => {
   return (
-    <ListItem style={{ justifyContent: "center" }}>
+    <FormItem style={{ justifyContent: "center" }}>
       <Button title={props.name} />
-    </ListItem>
+    </FormItem>
   );
 };
 

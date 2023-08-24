@@ -1,7 +1,7 @@
 import React from "react";
 
-import { List } from "@/app/components/List/List";
-import { ListText } from "@/app/components/List/ListText";
+import { Form } from "@/app/components/Form/Form";
+import { FormText } from "@/app/components/Form/FormText";
 import { View } from "@/common/View";
 
 export const ExportImport = () => {
@@ -12,10 +12,10 @@ export const ExportImport = () => {
 
   return (
     <View style={{ alignItems: "center", flex: 1 }}>
-      <List title="EXPORT AND IMPORT" description={description}>
-        <ListText name="Export" />
-        <ListText name="Import" />
-      </List>
+      <Form title="EXPORT AND IMPORT" description={description}>
+        <FormText name="Export" />
+        <FormText name="Import" />
+      </Form>
     </View>
   );
 };

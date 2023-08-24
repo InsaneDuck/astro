@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
-import { ListText } from "@/app/components/List/ListText";
+import { FormText } from "@/app/components/Form/FormText";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 
@@ -14,36 +14,36 @@ export const Settings: FC<SettingsProps> = () => {
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <ListText
+        <FormText
           name="General"
           onPress={() => navigation.navigate("General")}
         />
-        <ListText
+        <FormText
           name="Appearance"
           onPress={() => navigation.navigate("Appearance")}
         />
-        <ListText
+        <FormText
           name="Filters"
           onPress={() => navigation.navigate("Filters")}
         />
-        <ListText
+        <FormText
           name="Face ID & Passcode"
           onPress={() => navigation.navigate("FaceIdAndPasscode")}
         />
-        <ListText
+        <FormText
           name="Accounts"
           onPress={() => navigation.navigate("Accounts")}
         />
-        <ListText
+        <FormText
           name="Export/Import"
           onPress={() => navigation.navigate("ExportImport")}
         />
       </View>
 
       <View style={styles.innerContainer}>
-        <ListText name="About" onPress={() => navigation.navigate("About")} />
-        <ListText name="Rate" onPress={() => navigation.navigate("Rate")} />
-        <ListText name="Tip" onPress={() => navigation.navigate("Tip")} />
+        <FormText name="About" onPress={() => navigation.navigate("About")} />
+        <FormText name="Rate" onPress={() => navigation.navigate("Rate")} />
+        <FormText name="Tip" onPress={() => navigation.navigate("Tip")} />
       </View>
     </View>
   );

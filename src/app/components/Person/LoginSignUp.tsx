@@ -2,10 +2,10 @@ import { useNavigation } from "@react-navigation/core";
 import React, { FC, useEffect } from "react";
 import { StyleSheet } from "react-native";
 
-import { List } from "@/app/components/List/List";
-import { ListButton } from "@/app/components/List/ListButton";
-import { ListSelect } from "@/app/components/List/ListSelect";
-import { TextInputItem } from "@/app/components/List/TextInputItem";
+import { Form } from "@/app/components/Form/Form";
+import { FormButton } from "@/app/components/Form/FormButton";
+import { FormInput } from "@/app/components/Form/FormInput";
+import { FormSelect } from "@/app/components/Form/FormSelect";
 import { View } from "@/common/View";
 
 type LoginSignUpProps = object;
@@ -19,14 +19,14 @@ export const LoginSignUp: FC<LoginSignUpProps> = (props) => {
 
   return (
     <View style={styles.container}>
-      <List title="LOGIN">
-        <ListSelect name="Server" selected="lemmy.world" />
-        <TextInputItem placeholder="Username" />
-        <TextInputItem placeholder="Password" />
-      </List>
-      <List>
-        <ListButton name="Login" />
-      </List>
+      <Form title="LOGIN">
+        <FormSelect name="Server" selected="lemmy.world" />
+        <FormInput placeholder="Username" />
+        <FormInput placeholder="Password" />
+      </Form>
+      <Form>
+        <FormButton name="Login" />
+      </Form>
     </View>
   );
 };

@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import { List } from "@/app/components/List/List";
-import { ListSelect } from "@/app/components/List/ListSelect";
-import { Toggle } from "@/app/components/List/Toggle";
+import { Form } from "@/app/components/Form/Form";
+import { FormSelect } from "@/app/components/Form/FormSelect";
+import { FormToggle } from "@/app/components/Form/FormToggle";
 import { View } from "@/common/View";
 import { AppDispatch, RootState } from "@/store/store";
 
@@ -17,43 +17,43 @@ export const Appearance = () => {
 
   const ThemeSection = () => {
     return (
-      <List title="THEME">
-        <ListSelect name="Dark Mode" selected={appearanceSettings.theme} />
-      </List>
+      <Form title="THEME">
+        <FormSelect name="Dark Mode" selected={appearanceSettings.theme} />
+      </Form>
     );
   };
 
   const PostSection = () => {
     return (
-      <List title="POST">
-        <Toggle
+      <Form title="POST">
+        <FormToggle
           name="Hide Username"
           value={appearanceSettings.post.hideUserName}
         />
-        <Toggle
+        <FormToggle
           name="Hide Community Name"
           value={appearanceSettings.post.hideCommunityName}
         />
-      </List>
+      </Form>
     );
   };
 
   const FeedSection = () => {
     return (
-      <List title="FEED">
-        <Toggle
+      <Form title="FEED">
+        <FormToggle
           name="Hide Username"
           value={appearanceSettings.feed.hideUserName}
         />
-        <Toggle
+        <FormToggle
           name="Hide Community Name"
           value={appearanceSettings.feed.hideCommunityName}
         />
-        <ListSelect
+        <FormSelect
           name="Post Size"
           selected={appearanceSettings.feed.postSize}
         />
-      </List>
+      </Form>
     );
   };
 

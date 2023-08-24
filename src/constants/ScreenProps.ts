@@ -8,14 +8,24 @@ import {
   NativeStackNavigationOptions,
 } from "@react-navigation/native-stack";
 
-import { AllCommunitiesHeader } from "@/app/components/Community/AllCommunitiesHeader";
-import { CommunityHeaderRight } from "@/app/components/Community/CommunityHeaderRight";
-import { FeedAccount } from "@/app/components/Feed/FeedAccount";
-import { FeedSelector } from "@/app/components/Feed/FeedSelector";
-import { FeedSorter } from "@/app/components/Feed/FeedSorter";
-import { ProfileHeaderRight } from "@/app/components/Person/ProfileHeaderRight";
-import { CommentsSorter } from "@/app/components/Post/Comment/CommentsSorter";
+import { AllCommunitiesHeader } from "@/app/components/Community/Headers/AllCommunitiesHeader";
+import { CommunityHeaderRight } from "@/app/components/Community/Headers/CommunityHeaderRight";
+import { FeedAccount } from "@/app/components/Feed/Headers/FeedAccount";
+import { FeedSelector } from "@/app/components/Feed/Headers/FeedSelector";
+import { FeedSorter } from "@/app/components/Feed/Headers/FeedSorter";
+import { ProfileHeaderRight } from "@/app/components/Person/Headers/ProfileHeaderRight";
+import { CommentsSorter } from "@/app/components/Post/Header/CommentsSorter";
 import { SearchTypeSelector } from "@/app/components/Search/SearchTypeSelector";
+import { About } from "@/app/screens/Settings/About";
+import { Accounts } from "@/app/screens/Settings/Accounts";
+import { Appearance } from "@/app/screens/Settings/Appearance";
+import { ExportImport } from "@/app/screens/Settings/ExportImport";
+import { FaceIdAndPasscode } from "@/app/screens/Settings/FaceIdAndPasscode";
+import { Filters } from "@/app/screens/Settings/Filters";
+import { General } from "@/app/screens/Settings/General";
+import { Rate } from "@/app/screens/Settings/Rate";
+import { Settings } from "@/app/screens/Settings/Settings";
+import { Tip } from "@/app/screens/Settings/Tip";
 import { AccountSwitcherScreen } from "@/app/screens/SubStack/AccountSwitcherScreen";
 import { AllCommunitiesScreen } from "@/app/screens/SubStack/AllCommunitiesScreen";
 import { CommunityInfoScreen } from "@/app/screens/SubStack/CommunityInfoScreen";
@@ -28,16 +38,6 @@ import PostScreen from "@/app/screens/SubStack/PostScreen";
 import { ProfileScreen } from "@/app/screens/SubStack/ProfileScreen";
 import { ProfileSettingsScreen } from "@/app/screens/SubStack/ProfileSettingsScreen";
 import { SearchScreen } from "@/app/screens/SubStack/SearchScreen";
-import { About } from "@/app/screens/SubStack/Settings/About";
-import { Accounts } from "@/app/screens/SubStack/Settings/Accounts";
-import { Appearance } from "@/app/screens/SubStack/Settings/Appearance";
-import { ExportImport } from "@/app/screens/SubStack/Settings/ExportImport";
-import { FaceIdAndPasscode } from "@/app/screens/SubStack/Settings/FaceIdAndPasscode";
-import { Filters } from "@/app/screens/SubStack/Settings/Filters";
-import { General } from "@/app/screens/SubStack/Settings/General";
-import { Rate } from "@/app/screens/SubStack/Settings/Rate";
-import { Settings } from "@/app/screens/SubStack/Settings/Settings";
-import { Tip } from "@/app/screens/SubStack/Settings/Tip";
 import { UserScreen } from "@/app/screens/SubStack/UserScreen";
 
 export type SharedParamsList = {

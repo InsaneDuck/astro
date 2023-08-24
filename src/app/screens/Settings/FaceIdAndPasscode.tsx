@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { List } from "@/app/components/List/List";
-import { Toggle } from "@/app/components/List/Toggle";
+import { Form } from "@/app/components/Form/Form";
+import { FormToggle } from "@/app/components/Form/FormToggle";
 import { View } from "@/common/View";
 import { RootState } from "@/store/store";
 
@@ -13,10 +13,10 @@ export const FaceIdAndPasscode = () => {
 
   return (
     <View style={{ alignItems: "center", flex: 1 }}>
-      <List title="SECURITY" description="Lock app using Face ID or Passcode">
-        <Toggle name="Face ID" value={security.faceId} />
-        <Toggle name="Passcode" value={security.passcode} />
-      </List>
+      <Form title="SECURITY" description="Lock app using Face ID or Passcode">
+        <FormToggle name="Face ID" value={security.faceId} />
+        <FormToggle name="Passcode" value={security.passcode} />
+      </Form>
     </View>
   );
 };

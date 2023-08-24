@@ -6,7 +6,7 @@ import { StyleSheet } from "react-native";
 import { Avatar } from "@/app/components/Avatar";
 import { Banner } from "@/app/components/Banner";
 import { Button } from "@/app/components/Button";
-import { Description } from "@/app/components/Community/Description";
+import { Description } from "@/app/components/Description";
 import { Separator } from "@/common/Separator";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";

@@ -7,9 +7,9 @@ import { useSelector } from "react-redux";
 import { Avatar } from "@/app/components/Avatar";
 import { Banner } from "@/app/components/Banner";
 import { Button } from "@/app/components/Button";
-import { Description } from "@/app/components/Community/Description";
-import { List } from "@/app/components/List/List";
-import { ListText } from "@/app/components/List/ListText";
+import { Description } from "@/app/components/Description";
+import { Form } from "@/app/components/Form/Form";
+import { FormText } from "@/app/components/Form/FormText";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
@@ -77,12 +77,12 @@ export const UserViewComponent: FC<UserViewComponentProps> = (props) => {
 
   const UserFooter = () => {
     return (
-      <List>
-        <ListText name="Overview" />
-        <ListText name="Comments" />
-        <ListText name="Posts" />
-        {userType === "primary" && <ListText name="Saved" />}
-      </List>
+      <Form>
+        <FormText name="Overview" />
+        <FormText name="Comments" />
+        <FormText name="Posts" />
+        {userType === "primary" && <FormText name="Saved" />}
+      </Form>
     );
   };
   //todo fix scrollview

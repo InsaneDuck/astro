@@ -9,14 +9,20 @@ type ListProps = {
   title?: string;
   description?: string;
 };
-export const List: FC<ListProps> = (props) => {
+export const Form: FC<ListProps> = (props) => {
+  const Title = () =>
+    props.title && <Text style={styles.title}>{props.title}</Text>;
+
+  const Description = () =>
+    props.description && (
+      <Text style={styles.description}>{props.description}</Text>
+    );
+
   return (
     <View style={styles.container}>
-      {props.title && <Text style={styles.title}>{props.title}</Text>}
+      <Title />
       <View style={styles.inner}>{props.children}</View>
-      {props.description && (
-        <Text style={styles.description}>{props.description}</Text>
-      )}
+      <Description />
     </View>
   );
 };

@@ -15,7 +15,7 @@ type LisItemProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-export const ListItem: FC<LisItemProps> = (props) => {
+export const FormItem: FC<LisItemProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
   const view = useThemeColor("background");
   return (
