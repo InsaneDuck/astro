@@ -37,18 +37,22 @@ export const SearchResult: FC<SearchResultProps> = (props) => {
   const renderItem = (item: CustomSearchItem, index: number) => {
     switch (args.type_) {
       case "Posts":
-        return <PostViewComponent postView={item as PostView} type="feed" />;
+        return (
+          item && <PostViewComponent postView={item as PostView} type="feed" />
+        );
       case "Comments":
         return (
-          <CommentViewComponent
-            commentView={item as CommentView}
-            index={index}
-          />
+          item && (
+            <CommentViewComponent
+              commentView={item as CommentView}
+              index={index}
+            />
+          )
         );
       case "Communities":
         return <CommunityViewCard community={item as CommunityView} />;
       case "Users":
-        return <Text>{(item as PersonView).person.name}</Text>;
+        return item && <Text>{(item as PersonView).person.name}</Text>;
       default:
         return <></>;
     }
