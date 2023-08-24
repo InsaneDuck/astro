@@ -21,133 +21,125 @@ type PostViewComponentProps = {
   postView: PostView;
   type: "feed" | "post";
 };
-const propsAreEqual = (
-  previousProps: PostViewComponentProps,
-  currentProps: PostViewComponentProps,
-) => {
-  return previousProps.postView.post.id === currentProps.postView.post.id;
-};
+
 /**
  *
  */
 //todo add post time,
-export const PostViewComponent: FC<PostViewComponentProps> = React.memo(
-  (props) => {
-    const { postView, type } = props;
-    const tabIconDefault = useThemeColor("tabIconDefault");
-    const navigationCurrent = useNavigation<SubStackNavigation>();
-    const dispatch = useDispatch<AppDispatch>();
+export const PostViewComponent: FC<PostViewComponentProps> = (props) => {
+  const { postView, type } = props;
+  const tabIconDefault = useThemeColor("tabIconDefault");
+  const navigationCurrent = useNavigation<SubStackNavigation>();
+  const dispatch = useDispatch<AppDispatch>();
 
-    const goToPost = (): any => {
-      if (type === "feed") {
-        postView && dispatch(sharedActions.setPostView(postView));
-        navigationCurrent.push("Post");
-      }
-    };
+  const goToPost = (): any => {
+    if (type === "feed") {
+      postView && dispatch(sharedActions.setPostView(postView));
+      navigationCurrent.push("Post");
+    }
+  };
 
-    //todo change shade of title after post is marked as read
-    const PostTitle = () => {
-      return (
-        <Text onPress={goToPost} style={styles.postTitle}>
-          {postView.post.name}
-        </Text>
-      );
-    };
-    //todo fix image dimensions
-    const PostImage = () => {
-      return (
-        postView.post?.thumbnail_url && (
-          <CustomImage
-            style={{ width: "100%", height: 300, maxHeight: 400 }}
-            source={{ uri: postView.post.thumbnail_url }}
-            resizeMode="contain"
-          />
-        )
-      );
-    };
-
-    //todo show any embed url
-    const PostEmbedDescription = () => {
-      return (
-        postView.post.embed_description && (
-          <Text onPress={goToPost} style={styles.postEmbedDescription}>
-            {postView.post.embed_description}
-          </Text>
-        )
-      );
-    };
-    //todo add markdown rendering
-    //todo add function to detect image links to show in ImageViewer
-    const PostBody = () => {
-      return type !== "post" ? (
-        <></>
-      ) : (
-        postView.post.body && (
-          <Text style={styles.postBody}>{postView.post.body}</Text>
-        )
-      );
-    };
-
-    const PostFooterLeft = () => {
-      return (
-        <View style={styles.postFooterItems}>
-          <Icon icon="message" color={tabIconDefault} size={16} />
-          <Text style={{ fontSize: 18, marginRight: 3, marginLeft: 3 }}>
-            {postView.counts.comments}
-          </Text>
-          <Icon icon="clock" color={tabIconDefault} size={16} />
-          <Text style={{ fontSize: 18, marginLeft: 3, paddingRight: 10 }}>
-            {formatTimeToDuration(postView.post.published)}
-          </Text>
-        </View>
-      );
-    };
-    const PostFooterRight = () => {
-      return (
-        <View style={styles.postFooterItems}>
-          <Text style={{ fontSize: 18 }}>In </Text>
-          <CommunityButton community={postView.community} />
-          <Text style={{ fontSize: 18 }}> By </Text>
-          <PersonButton person={postView.creator} />
-        </View>
-      );
-    };
-
-    const PostFooter = () => {
-      return (
-        <TouchableOpacity onPress={goToPost} style={styles.postFooter}>
-          <PostFooterLeft />
-          <PostFooterRight />
-        </TouchableOpacity>
-      );
-    };
-
-    const PostInteraction = () => {
-      return type !== "post" ? (
-        <></>
-      ) : (
-        <>
-          <PostActions postAggregates={postView.counts} />
-        </>
-      );
-    };
-
-    //todo show skeleton instead of null
-    return postView ? (
-      <>
-        <PostTitle />
-        <PostImage />
-        <PostEmbedDescription />
-        <PostBody />
-        <PostFooter />
-        <PostInteraction />
-      </>
-    ) : (
-      <></>
+  //todo change shade of title after post is marked as read
+  const PostTitle = () => {
+    return (
+      <Text onPress={goToPost} style={styles.postTitle}>
+        {postView.post.name}
+      </Text>
     );
-  },
-  propsAreEqual,
-);
+  };
+  //todo fix image dimensions
+  const PostImage = () => {
+    return (
+      postView.post?.thumbnail_url && (
+        <CustomImage
+          style={{ width: "100%", height: 300, maxHeight: 400 }}
+          source={{ uri: postView.post.thumbnail_url }}
+          resizeMode="contain"
+        />
+      )
+    );
+  };
+
+  //todo show any embed url
+  const PostEmbedDescription = () => {
+    return (
+      postView.post.embed_description && (
+        <Text onPress={goToPost} style={styles.postEmbedDescription}>
+          {postView.post.embed_description}
+        </Text>
+      )
+    );
+  };
+  //todo add markdown rendering
+  //todo add function to detect image links to show in ImageViewer
+  const PostBody = () => {
+    return type !== "post" ? (
+      <></>
+    ) : (
+      postView.post.body && (
+        <Text style={styles.postBody}>{postView.post.body}</Text>
+      )
+    );
+  };
+
+  const PostFooterLeft = () => {
+    return (
+      <View style={styles.postFooterItems}>
+        <Icon icon="message" color={tabIconDefault} size={16} />
+        <Text style={{ fontSize: 18, marginRight: 3, marginLeft: 3 }}>
+          {postView.counts.comments}
+        </Text>
+        <Icon icon="clock" color={tabIconDefault} size={16} />
+        <Text style={{ fontSize: 18, marginLeft: 3, paddingRight: 10 }}>
+          {formatTimeToDuration(postView.post.published)}
+        </Text>
+      </View>
+    );
+  };
+  const PostFooterRight = () => {
+    return (
+      <View style={styles.postFooterItems}>
+        <Text style={{ fontSize: 18 }}>In </Text>
+        <CommunityButton community={postView.community} />
+        <Text style={{ fontSize: 18 }}> By </Text>
+        <PersonButton person={postView.creator} />
+      </View>
+    );
+  };
+
+  const PostFooter = () => {
+    return (
+      <TouchableOpacity onPress={goToPost} style={styles.postFooter}>
+        <PostFooterLeft />
+        <PostFooterRight />
+      </TouchableOpacity>
+    );
+  };
+
+  const PostInteraction = () => {
+    return type !== "post" ? (
+      <></>
+    ) : (
+      <>
+        <PostActions postAggregates={postView.counts} />
+      </>
+    );
+  };
+
+  //todo show skeleton instead of null
+  return postView ? (
+    <>
+      <PostTitle />
+      <PostImage />
+      <PostEmbedDescription />
+      <PostBody />
+      <PostFooter />
+      <PostInteraction />
+    </>
+  ) : (
+    <></>
+  );
+};
 
 const styles = StyleSheet.create({
   postTitle: {
