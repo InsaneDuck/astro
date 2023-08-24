@@ -14,9 +14,7 @@ type MainFeedProps = {
 export const MainFeed: FC<MainFeedProps> = (props) => {
   const { type, sort } = props;
   const args: GetPosts = { sort, type_: type, limit: 50 };
-  const Header = () => {
-    return <></>;
-  };
+  const Header = () => <></>;
   const entityIdExtractor = (postView: PostView) => {
     return postView.post.id.toString();
   };

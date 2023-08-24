@@ -13,7 +13,9 @@ export const SearchTypeSelector: FC<SearchTypeSelectorProps> = (props) => {
     Url = "Url",
   }
 
-  const onValueChange = () => {};
+  const onValueChange = (value: string) => {
+    console.log(value);
+  };
   return (
     <HorizontalSelector
       options={Object.keys(SearchType)}

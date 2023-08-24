@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 import { AllCommunitiesButton } from "@/app/components/Search/AllCommunitiesButton";
-import { SearchInput } from "@/app/components/Search/SearchInput";
+import { Search } from "@/app/components/Search/Search";
 import { View } from "@/common/View";
 
 export const SearchScreen = () => {
@@ -12,7 +12,7 @@ export const SearchScreen = () => {
 
   return (
     <View style={styles.container}>
-      <SearchInput />
+      <Search />
       <AllCommunitiesButton />
     </View>
   );

@@ -10,7 +10,7 @@ import { useLazySearchQuery } from "@/store/api/search-api";
 import { useThemeColor } from "@/theming/useThemeColor";
 
 type SearchInputProps = object;
-export const SearchInput: FC<SearchInputProps> = (props) => {
+export const Search: FC<SearchInputProps> = (props) => {
   //todo show trending communities
   const color = useThemeColor("borderColor");
 
@@ -22,6 +22,10 @@ export const SearchInput: FC<SearchInputProps> = (props) => {
       trigger({ q: value, type_: "Communities" });
     }
   }, [value]);
+
+  useEffect(() => {
+    console.log(JSON.stringify(data));
+  }, [data]);
 
   const onSubmit = (
     value: NativeSyntheticEvent<TextInputSubmitEditingEventData>,

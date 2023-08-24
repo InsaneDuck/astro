@@ -24,21 +24,16 @@ export const Post: FC<PostProps> = (props) => {
     max_depth: 1,
   };
 
-  const Header = () => {
-    return (
-      postView && (
-        <Card>
-          <PostViewComponent postView={postView} type="post" />
-        </Card>
-      )
+  const Header = () =>
+    postView && (
+      <Card>
+        <PostViewComponent postView={postView} type="post" />
+      </Card>
     );
-  };
-  const entityIdExtractor = (commentView: CommentView) => {
-    return commentView.comment.id.toString();
-  };
-  const renderItem = (item: CommentView | undefined, index: number) => {
-    return item && <CommentViewComponent commentView={item} index={index} />;
-  };
+  const entityIdExtractor = (commentView: CommentView) =>
+    commentView.comment.id.toString();
+  const renderItem = (item: CommentView | undefined, index: number) =>
+    item && <CommentViewComponent commentView={item} index={index} />;
 
   return (
     <View>

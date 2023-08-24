@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
-import { UserViewComponent } from "@/app/components/Community/User/UserViewComponent";
 import { LoginSignUp } from "@/app/components/Person/LoginSignUp";
+import { UserViewComponent } from "@/app/components/User/UserViewComponent";
 import { RootState } from "@/store/store";
 
 type ProfileProps = object;

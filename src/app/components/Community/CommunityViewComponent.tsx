@@ -3,9 +3,9 @@ import moment from "moment";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
+import { Avatar } from "@/app/components/Avatar";
+import { Banner } from "@/app/components/Banner";
 import { Button } from "@/app/components/Button";
-import { Avatar } from "@/app/components/Community/Avatar";
-import { Banner } from "@/app/components/Community/Banner";
 import { Description } from "@/app/components/Community/Description";
 import { Separator } from "@/common/Separator";
 import { Text } from "@/common/Text";

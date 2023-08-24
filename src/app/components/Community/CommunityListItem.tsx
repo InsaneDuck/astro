@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
-import { EntityId } from "@reduxjs/toolkit";
+import { CommunityView } from "lemmy-js-client";
 import React, { FC } from "react";
-import { StyleProp, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { CommunityButton } from "@/app/components/Community/CommunityButton";
@@ -10,30 +9,17 @@ import { ListItem } from "@/app/components/List/ListItem";
 import { Text } from "@/common/Text";
 import { aggregateHelper } from "@/helper-functions/aggregateHelper";
 import { SubStackNavigation } from "@/router/SubStackLayout";
-import { useListCommunitiesQuery } from "@/store/api/community-api";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
 
 type CommunitySearchResultItemProps = {
-  communityId: EntityId;
-  style?: StyleProp<ViewStyle>;
+  communityView: CommunityView;
 };
 
-export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
+export const CommunityListItem: FC<CommunitySearchResultItemProps> = (
   props,
 ) => {
-  const { data: communityView } = useListCommunitiesQuery(
-    {
-      limit: 50,
-      sort: "TopAll",
-    },
-    {
-      selectFromResult: (state) => {
-        const data = state.data?.entities[props.communityId];
-        return { data };
-      },
-    },
-  );
+  const { communityView } = props;
 
   const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
@@ -46,7 +32,7 @@ export const CommunitySearchResultItem: FC<CommunitySearchResultItemProps> = (
   const Alt = () => {
     return (
       communityView && (
-        <ListItem style={props.style} onPress={goToCommunity}>
+        <ListItem onPress={goToCommunity}>
           <CommunityButton community={communityView.community} />
           <Text style={{ fontSize: 18 }}>
             {aggregateHelper(communityView.counts.subscribers)}

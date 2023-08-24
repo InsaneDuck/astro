@@ -4,9 +4,9 @@ import React, { FC, useEffect } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
+import { Avatar } from "@/app/components/Avatar";
+import { Banner } from "@/app/components/Banner";
 import { Button } from "@/app/components/Button";
-import { Avatar } from "@/app/components/Community/Avatar";
-import { Banner } from "@/app/components/Community/Banner";
 import { Description } from "@/app/components/Community/Description";
 import { List } from "@/app/components/List/List";
 import { ListText } from "@/app/components/List/ListText";
