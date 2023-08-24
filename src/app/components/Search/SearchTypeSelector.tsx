@@ -2,7 +2,9 @@ import { FC } from "react";
 
 import { HorizontalSelector } from "@/common/HorizontalSelector";
 
-type SearchTypeSelectorProps = object;
+type SearchTypeSelectorProps = {
+  onValueChange: (value: string) => void;
+};
 export const SearchTypeSelector: FC<SearchTypeSelectorProps> = (props) => {
   enum SearchType {
     All = "All",
@@ -14,7 +16,7 @@ export const SearchTypeSelector: FC<SearchTypeSelectorProps> = (props) => {
   }
 
   const onValueChange = (value: string) => {
-    console.log(value);
+    props.onValueChange(value);
   };
   return (
     <HorizontalSelector
