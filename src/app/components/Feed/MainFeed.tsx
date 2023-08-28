@@ -1,7 +1,8 @@
 import { GetPosts, ListingType, PostView, SortType } from "lemmy-js-client";
 import React, { FC } from "react";
 
-import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
+import PostViewComponent from "../Post/PostViewComponent";
+
 import { FetchFlashList } from "@/common/FetchFlashList";
 import { View } from "@/common/View";
 import { useGetPostsQuery } from "@/store/api/post-api";
@@ -22,9 +23,14 @@ export const MainFeed: FC<MainFeedProps> = (props) => {
     return item && <PostViewComponent postView={item} type="feed" />;
   };
 
+  // const renderItem = (item: PostView | undefined, index: number) => {
+  //   return item && <Temp post={item} index={index} />;
+  // };
+
   return (
     <View style={{ height: "100%", width: "100%" }}>
       <FetchFlashList
+        key={`${sort + type}`}
         ListHeaderComponent={Header}
         entityIdExtractor={entityIdExtractor}
         estimatedItemSize={200}

@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 import { CommentViewComponent } from "@/app/components/Post/FullPost/CommentViewComponent";
-import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
+import PostViewComponent from "@/app/components/Post/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { FetchFlashList } from "@/common/FetchFlashList";
 import { View } from "@/common/View";

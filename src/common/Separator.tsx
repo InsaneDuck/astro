@@ -11,7 +11,7 @@ const propsAreEqual = () => {
 
 export const Separator: FC<SeparatorProps> = memo(() => {
   const borderColor = useThemeColor("borderColor");
-  return <View style={[{ backgroundColor: borderColor }, styles.separator]} />;
+  return <View style={[{ backgroundColor: "#2c2c2c" }, styles.separator]} />;
 }, propsAreEqual);
 
 const styles = StyleSheet.create({

@@ -9,7 +9,7 @@ import { FC } from "react";
 
 import { CommunityViewCard } from "@/app/components/Community/CommunityViewCard";
 import { CommentViewComponent } from "@/app/components/Post/FullPost/CommentViewComponent";
-import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
+import PostViewComponent from "@/app/components/Post/PostViewComponent";
 import { FetchFlashList } from "@/common/FetchFlashList";
 import { Text } from "@/common/Text";
 import { CustomSearchItem, useSearchQuery } from "@/store/api/search-api";
@@ -59,6 +59,7 @@ export const SearchResult: FC<SearchResultProps> = (props) => {
   };
   return (
     <FetchFlashList
+      key={args.type_}
       ListHeaderComponent={() => <></>}
       entityIdExtractor={entityIdExtractor}
       estimatedItemSize={100}

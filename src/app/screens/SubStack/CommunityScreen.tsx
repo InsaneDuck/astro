@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { CommunityViewComponent } from "@/app/components/Community/CommunityViewComponent";
-import { PostViewComponent } from "@/app/components/Post/PostViewComponent";
+import PostViewComponent from "@/app/components/Post/PostViewComponent";
 import { FetchFlashList } from "@/common/FetchFlashList";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";

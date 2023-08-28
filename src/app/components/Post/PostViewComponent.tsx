@@ -21,17 +21,18 @@ type PostViewComponentProps = {
   postView: PostView;
   type: "feed" | "post";
 };
+let count = 0;
 
 /**
  *
  */
 //todo add post time,
-export const PostViewComponent: FC<PostViewComponentProps> = (props) => {
+const PostViewComponent: FC<PostViewComponentProps> = (props) => {
   const { postView, type } = props;
   const tabIconDefault = useThemeColor("tabIconDefault");
   const navigationCurrent = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
-
+  console.log("count = ", count++);
   const goToPost = (): any => {
     if (type === "feed") {
       postView && dispatch(sharedActions.setPostView(postView));
@@ -84,25 +85,29 @@ export const PostViewComponent: FC<PostViewComponentProps> = (props) => {
 
   const PostFooterLeft = () => {
     return (
-      <View style={styles.postFooterItems}>
-        <Icon icon="message" color={tabIconDefault} size={16} />
-        <Text style={{ fontSize: 18, marginRight: 3, marginLeft: 3 }}>
-          {postView.counts.comments}
-        </Text>
-        <Icon icon="clock" color={tabIconDefault} size={16} />
-        <Text style={{ fontSize: 18, marginLeft: 3, paddingRight: 10 }}>
-          {formatTimeToDuration(postView.post.published)}
-        </Text>
+      <View style={styles.footerLeft}>
+        <View style={{ flexDirection: "row" }}>
+          <Text style={{ fontSize: 18 }}>In </Text>
+          <CommunityButton community={postView.community} />
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <Text style={{ fontSize: 18 }}>By </Text>
+          <PersonButton person={postView.creator} />
+        </View>
       </View>
     );
   };
   const PostFooterRight = () => {
     return (
-      <View style={styles.postFooterItems}>
-        <Text style={{ fontSize: 18 }}>In </Text>
-        <CommunityButton community={postView.community} />
-        <Text style={{ fontSize: 18 }}> By </Text>
-        <PersonButton person={postView.creator} />
+      <View style={styles.footerRight}>
+        <Icon icon="message" color={tabIconDefault} size={16} />
+        <Text style={{ fontSize: 18, marginLeft: 3, marginRight: 3 }}>
+          {postView.counts.comments}
+        </Text>
+        <Icon icon="clock" color={tabIconDefault} size={16} />
+        <Text style={{ fontSize: 18, marginLeft: 3 }}>
+          {formatTimeToDuration(postView.post.published)}
+        </Text>
       </View>
     );
   };
@@ -141,6 +146,15 @@ export const PostViewComponent: FC<PostViewComponentProps> = (props) => {
   );
 };
 
+const propsAreEqual = (
+  prevProps: Readonly<PostViewComponentProps>,
+  nextProps: Readonly<PostViewComponentProps>,
+) => {
+  return prevProps.postView.post.id === nextProps.postView.post.id;
+};
+// pure component for the sake of FlatList
+export default React.memo(PostViewComponent, propsAreEqual);
+
 const styles = StyleSheet.create({
   postTitle: {
     fontWeight: "bold",
@@ -161,21 +175,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   postFooter: {
-    paddingBottom: 12,
-    paddingLeft: 12,
-    paddingRight: 12,
-    display: "flex",
+    padding: 12,
     flexDirection: "row",
     justifyContent: "space-between",
+    overflow: "hidden",
+    flex: 2,
+  },
+  footerRight: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  footerLeft: {
+    maxWidth: "70%",
+    flexDirection: "row",
     alignItems: "center",
     flexWrap: "wrap",
-  },
-  postFooterItems: {
-    paddingTop: 10,
-
-    flexDirection: "row",
-    display: "flex",
-    alignItems: "center",
+    rowGap: 4,
   },
   footerText: {
     fontSize: 18,
