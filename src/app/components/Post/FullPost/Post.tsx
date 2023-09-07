@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 import { CommentViewComponent } from "@/app/components/Post/FullPost/CommentViewComponent";
-import PostViewComponent from "@/app/components/Post/PostViewComponent";
+import PostViewComponent from "@/app/components/Post/PostViewComponent/PostViewComponent";
 import { Card } from "@/common/Cards/Card";
 import { FetchFlashList } from "@/common/FetchFlashList";
 import { View } from "@/common/View";
@@ -18,10 +18,11 @@ export const Post: FC<PostProps> = (props) => {
   const postView = useSelector((state: RootState) => state.shared.postView);
   const { sort } = props;
   const args: GetComments = {
-    sort,
+    sort: "Hot",
     limit: 10,
     post_id: Number(postView?.post.id),
-    max_depth: 1,
+    max_depth: 5,
+    type_: "All",
   };
 
   const Header = () =>

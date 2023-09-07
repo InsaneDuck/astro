@@ -1,7 +1,7 @@
 import { GetPosts, ListingType, PostView, SortType } from "lemmy-js-client";
 import React, { FC } from "react";
 
-import PostViewComponent from "../Post/PostViewComponent";
+import PostViewComponent from "../Post/PostViewComponent/PostViewComponent";
 
 import { FetchFlashList } from "@/common/FetchFlashList";
 import { View } from "@/common/View";

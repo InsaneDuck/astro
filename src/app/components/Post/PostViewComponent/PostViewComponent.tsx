@@ -1,17 +1,13 @@
 import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { CommunityButton } from "@/app/components/Community/CommunityButton";
-import { PersonButton } from "@/app/components/Person/PersonButton";
 import { PostActions } from "@/app/components/Post/FullPost/PostActions";
+import { PostFooter } from "@/app/components/Post/PostViewComponent/PostFooter";
 import { CustomImage } from "@/common/CustomImage";
-import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
-import { View } from "@/common/View";
-import { formatTimeToDuration } from "@/helper-functions/formatTimeToDuration";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
@@ -74,61 +70,16 @@ const PostViewComponent: FC<PostViewComponentProps> = (props) => {
   //todo add markdown rendering
   //todo add function to detect image links to show in ImageViewer
   const PostBody = () => {
-    return type !== "post" ? (
-      <></>
-    ) : (
+    return (
+      type === "post" &&
       postView.post.body && (
         <Text style={styles.postBody}>{postView.post.body}</Text>
       )
     );
   };
 
-  const PostFooterLeft = () => {
-    return (
-      <View style={styles.footerLeft}>
-        <View style={{ flexDirection: "row" }}>
-          <Text style={{ fontSize: 18 }}>In </Text>
-          <CommunityButton community={postView.community} />
-        </View>
-        <View style={{ flexDirection: "row" }}>
-          <Text style={{ fontSize: 18 }}>By </Text>
-          <PersonButton person={postView.creator} />
-        </View>
-      </View>
-    );
-  };
-  const PostFooterRight = () => {
-    return (
-      <View style={styles.footerRight}>
-        <Icon icon="message" color={tabIconDefault} size={16} />
-        <Text style={{ fontSize: 18, marginLeft: 3, marginRight: 3 }}>
-          {postView.counts.comments}
-        </Text>
-        <Icon icon="clock" color={tabIconDefault} size={16} />
-        <Text style={{ fontSize: 18, marginLeft: 3 }}>
-          {formatTimeToDuration(postView.post.published)}
-        </Text>
-      </View>
-    );
-  };
-
-  const PostFooter = () => {
-    return (
-      <TouchableOpacity onPress={goToPost} style={styles.postFooter}>
-        <PostFooterLeft />
-        <PostFooterRight />
-      </TouchableOpacity>
-    );
-  };
-
   const PostInteraction = () => {
-    return type !== "post" ? (
-      <></>
-    ) : (
-      <>
-        <PostActions postAggregates={postView.counts} />
-      </>
-    );
+    return type === "post" && <PostActions postAggregates={postView.counts} />;
   };
 
   //todo show skeleton instead of null
@@ -138,8 +89,14 @@ const PostViewComponent: FC<PostViewComponentProps> = (props) => {
       <PostImage />
       <PostEmbedDescription />
       <PostBody />
-      <PostFooter />
-      <PostInteraction />
+      <PostFooter
+        onPress={goToPost}
+        published={postView.post.published}
+        community={postView.community}
+        aggregate={postView.counts}
+        creator={postView.creator}
+      />
+      {type === "post" && <PostActions postAggregates={postView.counts} />}
     </>
   ) : (
     <></>
@@ -173,26 +130,5 @@ const styles = StyleSheet.create({
   postBody: {
     padding: 10,
     fontSize: 16,
-  },
-  postFooter: {
-    padding: 12,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    overflow: "hidden",
-    flex: 2,
-  },
-  footerRight: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  footerLeft: {
-    maxWidth: "70%",
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap",
-    rowGap: 4,
-  },
-  footerText: {
-    fontSize: 18,
   },
 });
