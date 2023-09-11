@@ -5,7 +5,6 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { CustomImage } from "@/common/CustomImage";
-import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
@@ -27,18 +26,6 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   const goToCommunity = () => {
     dispatch(sharedActions.setCommunity(community));
     navigation.navigate("Community");
-  };
-
-  const CommunityIcon = () => {
-    return (
-      <View style={styles.imageContainer}>
-        {community.icon ? (
-          <CustomImage source={{ uri: community.icon }} style={styles.image} />
-        ) : (
-          <Icon icon="users" color={tabIconDefault} size={12} />
-        )}
-      </View>
-    );
   };
 
   const CommunityName = () => {
@@ -74,7 +61,14 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={goToCommunity} style={styles.community}>
-        <CommunityIcon />
+        {community.icon && (
+          <View style={styles.imageContainer}>
+            <CustomImage
+              source={{ uri: community.icon }}
+              style={styles.image}
+            />
+          </View>
+        )}
         <CommunityName />
       </TouchableOpacity>
       <SubscribeButton />

@@ -53,7 +53,12 @@ export const PostFooterAlt: FC<PostFooterAltProps> = (props) => {
           <Icon icon="arrow-up" color={tabIconDefault} size={16} />
           <Text style={{ fontSize: 18 }}>{props.aggregate.score}</Text>
           <Icon icon="arrow-down" color={tabIconDefault} size={16} />
-          <Icon icon="ellipsis" color={tabIconDefault} size={16} />
+          <Icon
+            icon="ellipsis"
+            color={tabIconDefault}
+            size={16}
+            style={{ marginLeft: 5 }}
+          />
         </View>
       </View>
     );

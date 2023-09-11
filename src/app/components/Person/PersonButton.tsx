@@ -10,7 +10,6 @@ import {
 import { useDispatch } from "react-redux";
 
 import { CustomImage } from "@/common/CustomImage";
-import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
@@ -41,18 +40,11 @@ export const PersonButton: FC<PersonButtonProps> = (props) => {
       onPress={goToUser}
       style={[styles.container, props.style]}
     >
-      <View style={styles.imageContainer}>
-        {person.avatar ? (
+      {person.avatar && (
+        <View style={styles.imageContainer}>
           <CustomImage source={{ uri: person.avatar }} style={styles.image} />
-        ) : (
-          <Icon
-            icon="user"
-            color={tabIconDefault}
-            size={18}
-            style={styles.image}
-          />
-        )}
-      </View>
+        </View>
+      )}
 
       <Text
         style={{
