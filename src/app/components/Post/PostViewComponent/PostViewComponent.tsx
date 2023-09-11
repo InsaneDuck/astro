@@ -4,8 +4,8 @@ import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { PostActions } from "@/app/components/Post/FullPost/PostActions";
-import { PostFooter } from "@/app/components/Post/PostViewComponent/PostFooter";
+import { PostActions } from "@/app/components/Post/PostViewComponent/PostActions";
+import { PostFooterAlt } from "@/app/components/Post/PostViewComponent/PostFooterAlt";
 import { CustomImage } from "@/common/CustomImage";
 import { Text } from "@/common/Text";
 import { SubStackNavigation } from "@/router/SubStackLayout";
@@ -89,7 +89,7 @@ const PostViewComponent: FC<PostViewComponentProps> = (props) => {
       <PostImage />
       <PostEmbedDescription />
       <PostBody />
-      <PostFooter
+      <PostFooterAlt
         onPress={goToPost}
         published={postView.post.published}
         community={postView.community}

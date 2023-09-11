@@ -57,10 +57,10 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   };
 
   const SubscribeButton = () => {
-    const [actionText, setActionText] = useState("Sub");
+    const [actionText, setActionText] = useState("SUB");
     const onPressSubscribe = (): any => {
       //todo add sub api
-      setActionText((text) => (text === "Undo" ? "Sub" : "Undo"));
+      setActionText((text) => (text === "UNDO" ? "SUB" : "UNDO"));
     };
     return (
       !props.subscribed && (
@@ -112,11 +112,11 @@ const styles = StyleSheet.create({
     paddingLeft: 3,
   },
   actionButton: {
-    fontSize: 18,
+    fontSize: 16,
     textAlignVertical: "center",
     textAlign: "center",
     backgroundColor: ConstantColors.iosBlue,
-    borderRadius: 10,
+    borderRadius: 9,
     overflow: "hidden",
     paddingRight: 6,
     paddingLeft: 6,
