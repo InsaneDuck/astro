@@ -44,14 +44,7 @@ export const PostFooterAlt: FC<PostFooterAltProps> = (props) => {
 
   const Bottom = () => {
     return (
-      <View
-        style={{
-          flexDirection: "row",
-          marginTop: 3,
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <View style={styles.containerBottom}>
         <View style={{ flexDirection: "row" }}>
           <Text style={{ fontSize: 18 }}>By </Text>
           <PersonButton person={props.creator} />
@@ -74,4 +67,11 @@ export const PostFooterAlt: FC<PostFooterAltProps> = (props) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  containerBottom: {
+    flexDirection: "row",
+    marginTop: 3,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+});
