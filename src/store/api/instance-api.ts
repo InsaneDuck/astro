@@ -14,7 +14,8 @@ const instanceApi = lemmyApi.injectEndpoints({
     >({
       queryFn: async (_, { getState }, extraOptions, baseQuery) => {
         console.log("fetching Federated Instances");
-        const data = await getLemmyHttp().getFederatedInstances();
+        const data =
+          await getLemmyHttp("https://lemmy.ml/").getFederatedInstances();
 
         return { data };
       },

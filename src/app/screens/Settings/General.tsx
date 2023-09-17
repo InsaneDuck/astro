@@ -12,7 +12,7 @@ type GeneralProps = object;
 
 export const General: FC<GeneralProps> = (props) => {
   const generalSettings = useSelector(
-    (state: RootState) => state.settings.defaultSettings.General,
+    (state: RootState) => state.settings.currentSettings.General,
   );
 
   const FeedSection = () => {

@@ -10,7 +10,7 @@ import { AppDispatch, RootState } from "@/store/store";
 
 export const Appearance = () => {
   const appearanceSettings = useSelector(
-    (state: RootState) => state.settings.defaultSettings.Appearance,
+    (state: RootState) => state.settings.currentSettings.Appearance,
   );
 
   const dispatch = useDispatch<AppDispatch>();

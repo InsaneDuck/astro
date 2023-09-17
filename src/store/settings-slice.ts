@@ -14,7 +14,7 @@ const allSettingsAdapter = createEntityAdapter<Settings>({
 
 export type SettingsState = {
   defaultSettings: Settings;
-  currentSettings?: Settings;
+  currentSettings: Settings;
   allSettings: EntityState<Settings>;
 };
 //todo get currentSettings from storage

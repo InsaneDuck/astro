@@ -23,8 +23,8 @@ import { lemmyApi } from "@/store/api/api-slice";
 const adminApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     addAdmin: builder.query<AddAdminResponse, AddAdmin>({
-      queryFn: async (arg) => {
-        const data = await getLemmyHttp().addAdmin(arg);
+      queryFn: async (arg, { getState }) => {
+        const data = await getLemmyHttp("https://lemmy.ml/").addAdmin(arg);
         return { data };
       },
     }),
@@ -33,7 +33,8 @@ const adminApi = lemmyApi.injectEndpoints({
       AddModToCommunity
     >({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().addModToCommunity(arg);
+        const data =
+          await getLemmyHttp("https://lemmy.ml/").addModToCommunity(arg);
         return { data };
       },
     }),
@@ -42,45 +43,52 @@ const adminApi = lemmyApi.injectEndpoints({
       ApproveRegistrationApplication
     >({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().approveRegistrationApplication(arg);
+        const data =
+          await getLemmyHttp(
+            "https://lemmy.ml/",
+          ).approveRegistrationApplication(arg);
         return { data };
       },
     }),
     banFromCommunity: builder.query<BanFromCommunityResponse, BanFromCommunity>(
       {
         queryFn: async (arg) => {
-          const data = await getLemmyHttp().banFromCommunity(arg);
+          const data =
+            await getLemmyHttp("https://lemmy.ml/").banFromCommunity(arg);
           return { data };
         },
       },
     ),
     banPerson: builder.query<BanPersonResponse, BanPerson>({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().banPerson(arg);
+        const data = await getLemmyHttp("https://lemmy.ml/").banPerson(arg);
         return { data };
       },
     }),
     blockCommunity: builder.query<BanFromCommunityResponse, BanFromCommunity>({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().banFromCommunity(arg);
+        const data =
+          await getLemmyHttp("https://lemmy.ml/").banFromCommunity(arg);
         return { data };
       },
     }),
     blockPerson: builder.query<BanFromCommunityResponse, BanFromCommunity>({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().banFromCommunity(arg);
+        const data =
+          await getLemmyHttp("https://lemmy.ml/").banFromCommunity(arg);
         return { data };
       },
     }),
     changePassword: builder.query<LoginResponse, ChangePassword>({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().changePassword(arg);
+        const data =
+          await getLemmyHttp("https://lemmy.ml/").changePassword(arg);
         return { data };
       },
     }),
     createComment: builder.query<CommentResponse, CreateComment>({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().createComment(arg);
+        const data = await getLemmyHttp("https://lemmy.ml/").createComment(arg);
         return { data };
       },
     }),
@@ -89,7 +97,8 @@ const adminApi = lemmyApi.injectEndpoints({
       CreateCommentReport
     >({
       queryFn: async (arg) => {
-        const data = await getLemmyHttp().createCommentReport(arg);
+        const data =
+          await getLemmyHttp("https://lemmy.ml/").createCommentReport(arg);
         return { data };
       },
     }),

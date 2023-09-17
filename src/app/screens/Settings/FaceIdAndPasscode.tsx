@@ -8,7 +8,7 @@ import { RootState } from "@/store/store";
 
 export const FaceIdAndPasscode = () => {
   const security = useSelector(
-    (state: RootState) => state.settings.defaultSettings.FaceIdPasscode,
+    (state: RootState) => state.settings.currentSettings.FaceIdPasscode,
   );
 
   return (

@@ -11,7 +11,7 @@ type ServerSelectorProps = object;
 export const ServerSelector: FC<ServerSelectorProps> = (props) => {
   const server = useSelector(
     (state: RootState) =>
-      state.settings.currentSettings?.Accounts.currentUser.serverUrl,
+      state.settings.currentSettings.Accounts.currentUser.serverUrl,
   );
 
   const onSelectingServer = () => {};

@@ -9,28 +9,32 @@ import {
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { lemmyApi } from "@/store/api/api-slice";
+import { RootState } from "@/store/store";
 
 const postApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     getComment: builder.query<CommentResponse, GetComment>({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
         console.log("fetching getComment : " + JSON.stringify(arg));
-        const data = await getLemmyHttp().getComment(arg);
+        const data = await getLemmyHttp("https://lemmy.ml/").getComment(arg);
         return { data };
       },
     }),
     getComments: builder.query<CommentView[], GetComments>({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
         console.log("fetching getComments : " + JSON.stringify(arg));
-        const response = await getLemmyHttp().getComments(arg);
+        const response =
+          await getLemmyHttp("https://lemmy.ml/").getComments(arg);
         console.log("comments count = " + response.comments.length);
         return { data: response.comments };
       },
     }),
     getPosts: builder.query<PostView[], GetPosts>({
-      queryFn: async (arg: GetPosts) => {
-        console.log("fetching getPosts : " + JSON.stringify(arg));
-        const response = await getLemmyHttp().getPosts(arg);
+      queryFn: async (arg: GetPosts, { getState }) => {
+        const url = (getState() as RootState).settings.currentSettings.Accounts
+          .currentUser.serverUrl;
+        console.log("fetching getPosts : " + JSON.stringify(arg) + url);
+        const response = await getLemmyHttp(url).getPosts(arg);
         return { data: response.posts };
       },
     }),

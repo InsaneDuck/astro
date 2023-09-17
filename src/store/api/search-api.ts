@@ -27,7 +27,7 @@ const searchApi = lemmyApi.injectEndpoints({
     search: builder.query<CustomSearch, Search>({
       queryFn: async (args) => {
         console.log("fetching searchQuery : " + JSON.stringify(args));
-        const response = await getLemmyHttp().search(args);
+        const response = await getLemmyHttp("https://lemmy.ml/").search(args);
         let data: CustomSearch = [];
         switch (args.type_) {
           case "Comments":

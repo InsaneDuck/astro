@@ -8,7 +8,7 @@ const moderationApi = lemmyApi.injectEndpoints({
     getModlog: builder.query<GetModlogResponse, GetModlog>({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
         console.log("fetching getModlog : " + JSON.stringify(arg));
-        const data = await getLemmyHttp().getModlog(arg);
+        const data = await getLemmyHttp("https://lemmy.ml/").getModlog(arg);
         return { data };
       },
     }),
