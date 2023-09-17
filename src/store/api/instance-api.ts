@@ -1,5 +1,5 @@
 import {
-  GetFederatedInstances,
+  FederatedInstances,
   GetFederatedInstancesResponse,
 } from "lemmy-js-client";
 
@@ -10,13 +10,11 @@ const instanceApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     getFederatedInstances: builder.query<
       GetFederatedInstancesResponse,
-      GetFederatedInstances | void
+      FederatedInstances | void
     >({
-      queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
-        console.log("fetching getFederatedInstances : " + JSON.stringify(arg));
-        const data = arg
-          ? await getLemmyHttp().getFederatedInstances(arg)
-          : await getLemmyHttp().getFederatedInstances();
+      queryFn: async (_, { getState }, extraOptions, baseQuery) => {
+        console.log("fetching Federated Instances");
+        const data = await getLemmyHttp().getFederatedInstances();
 
         return { data };
       },

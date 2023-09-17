@@ -4,4 +4,5 @@ export type User = {
   password?: string;
   jwt?: string;
   serverUrl: string;
+  authStatus: "loggedIn" | "anonymous" | "local";
 };

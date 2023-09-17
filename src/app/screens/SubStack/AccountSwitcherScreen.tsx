@@ -1,23 +1,20 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
-import { ServersList } from "@/app/components/AccountSwitcher/ServersList";
+import { ServerSelector } from "@/app/components/AccountSwitcher/ServerSelector";
 import { View } from "@/common/View";
 
 export const AccountSwitcherScreen = () => {
   return (
-    <View style={styles.container}>
-      <View style={{ width: "90%", height: "100%" }}>
-        <ServersList />
+    <ScrollView>
+      <View style={styles.container}>
+        <ServerSelector />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "100%",
-    flex: 1,
     alignItems: "center",
   },
 });

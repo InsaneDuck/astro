@@ -40,6 +40,7 @@ export const defaultSettings: Settings = {
     currentUser: {
       id: 0,
       serverUrl: "https://lemmy.world/",
+      authStatus: "anonymous",
     },
   },
   Filters: {
