@@ -20,14 +20,16 @@ export const Settings: FC<SettingsProps> = () => {
   const iconColor = useThemeColor("tabIconDefault");
 
   const SettingsItems: Record<
-    keyof Omit<SettingsParamsList, "About" | "Rate" | "Tip" | "Settings">,
+    keyof Omit<
+      SettingsParamsList,
+      "About" | "Rate" | "Tip" | "Settings" | "Accounts"
+    >,
     string
   > = {
     General: "General",
     Appearance: "Appearance",
     Filters: "Filters",
     FaceIdAndPasscode: "FaceId & Passcode",
-    Accounts: "Accounts",
     ExportImport: "Export | Import",
   };
 
