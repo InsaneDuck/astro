@@ -19,33 +19,6 @@ export const Settings: FC<SettingsProps> = () => {
 
   const iconColor = useThemeColor("tabIconDefault");
 
-  // const SettingsItems = {
-  //   General: {
-  //     name: "General",
-  //     onPress: () => navigation.navigate("General"),
-  //   },
-  //   Appearance: {
-  //     name: "Appearance",
-  //     onPress: () => navigation.navigate("Appearance"),
-  //   },
-  //   Filters: {
-  //     name: "Filters",
-  //     onPress: () => navigation.navigate("Filters"),
-  //   },
-  //   FaceIdAndPasscode: {
-  //     name: "FaceId & Passcode",
-  //     onPress: () => navigation.navigate("FaceIdAndPasscode"),
-  //   },
-  //   Accounts: {
-  //     name: "Accounts",
-  //     onPress: () => navigation.navigate("Accounts"),
-  //   },
-  //   ExportImport: {
-  //     name: "Export | Import",
-  //     onPress: () => navigation.navigate("ExportImport"),
-  //   },
-  // };
-
   const SettingsItems: Record<
     keyof Omit<SettingsParamsList, "About" | "Rate" | "Tip" | "Settings">,
     string
@@ -57,17 +30,6 @@ export const Settings: FC<SettingsProps> = () => {
     Accounts: "Accounts",
     ExportImport: "Export | Import",
   };
-
-  //
-  // const Hello = Object.keys(Temp).map((item: string) => {
-  //   const x = Temp[item] as string;
-  //   return (
-  //     <FormText
-  //       name={x}
-  //       onPress={() => navigation.navigate(item as keyof settings)}
-  //     />
-  //   );
-  // });
 
   return (
     <View style={styles.container}>
