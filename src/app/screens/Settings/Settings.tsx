@@ -3,14 +3,20 @@ import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
 import { Form } from "@/common/Form/Form";
+import { FormItem } from "@/common/Form/FormItem";
 import { FormText } from "@/common/Form/FormText";
+import { Icon } from "@/common/Icon";
+import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
+import { useThemeColor } from "@/theming/useThemeColor";
 
 type SettingsProps = object;
 
 export const Settings: FC<SettingsProps> = () => {
   const navigation = useNavigation<SubStackNavigation>();
+
+  const iconColor = useThemeColor("tabIconDefault");
 
   const SettingsItems = {
     General: {
@@ -60,6 +66,18 @@ export const Settings: FC<SettingsProps> = () => {
 
   return (
     <View style={styles.container}>
+      <Form>
+        <FormItem style={{ height: 120 }}>
+          <View style={{ borderRadius: 13, padding: 10 }}>
+            <Icon icon="user" color={iconColor} size={60} />
+          </View>
+          <Text>Account</Text>
+        </FormItem>
+        <FormText
+          name="All Accounts"
+          onPress={() => navigation.navigate("Accounts")}
+        />
+      </Form>
       <Form>
         {Object.values(SettingsItems).map((item) => {
           return (
