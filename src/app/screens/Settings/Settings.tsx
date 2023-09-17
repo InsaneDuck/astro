@@ -8,6 +8,7 @@ import { FormText } from "@/common/Form/FormText";
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
+import { SettingsParamsList } from "@/constants/ScreenProps";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { useThemeColor } from "@/theming/useThemeColor";
 
@@ -18,41 +19,45 @@ export const Settings: FC<SettingsProps> = () => {
 
   const iconColor = useThemeColor("tabIconDefault");
 
-  const SettingsItems = {
-    General: {
-      name: "General",
-      onPress: () => navigation.navigate("General"),
-    },
-    Appearance: {
-      name: "Appearance",
-      onPress: () => navigation.navigate("Appearance"),
-    },
-    Filters: {
-      name: "Filters",
-      onPress: () => navigation.navigate("Filters"),
-    },
-    FaceIdAndPasscode: {
-      name: "FaceId & Passcode",
-      onPress: () => navigation.navigate("FaceIdAndPasscode"),
-    },
-    Accounts: {
-      name: "Accounts",
-      onPress: () => navigation.navigate("Accounts"),
-    },
-    ExportImport: {
-      name: "Export | Import",
-      onPress: () => navigation.navigate("ExportImport"),
-    },
+  // const SettingsItems = {
+  //   General: {
+  //     name: "General",
+  //     onPress: () => navigation.navigate("General"),
+  //   },
+  //   Appearance: {
+  //     name: "Appearance",
+  //     onPress: () => navigation.navigate("Appearance"),
+  //   },
+  //   Filters: {
+  //     name: "Filters",
+  //     onPress: () => navigation.navigate("Filters"),
+  //   },
+  //   FaceIdAndPasscode: {
+  //     name: "FaceId & Passcode",
+  //     onPress: () => navigation.navigate("FaceIdAndPasscode"),
+  //   },
+  //   Accounts: {
+  //     name: "Accounts",
+  //     onPress: () => navigation.navigate("Accounts"),
+  //   },
+  //   ExportImport: {
+  //     name: "Export | Import",
+  //     onPress: () => navigation.navigate("ExportImport"),
+  //   },
+  // };
+
+  const SettingsItems: Record<
+    keyof Omit<SettingsParamsList, "About" | "Rate" | "Tip" | "Settings">,
+    string
+  > = {
+    General: "General",
+    Appearance: "Appearance",
+    Filters: "Filters",
+    FaceIdAndPasscode: "FaceId & Passcode",
+    Accounts: "Accounts",
+    ExportImport: "Export | Import",
   };
 
-  // enum Temp {
-  //   General = "General",
-  //   Appearance = "Appearance",
-  //   Filters = "Filters",
-  //   FaceIdAndPasscode = "FaceId & Passcode",
-  //   Accounts = "Accounts",
-  //   ExportImport = "Export | Import",
-  // }
   //
   // const Hello = Object.keys(Temp).map((item: string) => {
   //   const x = Temp[item] as string;
@@ -79,9 +84,15 @@ export const Settings: FC<SettingsProps> = () => {
         />
       </Form>
       <Form>
-        {Object.values(SettingsItems).map((item) => {
+        {Object.entries(SettingsItems).map(([key, value]) => {
           return (
-            <FormText key={item.name} name={item.name} onPress={item.onPress} />
+            <FormText
+              key={value}
+              name={value}
+              onPress={() =>
+                navigation.navigate(key as keyof SettingsParamsList)
+              }
+            />
           );
         })}
       </Form>
