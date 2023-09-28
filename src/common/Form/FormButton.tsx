@@ -3,13 +3,11 @@ import { Button, StyleSheet } from "react-native";
 
 import { FormItem } from "@/common/Form/FormItem";
 
-type ListButtonProps = {
-  name: string;
-};
+type ListButtonProps = object & Button["props"];
 export const FormButton: FC<ListButtonProps> = (props) => {
   return (
     <FormItem style={{ justifyContent: "center" }}>
-      <Button title={props.name} />
+      <Button {...props} />
     </FormItem>
   );
 };

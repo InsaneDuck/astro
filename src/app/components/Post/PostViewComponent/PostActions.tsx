@@ -19,16 +19,15 @@ export const PostActions: FC<PostActionsProps> = (props) => {
   const textColor = useThemeColor("text");
   const iconSize = 15;
 
+  const borderStyle = {
+    borderRightColor: borderColor,
+  };
+
   const UpVote = () => {
     return (
       <TouchableOpacity
         onPress={() => Vibration.vibrate()}
-        style={[
-          {
-            borderRightColor: borderColor,
-          },
-          styles.perView,
-        ]}
+        style={[borderStyle, styles.perView]}
       >
         <Icon icon="arrow-up" color={textColor} size={iconSize} />
         <Text style={styles.text}>
@@ -40,14 +39,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
 
   const DownVote = () => {
     return (
-      <TouchableOpacity
-        style={[
-          {
-            borderRightColor: borderColor,
-          },
-          styles.perView,
-        ]}
-      >
+      <TouchableOpacity style={[borderStyle, styles.perView]}>
         <Icon icon="arrow-down" color={textColor} size={iconSize} />
         <Text style={styles.text}>
           {aggregateHelper(postAggregates.downvotes)}
@@ -58,14 +50,7 @@ export const PostActions: FC<PostActionsProps> = (props) => {
 
   const Save = () => {
     return (
-      <TouchableOpacity
-        style={[
-          {
-            borderRightColor: borderColor,
-          },
-          styles.perView,
-        ]}
-      >
+      <TouchableOpacity style={[borderStyle, styles.perView]}>
         <Icon icon="bookmark" color={textColor} size={iconSize} />
       </TouchableOpacity>
     );
@@ -73,15 +58,11 @@ export const PostActions: FC<PostActionsProps> = (props) => {
 
   const Reply = () => {
     return (
-      <TouchableOpacity
-        style={[
-          {
-            borderRightColor: borderColor,
-          },
-          styles.perView,
-        ]}
-      >
-        <Icon icon="reply" color={textColor} size={iconSize} />
+      <TouchableOpacity style={[borderStyle, styles.perView]}>
+        <Icon icon="message" color={textColor} size={iconSize} />
+        <Text style={styles.text}>
+          {aggregateHelper(postAggregates.comments)}
+        </Text>
       </TouchableOpacity>
     );
   };
@@ -126,6 +107,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   text: {
+    paddingLeft: 3,
     fontSize: 18,
   },
 });

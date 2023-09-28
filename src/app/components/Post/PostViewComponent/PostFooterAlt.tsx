@@ -29,12 +29,12 @@ export const PostFooterAlt: FC<PostFooterAltProps> = (props) => {
           <CommunityButton community={props.community} />
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Icon icon="message" color={tabIconDefault} size={16} />
-          <Text style={{ fontSize: 18, marginLeft: 3, marginRight: 3 }}>
+          <Icon icon="message" color={tabIconDefault} size={12} />
+          <Text style={{ fontSize: 13, marginLeft: 3, marginRight: 3 }}>
             {props.aggregate.comments}
           </Text>
-          <Icon icon="clock" color={tabIconDefault} size={16} />
-          <Text style={{ fontSize: 18, marginLeft: 3 }}>
+          <Icon icon="clock" color={tabIconDefault} size={12} />
+          <Text style={{ fontSize: 13, marginLeft: 3 }}>
             {formatTimeToDuration(props.published)}
           </Text>
         </View>
@@ -50,9 +50,9 @@ export const PostFooterAlt: FC<PostFooterAltProps> = (props) => {
           <PersonButton person={props.creator} />
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Icon icon="arrow-up" color={tabIconDefault} size={16} />
-          <Text style={{ fontSize: 18 }}>{props.aggregate.score}</Text>
-          <Icon icon="arrow-down" color={tabIconDefault} size={16} />
+          <Icon icon="arrow-up" color={tabIconDefault} size={12} />
+          <Text style={{ fontSize: 13 }}>{props.aggregate.score}</Text>
+          <Icon icon="arrow-down" color={tabIconDefault} size={12} />
           <Icon
             icon="ellipsis"
             color={tabIconDefault}

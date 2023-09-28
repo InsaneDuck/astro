@@ -33,14 +33,14 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
         <Icon
           icon="arrow-up"
           color={tabIconDefault}
-          size={16}
+          size={12}
           style={{ marginRight: 1, marginLeft: 1 }}
         />
         <Text style={styles.headerText}>{commentView.counts.score}</Text>
         <Icon
           icon="clock"
           color={tabIconDefault}
-          size={16}
+          size={12}
           style={{ marginRight: 3, marginLeft: 3 }}
         />
         <Text style={styles.headerText}>
@@ -71,11 +71,11 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
         <View
           style={{
             backgroundColor: "#f63900",
-            width: 5,
+            width: 3,
             height: "100%",
           }}
         />
-        <View style={{ padding: 10, flex: 1 }}>
+        <View style={{ padding: 8, flex: 1 }}>
           <CommentHeader />
           {expanded && <CommentContent />}
         </View>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     padding: 3,
     borderRadius: 5,
   },
-  headerText: { fontSize: 18 },
+  headerText: { fontSize: 13 },
   commentHeader: {
     display: "flex",
     flexDirection: "row",

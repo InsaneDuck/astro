@@ -1,9 +1,10 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
+import { AddServer } from "@/app/components/AccountSwitcher/AddServer";
 import { Form } from "@/common/Form/Form";
-import { FormInput } from "@/common/Form/FormInput";
+import { FormButton } from "@/common/Form/FormButton";
 import { FormText } from "@/common/Form/FormText";
 import { RootState } from "@/store/store";
 
@@ -13,12 +14,36 @@ export const ServerSelector: FC<ServerSelectorProps> = (props) => {
     (state: RootState) => state.auth.currentUser.serverUrl,
   );
 
+  const [formState, setFormState] = useState<boolean>(false);
+
+  function toggle() {
+    setFormState((prevState) => !prevState);
+  }
+
   const onSelectingServer = () => {};
+
   return (
-    <Form title="SELECT SERVER">
-      {server && <FormText name={server} onPress={onSelectingServer} />}
-      <FormInput placeholder="+ Add Server" />
-    </Form>
+    <>
+      {!formState && (
+        <>
+          <Form title="SELECT SERVER">
+            {server && <FormText name={server} onPress={onSelectingServer} />}
+          </Form>
+          <Form>
+            <FormButton title="+ Add Server" onPress={toggle} />
+          </Form>
+        </>
+      )}
+
+      {formState && (
+        <>
+          <AddServer />
+          <Form>
+            <FormButton title="Cancel" onPress={toggle} color="red" />
+          </Form>
+        </>
+      )}
+    </>
   );
 };
 

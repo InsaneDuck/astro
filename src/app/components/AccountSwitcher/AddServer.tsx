@@ -1,28 +1,19 @@
-import { StyleSheet } from "react-native";
-
-import { Text } from "@/common/Text";
-import { useThemeColor } from "@/theming/useThemeColor";
+import { Form } from "@/common/Form/Form";
+import { FormButton } from "@/common/Form/FormButton";
+import { FormInput } from "@/common/Form/FormInput";
 
 export const AddServer = () => {
-  const borderColor = useThemeColor("borderColor");
   return (
-    <Text
-      style={[
-        {
-          backgroundColor: borderColor,
-          textAlign: "center",
-        },
-        styles.server,
-      ]}
-    >
-      + Add Server
-    </Text>
+    <>
+      <Form title="LOGIN">
+        <FormInput placeholder="Name (Primary, Secondary..etc)" />
+        <FormInput placeholder="Server URL" />
+        <FormInput placeholder="Username" />
+        <FormInput placeholder="Password" />
+      </Form>
+      <Form>
+        <FormButton title="Add" />
+      </Form>
+    </>
   );
 };
-const styles = StyleSheet.create({
-  server: {
-    width: "100%",
-    fontSize: 18,
-    padding: 15,
-  },
-});
