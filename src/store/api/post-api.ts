@@ -15,26 +15,28 @@ const postApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     getComment: builder.query<CommentResponse, GetComment>({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
+        const user = (getState() as RootState).auth.currentUser;
         console.log("fetching getComment : " + JSON.stringify(arg));
-        const data = await getLemmyHttp("https://lemmy.ml/").getComment(arg);
+        const data = await getLemmyHttp(user).getComment(arg);
         return { data };
       },
     }),
     getComments: builder.query<CommentView[], GetComments>({
       queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
+        const user = (getState() as RootState).auth.currentUser;
         console.log("fetching getComments : " + JSON.stringify(arg));
-        const response =
-          await getLemmyHttp("https://lemmy.ml/").getComments(arg);
+        const response = await getLemmyHttp(user).getComments(arg);
         console.log("comments count = " + response.comments.length);
         return { data: response.comments };
       },
     }),
     getPosts: builder.query<PostView[], GetPosts>({
       queryFn: async (arg: GetPosts, { getState }) => {
-        const url = (getState() as RootState).settings.currentSettings.Accounts
-          .currentUser.serverUrl;
-        console.log("fetching getPosts : " + JSON.stringify(arg) + url);
-        const response = await getLemmyHttp(url).getPosts(arg);
+        const user = (getState() as RootState).auth.currentUser;
+        console.log(
+          "fetching getPosts : " + JSON.stringify(arg) + " url: " + user,
+        );
+        const response = await getLemmyHttp(user).getPosts(arg);
         return { data: response.posts };
       },
     }),

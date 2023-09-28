@@ -19,12 +19,14 @@ import {
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { lemmyApi } from "@/store/api/api-slice";
+import { RootState } from "@/store/store";
 
 const adminApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     addAdmin: builder.query<AddAdminResponse, AddAdmin>({
       queryFn: async (arg, { getState }) => {
-        const data = await getLemmyHttp("https://lemmy.ml/").addAdmin(arg);
+        const user = (getState() as RootState).auth.currentUser;
+        const data = await getLemmyHttp(user).addAdmin(arg);
         return { data };
       },
     }),
@@ -32,9 +34,9 @@ const adminApi = lemmyApi.injectEndpoints({
       AddModToCommunityResponse,
       AddModToCommunity
     >({
-      queryFn: async (arg) => {
-        const data =
-          await getLemmyHttp("https://lemmy.ml/").addModToCommunity(arg);
+      queryFn: async (arg, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
+        const data = await getLemmyHttp(user).addModToCommunity(arg);
         return { data };
       },
     }),
@@ -42,53 +44,54 @@ const adminApi = lemmyApi.injectEndpoints({
       RegistrationApplicationResponse,
       ApproveRegistrationApplication
     >({
-      queryFn: async (arg) => {
+      queryFn: async (arg, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
         const data =
-          await getLemmyHttp(
-            "https://lemmy.ml/",
-          ).approveRegistrationApplication(arg);
+          await getLemmyHttp(user).approveRegistrationApplication(arg);
         return { data };
       },
     }),
     banFromCommunity: builder.query<BanFromCommunityResponse, BanFromCommunity>(
       {
-        queryFn: async (arg) => {
-          const data =
-            await getLemmyHttp("https://lemmy.ml/").banFromCommunity(arg);
+        queryFn: async (arg, { getState }) => {
+          const user = (getState() as RootState).auth.currentUser;
+          const data = await getLemmyHttp(user).banFromCommunity(arg);
           return { data };
         },
       },
     ),
     banPerson: builder.query<BanPersonResponse, BanPerson>({
-      queryFn: async (arg) => {
-        const data = await getLemmyHttp("https://lemmy.ml/").banPerson(arg);
+      queryFn: async (arg, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
+        const data = await getLemmyHttp(user).banPerson(arg);
         return { data };
       },
     }),
     blockCommunity: builder.query<BanFromCommunityResponse, BanFromCommunity>({
-      queryFn: async (arg) => {
-        const data =
-          await getLemmyHttp("https://lemmy.ml/").banFromCommunity(arg);
+      queryFn: async (arg, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
+        const data = await getLemmyHttp(user).banFromCommunity(arg);
         return { data };
       },
     }),
     blockPerson: builder.query<BanFromCommunityResponse, BanFromCommunity>({
-      queryFn: async (arg) => {
-        const data =
-          await getLemmyHttp("https://lemmy.ml/").banFromCommunity(arg);
+      queryFn: async (arg, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
+        const data = await getLemmyHttp(user).banFromCommunity(arg);
         return { data };
       },
     }),
     changePassword: builder.query<LoginResponse, ChangePassword>({
-      queryFn: async (arg) => {
-        const data =
-          await getLemmyHttp("https://lemmy.ml/").changePassword(arg);
+      queryFn: async (arg, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
+        const data = await getLemmyHttp(user).changePassword(arg);
         return { data };
       },
     }),
     createComment: builder.query<CommentResponse, CreateComment>({
-      queryFn: async (arg) => {
-        const data = await getLemmyHttp("https://lemmy.ml/").createComment(arg);
+      queryFn: async (arg, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
+        const data = await getLemmyHttp(user).createComment(arg);
         return { data };
       },
     }),
@@ -96,9 +99,9 @@ const adminApi = lemmyApi.injectEndpoints({
       CommentReportResponse,
       CreateCommentReport
     >({
-      queryFn: async (arg) => {
-        const data =
-          await getLemmyHttp("https://lemmy.ml/").createCommentReport(arg);
+      queryFn: async (arg, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
+        const data = await getLemmyHttp(user).createCommentReport(arg);
         return { data };
       },
     }),

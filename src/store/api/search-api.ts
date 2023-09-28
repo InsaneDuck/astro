@@ -8,6 +8,7 @@ import {
 
 import { getLemmyHttp } from "@/helper-functions/getLemmyHttp";
 import { lemmyApi } from "@/store/api/api-slice";
+import { RootState } from "@/store/store";
 
 export type CustomSearch =
   | PostView[]
@@ -25,9 +26,10 @@ export type CustomSearchItem =
 const searchApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     search: builder.query<CustomSearch, Search>({
-      queryFn: async (args) => {
+      queryFn: async (args, { getState }) => {
+        const user = (getState() as RootState).auth.currentUser;
         console.log("fetching searchQuery : " + JSON.stringify(args));
-        const response = await getLemmyHttp("https://lemmy.ml/").search(args);
+        const response = await getLemmyHttp(user).search(args);
         let data: CustomSearch = [];
         switch (args.type_) {
           case "Comments":

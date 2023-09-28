@@ -10,7 +10,6 @@ export type Settings = {
   Appearance: SettingsAppearance;
   Filters: SettingsFilters;
   FaceIdPasscode: SettingsFaceIdPasscode;
-  Accounts: SettingsAccounts;
   ExportImport: SettingsExportImport;
 };
 export type SettingsGeneral = {
@@ -57,11 +56,6 @@ export type SettingsFilters = {
 export type SettingsFaceIdPasscode = {
   faceId: boolean;
   passcode: boolean;
-};
-
-export type SettingsAccounts = {
-  allUsers: User[];
-  currentUser: User;
 };
 
 export type SettingsExportImport = {

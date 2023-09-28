@@ -9,8 +9,7 @@ import { RootState } from "@/store/store";
 
 export const ProfileHeaderRight = () => {
   const loggedInStatus = useSelector(
-    (state: RootState) =>
-      state.settings.currentSettings.Accounts.currentUser.authStatus,
+    (state: RootState) => state.auth.currentUser.authStatus,
   );
   const navigation = useNavigation<SubStackNavigation>();
   const onPress = (): any => {

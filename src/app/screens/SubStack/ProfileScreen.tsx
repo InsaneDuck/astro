@@ -9,8 +9,7 @@ type ProfileProps = object;
 
 export const ProfileScreen: FC<ProfileProps> = () => {
   const loggedInStatus = useSelector(
-    (state: RootState) =>
-      state.settings.currentSettings.Accounts.currentUser.authStatus,
+    (state: RootState) => state.auth.currentUser.authStatus,
   );
 
   switch (loggedInStatus) {

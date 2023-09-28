@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 import { useSelector } from "react-redux";
 
 import { RootState } from "@/store/store";
+import { User } from "@/types/User";
 
 //const baseUrl = "https://lemmy.ml/";
 
@@ -12,14 +13,13 @@ const options = {
   fetchFunction: undefined,
 };
 let client: LemmyHttp | null = null;
-export const getLemmyHttp = (baseUrl: string) => {
-  client = new LemmyHttp(baseUrl);
+export const getLemmyHttp = (user: User) => {
+  client = new LemmyHttp(user.serverUrl);
   return client;
 };
 
 const useGetLemmyHttp = () => {
   const url = useSelector(
-    (state: RootState) =>
-      state.settings.currentSettings.Accounts.currentUser.serverUrl,
+    (state: RootState) => state.auth.currentUser.serverUrl,
   );
 };

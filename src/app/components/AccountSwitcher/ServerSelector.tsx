@@ -10,8 +10,7 @@ import { RootState } from "@/store/store";
 type ServerSelectorProps = object;
 export const ServerSelector: FC<ServerSelectorProps> = (props) => {
   const server = useSelector(
-    (state: RootState) =>
-      state.settings.currentSettings.Accounts.currentUser.serverUrl,
+    (state: RootState) => state.auth.currentUser.serverUrl,
   );
 
   const onSelectingServer = () => {};

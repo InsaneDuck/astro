@@ -35,14 +35,7 @@ export const defaultSettings: Settings = {
     showUserNameInTabBar: false,
     theme: "dark",
   },
-  Accounts: {
-    allUsers: [],
-    currentUser: {
-      id: 0,
-      serverUrl: "https://lemmy.world/",
-      authStatus: "anonymous",
-    },
-  },
+
   Filters: {
     keywords: [],
     communities: [],
