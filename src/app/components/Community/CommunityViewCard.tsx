@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/core";
 import { CommunityView } from "lemmy-js-client";
 import React, { FC } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
 
 import { Button } from "@/app/components/Button";
 import { CommunityButton } from "@/app/components/Community/CommunityButton";
@@ -14,7 +13,7 @@ import { aggregateHelper } from "@/helper-functions/aggregateHelper";
 import { getBaseDomainFromUrl } from "@/helper-functions/getBaseDomainFromUrl";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
-import { AppDispatch } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
 import { useThemeColor } from "@/theming/useThemeColor";
 
@@ -24,7 +23,7 @@ type CommunityViewCardProps = {
 export const CommunityViewCard: FC<CommunityViewCardProps> = (props) => {
   const borderColor = useThemeColor("borderColor");
   const navigation = useNavigation<SubStackNavigation>();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const goToCommunity = () => {
     dispatch(sharedActions.setCommunity(props.community.community));
     navigation.navigate("Community");

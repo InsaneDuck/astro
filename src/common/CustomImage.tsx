@@ -2,11 +2,10 @@ import { useNavigation } from "@react-navigation/core";
 import React, { FC } from "react";
 import { Image as DefaultImage, TouchableOpacity } from "react-native";
 import { ImageURISource } from "react-native/Libraries/Image/ImageSource";
-import { useDispatch } from "react-redux";
 
 import { MainStackNavigation } from "@/router/MainStackLayout";
 import { sharedActions } from "@/store/shared-slice";
-import { AppDispatch } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
 import { Press } from "@/theming/Themed";
 
 type ImageProps = {
@@ -16,7 +15,7 @@ type ImageProps = {
 export const CustomImage: FC<ImageProps> = (props) => {
   const { source, onPress, ...otherProps } = props;
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigation = useNavigation<MainStackNavigation>();
 
   //todo

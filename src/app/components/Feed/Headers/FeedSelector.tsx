@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { ActionSheetIOS, useColorScheme } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Text } from "@/common/Text";
 import { sharedActions } from "@/store/shared-slice";
-import { AppDispatch, RootState } from "@/store/store";
+import { RootState, useAppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
 
 export const FeedSelector = () => {
   const theme = useColorScheme() || "dark";
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const type = useSelector((state: RootState) => state.shared.feedType);
   const [temp, setTemp] = useState(type);
 

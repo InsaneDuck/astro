@@ -1,12 +1,12 @@
 import { SortType } from "lemmy-js-client";
 import React, { FC, useEffect, useState } from "react";
 import { ActionSheetIOS, TouchableOpacity, useColorScheme } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
 import { sharedActions } from "@/store/shared-slice";
-import { AppDispatch, RootState } from "@/store/store";
+import { RootState, useAppDispatch } from "@/store/store";
 
 type FeedSorterProps = object;
 
@@ -15,7 +15,7 @@ export const FeedSorter: FC<FeedSorterProps> = (props) => {
   const sort = useSelector((state: RootState) => state.shared.feedSort);
   const [temp, setTemp] = useState(sort);
   const theme = useColorScheme() || "dark";
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   enum allOptions {
     Cancel = "Cancel",

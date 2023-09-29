@@ -3,14 +3,12 @@ import { useSelector } from "react-redux";
 
 import { LoginSignUp } from "@/app/components/Person/LoginSignUp";
 import { PersonViewComponent } from "@/app/components/Person/PersonViewComponent";
-import { RootState } from "@/store/store";
+import { selectCurrentServer } from "@/store/auth-slice";
 
 type ProfileProps = object;
 
 export const ProfileScreen: FC<ProfileProps> = () => {
-  const loggedInStatus = useSelector(
-    (state: RootState) => state.auth.currentUser.authStatus,
-  );
+  const loggedInStatus = useSelector(selectCurrentServer);
 
   switch (loggedInStatus) {
     case "anonymous":

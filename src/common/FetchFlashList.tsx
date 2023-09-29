@@ -29,13 +29,6 @@ type FetchFlashListFlashListProps<ListEntity, Request> = {
   requestArgs: Request;
 };
 
-// type temp<Request, Response> = UseQueryHookResult<
-//   QueryDefinition<Request, BaseQueryFn, never, Response, "lemmy">,
-//   UseQueryStateDefaultResult<
-//     QueryDefinition<Request, BaseQueryFn, never, Response, "lemmy">
-//   >
-// >;
-
 type ReturnTypeOfUseFetch<Request, ListEntity> = {
   data?: ListEntity[];
   isFetching: boolean;
@@ -123,14 +116,13 @@ export function FetchFlashList<ListEntity, Request>(
     <View style={{ width: "100%", height: "100%" }}>
       <FlashList
         data={data.ids}
-        keyExtractor={(item) => item.toString()}
         ListHeaderComponent={ListHeaderComponent}
         renderItem={({ item }) => <Text style={{ padding: 20 }}>{item}</Text>}
         ItemSeparatorComponent={Separator}
         ListFooterComponent={ListFooterComponent}
         onEndReached={onEndReached}
         refreshing={isLoading}
-        estimatedItemSize={estimatedItemSize}
+        estimatedItemSize={200}
       />
     </View>
   );

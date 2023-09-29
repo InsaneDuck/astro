@@ -2,14 +2,13 @@ import { useNavigation } from "@react-navigation/core";
 import { Community, SubscribedType } from "lemmy-js-client";
 import React, { FC, useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
 
 import { CustomImage } from "@/common/CustomImage";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
-import { AppDispatch } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
 
 type CommunityButtonProps = {
@@ -21,7 +20,7 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   const { community } = props;
 
   const navigation = useNavigation<SubStackNavigation>();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const goToCommunity = () => {
     dispatch(sharedActions.setCommunity(community));
     navigation.navigate("Community");

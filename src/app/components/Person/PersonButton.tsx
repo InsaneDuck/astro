@@ -7,14 +7,13 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
-import { useDispatch } from "react-redux";
 
 import { CustomImage } from "@/common/CustomImage";
 import { Text } from "@/common/Text";
 import { View } from "@/common/View";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
-import { AppDispatch } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
 
 type PersonButtonProps = {
@@ -26,7 +25,7 @@ type PersonButtonProps = {
 export const PersonButton: FC<PersonButtonProps> = (props) => {
   const { person } = props;
   const navigation = useNavigation<SubStackNavigation>();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const goToUser = (): any => {
     dispatch(sharedActions.setClickedPerson(person));

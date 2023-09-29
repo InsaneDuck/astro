@@ -6,6 +6,9 @@ import {
   PostView,
   SortType,
 } from "lemmy-js-client";
+import { createSelector } from "reselect";
+
+import { RootState } from "@/store/store";
 
 export type SharedState = {
   images: string[];
@@ -95,3 +98,49 @@ export const sharedSlice = createSlice({
 export const sharedActions = sharedSlice.actions;
 
 export const sharedReducers = sharedSlice.reducer;
+
+export const selectShared = (state: RootState) => state.shared;
+
+export const selectImages = createSelector(
+  selectShared,
+  (state) => state.images,
+);
+
+export const selectClickedPerson = createSelector(
+  selectShared,
+  (state) => state.clickedPerson,
+);
+export const selectPrimaryPerson = createSelector(
+  selectShared,
+  (state) => state.primaryPerson,
+);
+
+export const selectCommunity = createSelector(
+  selectShared,
+  (state) => state.community,
+);
+
+export const selectPostId = createSelector(
+  selectShared,
+  (state) => state.postId,
+);
+
+export const selectPostView = createSelector(
+  selectShared,
+  (state) => state.postView,
+);
+
+export const selectFeedSort = createSelector(
+  selectShared,
+  (state) => state.feedSort,
+);
+
+export const selectFeedType = createSelector(
+  selectShared,
+  (state) => state.feedType,
+);
+
+export const selectCommunitySort = createSelector(
+  selectShared,
+  (state) => state.communitySort,
+);

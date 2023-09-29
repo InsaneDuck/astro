@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/core";
 import { PostView } from "lemmy-js-client";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
-import { useDispatch } from "react-redux";
 
 import { PostActions } from "@/app/components/Post/PostViewComponent/PostActions";
 import { PostFooter } from "@/app/components/Post/PostViewComponent/PostFooter";
@@ -10,7 +9,7 @@ import { CustomImage } from "@/common/CustomImage";
 import { Text } from "@/common/Text";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
-import { AppDispatch } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
 
 type PostViewComponentProps = {
   postView: PostView;
@@ -25,7 +24,7 @@ let count = 0;
 const PostViewComponent: FC<PostViewComponentProps> = (props) => {
   const { postView, type } = props;
   const navigationCurrent = useNavigation<SubStackNavigation>();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   console.log("count = ", count++);
   const goToPost = (): any => {
     if (type === "feed") {
