@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import {
-  ColorValue,
   StyleProp,
   StyleSheet,
   TouchableOpacity,
@@ -18,10 +17,6 @@ type ButtonProps = {
   onPress?: Press;
   options?: IconProps;
   text?: string;
-};
-
-type IosButton = {
-  color: ColorValue;
 };
 
 export const Button: FC<ButtonProps> = (props) => {

@@ -5,13 +5,12 @@ import { StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { PostActions } from "@/app/components/Post/PostViewComponent/PostActions";
-import { PostFooterAlt } from "@/app/components/Post/PostViewComponent/PostFooterAlt";
+import { PostFooter } from "@/app/components/Post/PostViewComponent/PostFooter";
 import { CustomImage } from "@/common/CustomImage";
 import { Text } from "@/common/Text";
 import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
-import { useThemeColor } from "@/theming/useThemeColor";
 
 type PostViewComponentProps = {
   postView: PostView;
@@ -25,7 +24,6 @@ let count = 0;
 //todo add post time,
 const PostViewComponent: FC<PostViewComponentProps> = (props) => {
   const { postView, type } = props;
-  const tabIconDefault = useThemeColor("tabIconDefault");
   const navigationCurrent = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
   console.log("count = ", count++);
@@ -78,10 +76,6 @@ const PostViewComponent: FC<PostViewComponentProps> = (props) => {
     );
   };
 
-  const PostInteraction = () => {
-    return type === "post" && <PostActions postAggregates={postView.counts} />;
-  };
-
   //todo show skeleton instead of null
   return postView ? (
     <>
@@ -89,7 +83,7 @@ const PostViewComponent: FC<PostViewComponentProps> = (props) => {
       <PostImage />
       <PostEmbedDescription />
       <PostBody />
-      <PostFooterAlt
+      <PostFooter
         onPress={goToPost}
         published={postView.post.published}
         community={postView.community}

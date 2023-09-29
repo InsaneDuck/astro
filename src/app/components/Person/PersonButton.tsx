@@ -16,7 +16,6 @@ import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
-import { useThemeColor } from "@/theming/useThemeColor";
 
 type PersonButtonProps = {
   person: Person;
@@ -26,7 +25,6 @@ type PersonButtonProps = {
 //todo show tags like mod?, op?
 export const PersonButton: FC<PersonButtonProps> = (props) => {
   const { person } = props;
-  const tabIconDefault = useThemeColor("tabIconDefault");
   const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -48,8 +46,6 @@ export const PersonButton: FC<PersonButtonProps> = (props) => {
 
       <Text
         style={{
-          fontSize: 18,
-          paddingLeft: 3,
           color: ConstantColors.iosBlue,
         }}
       >
@@ -70,6 +66,7 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 5,
     overflow: "hidden",
+    marginRight: 3,
   },
   image: {
     width: "100%",

@@ -1,6 +1,5 @@
 import { CommentSortType, CommentView, GetComments } from "lemmy-js-client";
 import React, { FC } from "react";
-import { StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 import { CommentViewComponent } from "@/app/components/Post/FullPost/CommentViewComponent";
@@ -49,5 +48,3 @@ export const Post: FC<PostProps> = (props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({});

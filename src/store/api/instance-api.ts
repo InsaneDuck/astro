@@ -13,7 +13,7 @@ const instanceApi = lemmyApi.injectEndpoints({
       GetFederatedInstancesResponse,
       FederatedInstances | void
     >({
-      queryFn: async (_, { getState }, extraOptions, baseQuery) => {
+      queryFn: async (_, { getState }) => {
         const user = (getState() as RootState).auth.currentUser;
         console.log("fetching Federated Instances");
         const data = await getLemmyHttp(user).getFederatedInstances();

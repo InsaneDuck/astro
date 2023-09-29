@@ -7,7 +7,7 @@ import { RootState } from "@/store/store";
 const moderationApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     getModlog: builder.query<GetModlogResponse, GetModlog>({
-      queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
+      queryFn: async (arg, { getState }) => {
         const user = (getState() as RootState).auth.currentUser;
         console.log("fetching getModlog : " + JSON.stringify(arg));
         const data = await getLemmyHttp(user).getModlog(arg);

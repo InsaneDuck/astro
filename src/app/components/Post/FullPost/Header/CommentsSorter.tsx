@@ -1,17 +1,14 @@
 import React, { FC } from "react";
 import { ActionSheetIOS, TouchableOpacity, useColorScheme } from "react-native";
-import { useDispatch } from "react-redux";
 
 import { Icon } from "@/common/Icon";
 import { Text } from "@/common/Text";
-import { AppDispatch } from "@/store/store";
 
 type CommentsSorterProps = object;
 
 export const CommentsSorter: FC<CommentsSorterProps> = (props) => {
   const theme = useColorScheme() || "dark";
 
-  const dispatch = useDispatch<AppDispatch>();
   //todo this
   const all = () => {
     const allOptions = ["Cancel", "Hot", "Top", "New", "Old"];

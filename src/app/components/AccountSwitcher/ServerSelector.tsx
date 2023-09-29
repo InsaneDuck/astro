@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 import { AddServer } from "@/app/components/AccountSwitcher/AddServer";
@@ -46,5 +45,3 @@ export const ServerSelector: FC<ServerSelectorProps> = (props) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({});

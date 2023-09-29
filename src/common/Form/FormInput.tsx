@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { StyleSheet, TextInput } from "react-native";
+import { TextInput } from "react-native";
 
 import { FormItem } from "@/common/Form/FormItem";
 
@@ -18,5 +18,3 @@ export const FormInput: FC<TextInputItemProps> = (props) => {
     </FormItem>
   );
 };
-
-const styles = StyleSheet.create({});

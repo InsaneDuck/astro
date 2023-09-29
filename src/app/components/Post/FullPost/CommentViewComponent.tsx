@@ -36,16 +36,14 @@ export const CommentViewComponent: FC<CommentViewComponentProps> = (props) => {
           size={12}
           style={{ marginRight: 1, marginLeft: 1 }}
         />
-        <Text style={styles.headerText}>{commentView.counts.score}</Text>
+        <Text>{commentView.counts.score}</Text>
         <Icon
           icon="clock"
           color={tabIconDefault}
           size={12}
           style={{ marginRight: 3, marginLeft: 3 }}
         />
-        <Text style={styles.headerText}>
-          {formatTimeToDuration(commentView.comment.published)}
-        </Text>
+        <Text>{formatTimeToDuration(commentView.comment.published)}</Text>
       </View>
     );
   };
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
     padding: 3,
     borderRadius: 5,
   },
-  headerText: { fontSize: 13 },
+
   commentHeader: {
     display: "flex",
     flexDirection: "row",
@@ -101,5 +99,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     overflow: "hidden",
   },
-  commentContent: { fontSize: 15, marginTop: 5 },
+  commentContent: { marginTop: 5 },
 });

@@ -14,7 +14,7 @@ import { RootState } from "@/store/store";
 const postApi = lemmyApi.injectEndpoints({
   endpoints: (builder) => ({
     getComment: builder.query<CommentResponse, GetComment>({
-      queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
+      queryFn: async (arg, { getState }) => {
         const user = (getState() as RootState).auth.currentUser;
         console.log("fetching getComment : " + JSON.stringify(arg));
         const data = await getLemmyHttp(user).getComment(arg);
@@ -22,7 +22,7 @@ const postApi = lemmyApi.injectEndpoints({
       },
     }),
     getComments: builder.query<CommentView[], GetComments>({
-      queryFn: async (arg, { getState }, extraOptions, baseQuery) => {
+      queryFn: async (arg, { getState }) => {
         const user = (getState() as RootState).auth.currentUser;
         console.log("fetching getComments : " + JSON.stringify(arg));
         const response = await getLemmyHttp(user).getComments(arg);

@@ -1,5 +1,3 @@
-import { StyleSheet } from "react-native";
-
 import { ActionSheetButton } from "@/app/components/Feed/ActionSheetButton";
 import { FormItem } from "@/common/Form/FormItem";
 import { Text } from "@/common/Text";
@@ -28,13 +26,3 @@ export const FormSelectAlt = <E extends object, T extends string>(
     </FormItem>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "auto",
-  },
-});

@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { StyleSheet } from "react-native";
 
 type CommunitiesSearchResultProps = object;
 export const CommunitiesSearchResult: FC<CommunitiesSearchResultProps> = (
@@ -7,5 +6,3 @@ export const CommunitiesSearchResult: FC<CommunitiesSearchResultProps> = (
 ) => {
   return <></>;
 };
-
-const styles = StyleSheet.create({});

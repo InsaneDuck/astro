@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button, StyleSheet } from "react-native";
+import { Button } from "react-native";
 
 import { FormItem } from "@/common/Form/FormItem";
 
@@ -11,5 +11,3 @@ export const FormButton: FC<ListButtonProps> = (props) => {
     </FormItem>
   );
 };
-
-const styles = StyleSheet.create({});

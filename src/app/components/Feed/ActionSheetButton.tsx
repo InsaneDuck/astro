@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActionSheetIOS, StyleSheet, useColorScheme } from "react-native";
+import { ActionSheetIOS, useColorScheme } from "react-native";
 
 import { Text } from "@/common/Text";
 import { ConstantColors } from "@/theming/Colors";
@@ -54,5 +54,3 @@ export const ActionSheetButton = <E extends object, T extends string>(
     </Text>
   );
 };
-
-const styles = StyleSheet.create({});

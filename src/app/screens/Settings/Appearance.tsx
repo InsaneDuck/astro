@@ -1,19 +1,17 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Form } from "@/common/Form/Form";
 import { FormSelect } from "@/common/Form/FormSelect";
 import { FormToggle } from "@/common/Form/FormToggle";
 import { View } from "@/common/View";
-import { AppDispatch, RootState } from "@/store/store";
+import { RootState } from "@/store/store";
 
 export const Appearance = () => {
   const appearanceSettings = useSelector(
     (state: RootState) => state.settings.currentSettings.Appearance,
   );
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const ThemeSection = () => {
     return (
@@ -73,17 +71,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     paddingBottom: 20,
-  },
-  title: {
-    marginTop: 20,
-    fontSize: 15,
-    width: "84%",
-    marginBottom: 3,
-  },
-  innerContainer: {
-    width: "90%",
-    borderRadius: 13,
-
-    overflow: "hidden",
   },
 });

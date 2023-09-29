@@ -11,7 +11,6 @@ import { SubStackNavigation } from "@/router/SubStackLayout";
 import { sharedActions } from "@/store/shared-slice";
 import { AppDispatch } from "@/store/store";
 import { ConstantColors } from "@/theming/Colors";
-import { useThemeColor } from "@/theming/useThemeColor";
 
 type CommunityButtonProps = {
   community: Community;
@@ -20,7 +19,7 @@ type CommunityButtonProps = {
 
 export const CommunityButton: FC<CommunityButtonProps> = (props) => {
   const { community } = props;
-  const tabIconDefault = useThemeColor("tabIconDefault");
+
   const navigation = useNavigation<SubStackNavigation>();
   const dispatch = useDispatch<AppDispatch>();
   const goToCommunity = () => {
@@ -35,7 +34,6 @@ export const CommunityButton: FC<CommunityButtonProps> = (props) => {
           {
             color: ConstantColors.lemmyGreen,
           },
-          styles.communityName,
         ]}
       >
         {community.name}
@@ -96,18 +94,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     display: "flex",
+    marginRight: 3,
   },
   image: {
     width: "100%",
     height: "100%",
   },
-  communityName: {
-    fontSize: 18,
-    paddingLeft: 3,
-  },
+
   actionButton: {
     fontWeight: "bold",
-    fontSize: 14,
     textAlignVertical: "center",
     textAlign: "center",
     backgroundColor: ConstantColors.iosBlue,
