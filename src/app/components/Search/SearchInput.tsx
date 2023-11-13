@@ -1,8 +1,5 @@
 import { FC } from "react";
-import {
-  NativeSyntheticEvent,
-  TextInputSubmitEditingEventData,
-} from "react-native";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { Form } from "@/common/Form/Form";
 import { FormInput } from "@/common/Form/FormInput";
@@ -13,18 +10,19 @@ type SearchInputProps = {
 export const SearchInput: FC<SearchInputProps> = (props) => {
   //todo show trending communities
 
-  const onSubmit = (
-    value: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
-  ) => {
-    props.searchText(value.nativeEvent.text);
+  const { control, handleSubmit } = useForm();
+  //todo fix this
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    //props.searchText(data);
   };
 
   return (
     <Form>
       <FormInput
+        name="search"
         placeholder="Search for a User, Post or Community"
         clearButtonMode="always"
-        onSubmitEditing={onSubmit}
+        onSubmitEditing={handleSubmit(onSubmit)}
       />
     </Form>
   );

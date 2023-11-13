@@ -1,20 +1,17 @@
-import { FC } from "react";
-import { TextInput } from "react-native";
+import React, { FC } from "react";
+import { TextInput, TextInputProps } from "react-native";
 
 import { FormItem } from "@/common/Form/FormItem";
 
 type TextInputItemProps = {
-  placeholder: string;
-} & TextInput["props"];
-export const FormInput: FC<TextInputItemProps> = (props) => {
-  const { placeholder, ...otherProps } = props;
+  name: string;
+} & TextInputProps;
+export const FormInput: FC<TextInputItemProps> = (props, ref) => {
+  const { ...inputProps } = props;
+
   return (
     <FormItem>
-      <TextInput
-        placeholder={placeholder}
-        style={{ fontSize: 18, width: "100%", height: "100%", color: "#ccc" }}
-        {...otherProps}
-      />
+      <TextInput autoCapitalize="none" ref={ref} {...inputProps} />
     </FormItem>
   );
 };

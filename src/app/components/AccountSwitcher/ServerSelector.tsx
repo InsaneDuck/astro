@@ -15,11 +15,13 @@ export const ServerSelector: FC<ServerSelectorProps> = (props) => {
 
   const [formState, setFormState] = useState<boolean>(false);
 
-  function toggle() {
+  function toggleFormState() {
     setFormState((prevState) => !prevState);
   }
 
-  const onSelectingServer = () => {};
+  const onSelectingServer = () => {
+    //todo add server selection functionality
+  };
 
   return (
     <>
@@ -29,7 +31,7 @@ export const ServerSelector: FC<ServerSelectorProps> = (props) => {
             {server && <FormText name={server} onPress={onSelectingServer} />}
           </Form>
           <Form>
-            <FormButton title="+ Add Server" onPress={toggle} />
+            <FormButton title="+ Add Server" onPress={toggleFormState} />
           </Form>
         </>
       )}
@@ -38,7 +40,7 @@ export const ServerSelector: FC<ServerSelectorProps> = (props) => {
         <>
           <AddServer />
           <Form>
-            <FormButton title="Cancel" onPress={toggle} color="red" />
+            <FormButton title="Cancel" onPress={toggleFormState} color="red" />
           </Form>
         </>
       )}
